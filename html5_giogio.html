@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>位置情報を利用する</title>
+		<script type="text/javascript" charset="utf-8" src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=wfDrojSxg647FUQMeJxwmtc8saR47FHDRCVLqlgiCwENjWAF28V15HNuRn.ExbYfJpERo7s-"></script>
+		<script>
+			function init() {
+				var GL = navigator.geolocation;
+				GL.getCurrentPosition(proc_Success,proc_Error,{enableHighAccuracy:true});
+				
+				var INF = document.getElementById("LocationINF");
+				INF.innerHTML="";
+			}
+			function proc_Success(event) {
+				var LAT =event.coords.latitude;		//緯度
+				var LON =event.coords.longitude;	//経度
+				var ACU =event.coords.accuracy;		//最大誤差
+				
+				var INF = document.getElementById("LocationINF");
+				INF.innerHTML = "位置情報を取得しました" + "<br>";
+				INF.innerHTML += "緯度:" + LAT + "/経度:" + LON + "<br>";
+				INF.innerHTML += "最大誤差は:"+ ACU +"mです。";	
+				mapsOn(LAT, LON);			
+			}
+			function proc_Error(event) {
+				var INF = document.getElementById("LocationINF");
+				INF.innerHTML="位置情報を取得できませんでした";
+			}
+			function mapsOn(LAT, LON, ACU) {
+				var ymap = new Y.Map("map",{ configure : {doubleClickZoom : true,scrollWheelZoom : true,continuousZoom : true}});
+				ymap.drawMap(new Y.LatLng(LAT, LON), 17, Y.LayerSetId.NORMAL);
+				var strokeStyle = new Y.Style("009944", 15, 0.7);
+				var fillStyle   = new Y.Style("009944", null, 0.2);
+				var circle = new Y.Circle(new Y.LatLng(LAT,LON), 
+				new Y.Size(0.1, 0.1), 
+				{unit:"km",strokeStyle: strokeStyle,fillStyle:fillStyle}
+				);
+			ymap.addFeature(circle);
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<h1>位置情報</h1>
+		<div id="LocationINF"></div>
+		<div id="map" style="width:100%; height:600px"></div>
+	</body>
+</html>
