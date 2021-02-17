@@ -2,6 +2,9 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
     <title>カメラ切り替え</title>
   </head>
   <body>
@@ -40,6 +43,13 @@
         //          "audiooutput"
         navigator.mediaDevices.enumerateDevices()
         .then(function(devices) {
+          // デバイス情報 MediaDeviceInfo の内容
+          // deviceId       ：（デバイスID)
+          // kind           ：（種類：　audioinput, videoinput, audiooutput ）
+          //                  ※ audiooutput は Chromeのみ
+          // label （名称） ：取得できる場合と、できない場合がある
+          // groupId        ：同一ハード機器内のデバイスでは同じになる仕様（けど、まだ？）
+          // 成功時
           devices.forEach(function(device, index) {
             console.log(device.kind + ": " + device.label +
                         " id = " + device.deviceId);
@@ -49,18 +59,22 @@
             }
             // 指定要素にデバイス情報を要素で追加
             const p = document.createElement('p');
-            p.innerText =`[${index}]` + device.kind + ": " + device.label +
-                        " id = " + device.deviceId;
+            p.innerText =`*** [${index}] ***` 
+                          + `Kind: ${device.kind}` 
+                          + "<br>" 
+                          + `Label: ${device.label}`
+                          + "<br>" 
+                          + `Id: ${device.deviceId}`
             $divCameraDevices.appendChild(p);
           });
         })
+        // エラー発生時
         .catch(function(err) {
           console.log(err.name + ": " + err.message);
         });
       }
 
       getCameraDevices();
-
       //---------------------------------------------
       // グローバル変数
       //---------------------------------------------
