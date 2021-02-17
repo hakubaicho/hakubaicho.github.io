@@ -5,8 +5,8 @@
     <title>カメラ切り替え</title>
   </head>
   <body>
-    <div class="camera devices">
-
+    <div id="camera-devices">
+      <p>mediaDevicesを列挙します。</p>
     </div>
     <script>
       'use strict';
@@ -18,19 +18,20 @@
           console.log("enumerateDevices() not supported.");
           return;
         }
-
+        
+        const dicDIV = document.getElementById("camera-devices");
         // List cameras and microphones.
         navigator.mediaDevices.enumerateDevices()
         .then(function(devices) {
-          devices.forEach(function(device) {
+          devices.forEach(function(device, index) {
             console.log(device.kind + ": " + device.label +
                         " id = " + device.deviceId);
             // 画面表示
             const p = document.createElement('p');
-            p.innerText = device.kind + ": " + device.label +
+            p.innerText =`[${index}]` + device.kind + ": " + device.label +
                         " id = " + device.deviceId;
             // bodyに追加する
-            document.body.appendChild(p);
+            dicDIV.appendChild(p);
           });
         })
         .catch(function(err) {
