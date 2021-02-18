@@ -79,15 +79,15 @@
       var CONSTRAINTS = {
         audio: false,
         video: {
-          width: 640,
-          height: 480,
+          // width: 640,
+          // height: 480,
           // min    :最小値
           // max    :最大値
           // ideal  :理想的な値
-          // width: { min: 640, ideal: 1920, max: 1920 },
-          // height: { min: 400, ideal: 1080 },
-          // aspectRatio: 1.777777778,
-          // frameRate: { max: 30 },
+          width: { min: 640, ideal: 1920, max: 1920 },
+          height: { min: 400, ideal: 1080 },
+          aspectRatio: 1.777777778,
+          frameRate: { max: 30 },
         
           facingMode: null  // どのカメラを利用するか
 
