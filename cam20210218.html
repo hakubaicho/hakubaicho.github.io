@@ -21,6 +21,7 @@
         <select id="camera_list" size="1" style="width:160pt;">
           <option>(video)</option>
         </select>
+        <button id="start_video_button" onclick="startSelectedVideo()">Start Video</button>
       </div>
     </div>
     <!-- カメラ映像とカメラの解像度を表示する -->
@@ -36,12 +37,9 @@
     <div>
       <button type="button" onclick="videoStart()">開始</button>
       <button type="button" onclick="videoStop()">停止</button>
-      <button type="button" onclick="cameraPositionChange()">反転</button>
+      <button type="button" onclick="cameraPositionChange()">前/後</button>
     </div>
-    <!-- 切り替えボタン -->
-    <button type="button" id="btn-toggle" onclick="">
-      <img src="img/retweet-solid.svg" width="64" height="64">
-    </button>
+    <!-- キャプチャ画面 -->
     <div>
       <canvas id="canvas-capture"></canvas>
     </div>
@@ -123,15 +121,25 @@
       //---------------------------------------------
       window.onload = () => {
         // カメラと同期開始
-        syncCamera(video, useFront);
+        // 前後カメラの設定
+        CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+        syncCamera(video);
         useFront = !useFront;         // boolean値を反転
 
         getCameraDevices();
       };
-
+      // カメラ解像度の変更
       function videoSize(height, width) {
         CONSTRAINTS.video.height = height;
         CONSTRAINTS.video.width = width;
+        syncCamera(video);
+      }
+      // カメラデバイスの変更
+      function startSelectedVideo() {
+        var deviceId = getSelectedVideo();
+        console.log('selected video device id=' + deviceId);
+        CONSTRAINTS.video.facingMode = null;
+        CONSTRAINTS.video.deviceId = deviceId;
         syncCamera(video);
       }
       //
@@ -140,9 +148,9 @@
       // @param {object} video
       // @param {boolean} [is_front=true]
       //
-      function syncCamera(video, is_front=true){
-        // 前後カメラの設定
-        CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
+      function syncCamera(video){
+        // // 前後カメラの設定
+        // CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
         
         // すでにカメラと接続していたら停止
         if( curSTREAM !== null ){
@@ -174,6 +182,7 @@
               );
           });
       }
+
       function stopCamera()
       {
         // すでにカメラと接続していたら停止
@@ -186,11 +195,13 @@
       // カメラの反転
       function cameraPositionChange()
       {
-        syncCamera(video, useFront);
+        CONSTRAINTS.video.deviceId = null;
+        CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+        syncCamera(video);
         useFront = !useFront;      // boolean値を反転
       };
     
-      // コピー処理
+      // キャプチャー処理
       function videocapture()
       {
         $canvasCapture.width  = video.videoWidth;
