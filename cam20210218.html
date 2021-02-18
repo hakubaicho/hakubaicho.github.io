@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <title>カメラの解像度確認</title>
+    <title>*カメラの解像度確認*</title>
   </head>
   <body>
     <!-- このページの目的 -->
@@ -75,6 +75,9 @@
         video: {
           // width: 640,
           // height: 480,
+          // min    :最小値
+          // max    :最大値
+          // ideal  :理想的な値
           width: { min: 640, ideal: 1920, max: 1920 },
           height: { min: 400, ideal: 1080 },
           aspectRatio: 1.777777778,
@@ -125,8 +128,7 @@
       function syncCamera(video, is_front=true){
         // 前後カメラの設定
         CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
-        $label_h.innerText =`H:${CONSTRAINTS.video.height}`;
-        $label_w.innerText =`H:${CONSTRAINTS.video.width}`;
+        
         // すでにカメラと接続していたら停止
         if( curSTREAM !== null ){
           curSTREAM.getVideoTracks().forEach( (camera) => {
@@ -143,6 +145,8 @@
             video.srcObject = stream;
             video.onloadedmetadata = (e) => {
               video.play();
+              $label_h.innerText =`H:${stream.height}`;
+              $label_w.innerText =`H:${stream.width}`;
             };
           })
           .catch( (err) => {
