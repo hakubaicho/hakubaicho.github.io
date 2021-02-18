@@ -2,15 +2,39 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;"/>
+   
     <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>カメラ切り替え</title>
+
+    <style>
+      #container {
+				position : relative;
+				/*margin : 0px auto;*/
+			}
+      #camera {
+        border: 1px solid dimgray;
+      }
+      #overlay {
+        border: 1px solid dimgray;
+        position: absolute;
+				top: 0px;
+				left: 0px;
+				-o-transform : scaleX(-1);
+				-webkit-transform : scaleX(-1);
+				transform : scaleX(-1);
+				-ms-filter : fliph; /*IE*/
+				filter : fliph; /*IE*/
+      }
+    </style>
   </head>
   <body>
     <!-- カメラ映像 -->
-    <video id="camera" width="640" height="480"></video>
+    <div id="container">
+      <video id="camera" width="640" height="480">
+      </video>
+      <canvas id="overlay" width="640" height="480"></canvas>
+    </div>
 
     <!-- 切り替えボタン -->
     <button type="button" id="btn-toggle">
@@ -29,6 +53,7 @@
       //--------------------------------------------
       // メディアデバイスを取得する
       // https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/enumerateDevices
+      // https://qiita.com/massie_g/items/b9863e4366cfed339528
       //--------------------------------------------
       function getCameraDevices() 
       {        
@@ -84,8 +109,10 @@
       var CONSTRAINTS = {
         audio: false,
         video: {
-          width: 640,
-          height: 480,
+          // width: 640,
+          // height: 480,
+          width: 1080,
+          height: 1920,
           facingMode: null  // どのカメラを利用するか
 
           // facingModeには最終的に以下のいずれかの値を入れる
@@ -117,6 +144,18 @@
           syncCamera(video, useFront);
           useFront = !useFront;      // boolean値を反転
         });
+
+        // canvas準備
+        const board = document.querySelector("#overlay");  //getElementById()等でも可。オブジェクトが取れれば良い。
+        const ctx = board.getContext("2d");
+
+        // 画像読み込み
+        const chara = new Image();
+        
+        chara.src = "img/tshirt_w.png";  // 画像のURLを指定
+        chara.onload = () => {
+          ctx.drawImage(chara, 0, 0);
+        };
       };
 
       //
