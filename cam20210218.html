@@ -142,6 +142,10 @@
         CONSTRAINTS.video.deviceId = deviceId;
         syncCamera(video);
       }
+      function getSelectedVideo() {
+        var id = cameraList.options[cameraList.selectedIndex].value;
+        return id;
+      }
       //
       // カメラを<video>と同期
       //
@@ -192,7 +196,7 @@
           });
         }
       }
-      // カメラの反転
+      // 前後カメラの切り替え
       function cameraPositionChange()
       {
         CONSTRAINTS.video.deviceId = null;
