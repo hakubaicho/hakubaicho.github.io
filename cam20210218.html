@@ -1,0 +1,249 @@
+<!Doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>カメラの解像度確認</title>
+  </head>
+  <body>
+    <!-- このページの目的 -->
+    <div> 
+      <p>Chromeでの解像度確認</p>
+      <p><a href="chrome://media-internals/">chrome://media-internals/</a></p>
+      chrome://media-internals/
+    </div>
+    <!-- カメラ映像とカメラの解像度を表示する -->
+    <div>
+      <p id="resolution-height"></p>
+      <p id="resolution-width"></p>
+      <video id="camera" autoplay="1" ></video>
+    </div> 
+    
+    <div>
+      <button type="button" onclick="videoStart()">開始</button>
+      <button type="button" onclick="videoStop()">停止</button>
+      <button type="button" onclick="cameraPositionChange()">反転</button>
+    </div>
+    <!-- 切り替えボタン -->
+    <button type="button" id="btn-toggle" onclick="">
+      <img src="img/retweet-solid.svg" width="64" height="64">
+    </button>
+
+
+    <!-- メディアデバイスの列挙 -->
+    <div id="camera-devices">
+      <p>mediaDevicesを列挙します。</p>
+      <button type="button" onclick="getCameraDevices()">取得</button>
+      <div id="list-camera-devices">
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+      'use strict';
+      //------------------------------------------
+      // 定数領域にidで指定した要素を代入する
+      //------------------------------------------
+      const $divListCameraDevices = document.getElementById("list-camera-devices");   // カメラデバイス列挙エリア
+      const $label_h =document.getElementById("resolution-height");
+      const $label_w =document.getElementById("resolution-width");
+      const video = document.querySelector("#camera");
+
+      //------------------------------------------
+      // 変数領域
+      //------------------------------------------
+      let useFront = true;     // フロントカメラ:true, バックカメラ:false
+      //---------------------------------------------
+      // グローバル変数
+      //---------------------------------------------
+      // カメラのデフォルト設定
+      var CONSTRAINTS = {
+        audio: false,
+        video: {
+          // width: 640,
+          // height: 480,
+          width: { min: 640, ideal: 1920, max: 1920 },
+          height: { min: 400, ideal: 1080 },
+          aspectRatio: 1.777777778,
+          frameRate: { max: 30 },
+        
+          facingMode: null  // どのカメラを利用するか
+
+          // facingModeには最終的に以下のいずれかの値を入れる
+          //   facingMode: "user"                    // フロントカメラを利用する
+          //   facingMode: { exact: "environment" }  // リアカメラを利用する
+        }
+      };
+      // 現在のStream
+      var curSTREAM = null;
+
+      //---------------------------------------------
+      // [event] ページ読み込み完了
+      //---------------------------------------------
+      window.onload = () => {
+       
+
+        // 縦横の解像度を調整
+        // adjustCameraSize(video, 640, 480);
+
+        // カメラと同期開始
+        syncCamera(video, useFront);
+        useFront = !useFront;         // boolean値を反転
+
+        // // canvas準備
+        // const board = document.querySelector("#overlay");  //getElementById()等でも可。オブジェクトが取れれば良い。
+        // const ctx = board.getContext("2d");
+
+        // // 画像読み込み
+        // const chara = new Image();
+        
+        // chara.src = "img/tshirt_w.png";  // 画像のURLを指定
+        // chara.onload = () => {
+        //   ctx.drawImage(chara, 0, 0);
+        // };
+      };
+
+      //
+      // カメラを<video>と同期
+      //
+      // @param {object} video
+      // @param {boolean} [is_front=true]
+      //
+      function syncCamera(video, is_front=true){
+        // 前後カメラの設定
+        CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
+        $label_h.innerText =`H:${CONSTRAINTS.video.height}`;
+        $label_w.innerText =`H:${CONSTRAINTS.video.width}`;
+        // すでにカメラと接続していたら停止
+        if( curSTREAM !== null ){
+          curSTREAM.getVideoTracks().forEach( (camera) => {
+            camera.stop();
+          });
+        }
+
+        // カメラと接続する
+        navigator.mediaDevices.getUserMedia(CONSTRAINTS)
+          .then( (stream) => {
+            curSTREAM = stream;   // 前後の切り替え用に保持
+
+            // <video>とStremaを接続
+            video.srcObject = stream;
+            video.onloadedmetadata = (e) => {
+              video.play();
+            };
+          })
+          .catch( (err) => {
+            console.log(`${err.name}: ${err.message}`);
+            alert(
+              "カメラとの接続時にエラーが発生しました" + "\n"
+              + err.name + "\n"
+              + err.message
+              );
+          });
+      }
+      // カメラの反転
+      function cameraPositionChange()
+      {
+        syncCamera(video, useFront);
+        useFront = !useFront;      // boolean値を反転
+      };
+      // videoの開始
+      function videoStart(){
+        var constraints = { audio: false, video: { facingMode: "environment" } };
+
+        navigator.mediaDevices.getUserMedia( constraints )
+        .then(
+          function( stream ) {
+            var video = document.querySelector( 'video' );
+            video.srcObject = stream;
+            video.onloadedmetadata = function( e ) {
+              video.play();
+            };
+          }
+        )
+      };
+
+      // videoの停止
+      function videoStop(){
+        var constraints = { audio: false, video: { facingMode: "environment" } };
+
+        navigator.mediaDevices.getUserMedia( constraints )
+        .then(
+          function( stream ) {
+            var video = document.querySelector( 'video' );
+            video.srcObject = stream;
+            video.onloadedmetadata = function( e ) {
+              stream.getVideoTracks()[0].stop();
+            };
+          }
+        )
+      };
+
+
+      //--------------------------------------------
+      // メディアデバイスを取得する
+      // https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/enumerateDevices
+      // https://qiita.com/massie_g/items/b9863e4366cfed339528
+      //--------------------------------------------
+      function getCameraDevices() 
+      {
+        $divListCameraDevices.innerHTML="";
+        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+          console.log("enumerateDevices() not supported.");
+          return;
+        }
+       
+        
+        // List cameras and microphones.
+        // kindは   "videoinput"
+        //          "audioinput"
+        //          "audiooutput"
+        navigator.mediaDevices.enumerateDevices()
+        .then(function(devices) {
+          // デバイス情報 MediaDeviceInfo の内容
+          // deviceId       ：（デバイスID)
+          // kind           ：（種類：　audioinput, videoinput, audiooutput ）
+          //                  ※ audiooutput は Chromeのみ
+          // label （名称） ：取得できる場合と、できない場合がある
+          // groupId        ：同一ハード機器内のデバイスでは同じになる仕様（けど、まだ？）
+          // 成功時
+          devices.forEach(function(device, index) {
+            console.log(device.kind + ": " + device.label +
+                        " id = " + device.deviceId);
+            if(device.kind === 'videoinput')
+            {
+
+            }
+            // 指定要素にデバイス情報を要素で追加
+            const p = document.createElement('p');
+            p.innerHTML = `*** [${index}] ***` 
+                          + "<br>"
+                          + `Kind: ${device.kind}` 
+                          + "<br>" 
+                          + `Label: ${device.label}`
+                          + "<br>" 
+                          + `Id: ${device.deviceId}`
+            $divListCameraDevices.appendChild(p);
+          });
+        })
+        // エラー発生時
+        .catch(function(err) {
+          console.log(err.name + ": " + err.message);
+        });
+      }
+    </script>
+  </body>
+</html>
