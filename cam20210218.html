@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>*カメラの解像度確認*</title>
+    <!-- 参考にしたサイト
+        WebRTCに使うデバイスを選択するには
+        ・https://qiita.com/massie_g/items/b9863e4366cfed339528
+        ＊ deviceidで切り替える方法を学びました。
+     -->
   </head>
   <body>
     <!-- このページの目的 -->
@@ -31,7 +36,7 @@
       <div>
         <button type="button" onclick="videocapture()">撮影</button>
       </div>
-      <video id="camera" autoplay="1" ></video>
+      <video id="camera" autoplay="1" style="transform: scaleX(-1);"></video>
     </div> 
     
     <div>
