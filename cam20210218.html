@@ -55,10 +55,9 @@
         <button type="button" onclick="videocapture()">撮影</button>
       </div>
       <div id="container">  <!-- video の上に canvas をオーバーレイするための div 要素 -->
-        <!-- videoコントロール -->
-        <video id="camera" autoplay="1"></video>
-        <!-- <video id="camera" autoplay="1" width="400" height="300"></video> -->
-        <canvas id="canvas"></canvas>        <!-- 重ねて描画する canvas -->
+        <!-- <video id="camera" autoplay="1"></video> -->
+        <video id="camera" autoplay="1" width="400" height="300"></video>
+        <canvas id="canvas" width="400" height="300"></canvas>        <!-- 重ねて描画する canvas -->
       </div>
       <!-- 画面を左右反転する -->
       <!-- <video id="camera" autoplay="1" style="transform: scaleX(-1);"></video> -->
@@ -335,10 +334,8 @@
     });
 
     function init_tracker() {
-      tracker.stop();
-      tracker.reset();
-      tracker.init(pModel);
-      tracker.start(video);
+        tracker.init(pModel);
+        tracker.start(video);
     }
 
     // 描画ループ
