@@ -70,9 +70,9 @@
       var positions = tracker.getCurrentPosition();         // 顔部品の現在位置の取得
       if(positions !== false)
       {
-        showData(positions);                                  // データの表示
+        // showData(positions);                                  // データの表示
         context.clearRect(0, 0, canvas.width, canvas.height); // canvas をクリア
-        tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
+        //tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
         
         // drawStamp(positions, stampNose, 62, 2.5, 0.0, 0.0);     // ★鼻のスタンプを描画
         // drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);    // ★耳のスタンプを描画
