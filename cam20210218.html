@@ -9,6 +9,24 @@
         ・https://qiita.com/massie_g/items/b9863e4366cfed339528
         ＊ deviceidで切り替える方法を学びました。
      -->
+
+    <style>
+      /* video 要素の上に canvas 要素をオーバーレイするための CSS */
+      #container {              /* コンテナ用の div について */
+        position: relative;     /* 座標指定を相対値指定にする */
+      }
+      #camera {                  /* カメラ映像を流す video について */
+        border:1px solid red;
+        transform: scaleX(-1);  /* 左右反転させる */
+      }
+      #canvas {                 /* 描画用の canvas について */
+        transform: scaleX(-1);  /* 左右反転させる */
+        position: absolute;     /* 座標指定を絶対値指定にして */
+        left: 0;                /* X座標を0に */
+        top: 0;                 /* Y座標を0に */
+        border:1px solid blue;
+      }
+    </style>
   </head>
   <body>
     <!-- このページの目的 -->
@@ -36,7 +54,15 @@
       <div>
         <button type="button" onclick="videocapture()">撮影</button>
       </div>
-      <video id="camera" autoplay="1" style="transform: scaleX(-1);"></video>
+      <div id="container">  <!-- video の上に canvas をオーバーレイするための div 要素 -->
+        <!-- <video id="camera" autoplay="1"></video> -->
+        <video id="camera" autoplay="1" width="400" height="300"></video>
+        <canvas id="canvas" width="400" height="300"></canvas>        <!-- 重ねて描画する canvas -->
+      </div>
+      <!-- 画面を左右反転する -->
+      <!-- <video id="camera" autoplay="1" style="transform: scaleX(-1);"></video> -->
+
+      <div id="dat"></div>  <!-- データ表示用 div 要素 -->
     </div> 
     
     <div>
@@ -69,7 +95,9 @@
 
 
 
-
+    <!-- clmtrackr 関連ファイルの読み込み -->
+    <script src="js/clmtrackr.js"></script>          <!-- clmtrackr のメインライブラリの読み込み -->
+    <script src="js/model_pca_20_svm.js"></script>   <!-- 顔モデル（※）の読み込み -->
     <script type="text/javascript">
       'use strict';
       //------------------------------------------
@@ -81,7 +109,8 @@
       const $canvasCapture =document.getElementById("canvas-capture");
       const video = document.querySelector("#camera");
       const cameraList = document.getElementById("camera_list");
-
+      const canvas = document.getElementById("canvas");         // canvas 要素の取得
+      const context = canvas.getContext("2d");                  // canvas の context の取得
       //------------------------------------------
       // 変数領域
       //------------------------------------------
@@ -109,7 +138,7 @@
           // height: { min: 180, ideal: 1080, max:1080},
           aspectRatio: 1.777777778,
           frameRate: { max: 30 },
-        
+          
           facingMode: null,  // どのカメラを利用するか
           // facingModeには最終的に以下のいずれかの値を入れる
           //   facingMode: "user"                    // フロントカメラを利用する
@@ -118,19 +147,24 @@
         }
       };
       // 現在のStream
-      var curSTREAM = null;
+      let curSTREAM = null;
 
+      //---------------------------------------------
+      // clmtrackr の開始
+      //---------------------------------------------
+      let tracker = new clm.tracker();                // tracker オブジェクトを作成
+      
       //---------------------------------------------
       // [event] ページ読み込み完了
       //---------------------------------------------
       window.onload = () => {
-        // カメラと同期開始
+        // カメラデバイス情報の取得
+        getCameraDevices();
+        // カメラ接続
         // 前後カメラの設定
         CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
         syncCamera(video);
         useFront = !useFront;         // boolean値を反転
-
-        getCameraDevices();
       };
       // カメラ解像度の変更
       function videoSize(height, width) {
@@ -161,12 +195,7 @@
         // CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
         
         // すでにカメラと接続していたら停止
-        if( curSTREAM !== null ){
-          curSTREAM.getVideoTracks().forEach( (camera) => {
-            camera.stop();
-          });
-        }
-
+        stopCamera();
         // カメラと接続する
         navigator.mediaDevices.getUserMedia(CONSTRAINTS)
           .then( (stream) => {
@@ -175,11 +204,13 @@
             // <video>とStremaを接続
             video.srcObject = stream;
             video.onloadedmetadata = (e) => {
+              
               video.play();
               // 解像度を画面表示
               $label_h.innerText =`H:${video.videoHeight}`;
               $label_w.innerText =`W:${video.videoWidth}`;
             };
+            console.log('video start !');
           })
           .catch( (err) => {
             console.log(`${err.name}: ${err.message}`);
@@ -277,6 +308,60 @@
           console.log(err.name + ": " + err.message);
         });
       }
-    </script>
+   
+   
+    //--------------------------------------
+    // 動画再生のイベント監視
+    //--------------------------------------
+    let tracking_started = false;
+    video.addEventListener('playing', function(){
+      console.log('video playing !');
+      if (tracking_started === true) {
+          return;
+      }
+
+      init_tracker();
+      drawLoop();
+
+      video.onresize = function() {
+        console.log('video playing ! onresize');
+          tracker.stop();
+          tracker.reset();
+          tracker.start(video);
+      }
+
+      tracking_started = true;
+    });
+
+    function init_tracker() {
+        tracker.init(pModel);
+        tracker.start(video);
+    }
+
+    // 描画ループ
+    function drawLoop() {
+      requestAnimationFrame(drawLoop);                      // drawLoop 関数を繰り返し実行
+      var positions = tracker.getCurrentPosition();         // 顔部品の現在位置の取得
+      if(positions !== false)
+      {
+        console.log('face detecting');
+      }
+      showData(positions);                                  // データの表示
+      context.clearRect(0, 0, canvas.width, canvas.height); // canvas をクリア
+      tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
+    }
+    
+    // 顔部品（特徴点）の位置データを表示する showData 関数
+    function showData(pos) {
+      var str = "";                                         // データの文字列を入れる変数
+      for(var i = 0; i < pos.length; i++) {                 // 全ての特徴点（71個）について
+        str += "特徴点" + i + ": ("
+            + Math.round(pos[i][0]) + ", "                 // X座標（四捨五入して整数に）
+            + Math.round(pos[i][1]) + ")<br>";             // Y座標（四捨五入して整数に）
+      }
+      var dat = document.getElementById("dat");             // データ表示用div要素の取得
+      dat.innerHTML = str;                                  // データ文字列の表示
+    }
+   </script>
   </body>
 </html>
