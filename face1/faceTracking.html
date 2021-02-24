@@ -118,7 +118,8 @@
       var imgW = img.width * scale * wScale;                // 画像の幅をスケーリング
       var imgH = img.height * scale * wScale;               // 画像の高さをスケーリング
       var imgL = pos[bNo][0] - imgW / 2 + eyes * hShift;    // 画像のLeftを決める
-      var imgT = chin + ((chin-nose_top)/20);    // 画像のTopを決める
+      // var imgT = chin + ((chin-nose_top)/20);    // 画像のTopを決める
+      var imgT = chin;    // 画像のTopを決める
       context.drawImage(img, imgL, imgT, imgW, imgH);       // 画像を描く
     }
     </script>
