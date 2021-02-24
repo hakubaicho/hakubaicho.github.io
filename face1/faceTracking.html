@@ -72,10 +72,10 @@
       {
         // showData(positions);                                  // データの表示
         context.clearRect(0, 0, canvas.width, canvas.height); // canvas をクリア
-        //tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
+        tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
         
-        // drawStamp(positions, stampNose, 62, 2.5, 0.0, 0.0);     // ★鼻のスタンプを描画
-        // drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);    // ★耳のスタンプを描画
+        drawStamp(positions, stampNose, 62, 2.5, 0.0, 0.0);     // ★鼻のスタンプを描画
+        drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);    // ★耳のスタンプを描画
         drawStampTShirt(positions, stampTshirt, 7, 9.0, 0.0, -1.8);  // ★TShirtのスタンプを描画
       }
 
