@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.swiper-slide{
+  height: 200px;
+  height: 500px;
+  background: pink;
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+}
+.swiper-slide:nth-child(2) {
+  background: skyblue;
+}
+.swiper-slide:nth-child(3) {
+  background: green;
+}
