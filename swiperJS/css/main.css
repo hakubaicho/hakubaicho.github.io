@@ -1,16 +1,33 @@
 @charset "utf-8";
 
+body {
+  margin: 0;
+}
+.container {
+  display: flex;
+  height: 100%;
+}
+.sidebar {
+  height: 300px;
+  width: 200px;
+}
+.slider1 {
+  flex: 1;
+}
+.avater-image {
+  flex: 1;
+}
 .swiper-slide{
   height: 200px;
-  height: 500px;
+  height: 200px;
   background: pink;
   color: #fff;
   font-size: 3rem;
   text-align: center;
 }
-.swiper-slide:nth-child(2) {
+.swiper-slide:nth-child(3n+1) {
   background: skyblue;
 }
-.swiper-slide:nth-child(3) {
+.swiper-slide:nth-child(3n+2) {
   background: green;
 }
