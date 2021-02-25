@@ -5,7 +5,8 @@ body {
 }
 .container {
   display: flex;
-  height: 100%;
+  flex-wrap: nowrap;  /* はみ出し分を縮小で対応 */
+  height: 600px;
 }
 .sidebar {
   height: 300px;
