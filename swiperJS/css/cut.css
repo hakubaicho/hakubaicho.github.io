@@ -1,0 +1,29 @@
+
+.slider1 {
+  flex: 1; /* flex-grow */
+}
+.avater-image {
+  flex: 1; /* flex-grow */
+}
+.swiper-slide{
+  height: auto;
+  background: pink;
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.slider1 img {
+  width: 100px;
+  height: auto;
+}
+.slider2 img {
+  width: auto;
+  height: 100% ;
+}
+.swiper-slide:nth-child(3n+1) {
+  background: skyblue;
+}
+.swiper-slide:nth-child(3n+2) {
+  background: green;
+}

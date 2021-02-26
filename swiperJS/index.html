@@ -10,34 +10,17 @@
      <script src="js/swiper-bundle.min.js"></script>
 
      <link rel="stylesheet" href="css/main.css">
-
   </head>
   <body>
-    <!-- 横スクロール -->
-    <div class="swiper-container slider1">
-      <div class="swiper-wrapper">
-          <div class="swiper-slide">Item-Category 1</div>
-          <div class="swiper-slide">Item-Category 2</div>
-          <div class="swiper-slide">Item-Category 3</div>
-          <div class="swiper-slide">Item-Category 4</div>
-          <div class="swiper-slide">Item-Category 5</div>
-          <div class="swiper-slide">Item-Category 6</div>
-          <div class="swiper-slide">Item-Category 7</div>
-          <div class="swiper-slide">Item-Category 8</div>
-          <div class="swiper-slide">Item-Category 9</div>
-          <div class="swiper-slide">Item-Category 10</div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </div>
-
-    <div class="container">
-      <!-- AvatarImage -->
-      <div class="avater-image">
-
-      </div>
-      <!-- 縦スクロール -->
-      <div class="swiper-container slider2">
+    <!-- HEADER -->
+    <header>
+      HEAD
+    </header>
+    <!-- NAVI -->
+    <nav>
+      <div>NAVI</div>
+      <!-- 横スクロール -->
+      <div class="swiper-container slider-category">
         <div class="swiper-wrapper">
             <div class="swiper-slide">Slide 1</div>
             <div class="swiper-slide">Slide 2</div>
@@ -50,16 +33,50 @@
             <div class="swiper-slide">Slide 9</div>
             <div class="swiper-slide">Slide 10</div>
         </div>
-      </div>
     </div>
+    </nav>
+    <div class="container">
+      <!-- MAIN -->
+      <main>
+        <div>MAIN</div>
+        <!-- AvatarImage -->
+        <div class="avater-image">
+          Avatar Image
+        </div>
+      </main>
+      <!-- ASIDE -->
+      <aside>
+        <div>ASIDE</div>
+        <!-- 縦スクロール -->
+        <div class="container-slider-item">
+          <div class="swiper-container slider-item">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+              <div class="swiper-slide">Slide 6</div>
+              <div class="swiper-slide">Slide 7</div>
+              <div class="swiper-slide">Slide 8</div>
+              <div class="swiper-slide">Slide 9</div>
+              <div class="swiper-slide">Slide 10</div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <!-- FOOTER -->
+    <footer>
+      Footer
+    </footer>
     
     <script>
-      // let mySwiper1 = new Swiper ('.slider1', {});
-      // let mySwiper2 = new Swiper ('.slider2', {});
-      // let mySwiper3 = new Swiper ('.slider3', {});
-      // let mySwiper4 = new Swiper ('.slider4', {});
 
-      let slider1 = new Swiper ('.slider1', {
+      let slider_Category = new Swiper ('.slider-category', {
+          loop: true,
           effect: 'slide',
           slidesPerView: 4,
           pagination: {
@@ -75,9 +92,10 @@
             el: '.swiper-scrollbar',
           },
       });
-      let slider2 = new Swiper('.slider2', {
+      let slider_Item = new Swiper('.slider-item', {
+        loop: true,
         direction: 'vertical',
-        slidesPerView: 7,
+        slidesPerView: 4,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
