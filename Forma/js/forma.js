@@ -109,14 +109,14 @@
     // 取得できるJSON
     //------------------------------------------
     // avatar_selected: false
-    // email: "ipahkg@gmail.com"
+    // email: "hogehoge@hogehoge.com"
     // first_name: ""
     // is_content_account: false
     // is_creator: false
-    // key: "4b555f031acea73af4b5c63e98fc51b5bf72a369"
+    // key: "alphabet and numeric"
     // last_name: ""
-    // username: "ipahkg"
-    // uuid: "303ed735-55ec-422d-ba77-3f2de5b1c0d5"
+    // username: "hogehoge"
+    // uuid: "alphabet and numeric and -"
     //------------------------------------------
     let obj = JSON.parse(response);
 
