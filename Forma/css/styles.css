@@ -7,6 +7,88 @@ ul {
   padding: 0;
   margin: 0;
 }
+/* エリアボタン */
+button.ctrl-display-button {
+  width: 100%;
+  /* 文字サイズを1.4emに指定 */
+  font-size: 1.2em;
+  /* 文字の太さをboldに指定 */
+  font-weight: bold;
+  /* 縦方向に10px、
+  * 横方向に30pxの余白を指定 */
+  padding: 10px 30px;
+  background: yellow;
+}
+/* エリアボタンのマウスホバー */
+button.ctrl-display-button:hover {
+  background: darkgoldenrod;
+}
+
+/* コマンドボタン */
+button.cmd-button {
+  width: 50%;
+  /* 文字サイズを1.4emに指定 */
+  font-size: 1em;
+  /* 文字の太さをboldに指定 */
+  font-weight: bold;
+  /* 縦方向に10px、
+  * 横方向に30pxの余白を指定 */
+  padding: 10px 30px;
+  background: yellowgreen;
+  display: block;
+  margin: 0 0 0 auto;
+}
+/* コマンドボタンのマウスホバー */
+button.cmd-button:hover {
+  background: tomato;
+}
+
+/* ************** */
+/* Avatar選択 */
+/* ************** */
+#list_of_avaters li{
+  cursor: pointer;
+  opacity: 0.4;
+}
+#list_of_avaters li img{
+  border: 1px solid white;
+}
+#list_of_avaters li:hover {
+  opacity: 1;
+}
+#list_of_avaters li:hover img {
+  border: 1px solid yellow;
+}
+/* 選択中の画像はhoverと同じ */
+#list_of_avaters li.current {
+  opacity: 1;
+}
+#list_of_avaters li.current img {
+  border: 1px solid tomato;
+}
+/* ************** */
+/* Item選択 */
+/* ************** */
+#list_of_items li{
+  cursor: pointer;
+  opacity: 0.4;
+}
+#list_of_items li img{
+  border: 1px solid white;
+}
+#list_of_items li:hover {
+  opacity: 1;
+}
+#list_of_items li:hover img {
+  border: 1px solid yellow;
+}
+/* 選択中の画像はhoverと同じ */
+#list_of_items li.current {
+  opacity: 1;
+}
+#list_of_items li.current img {
+  border: 1px solid tomato;
+}
 
 /* アバターリスト */
 #list_of_avaters {

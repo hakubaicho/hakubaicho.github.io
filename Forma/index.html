@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
   <meta http-equiv="Cache-Control" content="no-cache">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>衣装の着せ替え</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -11,43 +9,270 @@
 <body>
   <!-- ログイン -->
   <div>
-    <button type=“button” onclick="LogIn()">ログイン</button>
-    <div>
-      <p>Key:<span id="key"></span></p>
-      <p>username:<span  id="username"></span></p>
-      <p>ID:<span  id="uuid"></span></p>
+    <button type=“button”  class="ctrl-display-button" onclick="area_display_login()">ログイン</button>
+    <label>UserName:<input type="text" id="username" name="username"></label>
+    <label>PassWord:<input type="text" id="password" name="password"></label>
+    <div id="area-login" style="display:none;">
+      <button type=“button” class="cmd-button" onclick="LogIn()">ログイン</button>
+      <div>
+        <p>Key:<span id="result-login-key"></span></p>
+        <p>username:<span id="result-login-username"></span></p>
+        <p>ID:<span id="result-login-uuid"></span></p>
+      </div>
     </div>
   </div>
   <!-- アバターリスト -->
   <div>
-    <button type=“button” onclick="GetTheListOfAvaters()">アバターリスト</button>
-    <ul id="list_of_avaters">
-    </ul>
-    <p>詳細：<span id="list_of_avatars_result" hidden></span></p>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_GetTheListOfAvatars()">アバターリスト</button>
+    <div id="area-get-the-list-of-avatars" style="display:none;">
+      <button type=“button” class="cmd-button" onclick="GetTheListOfAvaters()">アバターリスト</button>
+      <ul id="list_of_avaters">
+      </ul>
+      <p>詳細：<span id="list_of_avatars_result" hidden></span></p>
+    </div>
   </div>
   <!-- アイテムリスト -->
   <div>
-    <button type=“button” onclick="GetTheListOfItems()">アイテムリスト</button>
-    <ul id="list_of_items">
-    </ul>
-    <p>詳細：<span id="list_of_items_result" hidden></span></p>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_GetTheListOfItems()">アイテムリスト</button>
+    <div id="area-get-the-list-of-items" style="display:none;">
+      <button type=“button” class="cmd-button" onclick="GetTheListOfItems()">アイテムリスト</button>
+      <ul id="list_of_items">
+      </ul>
+      <p>詳細：<span id="list_of_items_result" hidden></span></p>
+    </div>
   </div>
   <!-- TryOn -->
   <div>
-    <button type=“button” onclick="TryOn()">TryOn</button>
-    <p>備考：<span id="canTryOn" hidden></span></p>
-    <p>選択Avatar：<span id="select_avatar"></span></p>
-    <p>選択Item：<span id="select_item"></span></p>
-    <p>TryOnのUUID：<span id="tryon_uuid"></span></p>
-    <p>詳細：<span id="tryon_result" hidden></span></p>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_tryon()">TryOn</button>
+    <div id="area-tryon" style="display:none;">
+      <!-- TryOn する -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="TryOn()">TryOn</button>
+        <p>備考：<span id="canTryOn"></span></p>
+        <p>選択Avatar：<span id="select_avatar"></span></p>
+        <p>選択Item：<span id="select_item"></span></p>
+        <p>TryOnのUUID：<span id="tryon_uuid"></span></p>
+        <p>詳細：<span id="tryon_result" hidden></span></p>
+      </div>
+      <!-- TryOn 結果 -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="TryOnPing()">TryOn-ping</button>
+        <p>TryOnの結果</p>
+        <img id="tryOnResult">
+        <p>詳細：<span id="tryonping_result"></span></p>
+      </div>
+    </div>
   </div>
-  <!-- TryOn 結果 -->
+  <!-- 登録画像 -->
   <div>
-    <button type=“button” onclick="TryOnPing()">TryOn-ping</button>
-    <p>TryOnの結果</p>
-    <img id="tryOnResult">
-    <p>詳細：<span id="tryonping_result"></span></p>
+    <button type=“button” class="ctrl-display-button" >登録画像</button>
+    <div>
+      <input type="file" id="fileBox">
+    </div>
+    <canvas id="canvas-capture" width="460" height="460"></canvas>
+  </div>  
+  <!-- AWS登録[Avatar] -->
+  <div>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_register_avatar()">Avatar登録</button>
+    <div id="area-register-avater" class="ctrl-display-button" style="display:none;">
+      <!-- AWS登録[Avatar]　ログイン情報の取得 -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="register_Avatar_PreSign()">Avatar-PreSign</button>
+        <p>PreAWSの結果</p>
+        <p>詳細：<span id="result_register_Avatar_PreSign"></span></p>
+        <p>url：<span id="aws-avatar-url"></span></p>
+        <p>key：<span id="aws-avatar-key"></span></p>
+        <p>AWSkey：<span id="aws-avatar-AWSkey"></span></p>
+        <p>pol：<span id="aws-avatar-policy"></span></p>
+        <p>sig：<span id="aws-avatar-signature"></span></p>
+        <p>uuid：<span id="aws-avatar-uuid"></span></p>
+      </div>
+      <!-- AWS登録[Avatar]　画像登録 -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="register_Avatar()">Avatar-Data</button>
+        <!-- <button type=“button” onclick="register_Avatar_Data()">Avatar-Data</button> -->
+        <p>画像登録結果：<span id="result_register_Avatar_Data"></span></p>
+      </div>
+      <!-- AWS登録[Avatar]　Ping -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="register_Avatar_Ping()">Avatar-Ping</button>
+        <p>画像登録Ping：<span id="result_register_Avatar_Ping"></span></p>
+      </div>
+    </div>
   </div>
+   <!-- AWS登録[Item] -->
+   <div>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_register_item()">Item登録</button>
+    <div id="area-register-item" class="ctrl-display-button" style="display:none;">
+      <button type=“button” class="cmd-button" onclick="register_Item_PreSign()">Item-PreSign</button>
+      <!-- AWS登録[Item]　ログイン情報の取得 -->
+      <div>
+        <p>PreAWSの結果</p>
+        <p>root-uuid：<span id="aws-item-root-uuid"></span></p>
+        <p>詳細：<span id="result_register_Item_PreSign"></span></p>
+        <p>url：<span id="aws-item-url"></span></p>
+        <p>key：<span id="aws-item-key"></span></p>
+        <p>AWSkey：<span id="aws-item-AWSkey"></span></p>
+        <p>pol：<span id="aws-item-policy"></span></p>
+        <p>sig：<span id="aws-item-signature"></span></p>
+        <p>uuid：<span id="aws-item-uuid"></span></p>
+      </div>
+      <!-- AWS登録[Item]　画像登録 -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="register_Item()">Item-Data</button>
+        <!-- <button type=“button” onclick="register_Item_Data()">Item-Data</button> -->
+        <p>画像登録結果：<span id="result_register_Item_Data"></span></p>
+      </div>
+      <!-- AWS登録[Item]　Ping -->
+      <div>
+        <button type=“button” class="cmd-button" onclick="register_Item_Ping()">Item-Ping</button>
+        <p>Item-Ping：<span id="result_register_Item_Ping"></span></p>
+      </div>
+    </div>
+  </div>
+
+
+
   <script src="js/forma.js"></script>
+
+  <script>
+    const file = document.getElementById('fileBox');
+    // 起動時
+    window.onload = ()=>{
+      // canvas準備
+      const board = document.querySelector("#canvas-capture");  //getElementById()等でも可。オブジェクトが取れれば良い。
+      const ctx = board.getContext("2d");
+    
+      // 画像読み込み
+      const chara = new Image();
+      chara.src = "image/man.jpg";  // 画像のURLを指定
+      chara.onload = () => {
+        board.height = chara.height;
+        board.width = chara.width;
+        ctx.drawImage(chara, 0, 0);
+      };
+
+      debugDefaultValue();
+    };
+    
+    //****************************************
+    // 画像ファイルの指定
+    //****************************************
+    // ファイルが指定された時にloadLocalImage()を実行
+    file.addEventListener('change', loadLocalImage, false);
+    // 画像のロード
+    function loadLocalImage(e) {
+      // ファイル情報を取得
+      var fileData = e.target.files[0];
+
+      // 画像ファイル以外は処理を止める
+      if(!fileData.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+      }
+
+      // FileReaderオブジェクトを使ってファイル読み込み
+      var reader = new FileReader();
+      // ファイル読み込みに成功したときの処理
+      reader.onload = function() {
+        const board = document.querySelector("#canvas-capture");  //getElementById()等でも可。オブジェクトが取れれば良い。
+        const ctx = board.getContext("2d");
+        // 画像読み込み
+        const chara = new Image();
+        chara.src = reader.result;
+        chara.onload = () => {
+          board.height = chara.height;
+          board.width = chara.width;
+          ctx.drawImage(chara, 0, 0);
+        }
+      }
+      // ファイル読み込みを実行
+      reader.readAsDataURL(fileData);
+    }
+  
+    //****************************************
+    // エリアの表示非表示処理
+    //****************************************
+    function area_display_login() {
+      const div = document.getElementById('area-login');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    function area_display_GetTheListOfAvatar() {
+      const div = document.getElementById('area-get-the-list-of-avatar');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    function area_display_GetTheListOfAvatars() {
+      const div = document.getElementById('area-get-the-list-of-avatars');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    function area_display_GetTheListOfItems() {
+      const div = document.getElementById('area-get-the-list-of-items');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    function area_display_tryon() {
+      const div = document.getElementById('area-tryon');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    function area_display_register_avatar() {
+      const div = document.getElementById('area-register-avater');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    function area_display_register_item() {
+      const div = document.getElementById('area-register-item');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
+    //****************************************
+  </script>
+
+
 </body>
 </http>
