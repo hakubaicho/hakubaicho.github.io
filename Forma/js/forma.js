@@ -2,20 +2,19 @@
   // ログイン
   let keyOfToken =  '';
   let username = '';
-  let password = '';
-
-  // TryOnの値
-  let uuid_tryon_avatar = "";     // TryOnのAvatar
-  let uuid_tryon_item = "";       // TryOnのItem
-  let uuid_tryon_result = "";     // TryOnの結果
-
-  // 登録されている物のリスト
-  let items = new Array();        // リスト - Item   
-  let avatars = new Array();      // リスト - Avatar
+  let password = '';              
+  let isLogIn = false;            // ログイン状態(T:ログイン中/F:未ログイン)
 
   // 現在選択中の画像
   let currentIndex_Avatar = 0;
   let currentIndex_Item = 0;
+
+  //----------------------------------
+  // TryOnの値
+  //----------------------------------
+  let uuid_tryon_avatar = "";     // TryOnのAvatar
+  let uuid_tryon_item = "";       // TryOnのItem
+  let uuid_tryon_result = "";     // TryOnの結果
 
   //----------------------------------
   // Avatar登録
@@ -38,10 +37,12 @@
   
 
   
-  //
+  //--------------------------------------------
+  // ログイン状態か確認します。
+  //--------------------------------------------
   function check_token()
   {
-    if(keyOfToken !== '')
+    if(isLogIn === true)
     {
       return true;
     }
@@ -49,6 +50,7 @@
     alert(msg);
     return false;
   }
+
   //********************************************
   // ログインします。
   //********************************************
@@ -93,11 +95,13 @@
 
     //通信ステータスが変わったら実行される関数
     xhr.onreadystatechange = function(){
-
-      console.log('');
         //通信が完了
         if(xhr.readyState == 4){
-          getJson_login(xhr.responseText);
+          document.getElementById("login_result").textContent = xhr.responseText;
+          if(xhr.status == 200)
+          {
+            getJson_login(xhr.responseText);
+          }
         }
     }
   }
@@ -118,22 +122,31 @@
     // username: "hogehoge"
     // uuid: "alphabet and numeric and -"
     //------------------------------------------
-    let obj = JSON.parse(response);
-
-    let _key = obj.key;
-    let _username = obj.username;
-    let _uuid = obj.uuid;
-
-    document.getElementById('result-login-key').textContent = _key;
-    document.getElementById('result-login-username').textContent = _username;
-    document.getElementById('result-login-uuid').textContent = _uuid;
-
-    console.log("key      : " + _key);
-    console.log("username : " + _username);
-    console.log("uuid     : " + _uuid);
-
-    // トークンの取得
-    keyOfToken = obj.key;
+    try{
+      let obj = JSON.parse(response);
+  
+      let _key = obj.key;
+      let _username = obj.username;
+      let _uuid = obj.uuid;
+  
+      document.getElementById('result-login-key').textContent = _key;
+      document.getElementById('result-login-username').textContent = _username;
+      document.getElementById('result-login-uuid').textContent = _uuid;
+  
+      console.log("key      : " + _key);
+      console.log("username : " + _username);
+      console.log("uuid     : " + _uuid);
+  
+      // トークンの取得
+      keyOfToken = obj.key;
+      isLogIn = true;
+      // 正常ログインとして各コマンドエリアを表示する
+      area_display_after_login();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
   }
   
   //********************************************
@@ -162,11 +175,13 @@
 
     //通信ステータスが変わったら実行される関数
     xhr.onreadystatechange = function(){
-
-      console.log('');
         //通信が完了
         if(xhr.readyState == 4){
-          getJson_get_the_list_of_avatars(xhr.responseText);
+          document.getElementById("list_of_avatars_result").textContent = xhr.responseText;
+          if(xhr.status == 200)
+          {
+            getJson_get_the_list_of_avatars(xhr.responseText);
+          }
         }
     }
   }
@@ -189,44 +204,47 @@
     // status: "processing_failed"
     // uuid: "fd0faaa4-b59d-452f-97f7-23d27c86924a"
     //------------------------------------------
-    document.getElementById("list_of_avatars_result").textContent = response;
-    let obj = JSON.parse(response);
+    // 現在の状況をクリア
+    clear_avatar_list();
+    // 再構成
+    try{
 
-    let count = obj.count;
-    let results = obj.results;
-
-    currentIndex_Avatar = 0;
-    // 結果を一覧にして表示
-    results.forEach((result, index) => {
+      let obj = JSON.parse(response);
       
-      const img = document.createElement('img');
-      const media = result.media;
+      let count = obj.count;
+      let results = obj.results;
       
-      // アバターに追加
-      avatars.push(result.uuid);
-      img.src = media.main;
-      img.alt = result.uuid;
-      const li = document.createElement('li');
-      
-      // 画像登録処理結果が'processed'のみ表示
-      // ・created            完了していない
-      // ・processing_failed  失敗
-      // ・processed          成功
-      // ・live               失敗(詳細は)
-      //      status_code: 1101
-      //      status_message: "Unable to process image."
-      if(result.status !== 'processed'){
-        // 非表示
-        li.style.display = 'none';
-      }
-
-      // 現在の選択中
-      if(index === currentIndex_Avatar)
-      {
-        li.classList.add('current');
-      }
-      // クリックされた時の処理
-      li.addEventListener('click',() => {
+      currentIndex_Avatar = 0;
+      // 結果を一覧にして表示
+      results.forEach((result, index) => {
+        // 分解
+        const img = document.createElement('img');
+        const media = result.media;
+        
+        // 画像のプロパティにアバターデータを追加
+        img.src = media.main;
+        img.alt = result.uuid;
+        const li = document.createElement('li');
+        
+        // 画像登録処理結果が'processed'のみ表示
+        // ・created            完了していない
+        // ・processing_failed  失敗
+        // ・processed          成功
+        // ・live               失敗(詳細は)
+        //      status_code: 1101
+        //      status_message: "Unable to process image."
+        if(result.status !== 'processed'){
+          // 非表示
+          li.style.display = 'none';
+        }
+        
+        // 現在の選択中
+        if(index === currentIndex_Avatar)
+        {
+          li.classList.add('current');
+        }
+        // クリックされた時の処理
+        li.addEventListener('click',() => {
           document.getElementById('select_avatar').textContent =  img.alt;
           uuid_tryon_avatar = img.alt;
           // thumbnailsのすべての要素を取得
@@ -236,12 +254,23 @@
           // currentの更新
           currentIndex_Avatar = index;
           thumbnails[currentIndex_Avatar].classList.add('current');
+        });
+        
+        li.appendChild(img);
+        document.getElementById('list_of_avaters').appendChild(li);
+        
       });
-
-      li.appendChild(img);
-      document.getElementById('list_of_avaters').appendChild(li);
-      
-    });
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
+  //
+  // アバターリストをクリアします。
+  // 
+  function clear_avatar_list() {
+    document.getElementById('list_of_avaters').innerHTML="";
   }
   
   //********************************************
@@ -270,11 +299,13 @@
 
     //通信ステータスが変わったら実行される関数
     xhr.onreadystatechange = function(){
-
-      console.log('');
         //通信が完了
         if(xhr.readyState == 4){
-          getJson_get_the_list_of_itemss(xhr.responseText);
+          document.getElementById("list_of_items_result").textContent = xhr.responseText;
+          if(xhr.status == 200)
+          {
+            getJson_get_the_list_of_itemss(xhr.responseText);
+          }
         }
     }
   }
@@ -313,50 +344,49 @@
     // tryon_count: 9
     // uuid: "2614f111-e297-4006-8766-e118127969b8"
     //------------------------------------------
+    // 現在の状況をクリア
+    clear_item_list();
+    // 再構成
+    try {
 
-    document.getElementById("list_of_items_result").textContent = response;
-    let obj = JSON.parse(response);
-
-    let count = obj.count;
-    let results = obj.results;
-    
-    currentIndex_Item = 0;
-
-    // 結果を一覧にして表示
-    results.forEach((result, index) => {
-      const img = document.createElement('img');
-      const media = result.media;
-
-      img.src = media.small;
-      img.alt = result.uuid;
-
-      console.log(result);
-
-      // アイテムに追加
-      items.push(result.uuid);
-      const li = document.createElement('li');
-
-      // 画像登録処理結果が'processed'のみ表示
-      // ・created            完了していない
-      // ・processing_failed  失敗
-      // ・processed          成功
-      //      status_code: 1101
-      //      status_message: "Unable to process image."
-      if(result.status !== 'processed'){
-        // 非表示
-        li.style.display = 'none';
-      }
-       // 現在の選択中
-       if(index === currentIndex_Item)
-       {
-         li.classList.add('current');
-       }
-
-      // クリックされた時の処理
-      li.addEventListener('click',() => {
+      let obj = JSON.parse(response);
+      
+      let count = obj.count;
+      let results = obj.results;
+      
+      currentIndex_Item = 0;
+      
+      // 結果を一覧にして表示
+      results.forEach((result, index) => {
+        // 分解
+        const img = document.createElement('img');
+        const media = result.media;
+        // 画像のプロパティにアイテムデータを追加
+        img.src = media.small;
+        img.alt = result.uuid;
+        const li = document.createElement('li');
+        
+        // 画像登録処理結果が'processed'のみ表示
+        // ・created            完了していない
+        // ・processing_failed  失敗
+        // ・processed          成功
+        //      status_code: 1101
+        //      status_message: "Unable to process image."
+        if(result.status !== 'processed'){
+          // 非表示
+          li.style.display = 'none';
+        }
+        // 現在の選択中
+        if(index === currentIndex_Item)
+        {
+          li.classList.add('current');
+        }
+        
+        // クリックされた時の処理
+        li.addEventListener('click',() => {
           document.getElementById('select_item').textContent =  img.alt;
           uuid_tryon_item = img.alt;
-
+          
           // thumbnailsのすべての要素を取得
           const thumbnails = document.querySelectorAll('#list_of_items > li');
           // 現在の付加されているcurrentを外す
@@ -364,12 +394,21 @@
           // currentの更新
           currentIndex_Item = index;
           thumbnails[currentIndex_Item].classList.add('current');
+        });
+        li.appendChild(img);
+        document.getElementById('list_of_items').appendChild(li);
       });
-      li.appendChild(img);
-      document.getElementById('list_of_items').appendChild(li);
-    });
+    }
+    catch(e) {
+      console.log(e.message);
+    }
   }
-  
+  //
+  // アイテムリストをクリアします。
+  // 
+  function clear_item_list() {
+    document.getElementById('list_of_items').innerHTML="";
+  }
 
   //********************************************
   //
