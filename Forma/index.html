@@ -23,7 +23,7 @@
     </div>
   </div>
   <!-- ログイン後しか触れない -->
-  <div id="afterlogin" style="display:none;">
+  <div id="afterlogin" style="display:block;">
 
     <!-- アバターリスト -->
     <div>
@@ -51,7 +51,8 @@
       <div id="area-tryon" style="display:none;">
         <!-- TryOn する -->
         <div>
-          <button type=“button” class="cmd-button" onclick="TryOn()">TryOn</button>
+          <button type=“button” class="cmd-button" onclick="TryOnProc()">TryOn</button>
+          <!-- <button type=“button” class="cmd-button" onclick="TryOn()">TryOn</button> -->
           <p>備考：<span id="canTryOn"></span></p>
           <p>選択Avatar：<span id="select_avatar"></span></p>
           <p>選択Item：<span id="select_item"></span></p>
@@ -60,7 +61,7 @@
         </div>
         <!-- TryOn 結果 -->
         <div>
-          <button type=“button” class="cmd-button" onclick="TryOnPing()">TryOn-ping</button>
+          <!-- <button type=“button” class="cmd-button" onclick="TryOnPing()">TryOn-ping</button> -->
           <p>TryOnの結果</p>
           <img id="tryOnResult">
           <p>詳細：<span id="tryonping_result"></span></p>
@@ -81,7 +82,8 @@
       <div id="area-register-avater" class="ctrl-display-button" style="display:none;">
         <!-- AWS登録[Avatar]　ログイン情報の取得 -->
         <div>
-          <button type=“button” class="cmd-button" onclick="register_Avatar_PreSign()">Avatar-PreSign</button>
+          <button type=“button” class="cmd-button" onclick="RegisterAvatar_Proc()">Avatar-PreSign</button>
+          <!-- <button type=“button” class="cmd-button" onclick="register_Avatar_PreSign()">Avatar-PreSign</button> -->
           <p>PreAWSの結果</p>
           <p>詳細：<span id="result_register_Avatar_PreSign"></span></p>
           <p>url：<span id="aws-avatar-url"></span></p>
@@ -135,9 +137,79 @@
       </div>
     </div>
   </div>
+  
+  <!-- ********************************************************************************************** -->
+  <!-- カメラでの処理 -->
+  <!-- ********************************************************************************************** -->
+  <div>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_camera()">カメラ処理</button>
+    <div  id="area-camera" class="ctrl-display-button" style="display:none;">
+  
+      <div> 
+        <p>Chromeでの解像度確認</p>
+        <p><a href="chrome://media-internals/">chrome://media-internals/</a></p>
+        chrome://media-internals/
+        <div>
+          <button type="button" onclick="videoSize(480, 640)">H:480 * W:640</button>
+          <button type="button" onclick="videoSize(640, 480)">H:640 * W:480</button>
+          <button type="button" onclick="videoSize(1920, 1080)">H:1920 * W:1080</button>
+          <button type="button" onclick="videoSize(1080, 1920)">H:1080 * W:1920</button>
+        </div>
+        <div>
+          <select id="camera_list" size="1" style="width:160pt;">
+            <option>(video)</option>
+          </select>
+          <button id="start_video_button" onclick="startSelectedVideo()">Start Video</button>
+        </div>
+      </div>
+      <!-- カメラ映像とカメラの解像度を表示する -->
+      <div>
+        <p id="resolution-height"></p>
+        <p id="resolution-width"></p>
+        <div>
+          <button type="button" onclick="videocapture()">撮影</button>
+        </div>
+        <div id="container">  <!-- video の上に canvas をオーバーレイするための div 要素 -->
+          <!-- <video id="camera" autoplay="1"></video> -->
+          <video id="camera" autoplay="1"></video>
+          <canvas id="canvas" width="400" height="300"></canvas>        <!-- 重ねて描画する canvas -->
+        </div>
+        <!-- 画面を左右反転する -->
+        <!-- <video id="camera" autoplay="1" style="transform: scaleX(-1);"></video> -->
     
+        <div id="dat"></div>  <!-- データ表示用 div 要素 -->
+      </div> 
+      <div>
+        <button type="button" onclick="stopCamera()">停止</button>
+        <button type="button" onclick="cameraPositionChange()">前/後</button>
+      </div>
+      <!-- キャプチャ画面 -->
+      <div id="blobArea">
+      </div>
+      <div>
+        <!-- <canvas id="canvas-capture"></canvas> -->
+        <button type="button" onclick="savePhoto()">保存</button>
+        <img id="newImg" src="">
+      </div>
     
-    
+      <!-- メディアデバイスの列挙 -->
+      <div id="camera-devices">
+        <p>mediaDevicesを列挙します。</p>
+        <button type="button" onclick="getCameraDevices()">取得</button>
+        <div id="list-camera-devices">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- ********************************************************************************************** -->
+
+
+
+
+
+  <script src="js/camera.js"></script>
   <script src="js/forma.js"></script>
   <script>
     const file = document.getElementById('fileBox');
@@ -155,8 +227,6 @@
         board.width = chara.width;
         ctx.drawImage(chara, 0, 0);
       };
-
-      debugDefaultValue();
     };
     
     //****************************************
@@ -281,7 +351,17 @@
         div.style.display = 'block';
       }
     }
-  
+    function area_display_camera() {
+      const div = document.getElementById('area-camera');
+      if(div.style.display === "block")
+      {
+        div.style.display = 'none';
+      }
+      else
+      {
+        div.style.display = 'block';
+      }
+    }
     //****************************************
   </script>
 

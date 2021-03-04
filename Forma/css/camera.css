@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* video 要素の上に canvas 要素をオーバーレイするための CSS */
+#container {              /* コンテナ用の div について */
+  position: relative;     /* 座標指定を相対値指定にする */
+}
+#camera {                  /* カメラ映像を流す video について */
+  border:1px solid red;
+  transform: scaleX(-1);  /* 左右反転させる */
+}
+#canvas {                 /* 描画用の canvas について */
+  transform: scaleX(-1);  /* 左右反転させる */
+  position: absolute;     /* 座標指定を絶対値指定にして */
+  left: 0;                /* X座標を0に */
+  top: 0;                 /* Y座標を0に */
+  border:1px solid blue;
+}

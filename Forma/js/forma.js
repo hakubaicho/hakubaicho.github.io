@@ -1,4 +1,28 @@
 {
+  //******************************************/
+  // XMLHttpRequest.readyState
+  //-------------------------------------------
+  // 0	UNSENT	          準備段階  XHRオブジェクトの作成直後
+  // 1	OPENED	          準備完了  open()メソッドの呼び出し後
+  // 2	HEADERS_RECEIVED	通信開始  レスポンスヘッダの受信後
+  // 3	LOADING	          受信中    レスポンスボディを受信中（繰り返し実行される）
+  // 4	DONE	            通信完了  XHR通信の完了後
+  //
+  //-------------------------------------------
+  // XMLHttpRequest.status
+  //-------------------------------------------
+  // 200	成功	  特に問題なく通信が成功した状態
+  // 401	エラー	認証が必要なため通信できない状態
+  // 403	エラー	アクセスが禁止されていて通信できない状態
+  // 404	エラー	情報が存在しないために通信できない状態
+  // 500	エラー	サーバー側の不具合で通信できない状態
+  // 503	エラー	サーバーに負荷がかかって通信できない状態
+  //-------------------------------------------
+  //
+  //
+  //
+
+  //******************************************/
   // ログイン
   let keyOfToken =  '';
   let username = '';
@@ -19,6 +43,7 @@
   //----------------------------------
   // Avatar登録
   //----------------------------------
+  let imageBlob;
   let register_avatar_url = "";
   let register_avatar_uuid = "" ;
   let register_avatar_awsAccessKeyId = "";
@@ -56,15 +81,18 @@
   //********************************************
   function LogIn(){
 
-    // 入力値の取得
+    // ユーザー名を画面のテキストから取得
     const textbox_user = document.getElementById("username");
-    const textbox_password = document.getElementById("password");
     username = textbox_user.value
+    // パスワードを画面のテキストから取得
+    const textbox_password = document.getElementById("password");
     password = textbox_password.value
+
     // 入力チェック
+    // ユーザー名とパスワードは必須
     if(("" === username) || ("" === password))
     {
-      const msg = "UserName/PassWord を入れてください";
+      const msg = "UserName / PassWord を入れてください";
       alert(msg);
       return;
     }
@@ -84,7 +112,7 @@
     var json_text = JSON.stringify(myJson);
     
     //通信方式とURLを設定   
-    xhr.open("POST", requestUrl);
+    xhr.open("POST", requestUrl, true);
 
     // 必要なHTTPヘッダを追加します。
     // * ここでno-cache入れるとダメ* 
@@ -95,14 +123,16 @@
 
     //通信ステータスが変わったら実行される関数
     xhr.onreadystatechange = function(){
-        //通信が完了
-        if(xhr.readyState == 4){
-          document.getElementById("login_result").textContent = xhr.responseText;
-          if(xhr.status == 200)
-          {
-            getJson_login(xhr.responseText);
-          }
+      //通信が完了
+      if(xhr.readyState == 4){
+        // とりあえずなんでも画面に出す
+        document.getElementById("login_result").textContent = xhr.responseText;
+        // 正常
+        if(xhr.status == 200)
+        {
+          getJson_login(xhr.responseText);
         }
+      }
     }
   }
   //--------------------------------------------
@@ -122,6 +152,7 @@
     // username: "hogehoge"
     // uuid: "alphabet and numeric and -"
     //------------------------------------------
+    let result = false;
     try{
       let obj = JSON.parse(response);
   
@@ -133,20 +164,18 @@
       document.getElementById('result-login-username').textContent = _username;
       document.getElementById('result-login-uuid').textContent = _uuid;
   
-      console.log("key      : " + _key);
-      console.log("username : " + _username);
-      console.log("uuid     : " + _uuid);
-  
       // トークンの取得
       keyOfToken = obj.key;
       isLogIn = true;
       // 正常ログインとして各コマンドエリアを表示する
       area_display_after_login();
+      result = true;
     }
     catch(e)
     {
       console.log(e.message);
     }
+    return result;
   }
   
   //********************************************
@@ -415,26 +444,23 @@
   // TryOn処理
   //
   //********************************************
+  function TryOnProc()
+  {
+    asyncTryOnProc();
+  }
   //
   // TryOnを開始から終了まで行います。
   // 
-  function TryOnProc() {
-      //----------------------------------------
-      // AvatarとItemを指定してTryOnに送信する
-      //----------------------------------------
-  }
-  //********************************************
-  // TryOnの取得
-  //********************************************
-  function TryOn() {
-
+  async function asyncTryOnProc() {
+    //----------------------------------------
+    // 入力チェック
+    //----------------------------------------
     // トークンのチェック
     if(true !== check_token())
     {
-      return;
+      return false;
     }
-
-    // 入力チェック
+    // Avatar / Item が選択されているか
     if(("" === uuid_tryon_avatar) || ("" === uuid_tryon_item))
     {
       const msg = "Avater / Item を選択してください";
@@ -442,38 +468,120 @@
       alert(msg);
       return false;
     }
-    // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/tryons/async/" ;
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    // 送信パラメータ
-    let myJson =
+
+    let doNext = true;
+    //----------------------------------------
+    // TryOnに送信する
+    //----------------------------------------
+    console.log('[Start]TryOn-Request');
+    await TryOn()
+    .then(
+      function( response  ) {
+        // 正常結果
+        console.log(`[OK]TryOn-Request : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        console.log(`[NG]TryOn-Request : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // 送信後のPing
+    //----------------------------------------
+    if(doNext)
+    {
+      let isNext = true;
+      for(let i = 0 ; i < 10; i++)
       {
-        "avatars" : [{"uuid" : `${uuid_tryon_avatar}`}],
-        "items" : [{"uuid" : `${uuid_tryon_item}`}]
-      };
-    //JSONにエンコード
-    var json_text = JSON.stringify(myJson);
-    //通信方式とURLを設定   
-    xhr.open("POST", requestUrl);
-
-    // 必要なHTTPヘッダを追加します。
-    // * ここでno-cache入れるとダメ* 
-    // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-    xhr.setRequestHeader( 'Content-Type', 'application/json' );
-    xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
-    //通信を実行する
-    xhr.send(json_text);
-
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-      console.log('');
-        //通信が完了
-        if(xhr.readyState == 4){
-          getJson_tryon(xhr.responseText);
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        console.log(`[Start]TryOn-Ping(${i})`);
+        await TryOnPing()
+        .then(
+          function( response  ) {
+            switch(response)
+            {
+              case 0: //正常
+                isNext = false;
+                console.log(`[OK]TryOn-Ping(${i}) = ${response}`);
+                break;
+              case 1:
+                console.log(`[WAIT]TryOn-Ping(${i}) = ${response}`);
+                break;
+              case 2:
+                isNext = false;
+                console.log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            console.log(`[NG]TryOn-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
         }
+      }
     }
-    return true;
+  }
+  //********************************************
+  // TryOnの取得
+  //********************************************
+  function TryOn() {
+
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject) {
+      // 送信先URL 
+      const requestUrl = "https://social.isabq.com/api/v1/tryons/async/";
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      // 送信パラメータ
+      let myJson =
+        {
+          "avatars" : [{"uuid" : `${uuid_tryon_avatar}`}],
+          "items" : [{"uuid" : `${uuid_tryon_item}`}]
+        };
+      //JSONにエンコード
+      var json_text = JSON.stringify(myJson);
+      //通信方式とURLを設定   
+      xhr.open("POST", requestUrl);
+  
+      // 必要なHTTPヘッダを追加します。
+      // * ここでno-cache入れるとダメ* 
+      // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+      xhr.setRequestHeader( 'Content-Type', 'application/json' );
+      xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
+      //通信を実行する
+      xhr.send(json_text);
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
+          //通信が完了
+          if(xhr.readyState == 4){
+            document.getElementById("tryon_result").textContent = xhr.responseText;
+            if((xhr.status == 200) || (xhr.status == 201))
+            {
+              if(true === getJson_tryon(xhr.responseText))
+              {
+                resolve('OK');
+              }
+              else
+              {
+                reject('Json-Error');                
+              }
+            }
+            else
+            {
+              reject('NG');
+            }
+          }
+      }
+    });
   }
   //--------------------------------------------
   // TryOnのJsonの解釈
@@ -532,55 +640,71 @@
     //  "is_public":false,
     //  "author":{"uuid":"303ed735-55ec-422d-ba77-3f2de5b1c0d5","username":"ipahkg","profile_picture":null,"is_creator":false},"created":"1613984390.615021","modified":"1613984390.615325","hashtags":[],"liked":false,"like_count":0}
     //------------------------------------------
-    document.getElementById("tryon_result").textContent = response;
-    let obj = JSON.parse(response);
-
-    // TryOn中のUUIDを更新
-    let count = obj.count;
-    let results = obj.results;
-    uuid_tryon_result = obj.uuid;
-    document.getElementById("tryon_uuid").textContent = uuid_tryon_result; 
+    
+    let result = false;
+    try {
+      let obj = JSON.parse(response);
+  
+      // TryOn中のUUIDを更新
+      let count = obj.count;
+      let results = obj.results;
+      uuid_tryon_result = obj.uuid;
+      document.getElementById("tryon_uuid").textContent = uuid_tryon_result;
+      result = true;
+    }
+    catch(e){
+      console.log(e.message);
+    }
+    return result;
   }
   
   //********************************************
   // TryOnPingの取得
   //********************************************
   function TryOnPing() {
-    // トークンのチェック
-    if(true !== check_token())
-    {
-      return;
-    }
-    // 入力チェック
-    if ("" === uuid_tryon_result)
-    {
-      document.getElementById("tryonping_result").textContent = "TryOnのUUIDがありません";
-      return;
-    }
-    // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/tryons/"+ uuid_tryon_result + "/async_status/" ;
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    //通信方式とURLを設定   
-    xhr.open("GET", requestUrl);
-
-    // 必要なHTTPヘッダを追加します。
-    // * ここでno-cache入れるとダメ* 
-    // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-    xhr.setRequestHeader( 'Content-Type', 'application/json' );
-    xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
-    //通信を実行する
-    xhr.send();
-
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-
-      console.log('');
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject) {
+      // 送信先URL 
+      const requestUrl = "https://social.isabq.com/api/v1/tryons/"+ uuid_tryon_result + "/async_status/" ;
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      //通信方式とURLを設定   
+      xhr.open("GET", requestUrl);
+  
+      // 必要なHTTPヘッダを追加します。
+      // * ここでno-cache入れるとダメ* 
+      // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+      xhr.setRequestHeader( 'Content-Type', 'application/json' );
+      xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
+      //通信を実行する
+      xhr.send();
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
         //通信が完了
         if(xhr.readyState == 4){
-          getJson_tryonping(xhr.responseText);
+          document.getElementById("tryonping_result").textContent = xhr.responseText;
+          if((xhr.status == 200) || (xhr.status == 201))
+          {
+            let result = getJson_tryonping(xhr.responseText);
+            if(0 <= result)
+            {
+              // OK=0 / WAIT=1 / FAILED=2;
+              resolve(result);
+            }
+            else
+            {
+              // Json-Error              
+              reject(result);                
+            }
+          }
+          else
+          {
+            reject('NG');
+          }
         }
-    }
+      }
+    });
   }
   //--------------------------------------------
   // TryOnPingのJsonの解釈
@@ -608,15 +732,30 @@
     // }
     //------------------------------------------
 
-    document.getElementById("tryonping_result").textContent = response;
-    let obj = JSON.parse(response);
+    let result = -1;
+    try {
+      let obj = JSON.parse(response);
 
-    let status = obj.status;
-    if(status === "processed")
-    {
-      const media = obj.media;
-      document.getElementById("tryOnResult").src = media.main;
+      let status = obj.status;
+      switch(status)
+      {
+        case 'processed':
+          result = 0;
+          const media = obj.media;
+          document.getElementById("tryOnResult").src = media.main;
+          break;
+        case 'processing':
+          result = 1;
+          break;
+        default:
+          result = 2;
+          break;
+      }
     }
+    catch(e){
+      console.log(e.message);
+    }
+    return result;    
   }
 
 
@@ -625,17 +764,38 @@
   // Avatarの登録
   //
   //********************************************
-
-  //********************************************
-  // AWS[Avatar]へのログイン情報の取得
-  //********************************************
-  function register_Avatar_PreSign() {
-    // トークンのチェック
-    if(true !== check_token())
+  function RegisterAvatar_Proc() {
+    asyncRegisterAvatar();
+  }
+  //
+  // asyncでアバター登録を行う
+  //
+  async function asyncRegisterAvatar() {
+    //----------------------------------------
+    // 入力チェック
+    //----------------------------------------
+     // トークンのチェック
+     if(true !== check_token())
+     {
+       return;
+     }
+    // 画像の選択チェック
+    try
     {
+      // CanvasをBlobの値に変換する
+      const canvas = document.getElementById("canvas-capture");
+      imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+    }
+    catch(e)
+    {
+      console.log(e.message);
       return;
     }
+    
+    
+    //----------------------------------------
     // 確認画面
+    //----------------------------------------
     var res = confirm("Avatar登録しますか？");
     if( res === true ) {
         // OKならなにもしない
@@ -645,28 +805,131 @@
         alert("中止します。");
         return;
     }
-    // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/aws/avatar_signed_url/" ;
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    //通信方式とURLを設定   
-    xhr.open("GET", requestUrl);
 
-    // 必要なHTTPヘッダを追加します。
-    xhr.setRequestHeader( 'accept', 'application/json' );
-    xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
-    //通信を実行する
-    xhr.send();
+     let doNext = true;
+    //----------------------------------------
+    // Presign
+    //----------------------------------------
+    console.log('[Start]RegisterAvatar-PreSign');
+    await register_Avatar_PreSign()
+    .then(
+      function( response ) {
+        // 正常結果
+        console.log(`[OK]RegisterAvatar-PreSign : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        console.log(`[NG]RegisterAvatar-PreSign : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // データ送信
+    //----------------------------------------
+    if(doNext)
+    {
+      console.log('[Start]RegisterAvatar-Data');
+      await register_Avatar_Data()
+      .then(
+        function( response ) {
+          // 正常結果
+          console.log(`[OK]RegisterAvatar-Data : ${response}`);
+        },
+        function( error ) {
+          //エラー処理を記述する
+          console.log(`[NG]RegisterAvatar-Data : ${error}`);
+          doNext = false;
+        }
+      )
+    }
+    //----------------------------------------
+    // Pingで処理待ち
+    //----------------------------------------
+    if(doNext)
+    {
+      console.log('[Start]RegisterAvatar-Ping');
+      let isNext = true;
+      for(let i = 0 ; i < 10; i++)
+      {
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        console.log(`[Start]RegisterAvatar-Ping(${i})`);
+        await register_Avatar_Ping()
+        .then(
+          function( response  ) {
+            // 正常結果
+            switch(response)
+            {
+              case 0: //正常終了
+                isNext = false;
+                console.log(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
+                break;
+              case 1: // 処理中
+                console.log(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
+                break;
+              case 2: // 処理失敗
+                isNext = false;
+                console.log(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            console.log(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
+        }
+      }
+    }
+  }
+  //********************************************
+  // AWS[Avatar]へのログイン情報の取得
+  //********************************************
+  function register_Avatar_PreSign() {
 
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-
-      console.log('');
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject) {
+      // 送信先URL 
+      const requestUrl = "https://social.isabq.com/api/v1/aws/avatar_signed_url/" ;
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      //通信方式とURLを設定   
+      xhr.open("GET", requestUrl);
+  
+      // 必要なHTTPヘッダを追加します。
+      xhr.setRequestHeader( 'accept', 'application/json' );
+      xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
+      //通信を実行する
+      xhr.send();
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
         //通信が完了
         if(xhr.readyState == 4){
-          getJson_register_Avatar_PreSign(xhr.responseText);
+          document.getElementById("result_register_Avatar_PreSign").textContent = xhr.responseText;
+          if((xhr.status == 200) || (xhr.status == 201))
+          {
+            if(true === getJson_register_Avatar_PreSign(xhr.responseText))
+            {
+              resolve('OK');
+            }
+            else
+            {
+              reject('Json-Error');
+            }
+          }
+          else
+          {
+            reject('NG');
+          }
         }
-    }
+      }
+    });
   }
   //--------------------------------------------
   // AWS[Avatar]へのログイン情報のJsonの解釈
@@ -687,32 +950,39 @@
     //  "uuid":"788dbc9c-f80c-4fc9-b5c0-a23ca470fd80"
     // }
     //------------------------------------------
-    document.getElementById("result_register_Avatar_PreSign").textContent = response;
-    //------------------------------
-    // 分解
-    //------------------------------
-    let obj = JSON.parse(response);
-    const fields = obj.fields;
-    //------------------------------
-    //------------------------------
-   // 保存するべき情報
-   //------------------------------
-   register_avatar_url =obj.url;
-   register_avatar_uuid = fields.key;
-   register_avatar_awsAccessKeyId = fields.AWSAccessKeyId;
-   register_avatar_policy = fields.policy;
-   register_avatar_signature = fields.signature;
-
-   //------------------------------
-   // デバッグ画面表示
-   //------------------------------
-    document.getElementById("aws-avatar-url").textContent = register_avatar_url;
-    document.getElementById("aws-avatar-key").textContent = register_avatar_uuid;
-    document.getElementById("aws-avatar-AWSkey").textContent = register_avatar_awsAccessKeyId;
-    document.getElementById("aws-avatar-policy").textContent = register_avatar_policy;
-    document.getElementById("aws-avatar-signature").textContent = register_avatar_signature;
-    document.getElementById("aws-avatar-uuid").textContent = obj.uuid;
-
+    
+    let result = false;
+    try{
+      //------------------------------
+      // 分解
+      //------------------------------
+      let obj = JSON.parse(response);
+      const fields = obj.fields;
+      //------------------------------
+      //------------------------------
+     // 保存するべき情報
+     //------------------------------
+     register_avatar_url =obj.url;
+     register_avatar_uuid = fields.key;
+     register_avatar_awsAccessKeyId = fields.AWSAccessKeyId;
+     register_avatar_policy = fields.policy;
+     register_avatar_signature = fields.signature;
+  
+     //------------------------------
+     // デバッグ画面表示
+     //------------------------------
+      document.getElementById("aws-avatar-url").textContent = register_avatar_url;
+      document.getElementById("aws-avatar-key").textContent = register_avatar_uuid;
+      document.getElementById("aws-avatar-AWSkey").textContent = register_avatar_awsAccessKeyId;
+      document.getElementById("aws-avatar-policy").textContent = register_avatar_policy;
+      document.getElementById("aws-avatar-signature").textContent = register_avatar_signature;
+      document.getElementById("aws-avatar-uuid").textContent = obj.uuid;
+      result = true;
+    }
+    catch(e){
+      console.log(e.message);
+    }
+    return result;
   }
   //********************************************
   // AWS[Avatar]への画像登録処理
@@ -721,49 +991,59 @@
   {
     register_Avatar_Data();
   }
-  async function register_Avatar_Data() {
-    // トークンのチェック
-    if(true !== check_token())
-    {
-      return;
-    }
-    try{
-      // 送信先URL
-      const requestUrl = "https://formatech-mobile-avatars.s3.amazonaws.com/";
-      
-      // CanvasをBlobの値に変換する
-      const canvas = document.getElementById("canvas-capture");
-      let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
-
-
-      // 送信パラメータに変換する
-      let formData = new FormData();
-      formData.append("key",              register_avatar_uuid);
-      formData.append("AWSAccessKeyId",   register_avatar_awsAccessKeyId);
-      formData.append("policy",           register_avatar_policy);
-      formData.append("signature",        register_avatar_signature);
-      formData.append("file",             imageBlob, "avatar.jpeg");
-
-      
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", requestUrl);
-      xhr.send(formData);
-      //通信ステータスが変わったら実行される関数
-      xhr.onreadystatechange = function(){
-
-        console.log('');
+  function register_Avatar_Data() {
+    
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject) {
+      try{
+        // 送信先URL
+        const requestUrl = "https://formatech-mobile-avatars.s3.amazonaws.com/";
+        
+        // CanvasをBlobの値に変換する
+        const canvas = document.getElementById("canvas-capture");
+        // let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+  
+  
+        // 送信パラメータに変換する
+        let formData = new FormData();
+        formData.append("key",              register_avatar_uuid);
+        formData.append("AWSAccessKeyId",   register_avatar_awsAccessKeyId);
+        formData.append("policy",           register_avatar_policy);
+        formData.append("signature",        register_avatar_signature);
+        formData.append("file",             imageBlob, "avatar.jpeg");
+  
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", requestUrl);
+        xhr.send(formData);
+        //通信ステータスが変わったら実行される関数
+        xhr.onreadystatechange = function(){
           //通信が完了
           if(xhr.readyState == 4){
-            getJson_register_Avatar_Data(xhr.responseText);
+            document.getElementById("result_register_Avatar_Data").textContent = xhr.responseText;
+            if(xhr.status == 204)
+            {
+              if(true === getJson_register_Avatar_Data(xhr.responseText))
+              {
+                resolve('OK');
+              }
+              else
+              {
+                reject('Json-Error');
+              }
+            }
+            else
+            {
+              reject('NG');
+            }
           }
+        }
       }
-  
-    }
-    catch(e)
-    {
-      console.log(e.message);
-      // document.getElementById("proc-result").textContent = e.message;
-    }
+      catch(e)
+      {
+        console.log(e.message);
+      }
+    });
   }
   //--------------------------------------------
   // AWS[Avatar]への画像登録処理のJsonの解釈
@@ -784,49 +1064,55 @@
     //  "uuid":"788dbc9c-f80c-4fc9-b5c0-a23ca470fd80"
     // }
     //------------------------------------------
-
-    document.getElementById("result_register_Avatar_Data").textContent = response;
-  }
-  
-  // //********************************************
-  // // AWS[Avatar]への画像登録処理
-  // //********************************************
-  
+    return true;
+  }  
   //********************************************
   // AWS[Avatar]の登録後のPing
   //********************************************
   function register_Avatar_Ping() {
-
-    // トークンのチェック
-    if(true !== check_token())
-    {
-      return;
-    }
-
-    // 送信先URL
-    const requestUrl = "https://social.isabq.com/api/v1/avatars/"+ register_avatar_uuid + "/status/" ;
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    //通信方式とURLを設定   
-    xhr.open("GET", requestUrl);
-
-    // 必要なHTTPヘッダを追加します。
-    // * ここでno-cache入れるとダメ* 
-    // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-    xhr.setRequestHeader( 'Content-Type', 'application/json' );
-    xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
-    //通信を実行する
-    xhr.send();
-
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-
-      console.log('');
-        //通信が完了
-        if(xhr.readyState == 4){
-          getJson_register_Avatar_Ping(xhr.responseText);
-        }
-    }
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject){
+      // 送信先URL
+      const requestUrl = "https://social.isabq.com/api/v1/avatars/"+ register_avatar_uuid + "/status/" ;
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      //通信方式とURLを設定   
+      xhr.open("GET", requestUrl);
+  
+      // 必要なHTTPヘッダを追加します。
+      // * ここでno-cache入れるとダメ* 
+      // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+      xhr.setRequestHeader( 'Content-Type', 'application/json' );
+      xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
+      //通信を実行する
+      xhr.send();
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
+          //通信が完了
+          if(xhr.readyState == 4){
+            document.getElementById("result_register_Avatar_Ping").textContent = xhr.responseText;
+            if((xhr.status == 200)||(xhr.status == 201))
+            {
+              let result = getJson_register_Avatar_Ping(xhr.responseText);
+              if(0 <= result)
+              {
+                // OK=0 / WAIT=1 / FAILED=2;
+                resolve(result);
+              }
+              else
+              {
+                // Json-Error              
+                reject(result);  
+              }
+            }
+            else
+            {
+              reject('NG');
+            }
+          }
+      }
+    });
   }
   //--------------------------------------------
   // AWS[Avatar]の登録後のPingのJsonの解釈
@@ -853,10 +1139,27 @@
     // "status_message":"Nobody is in the photo."
     // }
     //------------------------------------------
-
-    document.getElementById("result_register_Avatar_Ping").textContent = response;
-    let obj = JSON.parse(response);
-    let status = obj.status;
+    let result = -1;
+    try{
+      let obj = JSON.parse(response);
+      let status = obj.status;
+      switch(status)
+      {
+        case 'processed':
+          result = 0;
+          break;
+        case 'processing':
+          result = 1;
+          break;
+        default:
+          result = 2;
+          break;
+      }
+    }
+    catch(e){
+      console.log(e.message);
+    }
+    return result;
   }
 
   //********************************************
@@ -1101,38 +1404,6 @@
     let status = obj.status;
   }
 
-  /*
-   * デバッグのため過去の値を代入する
-   */
-  function debugDefaultValue()
-  {
-    //----------------------------------
-    // Avatar登録
-    //----------------------------------
-    register_avatar_url = "https://formatech-mobile-avatars.s3.amazonaws.com/";
-    register_avatar_uuid = "e17a13ac-fe77-472c-be89-79a2d2d976fc" ;
-    register_avatar_awsAccessKeyId = "AKIASXHIMETGAXPX22P6";
-    register_avatar_policy = "eyJleHBpcmF0aW9uIjogIjIwMjEtMDMtMDFUMDI6NTM6MDZaIiwgImNvbmRpdGlvbnMiOiBbeyJidWNrZXQiOiAiZm9ybWF0ZWNoLW1vYmlsZS1hdmF0YXJzIn0sIHsia2V5IjogImUxN2ExM2FjLWZlNzctNDcyYy1iZTg5LTc5YTJkMmQ5NzZmYyJ9XX0=";
-    register_avatar_signature = "HMWql/1oK02cdgCtDsWoXgGsvYc=";
-
-    register_avatar_url = "https://formatech-mobile-avatars.s3.amazonaws.com/";
-    register_avatar_uuid = "a23dfc9c-1c00-4fac-abb4-22abf1be5fb6" ;
-    register_avatar_awsAccessKeyId = "AKIASXHIMETGAXPX22P6";
-    register_avatar_policy = "eyJleHBpcmF0aW9uIjogIjIwMjEtMDMtMDFUMDc6MTA6NDBaIiwgImNvbmRpdGlvbnMiOiBbeyJidWNrZXQiOiAiZm9ybWF0ZWNoLW1vYmlsZS1hdmF0YXJzIn0sIHsia2V5IjogImEyM2RmYzljLTFjMDAtNGZhYy1hYmI0LTIyYWJmMWJlNWZiNiJ9XX0=";
-    register_avatar_signature = "YiLz4NDdh3830ftkc2nTnWH9/4Q=";
-
-    //----------------------------------
-    // Item登録
-    //----------------------------------
-    register_item_url = "https://formatech-mobile-items.s3.amazonaws.com/";
-    register_item_root_uuid = "1b866b9f-c167-4350-b2c7-ed8c24d15b38" ;
-    register_item_awsAccessKeyId = "AKIASXHIMETGAXPX22P6";
-    register_item_policy = "eyJleHBpcmF0aW9uIjogIjIwMjEtMDMtMDFUMDM6NTk6MTdaIiwgImNvbmRpdGlvbnMiOiBbeyJidWNrZXQiOiAiZm9ybWF0ZWNoLW1vYmlsZS1pdGVtcyJ9LCB7ImtleSI6ICJjZWQ1YzFmNC1iZGExLTRhZTMtOGI5Yi02ODFhMmNhY2FlY2YifV19";
-    register_item_signature = "c5ewXxPgOaeNyaEiuQABcCFc4hQ=";
-    register_item_source_uuid = "ced5c1f4-bda1-4ae3-8b9b-681a2cacaecf";
-    start();
-  }
-
   //======================================================================
   // 待ち時間処理を作ろう
   //======================================================================
@@ -1163,4 +1434,35 @@
     console.log(`${waitms}経過しました。`);
   }
   //======================================================================
+
+  //======================================================================
+  // XMLHttpRequestの処理
+  //======================================================================
+  function sss() {
+    xhr.onreadystatechange = function() {
+        switch ( xhr.readyState ) {
+            case 0:
+                // 未初期化状態.
+                console.log( 'uninitialized!' );
+                break;
+            case 1: // データ送信中.
+                console.log( 'loading...' );
+                break;
+            case 2: // 応答待ち.
+                console.log( 'loaded.' );
+                break;
+            case 3: // データ受信中.
+                console.log( 'interactive... '+xhr.responseText.length+' bytes.' );
+                break;
+            case 4: // データ受信完了.
+                if( xhr.status == 200 || xhr.status == 304 ) {
+                    var data = xhr.responseText; // responseXML もあり
+                    console.log( 'COMPLETE! :'+data );
+                } else {
+                    console.log( 'Failed. HttpStatus: '+xhr.statusText );
+                }
+                break;
+        }
+    };
+  }
 }
