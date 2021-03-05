@@ -4,9 +4,15 @@
   <meta http-equiv="Cache-Control" content="no-cache">
   <title>衣装の着せ替え</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .result-detail {
+      display: none;
+    }
+  </style>
 </head>
   
 <body>
+  <button type=“button”  class="ctrl-display-button" onclick="area_result_detail()">詳細表示</button>
   <!-- ログイン -->
   <div>
     <button type=“button”  class="ctrl-display-button" onclick="area_display_login()">ログイン</button>
@@ -18,7 +24,7 @@
         <p>Key:<span id="result-login-key"></span></p>
         <p>username:<span id="result-login-username"></span></p>
         <p>ID:<span id="result-login-uuid"></span></p>
-        <p>詳細：<span id="login_result" hidden></span></p>
+        <p class="result-detail">詳細：<span id="login_result"></span></p>
       </div>
     </div>
   </div>
@@ -32,7 +38,7 @@
         <button type=“button” class="cmd-button" onclick="GetTheListOfAvaters()">アバターリスト</button>
         <ul id="list_of_avaters">
         </ul>
-        <p>詳細：<span id="list_of_avatars_result" hidden></span></p>
+        <p class="result-detail">詳細：<span id="list_of_avatars_result"></span></p>
       </div>
     </div>
     <!-- アイテムリスト -->
@@ -42,7 +48,7 @@
         <button type=“button” class="cmd-button" onclick="GetTheListOfItems()">アイテムリスト</button>
         <ul id="list_of_items">
         </ul>
-        <p>詳細：<span id="list_of_items_result" hidden></span></p>
+        <p class="result-detail">詳細：<span id="list_of_items_result"></span></p>
       </div>
     </div>
     <!-- TryOn -->
@@ -57,14 +63,14 @@
           <p>選択Avatar：<span id="select_avatar"></span></p>
           <p>選択Item：<span id="select_item"></span></p>
           <p>TryOnのUUID：<span id="tryon_uuid"></span></p>
-          <p>詳細：<span id="tryon_result" hidden></span></p>
+          <p class="result-detail">詳細：<span id="tryon_result"></span></p>
         </div>
         <!-- TryOn 結果 -->
         <div>
           <!-- <button type=“button” class="cmd-button" onclick="TryOnPing()">TryOn-ping</button> -->
           <p>TryOnの結果</p>
           <img id="tryOnResult">
-          <p>詳細：<span id="tryonping_result"></span></p>
+          <p class="result-detail">詳細：<span id="tryonping_result"></span></p>
         </div>
       </div>
     </div>
@@ -82,7 +88,7 @@
       <div id="area-register-avater" class="ctrl-display-button" style="display:none;">
         <!-- AWS登録[Avatar]　ログイン情報の取得 -->
         <div>
-          <button type=“button” class="cmd-button" onclick="RegisterAvatar_Proc()">Avatar-PreSign</button>
+          <button type=“button” class="cmd-button" onclick="RegisterAvatar_Proc()">Avatar登録</button>
           <!-- <button type=“button” class="cmd-button" onclick="register_Avatar_PreSign()">Avatar-PreSign</button> -->
           <p>PreAWSの結果</p>
           <p>詳細：<span id="result_register_Avatar_PreSign"></span></p>
@@ -95,13 +101,13 @@
         </div>
         <!-- AWS登録[Avatar]　画像登録 -->
         <div>
-          <button type=“button” class="cmd-button" onclick="register_Avatar()">Avatar-Data</button>
+          <!-- <button type=“button” class="cmd-button" onclick="register_Avatar()">Avatar-Data</button> -->
           <!-- <button type=“button” onclick="register_Avatar_Data()">Avatar-Data</button> -->
           <p>画像登録結果：<span id="result_register_Avatar_Data"></span></p>
         </div>
         <!-- AWS登録[Avatar]　Ping -->
         <div>
-          <button type=“button” class="cmd-button" onclick="register_Avatar_Ping()">Avatar-Ping</button>
+          <!-- <button type=“button” class="cmd-button" onclick="register_Avatar_Ping()">Avatar-Ping</button> -->
           <p>画像登録Ping：<span id="result_register_Avatar_Ping"></span></p>
         </div>
       </div>
@@ -110,7 +116,8 @@
     <div>
       <button type=“button” class="ctrl-display-button" onclick="area_display_register_item()">Item登録</button>
       <div id="area-register-item" class="ctrl-display-button" style="display:none;">
-        <button type=“button” class="cmd-button" onclick="register_Item_PreSign()">Item-PreSign</button>
+        <button type=“button” class="cmd-button" onclick="RegisterItem_Proc()">Item登録</button>
+        <!-- <button type=“button” class="cmd-button" onclick="register_Item_PreSign()">Item-PreSign</button> -->
         <!-- AWS登録[Item]　ログイン情報の取得 -->
         <div>
           <p>PreAWSの結果</p>
@@ -125,13 +132,13 @@
         </div>
         <!-- AWS登録[Item]　画像登録 -->
         <div>
-          <button type=“button” class="cmd-button" onclick="register_Item()">Item-Data</button>
+          <!-- <button type=“button” class="cmd-button" onclick="register_Item()">Item-Data</button> -->
           <!-- <button type=“button” onclick="register_Item_Data()">Item-Data</button> -->
           <p>画像登録結果：<span id="result_register_Item_Data"></span></p>
         </div>
         <!-- AWS登録[Item]　Ping -->
         <div>
-          <button type=“button” class="cmd-button" onclick="register_Item_Ping()">Item-Ping</button>
+          <!-- <button type=“button” class="cmd-button" onclick="register_Item_Ping()">Item-Ping</button> -->
           <p>Item-Ping：<span id="result_register_Item_Ping"></span></p>
         </div>
       </div>
@@ -360,6 +367,20 @@
       else
       {
         div.style.display = 'block';
+      }
+    }
+    function area_result_detail() {
+      const elm = document.getElementsByClassName('result-detail');
+
+      for (let i = 0; i < elm.length; ++i) {
+        if(elm[i].style.display === "block")
+        {
+          elm[i].style.display = 'none';
+        }
+        else
+        {
+          elm[i].style.display = 'block';
+        }
       }
     }
     //****************************************

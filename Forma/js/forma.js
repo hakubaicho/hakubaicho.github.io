@@ -492,7 +492,8 @@
     if(doNext)
     {
       let isNext = true;
-      for(let i = 0 ; i < 10; i++)
+      const RETRY_MAX = 20;
+      for(let i = 0 ; i < RETRY_MAX; i++)
       {
         // 待ち時間処理
         await ping_wait();
@@ -774,11 +775,11 @@
     //----------------------------------------
     // 入力チェック
     //----------------------------------------
-     // トークンのチェック
-     if(true !== check_token())
-     {
-       return;
-     }
+    // トークンのチェック
+    if(true !== check_token())
+    {
+      return;
+    }
     // 画像の選択チェック
     try
     {
@@ -806,7 +807,7 @@
         return;
     }
 
-     let doNext = true;
+    let doNext = true;
     //----------------------------------------
     // Presign
     //----------------------------------------
@@ -849,7 +850,8 @@
     {
       console.log('[Start]RegisterAvatar-Ping');
       let isNext = true;
-      for(let i = 0 ; i < 10; i++)
+      const RETRY_MAX = 20;
+      for(let i = 0 ; i < RETRY_MAX; i++)
       {
         // 待ち時間処理
         await ping_wait();
@@ -999,8 +1001,9 @@
         // 送信先URL
         const requestUrl = "https://formatech-mobile-avatars.s3.amazonaws.com/";
         
+        // 事前に変換済み
         // CanvasをBlobの値に変換する
-        const canvas = document.getElementById("canvas-capture");
+        // const canvas = document.getElementById("canvas-capture");
         // let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
   
   
@@ -1042,6 +1045,7 @@
       catch(e)
       {
         console.log(e.message);
+        reject('NG');
       }
     });
   }
@@ -1167,17 +1171,37 @@
   // Itemの登録
   //
   //********************************************
-
-  //********************************************
-  // AWS[Item]へのログイン情報の取得
-  //********************************************
-  function register_Item_PreSign() {
+  function RegisterItem_Proc() {
+    asyncRegisterItem();
+  }
+  //
+  // asyncでアイテム登録を行う
+  //
+  async function asyncRegisterItem() {
+    //----------------------------------------
+    // 入力チェック
+    //----------------------------------------
     // トークンのチェック
     if(true !== check_token())
     {
       return;
     }
+    // 画像の選択チェック
+    try
+    {
+      // CanvasをBlobの値に変換する
+      const canvas = document.getElementById("canvas-capture");
+      imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      return;
+    }
+
+    //----------------------------------------
     // 確認画面
+    //----------------------------------------
     var res = confirm("Item登録しますか？");
     if( res === true ) {
         // OKならなにもしない
@@ -1187,38 +1211,141 @@
         alert("中止します。");
         return;
     }
-    // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/aws/item_signed_url/" ;
-
-    // 送信パラメータ
-    let myJson =
+    let doNext = true;
+    //----------------------------------------
+    // Presign
+    //----------------------------------------
+    console.log('[Start]RegisterItem-PreSign');
+    await register_Item_PreSign()
+    .then(
+      function( response ) {
+        // 正常結果
+        console.log(`[OK]RegisterItem-PreSign : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        console.log(`[NG]RegisterItem-PreSign : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // データ送信
+    //----------------------------------------
+    if(doNext)
     {
-      "image_keys" : ["source"]
-    };
-   //JSONにエンコード
-   var json_text = JSON.stringify(myJson);
-
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    //通信方式とURLを設定   
-    xhr.open("POST", requestUrl);
-
-    // 必要なHTTPヘッダを追加します。
-    xhr.setRequestHeader( 'accept', 'application/json' );
-    xhr.setRequestHeader( 'Content-Type', 'application/json' );
-    xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
-    //通信を実行する
-    xhr.send(json_text);
-
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-
-      console.log('');
-        //通信が完了
-        if(xhr.readyState == 4){
-          getJson_register_Item_PreSign(xhr.responseText);
+      console.log('[Start]RegisterItem-Data');
+      await register_Item_Data()
+      .then(
+        function( response ) {
+          // 正常結果
+          console.log(`[OK]RegisterItem-Data : ${response}`);
+        },
+        function( error ) {
+          //エラー処理を記述する
+          console.log(`[NG]RegisterItem-Data : ${error}`);
+          doNext = false;
         }
+      )
     }
+    //----------------------------------------
+    // Pingで処理待ち
+    //----------------------------------------
+    if(doNext)
+    {
+      console.log('[Start]RegisterItem-Ping');
+      let isNext = true;
+      const RETRY_MAX = 20;
+      for(let i = 0 ; i < RETRY_MAX; i++)
+      {
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        console.log(`[Start]RegisterItem-Ping(${i})`);
+        await register_Item_Ping()
+        .then(
+          function( response  ) {
+            // 正常結果
+            switch(response)
+            {
+              case 0: //正常終了
+                isNext = false;
+                console.log(`[OK]RegisterItem-Ping(${i}) = ${response}`);
+                break;
+              case 1: // 処理中
+                console.log(`[WAIT]RegisterItem-Ping(${i}) = ${response}`);
+                break;
+              case 2: // 処理失敗
+                isNext = false;
+                console.log(`[FAILD]RegisterItem-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            console.log(`[NG]RegisterItem-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
+        }
+      }
+    }
+  }
+  //********************************************
+  // AWS[Item]へのログイン情報の取得
+  //********************************************
+  function register_Item_PreSign() {
+
+    // 処理完了まで非同期で待つ
+    return new Promise(function(resolve, reject) {
+      // 送信先URL 
+      const requestUrl = "https://social.isabq.com/api/v1/aws/item_signed_url/" ;
+  
+      // 送信パラメータ
+      let myJson =
+      {
+        "image_keys" : ["source"]
+      };
+     //JSONにエンコード
+     var json_text = JSON.stringify(myJson);
+  
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      //通信方式とURLを設定   
+      xhr.open("POST", requestUrl);
+  
+      // 必要なHTTPヘッダを追加します。
+      xhr.setRequestHeader( 'accept', 'application/json' );
+      xhr.setRequestHeader( 'Content-Type', 'application/json' );
+      xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
+      //通信を実行する
+      xhr.send(json_text);
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
+        // 通信が完了
+        if(xhr.readyState == 4){
+          document.getElementById("result_register_Item_PreSign").textContent = xhr.responseText;
+          if((xhr.status == 200) || (xhr.status == 201))
+          {
+            if(true === getJson_register_Item_PreSign(xhr.responseText))
+            {
+              resolve('OK');
+            }
+            else
+            {
+              reject('Json-Error');
+            }
+          }
+          else
+          {
+            reject('NG');
+          }
+        }
+      }
+    });
   }
   //--------------------------------------------
   // AWS[Avatar]へのログイン情報のJsonの解釈
@@ -1246,34 +1373,41 @@
     // 	  }
     // }
     //------------------------------------------
-    document.getElementById("result_register_Item_PreSign").textContent = response;
-    let obj = JSON.parse(response);
-    //------------------------------
-    // 分解
-    //------------------------------
-    const signed_urls = obj.signed_urls;
-    const source = signed_urls.source;
-    const fields = source.fields;
-    //------------------------------
-    // 保存するべき情報
-    //------------------------------
-    register_item_root_uuid = obj.uuid;
-    register_item_url = source.url;
-    register_item_source_uuid = fields.key;
-    register_item_awsAccessKeyId = fields.AWSAccessKeyId;
-    register_item_policy = fields.policy;
-    register_item_signature = fields.signature;
-    //------------------------------
-    // デバッグ画面表示
-    //------------------------------
-    document.getElementById("aws-item-root-uuid").textContent = register_item_root_uuid;
-    document.getElementById("aws-item-url").textContent = register_item_url;
-    document.getElementById("aws-item-key").textContent = register_item_source_uuid;
-    document.getElementById("aws-item-AWSkey").textContent = register_item_awsAccessKeyId;
-    document.getElementById("aws-item-policy").textContent = register_item_policy;
-    document.getElementById("aws-item-signature").textContent = register_item_policy;
-    document.getElementById("aws-item-uuid").textContent = source.uuid;
 
+    let result = false;
+    try{
+      //------------------------------
+      // 分解
+      //------------------------------
+      let obj = JSON.parse(response);
+      const signed_urls = obj.signed_urls;
+      const source = signed_urls.source;
+      const fields = source.fields;
+      //------------------------------
+      // 保存するべき情報
+      //------------------------------
+      register_item_root_uuid = obj.uuid;
+      register_item_url = source.url;
+      register_item_source_uuid = fields.key;
+      register_item_awsAccessKeyId = fields.AWSAccessKeyId;
+      register_item_policy = fields.policy;
+      register_item_signature = fields.signature;
+      //------------------------------
+      // デバッグ画面表示
+      //------------------------------
+      document.getElementById("aws-item-root-uuid").textContent = register_item_root_uuid;
+      document.getElementById("aws-item-url").textContent = register_item_url;
+      document.getElementById("aws-item-key").textContent = register_item_source_uuid;
+      document.getElementById("aws-item-AWSkey").textContent = register_item_awsAccessKeyId;
+      document.getElementById("aws-item-policy").textContent = register_item_policy;
+      document.getElementById("aws-item-signature").textContent = register_item_policy;
+      document.getElementById("aws-item-uuid").textContent = source.uuid;
+      result = true;
+    }
+    catch(e){
+      console.log(e.message);
+    }
+    return result;
   }
 
   function register_Item()
@@ -1283,48 +1417,61 @@
   //********************************************
   // AWS[Avatar]への画像登録処理
   //********************************************
-  async function register_Item_Data() {
-    // トークンのチェック
-    if(true !== check_token())
-    {
-      return;
-    }
+  function register_Item_Data() {
 
-    try{
-      // 送信先URL
-      const requestUrl = "https://formatech-mobile-items.s3.amazonaws.com/";
-      
-      // CanvasをBlobの値に変換する
-      const canvas = document.getElementById("canvas-capture");
-      let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
-      // 送信パラメータに変換する
-      let formData = new FormData();
-      formData.append("key",              register_item_source_uuid);
-      formData.append("AWSAccessKeyId",   register_item_awsAccessKeyId);   
-      formData.append("policy",           register_item_policy);
-      formData.append("signature",        register_item_signature);
-      formData.append("file",             imageBlob, "item.jpeg");
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject){
+      try{
+        // 送信先URL
+        const requestUrl = "https://formatech-mobile-items.s3.amazonaws.com/";
+        
+        // 事前に変換済み
+        // CanvasをBlobの値に変換する
+        // const canvas = document.getElementById("canvas-capture");
+        // let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
 
-      
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", requestUrl);
-      xhr.send(formData);
-      //通信ステータスが変わったら実行される関数
-      xhr.onreadystatechange = function(){
-
-        console.log('');
+        // 送信パラメータに変換する
+        let formData = new FormData();
+        formData.append("key",              register_item_source_uuid);
+        formData.append("AWSAccessKeyId",   register_item_awsAccessKeyId);   
+        formData.append("policy",           register_item_policy);
+        formData.append("signature",        register_item_signature);
+        formData.append("file",             imageBlob, "item.jpeg");
+  
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", requestUrl);
+        xhr.send(formData);
+        //通信ステータスが変わったら実行される関数
+        xhr.onreadystatechange = function(){
           //通信が完了
           if(xhr.readyState == 4){
-            getJson_register_Item_Data(xhr.responseText);
+            document.getElementById("result_register_Item_Data").textContent = xhr.responseText;
+            if(xhr.status == 204)
+            {
+              if(true === getJson_register_Item_Data(xhr.responseText))
+              {
+                resolve('OK');
+              }
+              else
+              {
+                reject('Json-Error');
+              }
+            }
+            else
+            {
+              reject('NG');
+            }
           }
+        }    
       }
-  
-    }
-    catch(e)
-    {
-      console.log(e.message);
-      // document.getElementById("proc-result").textContent = e.message;
-    }
+      catch(e)
+      {
+        console.log(e.message);
+        reject('NG');
+      }
+    });
+
   }
   //--------------------------------------------
   // AWS[Avatar]へのへの画像登録処理のJsonの解釈
@@ -1345,44 +1492,56 @@
     //  "uuid":"788dbc9c-f80c-4fc9-b5c0-a23ca470fd80"
     // }
     //------------------------------------------
-
-    document.getElementById("result_register_Item_Data").textContent = response;
+    return true;
   }
   
   //********************************************
   // AWS[Item]の登録後のPing
   //********************************************
   function register_Item_Ping() {
-    // トークンのチェック
-    if(true !== check_token())
-    {
-      return;
-    }
-
-    // 送信先URL
-    const requestUrl = "https://social.isabq.com/api/v1/items/"+ register_item_root_uuid + "/status/" ;
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    //通信方式とURLを設定   
-    xhr.open("GET", requestUrl);
-
-    // 必要なHTTPヘッダを追加します。
-    // * ここでno-cache入れるとダメ* 
-    // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-    xhr.setRequestHeader( 'Content-Type', 'application/json' );
-    xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
-    //通信を実行する
-    xhr.send();
-
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-
-      console.log('');
+    // 処理完了を非同期で待つ
+    return new Promise(function(resolve, reject){
+      // 送信先URL
+      const requestUrl = "https://social.isabq.com/api/v1/items/"+ register_item_root_uuid + "/status/" ;
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      //通信方式とURLを設定   
+      xhr.open("GET", requestUrl);
+  
+      // 必要なHTTPヘッダを追加します。
+      // * ここでno-cache入れるとダメ* 
+      // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+      xhr.setRequestHeader( 'Content-Type', 'application/json' );
+      xhr.setRequestHeader( 'Authorization', 'Token ' + keyOfToken);
+      //通信を実行する
+      xhr.send();
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
         //通信が完了
         if(xhr.readyState == 4){
-          getJson_register_Item_Ping(xhr.responseText);
+          document.getElementById("result_register_Item_Ping").textContent = xhr.responseText;
+          if((xhr.status == 200)||(xhr.status == 201))
+          {
+            let result = getJson_register_Item_Ping(xhr.responseText);
+            if(0 <= result)
+            {
+              // OK=0 / WAIT=1 / FAILED=2;
+              resolve(result);
+            }
+            else
+            {
+              // Json-Error
+              reject(result);
+            }
+          }
+          else
+          {
+            reject('NG');
+          }          
         }
-    }
+      }
+    });
   }
   //--------------------------------------------
   // AWS[Item]の登録後のPingのJsonの解釈
@@ -1398,10 +1557,27 @@
     //   "status_message":""
     // }
     //------------------------------------------
-
-    document.getElementById("result_register_Item_Ping").textContent = response;
-    let obj = JSON.parse(response);
-    let status = obj.status;
+    let result = -1;
+    try{
+      let obj = JSON.parse(response);
+      let status = obj.status;
+      switch(status)
+      {
+        case 'processed':
+          result = 0;
+          break;
+        case 'processing':
+          result = 1;
+          break;
+        default:
+          result = 2;
+          break;
+      }
+    }
+    catch(e){
+      console.log(e.message);
+    }
+    return result;
   }
 
   //======================================================================
