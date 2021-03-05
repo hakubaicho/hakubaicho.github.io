@@ -177,32 +177,40 @@
         // // 前後カメラの設定
         // CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
         
-        // すでにカメラと接続していたら停止
-        stopCamera();
-        // カメラと接続する
-        navigator.mediaDevices.getUserMedia(CONSTRAINTS)
-          .then( (stream) => {
-            curSTREAM = stream;   // 前後の切り替え用に保持
+        try
+        {
 
-            // <video>とStremaを接続
-            video.srcObject = stream;
-            video.onloadedmetadata = (e) => {
+          // すでにカメラと接続していたら停止
+          stopCamera();
+          // カメラと接続する
+          navigator.mediaDevices.getUserMedia(CONSTRAINTS)
+            .then( (stream) => {
+              curSTREAM = stream;   // 前後の切り替え用に保持
               
-              video.play();
-              // 解像度を画面表示
-              $label_h.innerText =`H:${video.videoHeight}`;
-              $label_w.innerText =`W:${video.videoWidth}`;
-            };
-          })
-          .catch( (err) => {
-            console.log(`${err.name}: ${err.message}`);
-            const error_message =  "カメラとの接続時にエラーが発生しました" + "\n"
-                                  + err.name + "\n"
-                                  + err.message
-            camera_alert.textContent = error_message;
-            alert(error_message);
-          });
-      }
+              // <video>とStremaを接続
+                video.srcObject = stream;
+                video.onloadedmetadata = (e) => {
+                  
+                  video.play();
+                  // 解像度を画面表示
+                  $label_h.innerText =`H:${video.videoHeight}`;
+                  $label_w.innerText =`W:${video.videoWidth}`;
+                };
+              }
+            )
+            .catch( (err) => {
+              console.log(`${err.name}: ${err.message}`);
+              const error_message =  "カメラとの接続時にエラーが発生しました" + "\n"
+              + err.name + "\n"
+              + err.message
+              camera_alert.textContent = error_message;
+              alert(error_message);
+            });
+        }
+        catch(e)
+        {
+          camera_alert.textContent = e.message;
+        }
 
       function stopCamera()
       {
