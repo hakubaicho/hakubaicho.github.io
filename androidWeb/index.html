@@ -211,7 +211,7 @@
         {
           camera_alert.textContent = e.message;
         }
-
+      }
       function stopCamera()
       {
         // すでにカメラと接続していたら停止
@@ -247,7 +247,9 @@
       {
         $divListCameraDevices.innerHTML="";
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-          console.log("enumerateDevices() not supported.");
+          const error_message = "enumerateDevices() not supported.";
+          console.log(error_message);
+          camera_alert.textContent = error_message;
           return;
         }
         // カメラリストのクリア
@@ -295,7 +297,9 @@
         })
         // エラー発生時
         .catch(function(err) {
-          console.log(err.name + ": " + err.message);
+          const error_message = err.name + ": " + err.message;
+          console.log(error_message);
+          camera_alert.textContent = error_message;
         });
       }
       // // 写真を保存する 
