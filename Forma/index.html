@@ -158,16 +158,16 @@
         <p><a href="chrome://media-internals/">chrome://media-internals/</a></p>
         chrome://media-internals/
         <div>
-          <button type="button" onclick="videoSize(480, 640)">H:480 * W:640</button>
-          <button type="button" onclick="videoSize(640, 480)">H:640 * W:480</button>
-          <button type="button" onclick="videoSize(1920, 1080)">H:1920 * W:1080</button>
-          <button type="button" onclick="videoSize(1080, 1920)">H:1080 * W:1920</button>
+          <button type="button" class="cmd-button" onclick="videoSize(480, 640)">H:480 * W:640</button>
+          <button type="button" class="cmd-button" onclick="videoSize(640, 480)">H:640 * W:480</button>
+          <button type="button" class="cmd-button" onclick="videoSize(1920, 1080)">H:1920 * W:1080</button>
+          <button type="button" class="cmd-button" onclick="videoSize(1080, 1920)">H:1080 * W:1920</button>
         </div>
         <div>
           <select id="camera_list" size="1" style="width:160pt;">
             <option>(video)</option>
           </select>
-          <button id="start_video_button" onclick="startSelectedVideo()">Start Video</button>
+          <button id="start_video_button" class="cmd-button" onclick="startSelectedVideo()">Start Video</button>
         </div>
       </div>
       <!-- カメラ映像とカメラの解像度を表示する -->
@@ -175,7 +175,7 @@
         <p id="resolution-height"></p>
         <p id="resolution-width"></p>
         <div>
-          <button type="button" onclick="videocapture()">撮影</button>
+          <button type="button" class="cmd-button" onclick="videocapture()">撮影</button>
         </div>
         <div id="container">  <!-- video の上に canvas をオーバーレイするための div 要素 -->
           <!-- <video id="camera" autoplay="1"></video> -->
@@ -188,22 +188,22 @@
         <div id="dat"></div>  <!-- データ表示用 div 要素 -->
       </div> 
       <div>
-        <button type="button" onclick="stopCamera()">停止</button>
-        <button type="button" onclick="cameraPositionChange()">前/後</button>
+        <button type="button" class="cmd-button" onclick="stopCamera()">停止</button>
+        <button type="button" class="cmd-button" onclick="cameraPositionChange()">前/後</button>
       </div>
       <!-- キャプチャ画面 -->
       <div id="blobArea">
       </div>
       <div>
         <!-- <canvas id="canvas-capture"></canvas> -->
-        <button type="button" onclick="savePhoto()">保存</button>
+        <button type="button" class="cmd-button" onclick="savePhoto()">保存</button>
         <img id="newImg" src="">
       </div>
     
       <!-- メディアデバイスの列挙 -->
       <div id="camera-devices">
         <p>mediaDevicesを列挙します。</p>
-        <button type="button" onclick="getCameraDevices()">取得</button>
+        <button type="button" class="cmd-button" onclick="getCameraDevices()">取得</button>
         <div id="list-camera-devices">
         </div>
       </div>
