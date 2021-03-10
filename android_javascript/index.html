@@ -8,15 +8,22 @@
     <h1>これはandroidとの連携をします。</h1>
     <p><a href="https://www.petitmonte.com/java/android_webview_interface.html">参考サイト</a></p>
     <input type="button" value="html -> android" onclick="fromHtml()">
-    <div id="from-android">
+    <div id="from-android-username">
+
+    </div>
+    <div id="from-android-password">
 
     </div>
   </body>
   <script>
     // アンドロイドが呼び出す処理
-    function fromAndroidJava()
+    function fromAndroidJava_username(message)
     {
-      document.getElementById("from-android").textContent = message;
+      document.getElementById("from-android-username").textContent = message;
+    }
+    function fromAndroidJava_password(message)
+    {
+      document.getElementById("from-android-password").textContent = message;
     }
     // htmlから呼び出す処理
     function fromHtml()
