@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Androidとの連携</title>
+  </head>
+  <body>
+    <h1>これはandroidとの連携をします。</h1>
+    <p><a href="https://www.petitmonte.com/java/android_webview_interface.html">参考サイト</a></p>
+    <input type="button" value="html -> android" onclick="fromHtml()">
+    <div id="from-android">
+
+    </div>
+  </body>
+  <script>
+    // アンドロイドが呼び出す処理
+    function fromAndroidJava()
+    {
+      document.getElementById("from-android").textContent = message;
+    }
+    // htmlから呼び出す処理
+    function fromHtml()
+    {
+      document.getElementById("from-android").textContent = "Write From HTML";
+      // JavaScriptからアンドロイドに送信
+      try
+      {
+        android.MyMethod("To Android !!!");
+      }
+      catch(e)
+      {
+        console.log(e.message);
+      }
+    }
+  </script>
+</html>
