@@ -2,7 +2,6 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable="no"/ >
     <title>Androidとの連携</title>
   </head>
   <body>
@@ -15,6 +14,9 @@
     <div id="from-android-password">
 
     </div>
+
+    <p><span id="ScrSize"></span></p>
+    <p><span id="WinSize"></span></p>
   </body>
   <script>
     // アンドロイドが呼び出す処理
@@ -41,4 +43,27 @@
       }
     }
   </script>
+  <script type="text/javascript">
+    //画面サイズの取得
+    getScreenSize();
+    //ウィンドウサイズの取得
+    getWindowSize();
+    
+    //画面サイズを取得する
+    function getScreenSize() {
+      let s = "横幅 = " + window.parent.screen.width + " / 高さ = " + window.parent.screen.height;
+      document.getElementById("ScrSize").innerHTML = s;
+    }
+    
+    //ウィンドウサイズを取得する
+    function getWindowSize() {
+      let sW,sH,s;
+      sW = window.innerWidth;
+      sH = window.innerHeight;
+    
+      s = "横幅 = " + sW + " / 高さ = " + sH;
+     
+      document.getElementById("WinSize").innerHTML = s;
+    }
+    </script>
 </html>
