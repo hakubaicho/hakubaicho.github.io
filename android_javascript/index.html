@@ -10,11 +10,12 @@
     <h1>これはandroidとの連携をします。</h1>
     <p><a href="https://www.petitmonte.com/java/android_webview_interface.html">参考サイト</a></p>
     <input type="button" value="html -> android" onclick="fromHtml()">
-    <div id="from-android-username">
+    <input type="text" id="forAndroid" name="example1">
 
-    </div>
-    <div id="from-android-password">
-
+    <!-- ここは、Androidからのデータ渡し -->
+    <div>
+      <p>U: <span id="from-android-username"></span></p>
+      <p>P: <span id="from-android-password"></span></p>
     </div>
 
     <p><span id="ScrSize"></span></p>
@@ -34,10 +35,15 @@
     // htmlから呼び出す処理
     function fromHtml()
     {
+      let message = document.getElementById("forAndroid").value;
+      if(message === "")
+      {
+        message = "no input";
+      }
       // JavaScriptからアンドロイドに送信
       try
       {
-        android.MyMethod("To Android !!!");
+        android.MyMethod(message);
       }
       catch(e)
       {
