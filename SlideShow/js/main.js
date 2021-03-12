@@ -136,8 +136,14 @@
   images.forEach((image, index) => {
     items.push(image);
     const img = document.createElement('img');
-    // img.src = image;
-    img.src = get_ImageBlob_fromIndex(index);
+
+    //----------------------------------
+    // 画像の表示
+    //----------------------------------
+    // 画像ファイルで表示
+    img.src = image;
+    // 画像をBase64Blobで管理
+    // img.src = get_ImageBlob_fromIndex(index);
     const li = document.createElement('li');
 
     // 現在の選択中
