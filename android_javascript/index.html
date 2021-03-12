@@ -12,6 +12,8 @@
     <input type="button" value="html -> android" onclick="fromHtml()">
     <input type="text" id="forAndroid" name="example1">
 
+    <input type="button" value="[cmd]End" onclick="fromHtml_cmdEnd()">
+
     <!-- ここは、Androidからのデータ渡し -->
     <div>
       <p>U: <span id="from-android-username"></span></p>
@@ -44,6 +46,19 @@
       try
       {
         android.MyMethod(message);
+      }
+      catch(e)
+      {
+        console.log(e.message);
+      }
+    }
+    // htmlから呼び出す処理
+    function fromHtml_cmdEnd()
+    {
+      // JavaScriptからアンドロイドに送信
+      try
+      {
+        android.htmlCommand_End();
       }
       catch(e)
       {
