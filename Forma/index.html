@@ -218,7 +218,12 @@
   <div>
     <button type=“button” class="ctrl-display-button" onclick="area_display_camera()">カメラ処理</button>
     <p>再生状態:<span id="soundStatus"></span></p></div>
+    <!-- 
+      audioタグで先読みしておいたほうがいいです。
+      じゃないとエラーが出ました。
+     -->
     <audio id="sound-countdown" controls src="sound/countdown10to0.mp3"></audio>
+    <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
   </div>
   
   <!-- ********************************************************************************************** -->
@@ -400,23 +405,31 @@
 
     // 音声の再生
     const music = document.getElementById('sound-countdown');
-
+    const musicShutter = document.getElementById('sound-shutter');
     function clickPlay() {
       document.getElementById('soundStatus').textContent="nowPlaying";
+      music.currentTime = 0;
       music.play();  // 再生
     };
-
+    function clickPlayShutter() {
+      music.currentTime = 0;
+      musicShutter.play();  // 再生
+    };
     music.addEventListener("ended", function () {
       // 次回開始のため
       music.pause();
       music.currentTime = 0;
+
       document.getElementById('soundStatus').textContent="ended";
+      clickPlayShutter();
       videocapture();
     }, false);
+    musicShutter.addEventListener("ended", function () {
+      // 次回開始のため
+      musicShutter.pause();
+      musicShutter.currentTime = 0;
+    }, false);
 
-    function clickPause() {
-      music.pause();  // 再生
-    }
   </script>
 
 </body>
