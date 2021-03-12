@@ -137,7 +137,7 @@
     items.push(image);
     const img = document.createElement('img');
     // img.src = image;
-    img.src = get_ImageBlob_fromIndex(i);
+    img.src = get_ImageBlob_fromIndex(index);
     const li = document.createElement('li');
 
     // 現在の選択中
