@@ -218,6 +218,7 @@
   <div>
     <button type=“button” class="ctrl-display-button" onclick="area_display_camera()">カメラ処理</button>
     <p>再生状態:<span id="soundStatus"></span></p></div>
+    <audio id="sound-countdown" controls src="sound/countdown10to0.mp3"></audio>
   </div>
   
   <!-- ********************************************************************************************** -->
@@ -398,7 +399,7 @@
   <script type="text/javascript">
 
     // 音声の再生
-    const music = new Audio('sound/countdown10to0.mp3');
+    const music = document.getElementById('sound-countdown');
 
     function clickPlay() {
       document.getElementById('soundStatus').textContent="nowPlaying";
