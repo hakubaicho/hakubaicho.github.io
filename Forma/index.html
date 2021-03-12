@@ -175,7 +175,9 @@
         <p id="resolution-height"></p>
         <p id="resolution-width"></p>
         <div>
-          <button type="button" class="cmd-button" onclick="videocapture()">撮影</button>
+          <!-- <button type="button" class="cmd-button" onclick="videocapture()">撮影</button> -->
+          <!-- 音声再生後の撮影 -->
+          <button type="button" class="cmd-button" onclick="clickPlay()">撮影</button>
         </div>
         <div id="container">  <!-- video の上に canvas をオーバーレイするための div 要素 -->
           <!-- <video id="camera" autoplay="1"></video> -->
@@ -210,6 +212,13 @@
     </div>
   </div>
 
+   <!-- ********************************************************************************************** -->
+  <!-- 音声での処理 -->
+  <!-- ********************************************************************************************** -->
+  <div>
+    <button type=“button” class="ctrl-display-button" onclick="area_display_camera()">カメラ処理</button>
+    <p>再生状態:<span id="soundStatus"></span></p></div>
+  </div>
   
   <!-- ********************************************************************************************** -->
 
@@ -386,7 +395,28 @@
     }
     //****************************************
   </script>
+  <script type="text/javascript">
 
+    // 音声の再生
+    const music = new Audio('sound/countdown10to0.mp3');
+
+    function clickPlay() {
+      document.getElementById('soundStatus').textContent="nowPlaying";
+      music.play();  // 再生
+    };
+
+    music.addEventListener("ended", function () {
+      // 次回開始のため
+      music.pause();
+      music.currentTime = 0;
+      document.getElementById('soundStatus').textContent="ended";
+      videocapture();
+    }, false);
+
+    function clickPause() {
+      music.pause();  // 再生
+    }
+  </script>
 
 </body>
 </http>
