@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+html {
+  height: 100%;             /* bodyで100%を使うから */
+  width: 100%;
+}
+body {
+  margin: 0;
+  display: flex;            /* 縦幅いっぱいにするため */
+  flex-direction: column;   /* 縦方向に並べる */
+  height: 100%;             /* 高さを100％にする */
+  /*user-select: none*/         /* 文字列を選択させない */
+}
+div {
+  border: 1px solid silver;
+}
+.container {
+  display: flex;
+  flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
+  flex-grow: 1;
+}
+header {
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #62e2dc;
+  padding: 0.5rem;
+}
+header h1 {
+  font-size: 2rem;
+  color: #fff;
+}
+
+main {
+  background: skyblue;
+  flex-grow: 1;
+}
+nav {
+  background: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+aside {
+  background: orange;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+footer {
+  background: silver;
+}
+/* アイテム */
+.item_list_container
+{
+  width: 600px;
+  height: 200px;
+  overflow-y: scroll;
+  /* -webkit-overflow-scrolling: touch; */
+  /* overflow-scrolling: touch; */
+}
+.item_list_container::-webkit-scrollbar {
+  display: none;
+}
