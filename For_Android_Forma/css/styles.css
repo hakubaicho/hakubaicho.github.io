@@ -19,6 +19,7 @@ div {
 }
 img {
   vertical-align: bottom;
+  background-color: white;
 }
 ul {
   list-style: none;
@@ -35,7 +36,7 @@ ul {
 /* HEADERの構成 */
 /* ============================== */
 header {
-  height: 400px;
+  height: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,6 +50,7 @@ header h1 {
 /* MAINに配置された選択された画像 */
 #thumbnail_selected {
   height: 300px;
+  border-radius: 5%;
 }
 
 /* ============================== */
@@ -59,13 +61,17 @@ main {
   flex-grow: 1;
   width: 80%;
 }
+.item_list_padding
+{
+  margin:2px;
+}
 /* アイテムを配置を囲むDIV */
 .item_list_container
 {
   width: 800px;
-  height: 800px;
+  height: 1100px;
   overflow-y: scroll;
-  background-color: white;
+  background-color: silver;
   /* -webkit-overflow-scrolling: touch; */
   /* overflow-scrolling: touch; */
 }
@@ -76,32 +82,38 @@ main {
 .thumbnails {
   display: grid;
   grid-template-columns: repeat(4, 190px);
-  gap: 5px;
+  gap: 10px;
 }
+/* 
 .thumbnails li{
   cursor: pointer;
   opacity: 0.4;
-}
+} 
+*/
 .thumbnails li img {
-  border: 1px solid white;
+  border: 3px solid white;
 }
+/*
+
 .thumbnails li:hover {
   opacity: 1;
 }
+ 
 .thumbnails li:hover img {
-  border: 1px solid yellow;
+  border: 3px solid white;
 }
+*/
 /* 選択中の画像はhoverと同じ */
 .thumbnails li.current {
   opacity: 1;
 }
 .thumbnails li.current img {
-  border: 1px solid yellow;
+  border: 3px dotted gray;
 }
 
 .thumbnails img {
   width: 190px;
-  border-radius: 15%;
+  border-radius: 5%;
 }
 
 /* ============================== */
@@ -116,7 +128,7 @@ nav {
 }
 /* ASIDEの構成 */
 aside {
-  background: cyan;
+  background: lightgreen;
   width: 500px;
   display: flex;
   justify-content: center;
