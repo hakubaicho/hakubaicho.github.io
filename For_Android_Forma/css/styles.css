@@ -11,7 +11,7 @@ body {
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
   height: 100%;             /* 高さを100％にする */
-  /*user-select: none*/         /* 文字列を選択させない */
+  user-select: none;         /* 文字列を選択させない */
 }
 /* パラメータの要素 */
 div {
@@ -35,11 +35,11 @@ ul {
 /* HEADERの構成 */
 /* ============================== */
 header {
-  border: 1px solid gray;
+  height: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #62e2dc;
+  background-color: skyblue;
   padding: 0.5rem;
 }
 header h1 {
@@ -48,14 +48,14 @@ header h1 {
 }
 /* MAINに配置された選択された画像 */
 #thumbnail_selected {
-  height: 100px;
+  height: 300px;
 }
 
 /* ============================== */
 /* MAINの構成 */
 /* ============================== */
 main {
-  background: skyblue;
+  background: aqua;
   flex-grow: 1;
   width: 80%;
 }
@@ -65,7 +65,7 @@ main {
   width: 800px;
   height: 800px;
   overflow-y: scroll;
-  background-color: silver;
+  background-color: white;
   /* -webkit-overflow-scrolling: touch; */
   /* overflow-scrolling: touch; */
 }
@@ -116,7 +116,7 @@ nav {
 }
 /* ASIDEの構成 */
 aside {
-  background: orange;
+  background: cyan;
   width: 500px;
   display: flex;
   justify-content: center;
@@ -125,7 +125,7 @@ aside {
 }
 /* FOOTERの構成 */
 footer {
-  background: silver;
+  background: skyblue;
 }
 
 
