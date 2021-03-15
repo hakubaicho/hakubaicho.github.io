@@ -10,6 +10,7 @@
     <header>
       <h1>header</h1>
       <!-- 画像の表示　選択されたデザイン -->
+      <img id="thumbnail_selected">
       <!-- 画像の表示　選択されたデザインの人が試着しているもの -->
     </header>
     <!-- NAV -->
@@ -22,51 +23,9 @@
       <!-- MAIN -->
       <main>
         <h1>main</h1>
-        <!-- <div style="width:300px;height:150px;overflow:auto;"> -->
-        <div class=item_list_container>
-          <ul class="item_list">
-            <li class="item">
-              <div class="item_img">
-                <img src="img/denim.png" alt="商品">
-              </div>
-              <div class="item_textbox">
-                <div class="item_price">
-                  <span class="yen_symbol">¥</span>
-                  <span class="js_get_price">3000</span>
-                </div>
-                <div class="item_btnarea">
-                  <button class="item_cart_btn js_cart_btn" data-name="ズボン" data-price="3000">カート</button>
-                  <a class="item_buy_btn" href="confirm.html">購入</a>
-                </div>
-              </div>
-            </li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
-            <li>aaaa</li>
+        <!-- Itemの詳細を表示する -->
+        <div class="item_list_container">
+          <ul class="thumbnails">
           </ul>
         </div>
       </main>
@@ -79,5 +38,7 @@
     <footer>
       <h1>footer</h1>
     </footer>
+
+    <script src="js/main.js"></script>
   </body>
 </html>

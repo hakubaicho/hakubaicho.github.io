@@ -1,5 +1,7 @@
 @charset "utf-8";
-
+/* ============================== */
+/* 全体の構造 */
+/* ============================== */
 html {
   height: 100%;             /* bodyで100%を使うから */
   width: 100%;
@@ -11,14 +13,27 @@ body {
   height: 100%;             /* 高さを100％にする */
   /*user-select: none*/         /* 文字列を選択させない */
 }
+/* パラメータの要素 */
 div {
-  border: 1px solid silver;
+  /* border: 1px solid silver; */
+}
+img {
+  vertical-align: bottom;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .container {
   display: flex;
   flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
   flex-grow: 1;
 }
+
+/* ============================== */
+/* HEADERの構成 */
+/* ============================== */
 header {
   border: 1px solid gray;
   display: flex;
@@ -31,11 +46,67 @@ header h1 {
   font-size: 2rem;
   color: #fff;
 }
+/* MAINに配置された選択された画像 */
+#thumbnail_selected {
+  height: 100px;
+}
 
+/* ============================== */
+/* MAINの構成 */
+/* ============================== */
 main {
   background: skyblue;
   flex-grow: 1;
+  width: 80%;
 }
+/* アイテムを配置を囲むDIV */
+.item_list_container
+{
+  width: 800px;
+  height: 800px;
+  overflow-y: scroll;
+  background-color: silver;
+  /* -webkit-overflow-scrolling: touch; */
+  /* overflow-scrolling: touch; */
+}
+.item_list_container::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 190px);
+  gap: 5px;
+}
+.thumbnails li{
+  cursor: pointer;
+  opacity: 0.4;
+}
+.thumbnails li img {
+  border: 1px solid white;
+}
+.thumbnails li:hover {
+  opacity: 1;
+}
+.thumbnails li:hover img {
+  border: 1px solid yellow;
+}
+/* 選択中の画像はhoverと同じ */
+.thumbnails li.current {
+  opacity: 1;
+}
+.thumbnails li.current img {
+  border: 1px solid yellow;
+}
+
+.thumbnails img {
+  width: 190px;
+  border-radius: 15%;
+}
+
+/* ============================== */
+/* NAVの構成 */
+/* ============================== */
 nav {
   background: tomato;
   display: flex;
@@ -43,6 +114,7 @@ nav {
   align-items: center;
   flex-direction: row;
 }
+/* ASIDEの構成 */
 aside {
   background: orange;
   width: 500px;
@@ -51,18 +123,11 @@ aside {
   align-items: center;
   flex-direction: row;
 }
+/* FOOTERの構成 */
 footer {
   background: silver;
 }
-/* アイテム */
-.item_list_container
-{
-  width: 600px;
-  height: 200px;
-  overflow-y: scroll;
-  /* -webkit-overflow-scrolling: touch; */
-  /* overflow-scrolling: touch; */
-}
-.item_list_container::-webkit-scrollbar {
-  display: none;
-}
+
+
+
+
