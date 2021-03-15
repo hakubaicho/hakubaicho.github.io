@@ -47,12 +47,16 @@ header h1 {
   font-size: 2rem;
   color: #fff;
 }
-/* MAINに配置された選択された画像 */
+/* MAINに配置された選択されたデザイン */
 #thumbnail_selected {
   height: 300px;
   border-radius: 5%;
 }
-
+/* MAINに配置された選択された試着画像 */
+#thumbnail_selected_tryon {
+  height: 300px;
+  border-radius: 5%;
+}
 /* ============================== */
 /* MAINの構成 */
 /* ============================== */
@@ -75,6 +79,7 @@ main {
   /* -webkit-overflow-scrolling: touch; */
   /* overflow-scrolling: touch; */
 }
+/* スクロールバーの非表示 */
 .item_list_container::-webkit-scrollbar {
   display: none;
 }

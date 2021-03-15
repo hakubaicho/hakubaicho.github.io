@@ -39,13 +39,52 @@
 
     'img/0031.png',
   ]
+  const imagesTryOn = [
+
+    'img/s0001.png',
+    'img/s0002.png',
+    'img/s0003.png',
+    'img/s0004.png',
+    'img/s0005.png',
+    'img/s0006.png',
+    'img/s0007.png',
+    'img/s0008.png',
+    'img/s0009.png',
+    'img/s0010.png',
+
+    'img/s0011.png',
+    'img/s0012.png',
+    'img/s0013.png',
+    'img/s0014.png',
+    'img/s0015.png',
+    'img/s0016.png',
+    'img/s0017.png',
+    'img/s0018.png',
+    'img/s0019.png',
+    'img/s0020.png',
+
+    'img/s0021.png',
+    'img/s0022.png',
+    'img/s0023.png',
+    'img/s0024.png',
+    'img/s0025.png',
+    'img/s0026.png',
+    'img/s0027.png',
+    'img/s0028.png',
+    'img/s0029.png',
+    'img/s0030.png',
+
+    'img/s0031.png',
+  ]
   let items = new Array();
   // 現在選択中の画像
   let currentIndex = 0;
 
   // メイン画像の設定
   const mainImage = document.getElementById('thumbnail_selected');
+  const mainImageTryOn = document.getElementById('thumbnail_selected_tryon');
   mainImage.src = images[currentIndex];
+  mainImageTryOn.src = imagesTryOn[currentIndex];
   //------------------------------------
   // thumbnailsの処理
   //------------------------------------
@@ -71,6 +110,7 @@
     li.addEventListener('click',() => {
       // 画像の切り替え
       mainImage.src = image;
+      mainImageTryOn.src = imagesTryOn[index];
       // thumbnailsのすべての要素を取得
       const thumbnails = document.querySelectorAll('.thumbnails > li');
       // 現在の付加されているcurrentを外す
