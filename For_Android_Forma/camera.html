@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>カメラ撮影</title>
+    <link rel="stylesheet" href="css/camara.css">
+  </head>
+  <body>
+
+    <!-- 音声 -->
+    <div id="sound-area">
+      <p>
+        <button type=button onclick="play_countdown()">テスト再生</button>
+        <span>再生状態:<span id="soundStatus"></span></span>
+      </p>
+      <!-- 
+        audioタグで先読みしておいたほうがいいです。
+        じゃないとエラーが出ました。
+        controlsでコントロールGUIの表示をします。
+       -->
+      <audio id="sound-countdown" controls src="sound/countdown3to0.mp3"></audio>
+      <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
+    </div>
+
+
+
+    <script src="js/camera.js"></script>
+    <script src="js/connect.js"></script>
+  </body>
+</html>
