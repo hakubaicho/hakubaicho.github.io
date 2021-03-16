@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+#sound-area {
+  border: 1px solid gray;
+  background-color: lightsteelblue;
+  border-radius: 5px;
+}
