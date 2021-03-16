@@ -3,12 +3,61 @@
   <head>
     <meta charset="utf-8">
     <title>カメラ撮影</title>
-    <link rel="stylesheet" href="css/camara.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/camara.css"> 
   </head>
   <body>
+    <!-- カメラコントロール -->
+    <div id="area-camera-ctrl" class="area-container">
+      <div>
+        <button type="button" onclick="videoSize(480, 640)">H:480 * W:640</button>
+        <button type="button" onclick="videoSize(640, 480)">H:640 * W:480</button>
+        <button type="button" onclick="videoSize(1920, 1080)">H:1920 * W:1080</button>
+        <button type="button" onclick="videoSize(1080, 1920)">H:1080 * W:1920</button>
+      </div>
+      <div>
+        <select id="camera_list" size="1" style="width:160pt;">
+          <option>(video)</option>
+        </select>
+        <button id="start_video_button" class="button_command" onclick="startSelectedVideo()">Start Video</button>
+      </div>
+      <p>H:<span id="resolution-height"></span></p>
+      <p>W:<span id="resolution-width"></span></p>
+      <div id="camera-devices">
+        <p>mediaDevicesを列挙します。</p>
+        <button type="button" onclick="getCameraDevices()">取得</button>
+        <div id="list-camera-devices">
+        </div>
+      </div>
+    </div>
+    <!-- カメラ -->
+    <div id="area-capture" class="area-container">
+      <div id="video_container">
+        <video id="camera" autoplay="1">
+          <p>動画の再生に対応していません</p>
+        </video>
+      </div>
+    </div>
+
+
+    <!-- コントロールボタン -->
+    <div id="area-button" class="area-container">
+      <div class="box_command">
+        <img src="img/arrow_left.png" onclick="btn_click_back()">
+        <p>戻る</p>
+      </div>
+      <div class="box_command">
+        <img src="img/shutter.png"  onclick="btn_click_shutter()">
+        <p>撮影(取り直し)</p>
+      </div>
+      <div class="box_command">
+        <img src="img/arrow_right.png"  onclick="btn_click_next()">
+        <p>保存</p>
+      </div>
+    </div>
 
     <!-- 音声 -->
-    <div id="sound-area">
+    <div id="area-sound" class="area-container">
       <p>
         <button type=button onclick="play_countdown()">テスト再生</button>
         <span>再生状態:<span id="soundStatus"></span></span>
@@ -22,9 +71,13 @@
       <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
     </div>
 
+    
 
 
     <script src="js/camera.js"></script>
     <script src="js/connect.js"></script>
+    <script>
+      
+    </script>
   </body>
 </html>
