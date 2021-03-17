@@ -36,6 +36,7 @@
         <video id="camera" autoplay="1">
           <p>動画の再生に対応していません</p>
         </video>
+        <canvas id="canvas-photo"></canvas>
       </div>
     </div>
 
@@ -43,15 +44,15 @@
     <!-- コントロールボタン -->
     <div id="area-button" class="area-container">
       <div class="box_command">
-        <img src="img/arrow_left.png" onclick="btn_click_back()">
+        <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()">
         <p>戻る</p>
       </div>
       <div class="box_command">
-        <img src="img/shutter.png"  onclick="btn_click_shutter()">
+        <img src="img/shutter.png" id="btn_image_shutter" onclick="btnimg_click_shutter()">
         <p>撮影(取り直し)</p>
       </div>
       <div class="box_command">
-        <img src="img/arrow_right.png"  onclick="btn_click_next()">
+        <img src="img/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
         <p>保存</p>
       </div>
     </div>
