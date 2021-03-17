@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* =========================== */
+/* 注文詳細コンテナDIVの囲いをつける */
+/* =========================== */
+.order_container {
+  border: 1px solid gray;
+  background-color: gainsboro;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* デザイン詳細コンテナ */
+.order_design_container {
+  height: 300px;
+  width: 300px;
+  border-radius: 5%;
+  margin: 20px;
+  border: 1px solid white;
+}
+
+#order_design_image {
+  height: 300px;
+  width: 300px;
+  border-radius: 5%;
+  margin: 0;
+  border: 1px solid white;
+}
+
+/* 注文詳細 */
+.order_detail_container {
+  height: 300px;
+  border-radius: 5%;
+  margin: 20px;
+  border: 1px solid white;
+
+  flex: 1;
+}
+
+.button_console {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
