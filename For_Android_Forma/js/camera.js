@@ -26,8 +26,8 @@
       //--------------------------
       // PCでやるときの設定
       //--------------------------
-      width: 640,
-      height: 480,
+      width: 720,
+      height: 1280,
       //--------------------------
       // スマホでやるときの設定
       //--------------------------
@@ -135,9 +135,10 @@
     $canvas_Photo.height = video.videoHeight;
 
     // canvasのサイズを変更
-    $canvas_Photo.setAttribute("width", video.videoWidth);
-    $canvas_Photo.setAttribute("height", video.videoHeight);
+    // $canvas_Photo.setAttribute("width", video.videoWidth);
+    // $canvas_Photo.setAttribute("height", video.videoHeight);
     //ここで反転しないとね
+    // http://honttoni.blog74.fc2.com/blog-entry-197.html
     const ctx = $canvas_Photo.getContext("2d");
     ctx.transform(-1,0,0,1,video.videoWidth,0);
     // canvasに『「静止画取得」ボタン』押下時点の画像を描画
