@@ -94,7 +94,7 @@ main {
 /* スクロールのつまみ部分の設定 */
 .item_list_container::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background: #1959A8;
+  background: dimgray;
 }
 
 .thumbnails {
@@ -180,7 +180,7 @@ aside {
 /* スクロールのつまみ部分の設定 */
 .category_list_container::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background: #1959A8;
+  background: dimgray;
 }
 
 

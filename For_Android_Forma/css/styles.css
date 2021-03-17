@@ -10,6 +10,7 @@ body {
   color: white;
   background-color: dimgray;
   font-size: 2em;
+
+  /* 枠線を消す */
+  outline: none;
 }
-
-
