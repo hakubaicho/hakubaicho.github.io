@@ -25,10 +25,11 @@
 #video_container video {
   height: 1024px;
   width: 576px;
+  transform: scaleX(-1);  /* 左右反転させる */
 }
 #canvas-photo {
-  height: 1024px;
-  width: 576px;
+  /* height: 1024px;
+  width: 576px; */
 }
 .item-show {
   display: block;

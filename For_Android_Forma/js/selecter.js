@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 {
   // 画像パスを配列で保持

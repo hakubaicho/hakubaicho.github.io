@@ -133,8 +133,16 @@
   {
     $canvas_Photo.width  = video.videoWidth;
     $canvas_Photo.height = video.videoHeight;
-    $canvas_Photo.getContext('2d').drawImage(video, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
-    
+
+    // canvasのサイズを変更
+    $canvas_Photo.setAttribute("width", video.videoWidth);
+    $canvas_Photo.setAttribute("height", video.videoHeight);
+    //ここで反転しないとね
+    const ctx = $canvas_Photo.getContext("2d");
+    ctx.transform(-1,0,0,1,video.videoWidth,0);
+    // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+    $canvas_Photo.getContext('2d').drawImage(video, 0, 0);
+
     // videoタグの非表示
     video.classList.remove("item-show");
     video.classList.add("item-hide");
