@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>注文画面</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/order.css">
+  </head>
+  <body>
+    <main>
+      <div class="order_title">
+        <span>購入画面</span>
+      </div>
+      <!-- 注文確認エリア -->
+      <div class="order_container">
+        <!-- デザイン -->
+        <div class="order_design_container">
+          <img id="order_design_image" src="img/0001.png">
+        </div>
+        <!-- 注文詳細 -->
+        <div class="order_detail_container">
+          <!-- ***** ラジオボタン ***** -->
+          <fieldset>
+            <p class="design_id">K-0001</p>
+            <p><span class="yen_mark">\ </span><span class="price">0000</span></p>
+            <div>
+              Ledies
+              <label><input type="radio" name="size" checked>M</label>
+              <label><input type="radio" name="size">L</label>
+            </div>
+            <div>
+              Mens
+              <label><input type="radio" name="size" checked>M</label>
+              <label><input type="radio" name="size">L</label>
+            </div>
+            <div>
+              Kids
+              <label><input type="radio" name="size">80</label>
+              <label><input type="radio" name="size">90</label>
+              <label><input type="radio" name="size">100</label>
+              <label><input type="radio" name="size">110</label>
+              <label><input type="radio" name="size">120</label>
+              <label><input type="radio" name="size">130</label>
+            </div>
+            <!-- ***** ドロップダウンリスト ***** -->
+            <label for="color"> 枚数</label>
+            <!-- <select id="color" size="4" multiple>   -->
+            <select id="color">  
+              <option selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+          </fieldset>
+        </div>
+      </div>
+      <div class="button_console">
+        <button class="button_command" type=button>印刷</button>
+        <button class="button_command position_right" type=button>終了</button>  
+      </div>
+    </main>
+    
+  </body>
+</html>
