@@ -26,6 +26,16 @@
   height: 1024px;
   width: 576px;
 }
+#canvas-photo {
+  height: 1024px;
+  width: 576px;
+}
+.item-show {
+  display: block;
+}
+.item-hide {
+  display: none;
+}
 /* =========================== */
 /* コマンドボタンエリア */
 /* =========================== */
