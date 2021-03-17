@@ -7,7 +7,7 @@
   const $divListCameraDevices = document.getElementById("list-camera-devices");   // カメラデバイス列挙エリア
   const $label_h =document.getElementById("resolution-height");
   const $label_w =document.getElementById("resolution-width");
-  const $canvasCapture =document.getElementById("canvas-capture");
+  const $canvas_Photo =document.getElementById("canvas-photo");
   const video = document.querySelector("#camera");
   const cameraList = document.getElementById("camera_list");
   //------------------------------------------
@@ -127,12 +127,20 @@
     useFront = !useFront;      // boolean値を反転
   };
 
-  // キャプチャー処理
-  function videocapture()
+  // 写真の撮影
+  // videoタグの中身をcanvasに書き込む
+  function take_Photo()
   {
-    $canvasCapture.width  = video.videoWidth;
-    $canvasCapture.height = video.videoHeight;
-    $canvasCapture.getContext('2d').drawImage(video, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+    $canvas_Photo.width  = video.videoWidth;
+    $canvas_Photo.height = video.videoHeight;
+    $canvas_Photo.getContext('2d').drawImage(video, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+    
+    // videoタグの非表示
+    video.classList.remove("item-show");
+    video.classList.add("item-hide");
+    // canvasタグの表示
+    $canvas_Photo.classList.remove("item-hide");
+    $canvas_Photo.classList.add("item-show");
   }
   //--------------------------------------------
   // メディアデバイスを取得する
@@ -247,22 +255,7 @@
   }
 
 
-  // ===============================================================
-  //
-  // コマンドボタンの処理
-  //
-  // ===============================================================
-  // [戻る]ボタン
-  function btn_click_back() {
-    history.back();
-  }
-  function btn_click_shutter() {
-    play_countdown();
-  }
-  // [保存ボタン]
-  function btn_click_next() {
 
-  }
 
   // ===============================================================
   //
@@ -276,6 +269,13 @@
 
   // カウントダウン音声
   function play_countdown() {
+    // videoタグの非表示
+    video.classList.remove("item-hide");
+    video.classList.add("item-show");
+    // canvasタグの表示
+    $canvas_Photo.classList.remove("item-show");
+    $canvas_Photo.classList.add("item-hide");
+
     textSoundStatus.textContent="nowPlaying";
     // 先頭から再生
     musicCountDown.currentTime = 0;
@@ -303,7 +303,7 @@
     // シャッター音を鳴らす。
     play_shutter();
     // 撮影処理を行う。
-    //  videocapture();
+    take_Photo();
     // -----------------------------------
    }, false);
 
@@ -315,21 +315,44 @@
      musicShutter.currentTime = 0;
    }, false);
 
+  // ===============================================================
+  //
+  // コマンドボタンの処理
+  //
+  // ===============================================================
+ 
+  // [戻る]ボタン
+  function btnimg_click_back() {
+    history.back();
+  }
+  // [シャッター]ボタン
+  function btnimg_click_shutter() {
+    play_countdown();
+  }
+  // [保存ボタン]
+  function btnimg_click_save() {
+
+  }
 
   // ===============================================================
   //
   // 起動時処理
   //
   // ===============================================================
-  // window.onload = () => {
-  //   // カメラデバイス情報の取得
-  //   getCameraDevices();
-  //   // カメラ接続
-  //   // 前後カメラの設定
-  //   CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
-  //   syncCamera(video);
-  //   useFront = !useFront;         // boolean値を反転
-  //   return;
-  // };  
+  window.onload = () => {
+    // カメラデバイス情報の取得
+    getCameraDevices();
+    // カメラ接続
+    // 前後カメラの設定
+    CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+    syncCamera(video);
+    useFront = !useFront;         // boolean値を反転
+
+    // 表示・非表示
+    video.classList.add("item-show");
+    // canvasタグの表示
+    $canvas_Photo.classList.add("item-hide");
+    return;
+  };  
 
 }
