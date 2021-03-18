@@ -21,10 +21,15 @@
       this.tag1 = tag1;
       this.tag2 = tag2;
       this.tag3 = tag3;
+      this.location = 0;
     }
     //----------------------------------
     // メソッド
     //----------------------------------
+    // 配置インデックスをもらう
+    setLocation(location) {
+      this.location = location;
+    }
   }
   // *********************************************
   // インスタンスの作成
@@ -79,64 +84,18 @@
   //--------------------------------------------
   // アイテムリストを生成します。
   //--------------------------------------------
-  function setItemList() {
-
-    const  targetTag = document.querySelector('.thumbnails');
-    console.log('setItemList');
-    while( targetTag.firstChild ){
-      targetTag.removeChild( targetTag.firstChild );
-    }
-    //------------------------------------
-    // thumbnailsの処理
-    //------------------------------------
-    items.forEach((item, index) => {
-      //----------------------------------
-      // 画像の表示
-      //----------------------------------
-      // imgタグを生成し、イメージを割り当て
-      const img = document.createElement('img');
-      img.src = item.design;
-      // li要素の生成
-      const li = document.createElement('li');
-  
-      // 現在の選択中
-      if(index === currentIndex)
-      {
-        li.classList.add('current');
-      }
-
-      // クリックされた時の処理
-      li.addEventListener('click',() => {
-        // 画像の切り替え
-        imgDesign.src = item.design;
-        imgWeared.src = item.wearedImage;
-
-        // thumbnailsのすべての要素を取得
-        const thumbnails = document.querySelectorAll('.thumbnails > li');
-        // 現在の付加されているcurrentを外す
-        if(0 <= currentIndex)
-        {
-          thumbnails[currentIndex].classList.remove('current');
-        }
-        
-        // currentの更新
-        currentIndex = index;
-        thumbnails[currentIndex].classList.add('current');
-
-      });
-  
-      li.appendChild(img);
-      targetTag.appendChild(li);
-    });
-  }
-  function setItemListTag(select_tag) {
+  function setItemList(select_tag) {
     console.log('setItemListTag');
+    //--------------------------------
     // アイテム要素をクリア
+    //--------------------------------
     const  targetTag = document.querySelector('.thumbnails');
     while( targetTag.firstChild ){
       targetTag.removeChild( targetTag.firstChild );
     }
-
+    //--------------------------------
+    // キーワードを取得
+    //--------------------------------
     let keyWord = '';
     if('string' == typeof(select_tag))
     {
@@ -156,6 +115,8 @@
     //------------------------------------
     // thumbnailsの処理
     //------------------------------------
+    currentIndex = -1;
+    let location = 0;
     items.forEach((item, index) => {
       // タグが一致するか確認
       let isHit = false;
@@ -190,36 +151,31 @@
       img.src = item.design;
       // li要素の生成
       const li = document.createElement('li');
-  
-      // 現在の選択中
-      if(index === currentIndex)
-      {
-        li.classList.add('current');
-      }
-
       // クリックされた時の処理
-      li.addEventListener('click',() => {
-        // 画像の切り替え
-        imgDesign.src = item.design;
-        imgWeared.src = item.wearedImage;
-
-        // thumbnailsのすべての要素を取得
-        const thumbnails = document.querySelectorAll('.thumbnails > li');
-        // 現在の付加されているcurrentを外す
-        if(0 <= currentIndex)
-        {
-          thumbnails[currentIndex].classList.remove('current');
-        }
-        
-        // currentの更新
-        currentIndex = index;
-        thumbnails[currentIndex].classList.add('current');
-
-      });
-  
+      // li.addEventListener("click", click_item, false);
+      // li.eventParam = index;
+      li.addEventListener("click", function(){click_item(index)}, false);
+      item.setLocation(location);
       li.appendChild(img);
       targetTag.appendChild(li);
+      location++;
     });
+  }
+  function click_item(index, location)
+  {
+    // 画像の切り替え
+    imgDesign.src = items[index].design;
+    imgWeared.src = items[index].wearedImage;
+
+    // thumbnailsのすべての要素を取得
+    const thumbnails = document.querySelectorAll('.thumbnails > li');
+    // 現在の付加されているcurrentを外す
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.classList.remove('current');
+    });
+    // currentの更新
+    currentIndex = items[index].location;
+    thumbnails[currentIndex].classList.add('current');
   }
   //--------------------------------------------
   // カテゴリーリストを生成します。
@@ -284,7 +240,7 @@
       // ×）これやると即時実行になります。
       // button.addEventListener("click", setItemList(tag), false);
       // 〇） https://qiita.com/rukiadia/items/03aaa8955c0f6576a5e7
-      button.addEventListener("click", setItemListTag, false);
+      button.addEventListener("click", setItemList, false);
       button.eventParam = tag;
 
       li.appendChild(button);
@@ -294,8 +250,7 @@
   }
 
   // 画面構成を作る
-  setItemList();
+  setItemList('');
   setCategoryList();
   setCategoryListByItemTag();
-  setItemListTag('');  // これはだめ
 }
