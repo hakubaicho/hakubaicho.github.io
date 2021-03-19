@@ -120,8 +120,8 @@
     new ClothItem('img/0012.png','img/s0012.png','せなけい','もの','くつ'),
     new ClothItem('img/0013.png','img/s0013.png','せなけい','どうぶつ','くま'),
     new ClothItem('img/0014.png','img/s0014.png','せなけい','どうぶつ','いぬ'),
-    new ClothItem('img/0015.png','img/s0015.png','せなけい','ひと','ひと'),
-    new ClothItem('img/0016.png','img/s0016.png','せなけい','ひと','ひと'),
+    new ClothItem('img/0015.png','img/s0015.png','せなけい','ひと','おんなのこ'),
+    new ClothItem('img/0016.png','img/s0016.png','せなけい','ひと','おんなのこ'),
     new ClothItem('img/0017.png','img/s0017.png','せなけい','どうぶつ','うま'),
     new ClothItem('img/0018.png','img/s0018.png','せなけい','どうぶつ','きりん'),
     new ClothItem('img/0019.png','img/s0019.png','せなけい','どうぶつ','さる'),
@@ -645,7 +645,23 @@
     //   // 配置
     //   categorys.appendChild(li);
     // });
-    
+    //--------------------------------------
+    // カテゴリすべてボタンの生成
+    //--------------------------------------
+    const li = document.createElement('li');            // li を生成
+    const button = document.createElement('button');    // button を生成(タグをテキストにしたボタン要素を追加する)
+    button.textContent = `すべて`;
+    button.classList.add('button_tag_all');
+    // イベントの追加
+    button.addEventListener("click", setItemListTree, false);
+    button.eventParam = [
+                          '',
+                          '',
+                          '',
+                        ];
+    // 配置
+    li.appendChild(button);         // button の配置
+    categories.appendChild(li);   // li の配置
     //--------------------------------------
     // カテゴリボタンの生成
     //--------------------------------------

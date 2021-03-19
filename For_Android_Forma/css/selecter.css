@@ -183,15 +183,23 @@ aside {
   background: dimgray;
 }
 
-
+/* ------------------------------ */
+/* カテゴリーボタン */
+/* ------------------------------ */
 aside button {
   height: 80px;
   width: 200px;
-  border: 3px solid dimgray;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 24px;
   padding: 4px;
   text-align: center;
+  /* 枠線を消す */
+  outline: none;
+}
+.button_tag_all {
+  background-color: yellow;
+  color: Navy;
+  font-size: 24px;
 }
 .button_tag1 {
   background-color: navy;
@@ -207,6 +215,10 @@ aside button {
   background-color: lightskyblue;
   color: navy;
   font-size: 16px;
+}
+.button_tag_all:active, .button_tag1:active, .button_tag2:active, .button_tag3:active{
+  background-color: white;
+  color: navy;
 }
 /* FOOTERの構成 */
 footer {

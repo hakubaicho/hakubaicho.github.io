@@ -345,6 +345,35 @@
 
   // ===============================================================
   //
+  // モーダルウィンドウ
+  // dotinstallを参照
+  // 
+  // ===============================================================
+   // 要素の定数か
+   const cancel = document.getElementById('cancel');
+   const accept = document.getElementById('accept');
+   const mask = document.getElementById("mask");
+   const modal = document.getElementById("modal");
+ 
+  // [もどる]
+  cancel.addEventListener('click', () => {
+    history.back();
+  });
+  // [すすむ]
+  accept.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    mask.classList.add('hidden');
+  });
+ 
+  // [詳細を見る]
+  mask.addEventListener('click', () => {
+    // 確認必須なので何もしない
+    // 同じ処理なのでまとめておく。
+    // close.click();
+  });
+
+  // ===============================================================
+  //
   // 起動時処理
   //
   // ===============================================================

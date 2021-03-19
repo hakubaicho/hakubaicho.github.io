@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="css/camara.css"> 
   </head>
   <body>
+    <!-- モーダルウィンドウ -->
+    <section id="modal">
+      <div>
+        <p>
+          カメラ撮影をします。
+          下記の条件を受け入れてください。
+        </p>
+      </div>
+      <div id="cancel">戻る</div>
+      <div id="accept">進む</div>
+    </section>
+     <!-- モーダルウィンドウの時のマスク -->
+    <div id="mask"></div>
     <!-- カメラコントロール -->
     <div id="area-camera-ctrl" class="area-container">
       <div>
@@ -71,9 +84,6 @@
       <audio id="sound-countdown" controls src="sound/countdown3to0.mp3"></audio>
       <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
     </div>
-
-    
-
 
     <script src="js/camera.js"></script>
     <script src="js/connect.js"></script>
