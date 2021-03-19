@@ -74,7 +74,7 @@ main {
 .item_list_container
 {
   width: 800px;
-  height: 1100px;
+  height: 900px;
   overflow-y: scroll;
   background-color: lightgray;
   /* -webkit-overflow-scrolling: touch; */
@@ -164,7 +164,7 @@ aside {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 1100px;
+  height: 900px;
 }
 /* スクロールバーの非表示 */
 .category_list_container::-webkit-scrollbar {
