@@ -189,9 +189,24 @@ aside button {
   width: 200px;
   border: 3px solid dimgray;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 24px;
   padding: 4px;
   text-align: center;
+}
+.button_tag1 {
+  background-color: navy;
+  color: white;
+  font-size: 24px;
+}
+.button_tag2 {
+  background-color: blue;
+  color: white;
+  font-size: 20px;
+}
+.button_tag3 {
+  background-color: lightskyblue;
+  color: navy;
+  font-size: 16px;
 }
 /* FOOTERの構成 */
 footer {
