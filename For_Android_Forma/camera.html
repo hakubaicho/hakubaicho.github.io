@@ -20,71 +20,79 @@
     </section>
      <!-- モーダルウィンドウの時のマスク -->
     <div id="mask"></div>
-    <!-- カメラコントロール -->
-    <div id="area-camera-ctrl" class="area-container">
-      <div>
-        <button type="button" class="button_command" onclick="videoSize(1024, 576)">H:1024 * W:576</button>
-        <button type="button" class="button_command" onclick="videoSize(576, 1024)">H:576 * W:1024</button>
-        <button type="button" class="button_command" onclick="videoSize(1280, 720)">H:1280 * W:720</button>
-        <button type="button" class="button_command" onclick="videoSize(720, 1280)">H:780 * W:1280</button>
-      </div>
-      <div>
-        <select id="camera_list" size="1" style="width:160pt;">
-          <option>(video)</option>
-        </select>
-        <button id="start_video_button" class="button_command" onclick="startSelectedVideo()">Start Video</button>
-      </div>
-      <p>H:<span id="resolution-height"></span></p>
-      <p>W:<span id="resolution-width"></span></p>
-      <div id="camera-devices">
-        <p>mediaDevicesを列挙します。</p>
-        <button type="button" onclick="getCameraDevices()">取得</button>
-        <div id="list-camera-devices">
+    <header>
+      <p>header</p>
+      <!-- カメラコントロール -->
+      <div id="area-camera-ctrl" class="area-container">
+        <div>
+          <button type="button" class="button_command" onclick="videoSize(1024, 576)">H:1024 * W:576</button>
+          <button type="button" class="button_command" onclick="videoSize(576, 1024)">H:576 * W:1024</button>
+          <button type="button" class="button_command" onclick="videoSize(1280, 720)">H:1280 * W:720</button>
+          <button type="button" class="button_command" onclick="videoSize(720, 1280)">H:780 * W:1280</button>
+        </div>
+        <div>
+          <select id="camera_list" size="1" style="width:160pt;">
+            <option>(video)</option>
+          </select>
+          <button id="start_video_button" class="button_command" onclick="startSelectedVideo()">Start Video</button>
+        </div>
+        <p>H:<span id="resolution-height"></span></p>
+        <p>W:<span id="resolution-width"></span></p>
+        <div id="camera-devices">
+          <p>mediaDevicesを列挙します。</p>
+          <button type="button" onclick="getCameraDevices()">取得</button>
+          <div id="list-camera-devices">
+          </div>
         </div>
       </div>
-    </div>
-    <!-- カメラ -->
-    <div id="area-capture" class="area-container">
-      <div id="video_container">
-        <video id="camera" autoplay="1">
-          <p>動画の再生に対応していません</p>
-        </video>
-        <canvas id="canvas-photo"></canvas>
+    </header>
+    <main>
+      <p>main</p>
+      <!-- カメラ -->
+      <div id="area-capture" class="area-container">
+        <div id="video_container">
+          <video id="camera" autoplay="1">
+            <p>動画の再生に対応していません</p>
+          </video>
+          <canvas id="canvas-photo"></canvas>
+        </div>
       </div>
-    </div>
+    </main>
 
-
-    <!-- コントロールボタン -->
-    <div id="area-button" class="area-container">
-      <div class="box_command">
-        <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()">
-        <p>戻る</p>
+    <footer>
+      <p>footer</p>
+      <!-- コントロールボタン -->
+      <div id="area-button" class="area-container">
+        <div class="box_command">
+          <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()">
+          <p>戻る</p>
+        </div>
+        <div class="box_command">
+          <img src="img/shutter.png" id="btn_image_shutter" onclick="btnimg_click_shutter()">
+          <p>撮影(取り直し)</p>
+        </div>
+        <div class="box_command">
+          <img src="img/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
+          <p>保存</p>
+        </div>
       </div>
-      <div class="box_command">
-        <img src="img/shutter.png" id="btn_image_shutter" onclick="btnimg_click_shutter()">
-        <p>撮影(取り直し)</p>
+      
+      <!-- 音声 -->
+      <div id="area-sound" class="area-container">
+        <p>
+          <button type=button onclick="play_countdown()">テスト再生</button>
+          <span>再生状態:<span id="soundStatus"></span></span>
+        </p>
+        <!-- 
+          audioタグで先読みしておいたほうがいいです。
+          じゃないとエラーが出ました。
+          controlsでコントロールGUIの表示をします。
+        -->
+        <audio id="sound-countdown" controls src="sound/countdown3to0.mp3"></audio>
+        <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
       </div>
-      <div class="box_command">
-        <img src="img/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
-        <p>保存</p>
-      </div>
-    </div>
-
-    <!-- 音声 -->
-    <div id="area-sound" class="area-container">
-      <p>
-        <button type=button onclick="play_countdown()">テスト再生</button>
-        <span>再生状態:<span id="soundStatus"></span></span>
-      </p>
-      <!-- 
-        audioタグで先読みしておいたほうがいいです。
-        じゃないとエラーが出ました。
-        controlsでコントロールGUIの表示をします。
-       -->
-      <audio id="sound-countdown" controls src="sound/countdown3to0.mp3"></audio>
-      <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
-    </div>
-
+    </footer>
+      
     <script src="js/camera.js"></script>
     <script src="js/connect.js"></script>
     <script>

@@ -1,4 +1,50 @@
 @charset "utf-8";
+/* ============================== */
+/* 全体の構造 */
+/* ============================== */
+html {
+  height: 100%;             /* bodyで100%を使うから */
+  width: 100%;
+}
+body {
+  margin: 0;
+  display: flex;            /* 縦幅いっぱいにするため */
+  flex-direction: column;   /* 縦方向に並べる */
+  height: 100%;             /* 高さを100％にする */
+  user-select: none;         /* 文字列を選択させない */
+}
+header {
+  border: .5px solid gainsboro;
+  background-color: lightgray;
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+nav {
+  border: .5px solid gray;
+  height: 200px;
+  /* background: tomato; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+main {
+  border: .5px solid gray;
+  /* background: aqua; */
+  flex-grow: 1;
+  height: 900px;
+}
+/* FOOTERの構成 */
+footer {
+  border: .5px solid gray;
+  /* background: skyblue; */
+  height: 100%;
+
+  flex-direction: column;   /* 縦方向に並べる */
+}
 /* =========================== */
 /* 注文詳細コンテナDIVの囲いをつける */
 /* =========================== */
@@ -36,10 +82,4 @@
   border: 1px solid white;
 
   flex: 1;
-}
-
-.button_console {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

@@ -6,6 +6,7 @@ body {
 /* 共通コマンドボタン */
 .button_command {
   padding: 10px 20px;
+  margin: 10px;
   border-radius: 10px;
   color: white;
   background-color: dimgray;
@@ -13,4 +14,11 @@ body {
 
   /* 枠線を消す */
   outline: none;
+}
+/* フッタのボタンエリア */
+.footer_area_button {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

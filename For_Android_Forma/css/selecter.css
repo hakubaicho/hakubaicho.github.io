@@ -36,11 +36,12 @@ ul {
 /* HEADERの構成 */
 /* ============================== */
 header {
+  border: .5px solid gainsboro;
+  background-color: lightgray;
   height: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: skyblue;
   padding: 0.5rem;
 }
 header h1 {
@@ -61,20 +62,18 @@ header h1 {
 /* MAINの構成 */
 /* ============================== */
 main {
-  background: aqua;
+  border: .5px solid gray;
+  /* background: aqua; */
   flex-grow: 1;
   width: 800px;
-}
-.item_list_padding
-{
-  margin-top: 10px;
-  margin-left:2px;
+  height: 900px;
 }
 /* アイテムを配置を囲むDIV */
 .item_list_container
 {
-  width: 800px;
-  height: 900px;
+  margin: 10px;
+  height: 880px;
+  width:  780px;
   overflow-y: scroll;
   background-color: lightgray;
   /* -webkit-overflow-scrolling: touch; */
@@ -83,8 +82,8 @@ main {
 /* スクロールバーの非表示 */
 .item_list_container::-webkit-scrollbar {
   /* display: none; */
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
 }
 /* スクロールの背景の設定 */
 .item_list_container::-webkit-scrollbar-track {
@@ -99,7 +98,7 @@ main {
 
 .thumbnails {
   display: grid;
-  grid-template-columns: repeat(4, 175px);
+  grid-template-columns: repeat(4, 172px);
   gap: 20px;
   padding-left: 10px;
   padding-top: 10px;
@@ -112,7 +111,7 @@ main {
 */
 .thumbnails li img {
   border: 4px solid white;
-  width: 175px;
+  width: 172px;
   border-radius: 5%;
 }
 
@@ -140,7 +139,9 @@ main {
 /* NAVの構成 */
 /* ============================== */
 nav {
-  background: tomato;
+  border: .5px solid gray;
+  height: 200px;
+  /* background: tomato; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,25 +152,25 @@ nav {
 /* ASIDEの構成 */
 /* ============================== */
 aside {
-  background: lightgreen;
-  width: 500px;
-}
-.category_list_padding {
-  margin-top: 10px;
-  margin-left:10px;
+  border: .5px solid gray;
+  /* background: lightgreen; */
+  width: 280px;
+  height: 900px;
 }
 /* カテゴリーボタンの配置エリア */
 /* 縦方向に配置する */
 .category_list_container {
+  margin: 10px;
+  height: 880px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 900px;
+  
 }
 /* スクロールバーの非表示 */
 .category_list_container::-webkit-scrollbar {
   /* display: none; */
-  width: 10px;
+  width: 5px;
   height: 10px;
 }
 /* スクロールの背景の設定 */
@@ -188,7 +189,7 @@ aside {
 /* ------------------------------ */
 aside button {
   height: 80px;
-  width: 200px;
+  width: 250px;
   border-radius: 10px;
   font-size: 24px;
   padding: 4px;
@@ -197,31 +198,40 @@ aside button {
   outline: none;
 }
 .button_tag_all {
-  background-color: yellow;
-  color: Navy;
+  background-color: black;
+  color: white;
   font-size: 24px;
 }
 .button_tag1 {
-  background-color: navy;
-  color: white;
+  background-color: gray;
+  color: black;
   font-size: 24px;
 }
 .button_tag2 {
-  background-color: blue;
-  color: white;
+  background-color: darkgray;
+  color: black;
   font-size: 20px;
 }
 .button_tag3 {
-  background-color: lightskyblue;
-  color: navy;
+  background-color: silver;
+  color: black;
   font-size: 16px;
 }
 .button_tag_all:active, .button_tag1:active, .button_tag2:active, .button_tag3:active{
   background-color: white;
-  color: navy;
+  color: black;
 }
 /* FOOTERの構成 */
 footer {
-  background: skyblue;
+  border: .5px solid gray;
+  /* background: skyblue; */
+  height: 100%;
+
   flex-direction: column;   /* 縦方向に並べる */
+}
+.footer_area_button {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
