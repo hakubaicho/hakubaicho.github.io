@@ -78,13 +78,12 @@
   // https://qiita.com/_takeshi_24/items/1403727efb3fd86f0bcd
   function Avatar_TryOnProc()
   {
+    console.log("Avatar_TryOnProc: Start");
     picture_tryon();
+    console.log("Avatar_TryOnProc: End");
   }
   async function picture_tryon()
   {
-    //***************************************************************************** */
-    // Avatar登録
-    //***************************************************************************** */
     //----------------------------------------
     // 必要項目を試しに代入
     //----------------------------------------
@@ -106,11 +105,9 @@
     }
     catch(e)
     {
-      console.log(e.message);
+      debug_console_log(e.message);
       return;
     }
-    
-    
     //----------------------------------------
     // 確認画面
     //----------------------------------------
@@ -124,20 +121,23 @@
         return;
     }
 
+    //***************************************************************************** */
+    // Avatar登録
+    //***************************************************************************** */
     let doNext = true;
     //----------------------------------------
     // Presign
     //----------------------------------------
-    console.log('[Start]RegisterAvatar-PreSign');
+    debug_console_log('[Start]RegisterAvatar-PreSign');
     await register_Avatar_PreSign()
     .then(
       function( response ) {
         // 正常結果
-        console.log(`[OK]RegisterAvatar-PreSign : ${response}`);
+        debug_console_log(`[OK]RegisterAvatar-PreSign : ${response}`);
       },
       function( error ) {
         //エラー処理を記述する
-        console.log(`[NG]RegisterAvatar-PreSign : ${error}`);
+        debug_console_log(`[NG]RegisterAvatar-PreSign : ${error}`);
         doNext = false;
       }
     )
@@ -146,16 +146,16 @@
     //----------------------------------------
     if(doNext)
     {
-      console.log('[Start]RegisterAvatar-Data');
+      debug_console_log('[Start]RegisterAvatar-Data');
       await register_Avatar_Data()
       .then(
         function( response ) {
           // 正常結果
-          console.log(`[OK]RegisterAvatar-Data : ${response}`);
+          debug_console_log(`[OK]RegisterAvatar-Data : ${response}`);
         },
         function( error ) {
           //エラー処理を記述する
-          console.log(`[NG]RegisterAvatar-Data : ${error}`);
+          debug_console_log(`[NG]RegisterAvatar-Data : ${error}`);
           doNext = false;
         }
       )
@@ -165,7 +165,7 @@
     //----------------------------------------
     if(doNext)
     {
-      console.log('[Start]RegisterAvatar-Ping');
+      debug_console_log('[Start]RegisterAvatar-Ping');
       let isNext = true;
       const RETRY_MAX = 100;
       for(let i = 0 ; i < RETRY_MAX; i++)
@@ -173,7 +173,7 @@
         // 待ち時間処理
         await ping_wait();
         // 処理結果を取得する。
-        console.log(`[Start]RegisterAvatar-Ping(${i})`);
+        debug_console_log(`[Start]RegisterAvatar-Ping(${i})`);
         await register_Avatar_Ping()
         .then(
           function( response  ) {
@@ -182,20 +182,20 @@
             {
               case 0: //正常終了
                 isNext = false;
-                console.log(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
+                debug_console_log(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
               case 1: // 処理中
-                console.log(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
+                debug_console_log(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
               case 2: // 処理失敗
                 isNext = false;
-                console.log(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
+                debug_console_log(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
             }
           },
           function( error ) {
             //エラー
-            console.log(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
+            debug_console_log(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
             isNext = false;
           }
         )
@@ -205,6 +205,15 @@
         }
       }
     }
+
+    if(!doNext)
+    {
+      alert('写真の転送に失敗しました。')
+      return;
+    }
+    uuid_tryon_avatar   = avatar_from_camera_register;
+
+
      //***************************************************************************** */
     // TryOn
     //***************************************************************************** */
@@ -212,7 +221,6 @@
     // 必要項目を試しに代入
     //----------------------------------------
     keyOfToken          = '4b555f031acea73af4b5c63e98fc51b5bf72a369';
-    uuid_tryon_avatar   = avatar_from_camera_register;
     // uuid_tryon_avatar   = '15d0d0ab-ae3a-45a2-8201-9438ddad4493';
     uuid_tryon_item     = '0f02063f-916f-45a7-9001-09cc51d38df5';
     //----------------------------------------
@@ -236,16 +244,16 @@
     //----------------------------------------
     // TryOnに送信する
     //----------------------------------------
-    console.log('[Start]TryOn-Request');
+    debug_console_log('[Start]TryOn-Request');
     await TryOn()
     .then(
       function( response  ) {
         // 正常結果
-        console.log(`[OK]TryOn-Request : ${response}`);
+        debug_console_log(`[OK]TryOn-Request : ${response}`);
       },
       function( error ) {
         //エラー処理を記述する
-        console.log(`[NG]TryOn-Request : ${error}`);
+        debug_console_log(`[NG]TryOn-Request : ${error}`);
         doNext = false;
       }
     )
@@ -261,7 +269,7 @@
         // 待ち時間処理
         await ping_wait();
         // 処理結果を取得する。
-        console.log(`[Start]TryOn-Ping(${i})`);
+        debug_console_log(`[Start]TryOn-Ping(${i})`);
         await TryOnPing()
         .then(
           function( response  ) {
@@ -269,21 +277,21 @@
             {
               case 0: //正常
                 isNext = false;
-                console.log(`[OK]TryOn-Ping(${i}) = ${response}`);
+                debug_console_log(`[OK]TryOn-Ping(${i}) = ${response}`);
                 document.getElementById('tryon_result_picture').src = tryon_media_source;
                 break;
               case 1:
-                console.log(`[WAIT]TryOn-Ping(${i}) = ${response}`);
+                debug_console_log(`[WAIT]TryOn-Ping(${i}) = ${response}`);
                 break;
               case 2:
                 isNext = false;
-                console.log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
+                debug_console_log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
                 break;
             }
           },
           function( error ) {
             //エラー
-            console.log(`[NG]TryOn-Ping(${i}) = ${error}`);
+            debug_console_log(`[NG]TryOn-Ping(${i}) = ${error}`);
             isNext = false;
           }
         )
@@ -294,19 +302,30 @@
       }
     }
     //***************************************************************************** */
+    if(!doNext)
+    {
+      alert('写真の合成に失敗しました。')
+      return;
+    }
   }
-
+  // 状態を画面に表示する
+  function debug_console_log(message)
+  {
+    document.getElementById('Forma_status').textContent = message;
+  }
   //********************************************
   // ログインします。
   //********************************************
   function LogIn(){
 
     // ユーザー名を画面のテキストから取得
-    const textbox_user = document.getElementById("username");
-    username = textbox_user.value
+    // const textbox_user = document.getElementById("username");
+    // username = textbox_user.value
     // パスワードを画面のテキストから取得
-    const textbox_password = document.getElementById("password");
-    password = textbox_password.value
+    // const textbox_password = document.getElementById("password");
+    // password = textbox_password.value
+    username = 'ipahkg';
+    password = 'ipahkg123'
 
     // 入力チェック
     // ユーザー名とパスワードは必須
@@ -346,7 +365,7 @@
       //通信が完了
       if(xhr.readyState == 4){
         // とりあえずなんでも画面に出す
-        document.getElementById("login_result").textContent = xhr.responseText;
+        // document.getElementById("login_result").textContent = xhr.responseText;
         // 正常
         if(xhr.status == 200)
         {
@@ -380,15 +399,17 @@
       let _username = obj.username;
       let _uuid = obj.uuid;
   
-      document.getElementById('result-login-key').textContent = _key;
-      document.getElementById('result-login-username').textContent = _username;
-      document.getElementById('result-login-uuid').textContent = _uuid;
+      // document.getElementById('result-login-key').textContent = _key;
+      // document.getElementById('result-login-username').textContent = _username;
+      // document.getElementById('result-login-uuid').textContent = _uuid;
   
       // トークンの取得
       keyOfToken = obj.key;
       isLogIn = true;
+
+      document.getElementById('forma_login').textContent = keyOfToken;
       // 正常ログインとして各コマンドエリアを表示する
-      area_display_after_login();
+      // area_display_after_login();
       result = true;
     }
     catch(e)
