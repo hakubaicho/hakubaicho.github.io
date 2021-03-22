@@ -46,7 +46,7 @@
       deviceId: null
     }
   };
-  let camera_device_ids[];
+  let camera_device_ids = new Array();
   // 現在のStream
   let curSTREAM = null;
 
