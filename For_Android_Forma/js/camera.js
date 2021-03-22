@@ -403,15 +403,21 @@
     CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
     useFront = !useFront;         // boolean値を反転
 
+    // *******************************************
     // いつも2番目で開始する。
+    // このやり方が正しいかわかりません。
+    // でも、DeviceID, GroupIDが毎回違うため
+    // どうしたらいいか？？？？？？？
+    // *******************************************
     CONSTRAINTS.video.facingMode = null;
     if(camera_device_ids.length == 2)
     {
       CONSTRAINTS.video.deviceId = camera_device_ids[1];
     }
-    syncCamera(video);
-
-
+    // モーダルの「もどる」「すすむ」を表示
+    cancel.classList.remove('hidden');
+    accept.classList.remove('hidden');
+    
     // 表示・非表示
     video.classList.add("item-show");
     // canvasタグの表示
