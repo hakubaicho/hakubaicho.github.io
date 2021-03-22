@@ -90,7 +90,7 @@
 #modal {
   background: #ffffff;
   width: 400px;
-  height: 400px;
+  height: 800px;
   padding: 20px;
   border-radius: 4px;
   position: absolute;
@@ -111,6 +111,6 @@
   display: none;
 }
 #modal.hidden {
-  transform: translate(0, -700px);
-  /* transition: transform 5.4s; */
+  transform: translate(0, -900px);
+  transition: transform .4s;
 }
