@@ -89,12 +89,12 @@
 }
 #modal {
   background: #ffffff;
-  width: 400px;
-  height: 800px;
+  width: 980px;
+  height: 1820px;
   padding: 20px;
   border-radius: 4px;
   position: absolute;
-  top: 40px;
+  top: 50px;
   left:0;
   right: 0;
   margin: 0 auto;
@@ -111,6 +111,9 @@
   display: none;
 }
 #modal.hidden {
-  transform: translate(0, -900px);
+  transform: translate(0, -2000px);
   transition: transform .4s;
+}
+#cancel.hidden, #accept.hidden {
+  display: none;
 }
