@@ -53,6 +53,12 @@
         <p>
           <span id="camera-status"></span>
         </p>
+        <p>
+          <span id="Forma_status"></span>
+        </p>
+        <p>
+          <span id="forma_login"></span>
+        </p>
       </div>
     </main>
 
@@ -123,7 +129,11 @@
       //
       // ===============================================================
       window.onload = () => {
+        // カメラの初期化
         jsCameraStart();
+        // Formaにログインする。
+        // user pass コード内
+        LogIn();
       };
     </script>
   </body>
