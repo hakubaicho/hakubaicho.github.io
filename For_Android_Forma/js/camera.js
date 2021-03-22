@@ -263,8 +263,129 @@
     document.getElementById("newImg").src = window.URL.createObjectURL(imageBlob);
   }
 
+  // ===============================================================
+  //
+  // 音声再生
+  //
+  // ===============================================================
+  // 音声の再生
+  const musicCountDown = document.getElementById('sound-countdown');
+  const musicShutter = document.getElementById('sound-shutter');
+  const textSoundStatus = document.getElementById('soundStatus');
 
+  // カウントダウン音声
+  function play_countdown() {
+    // videoタグの非表示
+    video.classList.remove("item-hide");
+    video.classList.add("item-show");
+    // canvasタグの表示
+    $canvas_Photo.classList.remove("item-show");
+    $canvas_Photo.classList.add("item-hide");
 
+    textSoundStatus.textContent="nowPlaying";
+    // 先頭から再生
+    musicCountDown.currentTime = 0;
+    musicCountDown.play();  // 再生
+  };
 
-  
+  // シャッター音声
+  function play_shutter() {
+    textSoundStatus.textContent="nowPlaying";
+    // 先頭から再生
+    musicShutter.currentTime = 0;
+    musicShutter.play();  // 再生
+  };
+
+  // カウントダウン音声完了時
+  musicCountDown.addEventListener("ended", function () {
+    textSoundStatus.textContent="ended";
+    // 次回開始のため
+    musicCountDown.pause();
+    musicCountDown.currentTime = 0;
+
+    // -----------------------------------
+    // 必要な処理を行う
+    // -----------------------------------
+    // シャッター音を鳴らす。
+    play_shutter();
+    // 撮影処理を行う。
+    take_Photo();
+    // -----------------------------------
+   }, false);
+
+  // シャッター音声完了時
+   musicShutter.addEventListener("ended", function () {
+    textSoundStatus.textContent="ended";
+     // 次回開始のため
+     musicShutter.pause();
+     musicShutter.currentTime = 0;
+   }, false);
+
+  // ===============================================================
+  //
+  // コマンドボタンの処理
+  //
+  // ===============================================================
+
+  // [戻る]ボタン
+  function btnimg_click_back() {
+    history.back();
+  }
+  // [シャッター]ボタン
+  function btnimg_click_shutter() {
+    play_countdown();
+  }
+  // [保存ボタン]
+  function btnimg_click_save() {
+
+  }
+
+  // ===============================================================
+  //
+  // モーダルウィンドウ
+  // dotinstallを参照
+  // 
+  // ===============================================================
+   // 要素の定数か
+   const cancel = document.getElementById('cancel');
+   const accept = document.getElementById('accept');
+   const mask = document.getElementById("mask");
+   const modal = document.getElementById("modal");
+
+  // [もどる]
+  cancel.addEventListener('click', () => {
+    history.back();
+  });
+  // [すすむ]
+  accept.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    mask.classList.add('hidden');
+  });
+
+  // [詳細を見る]
+  mask.addEventListener('click', () => {
+    // 確認必須なので何もしない
+    // 同じ処理なのでまとめておく。
+    // close.click();
+  });
+  // ===============================================================
+  //
+  // 起動時処理
+  //
+  // ===============================================================
+  function init_camera() {
+    // カメラデバイス情報の取得
+    getCameraDevices();
+    // カメラ接続
+    // 前後カメラの設定
+    CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+    syncCamera(video);
+    useFront = !useFront;         // boolean値を反転
+
+    // 表示・非表示
+    video.classList.add("item-show");
+    // canvasタグの表示
+    $canvas_Photo.classList.add("item-hide");
+    return;
+  };
 }
