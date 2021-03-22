@@ -46,6 +46,7 @@
       deviceId: null
     }
   };
+  let camera_device_ids[];
   // 現在のStream
   let curSTREAM = null;
 
@@ -204,6 +205,8 @@
                             + "<br>" 
                             + `Group Id: ${device.groupId}`
               $divListCameraDevices.appendChild(p);
+              // カメラデバイスを取得する
+              camera_device_ids.pop[device.deviceId];
             }
           });
           resolve('OK');
@@ -361,6 +364,8 @@
   accept.addEventListener('click', () => {
     modal.classList.add('hidden');
     mask.classList.add('hidden');
+    // カメラの開始
+    syncCamera(video);
   });
 
   // [詳細を見る]
@@ -396,8 +401,16 @@
     // カメラ接続
     // 前後カメラの設定
     CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
-    syncCamera(video);
     useFront = !useFront;         // boolean値を反転
+
+    // いつも2番目で開始する。
+    CONSTRAINTS.video.facingMode = null;
+    if(camera_device_ids.length == 2)
+    {
+      CONSTRAINTS.video.deviceId = camera_device_ids[1];
+    }
+    syncCamera(video);
+
 
     // 表示・非表示
     video.classList.add("item-show");
