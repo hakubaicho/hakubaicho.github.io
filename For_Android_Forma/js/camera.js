@@ -158,6 +158,7 @@
   //--------------------------------------------
   function getCameraDevices() 
   {
+    // カメラデバイスに対応しているか画面表示
     $divListCameraDevices.innerHTML="";
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
       console.log("enumerateDevices() not supported.");
@@ -377,7 +378,9 @@
   // ===============================================================
   function init_camera() {
     // カメラデバイス情報の取得
+    document.getElementById('camera-status').textContent='v 検索中...';
     getCameraDevices();
+    document.getElementById('camera-status').textContent='v 検索完了';
     // カメラ接続
     // 前後カメラの設定
     CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
