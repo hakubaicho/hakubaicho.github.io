@@ -14,7 +14,10 @@
     <script src="js/connect.js"></script>
   </head>
   <body>
-
+    <div id="loading" class="loaded">
+      <div class="spinner"></div>
+      <p id="title_logo" class="title_logo">Tシャツを作ろう！！！</p>
+    </div>
     <!-- モーダルウィンドウ プライバシーポリシーの表示 -->
     <section id="modal">
       <div>
@@ -95,7 +98,7 @@
         <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
       </div>
       <!-- カメラコントロール -->
-      <div id="area-camera-ctrl" class="area-container">
+      <div id="area-camera-ctrl" class="area-container" hidden>
         <!-- 解像度の設定ボタン -->
         <div>
           <button type="button" class="button_command" onclick="videoSize(1024, 576)">H:1024 * W:576</button>

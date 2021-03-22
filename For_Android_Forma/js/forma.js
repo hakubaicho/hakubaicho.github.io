@@ -108,6 +108,8 @@
       debug_console_log(e.message);
       return;
     }
+    const spinner = document.getElementById('loading');
+    spinner.classList.remove('loaded');
     //----------------------------------------
     // 確認画面
     //----------------------------------------
@@ -205,7 +207,6 @@
         }
       }
     }
-
     if(!doNext)
     {
       alert('写真の転送に失敗しました。')
@@ -214,7 +215,7 @@
     uuid_tryon_avatar   = avatar_from_camera_register;
 
 
-     //***************************************************************************** */
+    //***************************************************************************** */
     // TryOn
     //***************************************************************************** */
     //----------------------------------------
@@ -302,6 +303,8 @@
       }
     }
     //***************************************************************************** */
+    // spinner = document.getElementById('loading');
+    spinner.classList.add('loaded');
     if(!doNext)
     {
       alert('写真の合成に失敗しました。')
@@ -312,6 +315,7 @@
   function debug_console_log(message)
   {
     document.getElementById('Forma_status').textContent = message;
+    document.getElementById('title_logo').textContent = message;
   }
   //********************************************
   // ログインします。
