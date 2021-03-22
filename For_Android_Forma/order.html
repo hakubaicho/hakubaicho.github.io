@@ -2,13 +2,20 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
+    <!-- 
+      幅:1080に固定する
+      ほかにいいアイデアったらお願いします。
+    -->
+    <meta name="viewport" content="width=1080,initial-scale=1">
     <title>注文画面</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/order.css">
   </head>
   <body>
     <header>
-
+      <div class="header-container">
+        
+      </div>
     </header>
     <nav>
 
@@ -68,8 +75,9 @@
     </main>
     <footer>
       <div class="footer_area_button">
+        <button class="button_command" onclick="html_backpagge()" type=button>戻る</button>
         <button class="button_command" type=button>印刷</button>
-        <button class="button_command position_right" type=button onclick="call_exit()">終了</button>
+        <button class="button_command" type=button onclick="call_exit()">終了</button>
       </div>
     </footer>
     <script src="js/connect.js"></script>

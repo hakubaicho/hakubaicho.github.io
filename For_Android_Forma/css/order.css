@@ -16,7 +16,7 @@ body {
 header {
   border: .5px solid gainsboro;
   background-color: lightgray;
-  height: 500px;
+  /* height: 500px; */
   display: flex;
   justify-content: space-between;
   align-items: center;

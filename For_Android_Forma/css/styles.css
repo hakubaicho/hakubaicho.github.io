@@ -3,6 +3,10 @@
 body {
   user-select: none;         /* 文字列を選択させない */
 }
+/* ヘッダ内の高さを固定する */
+.header-container {
+  height: 300px;
+}
 /* 共通コマンドボタン */
 .button_command {
   padding: 10px 20px;

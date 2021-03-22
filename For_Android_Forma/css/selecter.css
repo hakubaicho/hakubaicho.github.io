@@ -44,10 +44,6 @@ header {
   align-items: center;
   padding: 0.5rem;
 }
-header h1 {
-  font-size: 2rem;
-  color: #fff;
-}
 /* MAINに配置された選択されたデザイン */
 #thumbnail_selected {
   height: 300px;
