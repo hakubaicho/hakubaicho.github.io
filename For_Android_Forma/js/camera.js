@@ -176,16 +176,16 @@
       // kindは   "videoinput"
       //          "audioinput"
       //          "audiooutput"
-      navigator.mediaDevices.enumerateDevices()
-      .then(function(devices) {
+      try
+      {
+        devices = navigator.mediaDevices.enumerateDevices();
         // デバイス情報 MediaDeviceInfo の内容
-        // deviceId       ：（デバイスID)
-        // kind           ：（種類：　audioinput, videoinput, audiooutput ）
-        //                  ※ audiooutput は Chromeのみ
-        // label （名称） ：取得できる場合と、できない場合がある
-        // groupId        ：同一ハード機器内のデバイスでは同じになる仕様（けど、まだ？）
-        // 成功時
-        devices.forEach(function(device, index) {
+        //   // deviceId       ：（デバイスID)
+        //   // kind           ：（種類：　audioinput, videoinput, audiooutput ）
+        //   //                  ※ audiooutput は Chromeのみ
+        //   // label （名称） ：取得できる場合と、できない場合がある
+        //   // groupId        ：同一ハード機器内のデバイスでは同じになる仕様（けど、まだ？）
+        devices.forEach((device) => {
           console.log(device.kind + ": " + device.label +
                       " id = " + device.deviceId);
           if(device.kind === 'videoinput')
@@ -197,8 +197,7 @@
             option.setAttribute('value', id);
             option.innerHTML = label + '(' + id + ')';
             cameraList.appendChild(option);
-          }
-          // 指定要素にデバイス情報を要素で追加
+            // 指定要素にデバイス情報を要素で追加
           const p = document.createElement('p');
           p.innerHTML = `*** [${index}] ***` 
                         + "<br>"
@@ -208,14 +207,15 @@
                         + "<br>" 
                         + `Id: ${device.deviceId}`
           $divListCameraDevices.appendChild(p);
+          }
+          
         });
-        reject('OK');
-      })
-      // エラー発生時
-      .catch(function(err) {
-        console.log(err.name + ": " + err.message);
+        resolve('OK');
+      }
+      catch(e)
+      {
         reject('NG');
-      });
+      }
     });
   }
   // // 写真を保存する 
