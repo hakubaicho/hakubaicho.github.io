@@ -26,7 +26,9 @@
     <nav>
       <!-- <p>nav</p> -->
     </nav>
-    
+    <div id="loading">
+      <div class="spinner"></div>
+    </div>
     <div class="container">
       <!-- MAIN -->
       <main>
@@ -60,5 +62,11 @@
 
     <script src="js/selecter.js"></script>
     <script src="js/connect.js"></script>
+    <script>
+      window.onload = function() {
+        const spinner = document.getElementById('loading');
+        spinner.classList.add('loaded');
+      }
+    </script>
   </body>
 </html>
