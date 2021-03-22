@@ -18,13 +18,14 @@
     <!-- モーダルウィンドウ プライバシーポリシーの表示 -->
     <section id="modal">
       <div>
+        <!-- プライバシーポリシー文章 -->
         <p>
           カメラ撮影をします。
           下記の条件を受け入れてください。
         </p>
       </div>
-      <div id="cancel">戻る</div>
-      <div id="accept">進む</div>
+      <div id="cancel" class="hidden">戻る</div>
+      <div id="accept" class="hidden">進む</div>
     </section>
      <!-- モーダルウィンドウの時のマスク -->
     <div id="mask"></div>
@@ -45,6 +46,8 @@
           <!-- チャプチャーした画像 -->
           <canvas id="canvas-photo"></canvas>
         </div>
+        <!-- TryOnの結果画像 -->
+        <img id="tryon_result_picture" src="">
       </div>
       <div>
         <p>
@@ -112,6 +115,7 @@
       
     
     <script src="js/camera.js"></script>
+    <script src="js/forma.js"></script>
     <script>
       // ===============================================================
       //
