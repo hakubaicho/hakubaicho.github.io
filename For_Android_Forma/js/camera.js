@@ -25,17 +25,18 @@
       //--------------------------
       // PCでやるときの設定
       //--------------------------
-      width: 720,
-      height: 1280,
+      // width: 1024,
+      // height: 576,
       //--------------------------
       // スマホでやるときの設定
       //--------------------------
       // min    :最小値
       // max    :最大値
       // ideal  :理想的な値
-      // width: { min: 320, ideal: 1920, max: 1920 },
-      // height: { min: 180, ideal: 1080, max:1080},
-      aspectRatio: 1.777777778,
+      width: { min: 320, ideal: 1024, max: 1024 },
+      height: { min: 180, ideal: 576, max:576},
+      // ここはコメントにする
+      // aspectRatio: 1.777777778,
       frameRate: { max: 30 },
       
       facingMode: null,  // どのカメラを利用するか
@@ -94,8 +95,8 @@
           
           video.play();
           // 解像度を画面表示
-          $label_h.innerText =`H:${video.videoHeight}`;
-          $label_w.innerText =`W:${video.videoWidth}`;
+          $label_h.innerText =`${video.videoHeight}`;
+          $label_w.innerText =`${video.videoWidth}`;
         };
       })
       .catch( (err) => {
@@ -208,10 +209,12 @@
                         + `Id: ${device.deviceId}`
           $divListCameraDevices.appendChild(p);
         });
+        reject('OK');
       })
       // エラー発生時
       .catch(function(err) {
         console.log(err.name + ": " + err.message);
+        reject('NG');
       });
     });
   }
@@ -381,6 +384,7 @@
     document.getElementById('camera-status').textContent='v 検索中...';
     getCameraDevices();
     document.getElementById('camera-status').textContent='v 検索完了';
+
     // カメラ接続
     // 前後カメラの設定
     CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
