@@ -10,7 +10,7 @@
     <title>カメラ撮影</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/camara.css">
-    <script src="js/camera.js"></script>
+
     <script src="js/connect.js"></script>
   </head>
   <body>
@@ -101,7 +101,7 @@
     </footer>
       
     
-    <script src="js/camerapage.js"></script>
+    <script src="js/camera.js"></script>
     <script>
       // ===============================================================
       //
@@ -109,19 +109,7 @@
       //
       // ===============================================================
       window.onload = () => {
-        // カメラデバイス情報の取得
-        getCameraDevices();
-        // カメラ接続
-        // 前後カメラの設定
-        CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
-        syncCamera(video);
-        useFront = !useFront;         // boolean値を反転
-
-        // 表示・非表示
-        video.classList.add("item-show");
-        // canvasタグの表示
-        $canvas_Photo.classList.add("item-hide");
-        return;
+        init_camera();
       };
     </script>
   </body>
