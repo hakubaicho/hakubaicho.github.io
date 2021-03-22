@@ -371,26 +371,4 @@
     // 同じ処理なのでまとめておく。
     // close.click();
   });
-
-  // ===============================================================
-  //
-  // 起動時処理
-  //
-  // ===============================================================
-  window.onload = () => {
-    // カメラデバイス情報の取得
-    getCameraDevices();
-    // カメラ接続
-    // 前後カメラの設定
-    CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
-    syncCamera(video);
-    useFront = !useFront;         // boolean値を反転
-
-    // 表示・非表示
-    video.classList.add("item-show");
-    // canvasタグの表示
-    $canvas_Photo.classList.add("item-hide");
-    return;
-  };  
-
 }
