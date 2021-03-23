@@ -48,21 +48,38 @@ li.right_side {
 }
 /* テキストのスタイル */
 .text_conatainer {
-  
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 16px 24px;
-  font-size: 24px;
   /* 
   幅はこの範囲内にして、
   広がりすぎないようにする
    */
   max-width: 60%;
+  min-width: 60%;
   line-height: 1.8;
   /* 相対位置 */
   position: relative;
   display:  table-cell;       /* テーブルセルにする */
   vertical-align:  middle;    /* 中央寄せ */
+  opacity: 50%;               /* 半透明にしておく */
+
+}
+.fade_in_text_conatainer {
+  animation: fadeIn;
+  animation-duration: 1s; 
+  animation-fill-mode: forwards;  /* 100%で停止させる */
+}
+@keyframes fadeIn { /*animetion-nameで設定した値を書く*/
+  0% {
+    /*アニメーション開始時は不透明度50%*/
+    opacity: 50%
+  }
+  100% 
+  {
+    /*アニメーション終了時は不透明度100%*/
+    opacity: 100%
+  } 
 }
 /* 
  疑似要素で　三角をつける
@@ -77,16 +94,33 @@ li.right_side {
   /* 絶対位置 */
   position: absolute;
 }
+/* 左のふきだし */
 .left_side .text_conatainer::before {
   top: 12px;
   left: -45px;
   /* 左だけ枠線 */
   border-right-color:  #fff;
-}
 
+}
+/* 右のふきだし */
 .right_side .text_conatainer::before {
   top: 12px;
   right: -45px;
   /* 左だけ枠線 */
   border-left-color:  #fff;
+}
+.text_header {
+  font-size: 48px;
+  font-weight: bolder;
+  text-align: center;
+  color:darkblue;
+}
+.text {
+  font-size: 36px;
+  font-weight: bold;
+  color:navy
+}
+/* 画像を非表示 */
+.hidden_image {
+  display: none;
 }

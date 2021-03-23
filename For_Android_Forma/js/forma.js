@@ -87,15 +87,15 @@
     //----------------------------------------
     // 必要項目を試しに代入
     //----------------------------------------
-    keyOfToken          = '4b555f031acea73af4b5c63e98fc51b5bf72a369';
     //----------------------------------------
     // 入力チェック
     //----------------------------------------
-    // // トークンのチェック
-    // if(true !== check_token())
-    // {
-    //   return;
-    // }
+    // トークンのチェック
+    if(true !== check_token())
+    {
+      alert('ログインできていません');
+      return;
+    }
     // 画像の選択チェック
     try
     {
@@ -108,21 +108,34 @@
       debug_console_log(e.message);
       return;
     }
-    const spinner = document.getElementById('loading');
-    spinner.classList.remove('loaded');
     //----------------------------------------
     // 確認画面
     //----------------------------------------
     var res = confirm("Avatar登録しますか？");
     if( res === true ) {
-        // OKならなにもしない
+      // OKならなにもしない
     }
     else {
-        // キャンセルならアラートボックスを表示
-        alert("中止します。");
-        return;
+      // キャンセルならアラートボックスを表示
+      alert("中止します。");
+      return;
     }
+    // ローディング画面を表示
+    const spinner = document.getElementById('loading');
+    spinner.classList.remove('loaded');
+    phase_change(0);
 
+    // phase_change(0);
+    // await display_wait();
+    // phase_change(1);
+    // await display_wait();
+    // phase_change(2);
+    // await display_wait();
+    // phase_change(3);
+    // await display_wait();
+    // phase_change(4);
+    // await display_wait();
+    // return;
     //***************************************************************************** */
     // Avatar登録
     //***************************************************************************** */
@@ -165,6 +178,7 @@
     //----------------------------------------
     // Pingで処理待ち
     //----------------------------------------
+    phase_change(1);
     if(doNext)
     {
       debug_console_log('[Start]RegisterAvatar-Ping');
@@ -191,6 +205,7 @@
                 break;
               case 2: // 処理失敗
                 isNext = false;
+                doNext = false;
                 debug_console_log(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
             }
@@ -209,7 +224,8 @@
     }
     if(!doNext)
     {
-      alert('写真の転送に失敗しました。')
+      alert('写真の転送に失敗しました。');
+      spinner.classList.add('loaded');
       return;
     }
     uuid_tryon_avatar   = avatar_from_camera_register;
@@ -218,12 +234,11 @@
     //***************************************************************************** */
     // TryOn
     //***************************************************************************** */
+    phase_change(2);
     //----------------------------------------
     // 必要項目を試しに代入
     //----------------------------------------
-    keyOfToken          = '4b555f031acea73af4b5c63e98fc51b5bf72a369';
-    // uuid_tryon_avatar   = '15d0d0ab-ae3a-45a2-8201-9438ddad4493';
-    uuid_tryon_item     = '0f02063f-916f-45a7-9001-09cc51d38df5';
+    uuid_tryon_item     = '77db863c-b288-4f25-83ee-165f563a2e68';
     //----------------------------------------
     // 入力チェック
     //----------------------------------------
@@ -241,7 +256,7 @@
       return false;
     }
 
-   doNext = true;
+    doNext = true;
     //----------------------------------------
     // TryOnに送信する
     //----------------------------------------
@@ -261,6 +276,7 @@
     //----------------------------------------
     // 送信後のPing
     //----------------------------------------
+    phase_change(3);
     if(doNext)
     {
       let isNext = true;
@@ -286,6 +302,7 @@
                 break;
               case 2:
                 isNext = false;
+                doNext = false;
                 debug_console_log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
                 break;
             }
@@ -303,7 +320,11 @@
       }
     }
     //***************************************************************************** */
+
+    // ローディング画面を非表示
     // spinner = document.getElementById('loading');
+    phase_change(4);
+    await display_wait();
     spinner.classList.add('loaded');
     if(!doNext)
     {
@@ -1870,7 +1891,70 @@
     await sleep(waitms);
     console.log(`${waitms}経過しました。`);
   }
+
+  async function display_wait()
+  {
+    const waitms = 1500;
+    console.log('待ってます.....');
+    await sleep(waitms);
+    console.log(`${waitms}経過しました。`);
+  }
   //======================================================================
+
+  //======================================================================
+  // ローディング画面
+  //======================================================================
+  function phase_change(index) {
+    const phase1 = document.getElementById('phase_1');
+    const phase2 = document.getElementById('phase_2');
+    const phase3 = document.getElementById('phase_3');
+    const phase4 = document.getElementById('phase_4');
+
+    const phase1_text = document.getElementById('phase_1_text');
+    const phase2_text = document.getElementById('phase_2_text');
+    const phase3_text = document.getElementById('phase_3_text');
+    const phase4_text = document.getElementById('phase_4_text');
+
+    const phase1_img_move = document.getElementById('logo_moving_1');
+    const phase2_img_move = document.getElementById('logo_moving_2');
+    const phase3_img_move = document.getElementById('logo_moving_3');
+    const phase4_img_move = document.getElementById('logo_moving_4');
+
+    const phase1_img_stop = document.getElementById('logo_stop_1');
+    const phase2_img_stop = document.getElementById('logo_stop_2');
+    const phase3_img_stop = document.getElementById('logo_stop_3');
+    const phase4_img_stop = document.getElementById('logo_stop_4');
+
+    switch(index) {
+      case 0:
+        phase1_text.textContent = 'あなたの写真をとうろくちゅうです';
+        phase1.classList.add('fade_in_text_conatainer');
+        break;
+      case 1:
+        phase1_text.textContent = 'おわりました';
+        phase1_img_move.src = phase1_img_stop.src;
+        phase2_text.textContent = '着てみるTしゃつをとうろくちゅうです';
+        phase2.classList.add('fade_in_text_conatainer');
+        break;
+      case 2:
+        phase2_text.textContent = 'おわりました';
+        phase2_img_move.src = phase2_img_stop.src;
+        phase1_text.textContent = 'あなたにTシャツをきせています';
+        phase3.classList.add('fade_in_text_conatainer');
+        break;
+      case 3:
+        phase3_text.textContent = 'おわりました';
+        phase3_img_move.src = phase3_img_stop.src;
+        phase4_text.textContent = '';
+        phase4.classList.add('fade_in_text_conatainer');
+        break;
+      case 4:
+        phase4_img_move.src = phase4_img_stop.src;
+        phase4_text.textContent = 'さあ にあっているかな？';
+    }
+
+  }
+
 
   //======================================================================
   // XMLHttpRequestの処理

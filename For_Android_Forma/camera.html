@@ -10,13 +10,85 @@
     <title>カメラ撮影</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/camara.css">
-
+    <link rel="stylesheet" href="css/talkstyle.css">
     <script src="js/connect.js"></script>
   </head>
   <body>
+    <!-- 写真の登録・トライオン中のローディング画面 -->
     <div id="loading" class="loaded">
+      <!-- タイトル -->
+      <p id="title_logo">Tシャツを作ろう！！！</p>
+      <!-- くるくる -->
       <div class="spinner"></div>
-      <p id="title_logo" class="title_logo">Tシャツを作ろう！！！</p>
+      <div class="area_talk">
+        <ul class="messages">
+          <!-- 1番目 -->
+          <li class="left_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_1" src="img/c1_character_pc.gif"> -->
+              <img id="logo_moving_1" src="img/c1_character_sp.gif">
+              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_stop.png">
+            </div>
+            <div id="phase_1" class="text_conatainer">
+              <div class="text_header">
+                写真をとうろく
+              </div>
+              <div class="text" id="phase_1_text">
+                <!-- あなたの写真をとうろくちゅうです -->
+              </div>
+            </div>
+          </li>
+          <!-- 2番目 -->
+          <li class="right_side">
+            <div class="pic">
+              <!-- <img class="loading_icon_gif loading_icon_left" src="img/c2_character_pc.gif"> -->
+              <img id="logo_moving_2" src="img/c2_character_sp.gif">
+              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_stop.png">
+            </div>
+            <div id="phase_2" class="text_conatainer">
+              <div class="text_header">
+                Tシャツをとうろく
+              </div>
+              <div class="text" id="phase_2_text">
+                <!-- 着てみるTしゃつをとうろくちゅうです -->
+              </div>
+            </div>
+          </li>
+          <!-- 3番目 -->
+          <li class="left_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_3" src="img/c3_character_pc.gif"> -->
+              <img id="logo_moving_3" src="img/c3_character_sp.gif">
+              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_stop.png">
+            </div>
+            <div id="phase_3" class="text_conatainer">
+              <div class="text_header">
+                きせかえ
+              </div>
+              <div class="text" id="phase_3_text">
+                <!-- あなたにTシャツをきせています -->
+              </div>
+            </div>
+          </li>
+          <!-- 4番目 -->
+          <li class="right_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_4" src="img/c4_character_pc.gif"> -->
+              <img id="logo_moving_4" src="img/c4_character_sp.gif">
+              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_stop.png">
+            </div>
+            <div id="phase_4" class="text_conatainer">
+              <div class="text_header">
+                みてみて
+              </div>
+              <div class="text" id="phase_4_text">
+                <!-- さあ　にあっているかな？ -->
+              </div>
+            </div>
+          </li>
+          <!-- おわり -->
+        </ul>
+      </div>
     </div>
     <!-- モーダルウィンドウ プライバシーポリシーの表示 -->
     <section id="modal">
@@ -98,7 +170,7 @@
         <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
       </div>
       <!-- カメラコントロール -->
-      <div id="area-camera-ctrl" class="area-container" hidden>
+      <div id="area-camera-ctrl" class="area-container" >
         <!-- 解像度の設定ボタン -->
         <div>
           <button type="button" class="button_command" onclick="videoSize(1024, 576)">H:1024 * W:576</button>
