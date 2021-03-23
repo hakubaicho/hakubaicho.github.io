@@ -121,10 +121,10 @@
       return;
     }
     // ローディング画面を表示
+    phase_init();
+    phase_change(0);
     const spinner = document.getElementById('loading');
     spinner.classList.remove('loaded');
-    phase_change(0);
-
     // phase_change(0);
     // await display_wait();
     // phase_change(1);
@@ -178,7 +178,6 @@
     //----------------------------------------
     // Pingで処理待ち
     //----------------------------------------
-    phase_change(1);
     if(doNext)
     {
       debug_console_log('[Start]RegisterAvatar-Ping');
@@ -234,7 +233,7 @@
     //***************************************************************************** */
     // TryOn
     //***************************************************************************** */
-    phase_change(2);
+    phase_change(1);
     //----------------------------------------
     // 必要項目を試しに代入
     //----------------------------------------
@@ -276,7 +275,7 @@
     //----------------------------------------
     // 送信後のPing
     //----------------------------------------
-    phase_change(3);
+    phase_change(2);
     if(doNext)
     {
       let isNext = true;
@@ -320,7 +319,7 @@
       }
     }
     //***************************************************************************** */
-
+    phase_change(3);
     // ローディング画面を非表示
     // spinner = document.getElementById('loading');
     phase_change(4);
@@ -1904,6 +1903,46 @@
   //======================================================================
   // ローディング画面
   //======================================================================
+  // ローディング画面の初期化
+  function phase_init() {
+
+    const phase1 = document.getElementById('phase_1');
+    const phase2 = document.getElementById('phase_2');
+    const phase3 = document.getElementById('phase_3');
+    const phase4 = document.getElementById('phase_4');
+
+    const phase1_text = document.getElementById('phase_1_text');
+    const phase2_text = document.getElementById('phase_2_text');
+    const phase3_text = document.getElementById('phase_3_text');
+    const phase4_text = document.getElementById('phase_4_text');
+
+    const phase1_img = document.getElementById('logo_1');
+    const phase2_img = document.getElementById('logo_2');
+    const phase3_img = document.getElementById('logo_3');
+    const phase4_img = document.getElementById('logo_4');
+
+    const phase1_img_move = document.getElementById('logo_moving_1');
+    const phase2_img_move = document.getElementById('logo_moving_2');
+    const phase3_img_move = document.getElementById('logo_moving_3');
+    const phase4_img_move = document.getElementById('logo_moving_4');
+
+    const phase1_img_stop = document.getElementById('logo_stop_1');
+    const phase2_img_stop = document.getElementById('logo_stop_2');
+    const phase3_img_stop = document.getElementById('logo_stop_3');
+    const phase4_img_stop = document.getElementById('logo_stop_4');
+
+    phase1_img.src = phase1_img_move.src;
+    phase2_img.src = phase2_img_move.src;
+    phase3_img.src = phase3_img_move.src;
+    phase4_img.src = phase4_img_move.src;
+    phase1_text.textContent = '';
+    phase1_text.textContent = '';
+    phase1_text.textContent = '';
+    phase1_text.textContent = '';
+
+    document.getElementById('loading').style.backgroundColor = '#009FE8';
+  }
+  // フェーズの変更
   function phase_change(index) {
     const phase1 = document.getElementById('phase_1');
     const phase2 = document.getElementById('phase_2');
@@ -1914,6 +1953,11 @@
     const phase2_text = document.getElementById('phase_2_text');
     const phase3_text = document.getElementById('phase_3_text');
     const phase4_text = document.getElementById('phase_4_text');
+
+    const phase1_img = document.getElementById('logo_1');
+    const phase2_img = document.getElementById('logo_2');
+    const phase3_img = document.getElementById('logo_3');
+    const phase4_img = document.getElementById('logo_4');
 
     const phase1_img_move = document.getElementById('logo_moving_1');
     const phase2_img_move = document.getElementById('logo_moving_2');
@@ -1932,25 +1976,30 @@
         break;
       case 1:
         phase1_text.textContent = 'おわりました';
-        phase1_img_move.src = phase1_img_stop.src;
+        phase1_img.src = phase1_img_stop.src;
         phase2_text.textContent = '着てみるTしゃつをとうろくちゅうです';
         phase2.classList.add('fade_in_text_conatainer');
         break;
       case 2:
         phase2_text.textContent = 'おわりました';
-        phase2_img_move.src = phase2_img_stop.src;
-        phase1_text.textContent = 'あなたにTシャツをきせています';
+        phase2_img.src = phase2_img_stop.src;
+        phase3_text.textContent = 'あなたにTシャツをきせています';
         phase3.classList.add('fade_in_text_conatainer');
         break;
       case 3:
         phase3_text.textContent = 'おわりました';
-        phase3_img_move.src = phase3_img_stop.src;
+        phase3_img.src = phase3_img_stop.src;
         phase4_text.textContent = '';
         phase4.classList.add('fade_in_text_conatainer');
         break;
       case 4:
-        phase4_img_move.src = phase4_img_stop.src;
+        phase3_img.src = phase4_img_stop.src;
+        phase1_img.src = phase1_img_move.src;
+        phase2_img.src = phase2_img_move.src;
+        phase3_img.src = phase3_img_move.src;
+        phase4_img.src = phase4_img_move.src;
         phase4_text.textContent = 'さあ にあっているかな？';
+        document.getElementById('loading').style.backgroundColor = '#E50013';
     }
 
   }
