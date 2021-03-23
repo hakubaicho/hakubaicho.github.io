@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+
+/* アイコンを囲むエリア */
+.area_talk {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+/* アイコンのList */
+.messages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* 画像とテキストを横並び */
+.messages li {
+  display: flex;
+}
+/* 
+  ２つめ以降のメッセージをくっつけない
+  隣接兄弟結合子
+*/
+.messages li + li {
+  margin-top: 32px;
+}
+/* 左右の振り分け */
+li.right_side {
+  flex-direction: row-reverse;
+  /* margin-left: 100px; */
+}
+
+.pic {
+  /* background: pink; */
+  width: 300px;
+  text-align: center;
+
+}
+/* 画像のスタイル */
+.pic img{
+  /* 幅だけ指定 */
+  width: 180px;
+  /* 透過する */
+  background-color: transparent;
+  
+}
+/* テキストのスタイル */
+.text_conatainer {
+  
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px 24px;
+  font-size: 24px;
+  /* 
+  幅はこの範囲内にして、
+  広がりすぎないようにする
+   */
+  max-width: 60%;
+  line-height: 1.8;
+  /* 相対位置 */
+  position: relative;
+  display:  table-cell;       /* テーブルセルにする */
+  vertical-align:  middle;    /* 中央寄せ */
+}
+/* 
+ 疑似要素で　三角をつける
+ 実際は、Borderでつける
+*/
+.text_conatainer::before {
+  content: '';
+  width: 0;
+  height: 0;
+  /* 枠線は透明 */
+  border: 24px solid transparent;
+  /* 絶対位置 */
+  position: absolute;
+}
+.left_side .text_conatainer::before {
+  top: 12px;
+  left: -45px;
+  /* 左だけ枠線 */
+  border-right-color:  #fff;
+}
+
+.right_side .text_conatainer::before {
+  top: 12px;
+  right: -45px;
+  /* 左だけ枠線 */
+  border-left-color:  #fff;
+}

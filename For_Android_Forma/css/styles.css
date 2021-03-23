@@ -2,6 +2,7 @@
 
 body {
   user-select: none;         /* 文字列を選択させない */
+  margin: 0;
 }
 /* ヘッダ内の高さを固定する */
 .header-container {
@@ -55,7 +56,6 @@ body {
   left: 0;
   z-index: 9999;
 }
-
 /* ローディングアニメーション */
 @keyframes sk-scaleout {
   0% {
