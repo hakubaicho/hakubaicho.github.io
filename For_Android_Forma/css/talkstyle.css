@@ -118,6 +118,7 @@ li.right_side {
 .text {
   font-size: 36px;
   font-weight: bold;
+  text-align: center;
   color:navy
 }
 /* 画像を非表示 */

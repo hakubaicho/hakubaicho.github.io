@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+:root {
+  --corporate-color-blue: #009FE8;
+  --corporate-color-red: #E50013;
+}
 body {
   user-select: none;         /* 文字列を選択させない */
   margin: 0;
@@ -48,7 +52,7 @@ body {
   width: 100vw;
   height: 100vh;
   transition: all 1s;
-  background-color: #009FE8;
+  background-color: var(--corporate-color-blue);
  
 /* 以下のコードを追加 */
   position: fixed;
