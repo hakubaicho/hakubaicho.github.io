@@ -17,9 +17,10 @@
     <!-- 写真の登録・トライオン中のローディング画面 -->
     <div id="loading" class="loaded">
       <!-- タイトル -->
-      <p id="title_logo">Tシャツを作ろう！！！</p>
+      <p>Status : <span id="title_logo">Tシャツを作ろう！！！</span></p>
       <!-- くるくる -->
-      <div class="spinner"></div>
+      <!-- <div class="spinner"></div> -->
+      <!-- 吹き出しでフェーズ -->
       <div class="area_talk">
         <ul class="messages">
           <!-- 1番目 -->
@@ -27,8 +28,8 @@
             <div class="pic">
               <!-- <img id="logo_moving_1" src="img/c1_character_pc.gif"> -->
               <img id="logo_1" src="img/c1_character_sp.gif">
-              <img id="logo_moving_1" class="hidden_image" src="img/c1_character_sp.gif">
-              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_stop.png">
+              <img id="logo_moving_1" class="hidden_image" src="img/c1_character_pc.gif">
+              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_greet.png">
             </div>
             <div id="phase_1" class="text_conatainer">
               <div class="text_header">
@@ -44,8 +45,8 @@
             <div class="pic">
               <!-- <img class="loading_icon_gif loading_icon_left" src="img/c2_character_pc.gif"> -->
               <img id="logo_2" src="img/c2_character_sp.gif">
-              <img id="logo_moving_2" class="hidden_image" src="img/c2_character_sp.gif">
-              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_stop.png">
+              <img id="logo_moving_2" class="hidden_image" src="img/c2_character_pc.gif">
+              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_greet.png">
             </div>
             <div id="phase_2" class="text_conatainer">
               <div class="text_header">
@@ -61,8 +62,8 @@
             <div class="pic">
               <!-- <img id="logo_moving_3" src="img/c3_character_pc.gif"> -->
               <img id="logo_3" src="img/c3_character_sp.gif">
-              <img id="logo_moving_3" class="hidden_image" src="img/c3_character_sp.gif">
-              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_stop.png">
+              <img id="logo_moving_3" class="hidden_image" src="img/c3_character_pc.gif">
+              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_greet.png">
             </div>
             <div id="phase_3" class="text_conatainer">
               <div class="text_header">
@@ -78,8 +79,8 @@
             <div class="pic">
               <!-- <img id="logo_moving_4" src="img/c4_character_pc.gif"> -->
               <img id="logo_4" src="img/c4_character_sp.gif">
-              <img id="logo_moving_4" class="hidden_image" src="img/c4_character_sp.gif">
-              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_stop.png">
+              <img id="logo_moving_4" class="hidden_image" src="img/c4_character_pc.gif">
+              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_greet.png">
             </div>
             <div id="phase_4" class="text_conatainer">
               <div class="text_header">
@@ -94,6 +95,7 @@
         </ul>
       </div>
     </div>
+    
     <!-- モーダルウィンドウ プライバシーポリシーの表示 -->
     <section id="modal">
       <div>
@@ -106,8 +108,24 @@
       <div id="cancel" class="hidden">戻る</div>
       <div id="accept" class="hidden">進む</div>
     </section>
-     <!-- モーダルウィンドウの時のマスク -->
+    <!-- モーダルウィンドウの時のマスク -->
     <div id="mask"></div>
+
+    <!-- カメラ撮影結果表示 -->
+    <div id="camera_result" class="loaded">
+      <!-- 画像の表示エリア -->
+      <div id="camera_result_header">
+        <!-- TryOnの結果画像 -->
+        <img id="tryon_result_picture" src="img/c1_character_pc.gif">
+      </div>
+      <!-- ボタンエリア -->
+      <div  id="camera_result_footer">
+        <div class="footer_area_button">
+          <button class="button_command" onclick="location.href='index.html'">戻る</button>
+          <button class="button_command" onclick="location.href='order.html'">購入</button>
+        </div>
+      </div>
+    </div>
 
     <!-- HEADER -->
     <header>
@@ -125,8 +143,6 @@
           <!-- チャプチャーした画像 -->
           <canvas id="canvas-photo"></canvas>
         </div>
-        <!-- TryOnの結果画像 -->
-        <img id="tryon_result_picture" src="">
       </div>
       <div>
         <p>

@@ -26,8 +26,8 @@
             <div class="pic">
               <!-- <img id="logo_moving_1" src="img/c1_character_pc.gif"> -->
               <img id="logo_1" src="img/c1_character_sp.gif">
-              <img id="logo_moving_1" class="hidden_image" src="img/c1_character_sp.gif">
-              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_stop.png">
+              <img id="logo_moving_1" class="hidden_image" src="img/c1_character_pc.gif">
+              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_greet.png">
             </div>
             <div id="phase_1" class="text_conatainer">
               <div class="text_header">
@@ -43,8 +43,8 @@
             <div class="pic">
               <!-- <img class="loading_icon_gif loading_icon_left" src="img/c2_character_pc.gif"> -->
               <img id="logo_2" src="img/c2_character_sp.gif">
-              <img id="logo_moving_2" class="hidden_image" src="img/c2_character_sp.gif">
-              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_stop.png">
+              <img id="logo_moving_2" class="hidden_image" src="img/c2_character_pc.gif">
+              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_greet.png">
             </div>
             <div id="phase_2" class="text_conatainer">
               <div class="text_header">
@@ -60,8 +60,8 @@
             <div class="pic">
               <!-- <img id="logo_moving_3" src="img/c3_character_pc.gif"> -->
               <img id="logo_3" src="img/c3_character_sp.gif">
-              <img id="logo_moving_3" class="hidden_image" src="img/c3_character_sp.gif">
-              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_stop.png">
+              <img id="logo_moving_3" class="hidden_image" src="img/c3_character_pc.gif">
+              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_greet.png">
             </div>
             <div id="phase_3" class="text_conatainer">
               <div class="text_header">
@@ -77,8 +77,8 @@
             <div class="pic">
               <!-- <img id="logo_moving_4" src="img/c4_character_pc.gif"> -->
               <img id="logo_4" src="img/c4_character_sp.gif">
-              <img id="logo_moving_4" class="hidden_image" src="img/c4_character_sp.gif">
-              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_stop.png">
+              <img id="logo_moving_4" class="hidden_image" src="img/c4_character_pc.gif">
+              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_greet.png">
             </div>
             <div id="phase_4" class="text_conatainer">
               <div class="text_header">
@@ -195,11 +195,12 @@
         phase3_img.src = phase3_img_move.src;
         phase4_img.src = phase4_img_move.src;
         phase1_text.textContent = '';
-        phase1_text.textContent = '';
-        phase1_text.textContent = '';
-        phase1_text.textContent = '';
+        phase2_text.textContent = '';
+        phase2_text.textContent = '';
+        phase2_text.textContent = '';
 
-        document.getElementById('loading').style.backgroundColor = '#009FE8';
+        document.getElementById('loading').style.backgroundColor = 
+          getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-blue');
       }
       function phase_change(index) {
         const phase1 = document.getElementById('phase_1');
@@ -235,7 +236,7 @@
           case 1:
             phase1_text.textContent = 'おわりました';
             phase1_img.src = phase1_img_stop.src;
-            phase2_text.textContent = '着てみるTしゃつをとうろくちゅうです';
+            phase2_text.textContent = 'きるTしゃつをとうろくちゅうです';
             phase2.classList.add('fade_in_text_conatainer');
             break;
           case 2:
@@ -247,7 +248,6 @@
           case 3:
             phase3_text.textContent = 'おわりました';
             phase3_img.src = phase3_img_stop.src;
-            phase4_text.textContent = '';
             phase4.classList.add('fade_in_text_conatainer');
             break;
           case 4:
@@ -257,7 +257,8 @@
             phase3_img.src = phase3_img_move.src;
             phase4_img.src = phase4_img_move.src;
             phase4_text.textContent = 'さあ にあっているかな？';
-            document.getElementById('loading').style.backgroundColor = '#E50013';
+            document.getElementById('loading').style.backgroundColor = 
+              getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-red');
         }
 
       }
