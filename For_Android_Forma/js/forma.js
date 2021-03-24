@@ -122,20 +122,29 @@
     }
     // ローディング画面を表示
     phase_init();
-    phase_change(0);
     const spinner = document.getElementById('loading');
+    const resulter = document.getElementById('camera_result');
     spinner.classList.remove('loaded');
-    // phase_change(0);
-    // await display_wait();
-    // phase_change(1);
-    // await display_wait();
-    // phase_change(2);
-    // await display_wait();
-    // phase_change(3);
-    // await display_wait();
-    // phase_change(4);
-    // await display_wait();
-    // return;
+
+    /*************************************/
+    // ここはテスト
+    /*************************************/
+    await ping_wait();
+    phase_change(0);
+    await ping_wait();
+    phase_change(1);
+    await ping_wait();
+    phase_change(2);
+    await ping_wait();
+    phase_change(3);
+    await ping_wait();
+    phase_change(4);
+    await ping_wait();
+    spinner.classList.add('loaded');
+    resulter.classList.remove('loaded');
+    return;
+    /*************************************/
+    phase_change(0);
     //***************************************************************************** */
     // Avatar登録
     //***************************************************************************** */
@@ -325,6 +334,7 @@
     phase_change(4);
     await display_wait();
     spinner.classList.add('loaded');
+    resulter.classList.remove('loaded');
     if(!doNext)
     {
       alert('写真の合成に失敗しました。')
@@ -1690,11 +1700,6 @@
     }
     return result;
   }
-
-  function register_Item()
-  {
-    register_Item_Data();
-  }
   //********************************************
   // AWS[Avatar]への画像登録処理
   //********************************************
@@ -1936,11 +1941,12 @@
     phase3_img.src = phase3_img_move.src;
     phase4_img.src = phase4_img_move.src;
     phase1_text.textContent = '';
-    phase1_text.textContent = '';
-    phase1_text.textContent = '';
-    phase1_text.textContent = '';
+    phase2_text.textContent = '';
+    phase3_text.textContent = '';
+    phase4_text.textContent = '';
 
-    document.getElementById('loading').style.backgroundColor = '#009FE8';
+    document.getElementById('loading').style.backgroundColor =
+      getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-blue');
   }
   // フェーズの変更
   function phase_change(index) {
@@ -1977,7 +1983,7 @@
       case 1:
         phase1_text.textContent = 'おわりました';
         phase1_img.src = phase1_img_stop.src;
-        phase2_text.textContent = '着てみるTしゃつをとうろくちゅうです';
+        phase2_text.textContent = 'きるTしゃつをとうろくちゅうです';
         phase2.classList.add('fade_in_text_conatainer');
         break;
       case 2:
@@ -1989,7 +1995,6 @@
       case 3:
         phase3_text.textContent = 'おわりました';
         phase3_img.src = phase3_img_stop.src;
-        phase4_text.textContent = '';
         phase4.classList.add('fade_in_text_conatainer');
         break;
       case 4:
@@ -1999,7 +2004,8 @@
         phase3_img.src = phase3_img_move.src;
         phase4_img.src = phase4_img_move.src;
         phase4_text.textContent = 'さあ にあっているかな？';
-        document.getElementById('loading').style.backgroundColor = '#E50013';
+        document.getElementById('loading').style.backgroundColor = 
+          getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-red');
     }
 
   }
