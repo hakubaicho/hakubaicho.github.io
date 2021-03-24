@@ -4,8 +4,8 @@
 /* DIVの囲いをつける */
 /* =========================== */
 .area-container {
-  border: 1px solid gray;
-  background-color: gainsboro;
+  /* border: 1px solid gray; */
+  /* background-color: gainsboro; */
   border-radius: 5px;
 }
 /* =========================== */
@@ -80,7 +80,8 @@
 }
 
 #mask {
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
+  background: var(--corporate-color-red);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -88,7 +89,7 @@
   right: 0;
 }
 #modal {
-  background: #ffffff;
+  background:var(--corporate-color-blue);
   width: 980px;
   height: 1620px;
   padding: 20px;
@@ -117,7 +118,16 @@
 #cancel.hidden, #accept.hidden {
   display: none;
 }
-
+#modal_text_container {
+  background: white;
+}
+.permission_camera {
+  font-size: 36px;
+  text-align: center;
+}
+.permission_message {
+  font-size: 24px;
+}
 
 
 /* =========================== */

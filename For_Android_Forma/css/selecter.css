@@ -58,7 +58,6 @@ header {
 /* MAINの構成 */
 /* ============================== */
 main {
-  border: .5px solid gray;
   /* background: aqua; */
   flex-grow: 1;
   width: 800px;
@@ -135,9 +134,9 @@ main {
 /* NAVの構成 */
 /* ============================== */
 nav {
-  border: .5px solid gray;
-  height: 200px;
+  /* border: .5px solid gray; */
   /* background: tomato; */
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +147,7 @@ nav {
 /* ASIDEの構成 */
 /* ============================== */
 aside {
-  border: .5px solid gray;
+  /* border: .5px solid gray; */
   /* background: lightgreen; */
   width: 280px;
   height: 900px;
@@ -219,7 +218,7 @@ aside button {
 }
 /* FOOTERの構成 */
 footer {
-  border: .5px solid gray;
+  /* border: .5px solid gray; */
   /* background: skyblue; */
   height: 100%;
 
