@@ -129,20 +129,20 @@
     /*************************************/
     // ここはテスト
     /*************************************/
-    await ping_wait();
-    phase_change(0);
-    await ping_wait();
-    phase_change(1);
-    await ping_wait();
-    phase_change(2);
-    await ping_wait();
-    phase_change(3);
-    await ping_wait();
-    phase_change(4);
-    await ping_wait();
-    spinner.classList.add('loaded');
-    resulter.classList.remove('loaded');
-    return;
+    // await ping_wait();
+    // phase_change(0);
+    // await ping_wait();
+    // phase_change(1);
+    // await ping_wait();
+    // phase_change(2);
+    // await ping_wait();
+    // phase_change(3);
+    // await ping_wait();
+    // phase_change(4);
+    // await ping_wait();
+    // spinner.classList.add('loaded');
+    // resulter.classList.remove('loaded');
+    // return;
     /*************************************/
     phase_change(0);
     //***************************************************************************** */
