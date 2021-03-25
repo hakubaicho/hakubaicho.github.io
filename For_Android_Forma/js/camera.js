@@ -382,6 +382,9 @@
   // ===============================================================
   function jsCameraStart() {
     init_camera();
+    // OK後が遅いから即
+    // カメラの開始
+    syncCamera(video);
   }
   async function init_camera() {
     // カメラデバイス情報の取得
