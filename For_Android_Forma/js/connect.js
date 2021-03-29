@@ -27,6 +27,9 @@
       console.log(e.message);
     }
   }
+  //----------------------------------------------------
+  // 印刷します。
+  //----------------------------------------------------
   function call_print()
   {
     try
@@ -46,6 +49,17 @@
     try
     {
       android.fromHTML_request_Token();
+    }
+    catch
+    {
+      console.log(e.message);
+    }
+  }
+  function fromHTML_call_Loaded(pagecode)
+  {
+    try
+    {
+      android.fromHTML_call_Loaded();
     }
     catch
     {
