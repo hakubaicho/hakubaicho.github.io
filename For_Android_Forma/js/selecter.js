@@ -16,6 +16,7 @@
     // location     : 配置場所(ItemListの置き場所index)
     constructor(design, wearedImage, tag1,tag2, tag3)
     {
+      this.uuid = '';
       this.design = design;
       this.wearedImage = wearedImage;
       this.tag1 = tag1;
@@ -26,7 +27,7 @@
     //----------------------------------
     // メソッド
     //----------------------------------
-    // 配置インデックスをもらう
+    // 配置インデックスを更新する。
     setLocation(location) {
       this.location = location;
     }
@@ -96,7 +97,7 @@
      addChild(childNode) {
       this.childrenArray.push(childNode);
       childNode.parent = this;
-  }
+    }
 
   }
   // *********************************************
@@ -203,8 +204,6 @@
     new ClothItem('img/SW_TDesign_02.png','img/SW_TDesign_02.png','Tシャツ画像','',''),
     new ClothItem('img/SW_TDesign_02.png','img/SW_TDesign_02.png','Tシャツ画像','',''),
     new ClothItem('img/SW_TDesign_02.png','img/SW_TDesign_02.png','Tシャツ画像','',''),
-
-
   ];
 
   // 現在選択中の画像
@@ -216,6 +215,7 @@
   
   //--------------------------------------------
   // アイテムリストを生成します。
+  // セレクトタグで該当するものを
   //--------------------------------------------
   function setItemList(select_tag) {
     console.log('setItemListTag');

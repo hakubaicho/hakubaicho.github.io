@@ -333,7 +333,7 @@
 
   // [戻る]ボタン
   function btnimg_click_back() {
-    history.back();
+    goBack();
   }
   // [シャッター]ボタン
   function btnimg_click_shutter() {
@@ -359,14 +359,14 @@
 
   // [もどる]
   cancel.addEventListener('click', () => {
-    history.back();
+    goBack();
   });
   // [すすむ]
   accept.addEventListener('click', () => {
     modal.classList.add('hidden');
     mask.classList.add('hidden');
     // カメラの開始
-    syncCamera(video);
+    // syncCamera(video);
   });
 
   // [詳細を見る]
@@ -428,4 +428,17 @@
     $canvas_Photo.classList.add("item-hide");
     return;
   };
+
+  // ===============================================================
+  //
+  // 終了時処理
+  //
+  // ===============================================================
+  //
+  // 終了する。(前のページに戻る)
+  // 
+  function goBack() {
+    stopCamera();
+    history.back();
+  }
 }
