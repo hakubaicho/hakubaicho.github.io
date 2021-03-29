@@ -367,7 +367,7 @@
     modal.classList.add('hidden');
     mask.classList.add('hidden');
     // カメラの開始
-    // syncCamera(video);
+    syncCamera(video);
   });
 
   // [詳細を見る]
