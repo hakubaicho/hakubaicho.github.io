@@ -27,6 +27,17 @@
       console.log(e.message);
     }
   }
+  function call_print()
+  {
+    try
+    {
+      android.fromHTML_call_print();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
   //----------------------------------------------------
   // KEYTOKENを取得します。
   //----------------------------------------------------
