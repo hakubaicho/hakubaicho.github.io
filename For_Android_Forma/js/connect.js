@@ -35,6 +35,17 @@
       console.log(e.message);
     }
   }
+  function fromHTML_call_Loaded(pagecode)
+  {
+    try
+    {
+      android.fromHTML_call_Loaded(pagecode);
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
   //----------------------------------------------------
   // KEYTOKENを取得します。
   //----------------------------------------------------
@@ -49,17 +60,7 @@
       console.log(e.message);
     }
   }
-  function fromHTML_call_Loaded(pagecode)
-  {
-    try
-    {
-      android.fromHTML_call_Loaded();
-    }
-    catch(e)
-    {
-      console.log(e.message);
-    }
-  }
+
 
   // ===================================================
   // 
