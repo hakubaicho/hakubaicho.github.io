@@ -86,7 +86,7 @@
   function fromHTML_call_Set_Item(uuid, designsrc, wearedImageSrc,tag1,tag2,tag3) {
     try
     {
-      android.fromHTML_call_Loaded_pagecamera(
+      android.fromHTML_call_Set_Item(
                                           uuid,
                                           designsrc,
                                           wearedImageSrc,
