@@ -46,6 +46,18 @@
       console.log(e.message);
     }
   }
+  function fromHTML_call_Loaded_pageindex()
+  {
+    try
+    {
+      android.fromHTML_call_Loaded_pageindex();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
+
   //----------------------------------------------------
   // KEYTOKENを取得します。
   //----------------------------------------------------
