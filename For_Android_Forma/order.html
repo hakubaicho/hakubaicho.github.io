@@ -36,26 +36,55 @@
       <div class="order_detail_container">
 
           <p class="design_id">K-0001</p>
-          <p><span class="yen_mark">￥ </span><span class="price">2,189</span></p>
-          <div>
-            <span class="size-category">Ledies</span>
-            <label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
-            <label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
-          </div>
-          <div>
-            <span class="size-category">Mens</span>
-            <label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
-            <label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
-          </div>
-          <div>
-            <span class="size-category">Kids</span>
-            <label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
-            <label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
-            <label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
-            <label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
-            <label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
-            <label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
-          </div>
+          <p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+
+          <table>
+            <tr>
+              <td>
+                <span class="size-category">Ledies</span>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="size-category">Mens</span>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="size-category">Kids</span>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
+              </td>
+              <td>
+                <label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
+              </td>
+            </tr>
+          </table>
 
           <label for="color"> 枚数</label>
 
@@ -100,6 +129,16 @@
         {
           window.alert(e.message);
         }
+        // 価格を取得する
+        try
+        {
+          let obj =  fromHTML_call_Get_ItemPrice();
+          document.getElementById('ItemPrice').textContent = obj;
+        }
+        catch(e)
+        {
+          window.alert(e.message);
+        }
       }
 
       function getPrintData()
@@ -117,7 +156,7 @@
           }
         }
         console.log(input_size);
-        // call_print(input_size);
+        call_print(input_size);
       }
     </script>
   </body>

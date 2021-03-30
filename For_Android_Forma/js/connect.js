@@ -100,7 +100,9 @@
     }
     return ret;
   }
-
+  //
+  // 選択中のアイテムを送る
+  //
   function fromHTML_call_Set_Item(uuid, designsrc, wearedImageSrc,tag1,tag2,tag3) {
     try
     {
@@ -117,6 +119,21 @@
     {
       console.log(e.message);
     }
+  }
+
+  function fromHTML_call_Get_ItemPrice() {
+    let ret;
+    try
+    {
+      ret = android.fromHTML_call_Get_ItemPrice();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      ret = e.message;
+      ret= '9,999';
+    }
+    return ret;
   }
 
   //----------------------------------------------------
