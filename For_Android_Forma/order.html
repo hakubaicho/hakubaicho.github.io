@@ -85,14 +85,21 @@
     
     <script>
       window.onload = function() {
-        fromHTML_call_Loaded_pageorder();
-        let obj =  fromHTML_call_Loaded_pageorder();
-        let msg = '';
-        for(let i=0;i<obj.length;i++)
+        try
         {
-          msg += obj[i] + '\t';
+          let obj =  fromHTML_call_Loaded_pageorder();
+          let msg = '';
+          for(let i=0;i<obj.length;i++)
+          {
+            msg += obj[i] + '\t';
+          }
+          window.alert(msg);
+          document.getElementById('order_design_image').src = obj[0];          
         }
-        window.alert(msg);
+        catch(e)
+        {
+          window.alert(e.message);
+        }
       }
     </script>
   </body>
