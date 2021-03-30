@@ -48,17 +48,19 @@
   }
   function fromHTML_call_Loaded_pageindex()
   {
-    let msg;
+    let ret;
     try
     {
-      msg = android.fromHTML_call_Loaded_pageindex();
+      ret = android.fromHTML_call_Loaded_pageindex();
+      ret = ret.split(',');
     }
     catch(e)
     {
       console.log(e.message);
-      msg = e.message;
+      ret = e.message;
+      ret= ['パラメータ１', 'パラメータ２'];
     }
-    return msg;
+    return ret;
   }
 
   //----------------------------------------------------
