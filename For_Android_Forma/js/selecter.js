@@ -245,6 +245,7 @@
         }
       }
     }
+    
     //------------------------------------
     // thumbnailsの処理
     //------------------------------------
@@ -312,6 +313,8 @@
     // キーワードを取得
     //--------------------------------
     let keyWord = '';
+    document.getElementById('button_category_tag1').classList.add('item-hide');
+    document.getElementById('button_category_tag2').classList.add('item-hide');
     if('string' == typeof(select_tag))
     {
       keyWord = select_tag;
@@ -324,6 +327,29 @@
         target = select_tag.target;
         if('eventParam' in target){
           keyWord = select_tag.target.eventParam;
+          if(keyWord.length==3)
+          {
+            if(keyWord[0]=='')
+            {
+              document.getElementById('button_category_tag1').classList.add('item-hide');
+            }
+            else
+            {
+              document.getElementById('button_category_tag1').classList.remove('item-hide');
+              document.getElementById('button_category_tag1').classList.add('item-show');
+            }
+            if(keyWord[1]=='')
+            {
+              document.getElementById('button_category_tag2').classList.add('item-hide');
+            }
+            else
+            {
+              document.getElementById('button_category_tag2').classList.remove('item-hide');
+              document.getElementById('button_category_tag2').classList.add('item-show');
+            }
+            document.getElementById('category_tag1').textContent=keyWord[0];
+            document.getElementById('category_tag2').textContent=keyWord[1];
+          }
         }
       }
     }
@@ -804,8 +830,8 @@
   }
 
   // 画面構成を作る
-  setItemList('');
+  // setItemList('');
   // setCategoryList();
   setCategoryListTree();
-  
+  setItemListTree(['','','']);
 }

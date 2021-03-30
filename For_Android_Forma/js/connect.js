@@ -62,6 +62,22 @@
     }
     return ret;
   }
+  function fromHTML_call_Loaded_pagecamera()
+  {
+    let ret;
+    try
+    {
+      ret = android.fromHTML_call_Loaded_pagecamera();
+      ret = ret.split(',');
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      ret = e.message;
+      ret= ['ipahkg', 'ipahkg123'];
+    }
+    return ret;
+  }
 
   //----------------------------------------------------
   // KEYTOKENを取得します。

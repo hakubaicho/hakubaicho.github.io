@@ -350,16 +350,7 @@
   //********************************************
   // ログインします。
   //********************************************
-  function LogIn(){
-
-    // ユーザー名を画面のテキストから取得
-    // const textbox_user = document.getElementById("username");
-    // username = textbox_user.value
-    // パスワードを画面のテキストから取得
-    // const textbox_password = document.getElementById("password");
-    // password = textbox_password.value
-    username = 'ipahkg';
-    password = 'ipahkg123'
+  function LogIn(username, password){
 
     // 入力チェック
     // ユーザー名とパスワードは必須

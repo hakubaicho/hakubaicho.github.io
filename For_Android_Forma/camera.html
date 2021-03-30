@@ -262,10 +262,11 @@
       window.onload = () => {
         // カメラの初期化
         jsCameraStart();
+
+        let obj = fromHTML_call_Loaded_pagecamera();
         // Formaにログインする。
-        // user pass コード内
-        LogIn();
-        fromHTML_call_Loaded('order.html');
+        // htmlからもできるように　user pass コード内
+        LogIn(obj[0], obj[1]);
       };
     </script>
   </body>
