@@ -24,11 +24,11 @@
   //----------------------------------------------------
   // 印刷します。
   //----------------------------------------------------
-  function call_print()
+  function call_print(paramSize)
   {
     try
     {
-      android.fromHTML_call_print();
+      android.fromHTML_call_print(paramSize);
     }
     catch(e)
     {
