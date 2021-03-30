@@ -138,9 +138,23 @@ nav {
   /* background: tomato; */
   height: 200px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   flex-direction: row;
+}
+/* 共通コマンドボタン */
+.button_category {
+  padding: 10px 20px;
+  width: 400px;
+  /* height: 150px; */
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: dimgray;
+  font-size: 1.5em;
+
+  /* 枠線を消す */
+  outline: none;
 }
 
 /* ============================== */

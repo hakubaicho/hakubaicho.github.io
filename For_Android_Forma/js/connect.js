@@ -96,7 +96,7 @@
     {
       console.log(e.message);
       ret = e.message;
-      ret= ['ipahkg', 'ipahkg123'];
+      ret= ['', 'img/book3-5.png'];
     }
     return ret;
   }

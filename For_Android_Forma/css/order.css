@@ -83,3 +83,22 @@ footer {
 
   flex: 1;
 }
+
+/* 注文詳細 */
+.design_id, .yen_mark, .price {
+  font-size: 24px;
+}
+input[type=radio] {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.size-category {
+  font-size: 24px;
+}
+.size-caption {
+  font-size: 24px;
+  height: 100px;
+  text-align:center;
+}

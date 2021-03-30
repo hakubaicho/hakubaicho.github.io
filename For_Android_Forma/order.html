@@ -33,43 +33,42 @@
           <img id="order_design_image" src="img/book1-1.png">
         </div>
         <!-- 注文詳細 -->
-        <div class="order_detail_container">
-          <!-- ***** ラジオボタン ***** -->
-          <fieldset>
-            <p class="design_id">K-0001</p>
-            <p><span class="yen_mark">\ </span><span class="price">0000</span></p>
-            <div>
-              Ledies
-              <label><input type="radio" name="size" checked>M</label>
-              <label><input type="radio" name="size">L</label>
-            </div>
-            <div>
-              Mens
-              <label><input type="radio" name="size" checked>M</label>
-              <label><input type="radio" name="size">L</label>
-            </div>
-            <div>
-              Kids
-              <label><input type="radio" name="size">80</label>
-              <label><input type="radio" name="size">90</label>
-              <label><input type="radio" name="size">100</label>
-              <label><input type="radio" name="size">110</label>
-              <label><input type="radio" name="size">120</label>
-              <label><input type="radio" name="size">130</label>
-            </div>
-            <!-- ***** ドロップダウンリスト ***** -->
-            <label for="color"> 枚数</label>
-            <!-- <select id="color" size="4" multiple>   -->
-            <select id="color">  
-              <option selected>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-            </select>
-          </fieldset>
-        </div>
+      <div class="order_detail_container">
+
+          <p class="design_id">K-0001</p>
+          <p><span class="yen_mark">￥ </span><span class="price">2,189</span></p>
+          <div>
+            <span class="size-category">Ledies</span>
+            <label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
+            <label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
+          </div>
+          <div>
+            <span class="size-category">Mens</span>
+            <label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
+            <label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
+          </div>
+          <div>
+            <span class="size-category">Kids</span>
+            <label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
+            <label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
+            <label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
+            <label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
+            <label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
+            <label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
+          </div>
+
+          <label for="color"> 枚数</label>
+
+          <select id="color">  
+            <option selected>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>
+      </div>
+
       </div>
       <div class="button_console">
         
@@ -77,7 +76,7 @@
     </main>
     <footer>
       <div class="footer_area_button">
-        <button class="button_command" type=button onclick="call_print()">印刷</button>
+        <button class="button_command" type=button onclick="getPrintData()">印刷</button>
         <button class="button_command" type=button onclick="call_exit()">終了</button>
         <button class="button_command" type=button onclick="location.href='index.html'">トップ</button>
       </div>
@@ -101,6 +100,24 @@
         {
           window.alert(e.message);
         }
+      }
+
+      function getPrintData()
+      {
+        // サイズを取得する
+        const el_size = document.getElementsByName('size');
+
+        let input_size = '';
+        for( let i=0; i<el_size.length;i++)
+        {
+          if(el_size[i].checked)
+          {
+            input_size =el_size[i].value;
+            break;
+          }
+        }
+        console.log(input_size);
+        // call_print(input_size);
       }
     </script>
   </body>
