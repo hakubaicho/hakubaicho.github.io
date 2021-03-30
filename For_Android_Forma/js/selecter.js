@@ -844,6 +844,26 @@
     }
   }
 
+  
+
+
+  function IsSelectItem() {
+    if(currentIndex < 0)
+    {
+      alert("えらんでください");
+      return false;
+    }
+    return true;
+  }
+  function gotoCamera() {
+    if(!IsSelectItem())return;
+    location.href='camera.html'
+  }
+  function gotoOrder() {
+    if(!IsSelectItem())return;
+    location.href='order.html'
+  }
+
   // 画面構成を作る
   // setItemList('');
   // setCategoryList();

@@ -120,7 +120,9 @@
       console.log(e.message);
     }
   }
-
+  //
+  // 商品の金額を取得します。
+  //
   function fromHTML_call_Get_ItemPrice() {
     let ret;
     try
@@ -135,7 +137,36 @@
     }
     return ret;
   }
-
+  //
+  // アバターUUIDをセットします。
+  // 
+  function fromHTML_call_Set_AvatarUUID(uuid){
+    try
+    {
+      android.fromHTML_call_Set_AvatarUUID(uuid);
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
+  //
+  // アバターUUIDを取得します。
+  // 
+  function fromHTML_call_Get_AvatarUUID(uuid){
+    let ret;
+    try
+    {
+      ret = android.fromHTML_call_Get_AvatarUUID();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      ret = e.message;
+      ret= '9,999';
+    }
+    return ret;
+  }
   //----------------------------------------------------
   // KEYTOKENを取得します。
   //----------------------------------------------------
