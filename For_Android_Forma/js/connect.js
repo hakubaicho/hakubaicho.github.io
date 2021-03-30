@@ -48,14 +48,17 @@
   }
   function fromHTML_call_Loaded_pageindex()
   {
+    let msg;
     try
     {
-      android.fromHTML_call_Loaded_pageindex();
+      msg = android.fromHTML_call_Loaded_pageindex();
     }
     catch(e)
     {
       console.log(e.message);
+      msg = e.message;
     }
+    return msg;
   }
 
   //----------------------------------------------------
