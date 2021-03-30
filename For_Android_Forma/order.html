@@ -85,7 +85,14 @@
     
     <script>
       window.onload = function() {
-        fromHTML_call_Loaded('order.html');
+        fromHTML_call_Loaded_pageorder();
+        let obj =  fromHTML_call_Loaded_pageorder();
+        let msg = '';
+        for(let i=0;i<obj.length;i++)
+        {
+          msg += obj[i] + '\t';
+        }
+        window.alert(msg);
       }
     </script>
   </body>

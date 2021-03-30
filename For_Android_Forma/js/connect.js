@@ -82,6 +82,24 @@
     }
     return ret;
   }
+  //
+  // order.htmlのLoad時に、アイテム詳細を取得する。
+  //
+  function fromHTML_call_Loaded_pageorder(){
+    let ret;
+    try
+    {
+      ret = android.fromHTML_call_Loaded_pageorder();
+      ret = ret.split(',');
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      ret = e.message;
+      ret= ['ipahkg', 'ipahkg123'];
+    }
+    return ret;
+  }
 
   function fromHTML_call_Set_Item(uuid, designsrc, wearedImageSrc,tag1,tag2,tag3) {
     try
