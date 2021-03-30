@@ -46,8 +46,10 @@
       console.log(e.message);
     }
   }
-  function fromHTML_call_Loaded_pageindex()
-  {
+  //
+  // index.htmlのLoad時にデータを取得する。
+  //
+  function fromHTML_call_Loaded_pageindex(){
     let ret;
     try
     {
@@ -62,8 +64,10 @@
     }
     return ret;
   }
-  function fromHTML_call_Loaded_pagecamera()
-  {
+  //
+  // camera.htmlのLoad時に、Username, passwordを取得する
+  //
+  function fromHTML_call_Loaded_pagecamera(){
     let ret;
     try
     {
@@ -77,6 +81,24 @@
       ret= ['ipahkg', 'ipahkg123'];
     }
     return ret;
+  }
+
+  function fromHTML_call_Set_Item(uuid, designsrc, wearedImageSrc,tag1,tag2,tag3) {
+    try
+    {
+      android.fromHTML_call_Loaded_pagecamera(
+                                          uuid,
+                                          designsrc,
+                                          wearedImageSrc,
+                                          tag1,
+                                          tag2,
+                                          tag3
+                                            );
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
   }
 
   //----------------------------------------------------

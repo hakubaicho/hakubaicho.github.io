@@ -8,17 +8,17 @@
     //----------------------------------
     // コンストラクタ
     //----------------------------------
-    // design       : デザイン
-    // wearedImage  : 着衣イメージ
-    // tag1         : 大分類
-    // tag2         : 中分類
-    // tag3         : 小分類
-    // location     : 配置場所(ItemListの置き場所index)
-    constructor(design, wearedImage, tag1,tag2, tag3)
+    // designsrc        : デザイン
+    // wearedImageSrc   : 着衣イメージ
+    // tag1             : 大分類
+    // tag2             : 中分類
+    // tag3             : 小分類
+    // location         : 配置場所(ItemListの置き場所index)
+    constructor(designsrc, wearedImageSrc, tag1,tag2, tag3)
     {
       this.uuid = '';
-      this.design = design;
-      this.wearedImage = wearedImage;
+      this.designsrc = designsrc;
+      this.wearedImageSrc = wearedImageSrc;
       this.tag1 = tag1;
       this.tag2 = tag2;
       this.tag3 = tag3;
@@ -282,7 +282,7 @@
       //----------------------------------
       // imgタグを生成し、イメージを割り当て
       const img = document.createElement('img');
-      img.src = item.design;
+      img.src = item.designsrc;
       // li要素の生成
       const li = document.createElement('li');
       
@@ -370,7 +370,7 @@
       //----------------------------------
       // imgタグを生成し、イメージを割り当て
       const img = document.createElement('img');
-      img.src = item.design;
+      img.src = item.designsrc;
       // li要素の生成
       const li = document.createElement('li');
       
@@ -390,8 +390,18 @@
   //--------------------------------------------
   function click_item(index, location) {
     // 画像の切り替え
-    imgDesign.src = items[index].design;
-    imgWeared.src = items[index].wearedImage;
+    imgDesign.src = items[index].designsrc;
+    imgWeared.src = items[index].wearedImageSrc;
+
+    // androidに選択したデータを送る
+    fromHTML_call_Set_Item(
+                            items[index].uuid,
+                            items[index].designsrc,
+                            items[index].wearedImageSrc,
+                            items[index].tag1,
+                            items[index].tag2,
+                            items[index].tag3
+                              );
 
     // thumbnailsのすべての要素を取得
     const thumbnails = document.querySelectorAll('.thumbnails > li');
