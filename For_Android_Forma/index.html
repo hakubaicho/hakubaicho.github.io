@@ -29,7 +29,9 @@
     </header>
     <!-- NAV -->
     <nav>
-      <!-- <p>nav</p> -->
+      <p>nav</p>
+      <div class="button_category" id="button_category_tag1"><p><span id="category_tag1">大分類</span></p></div>
+      <div class="button_category" id="button_category_tag2"><p><span id="category_tag2">大分類</span></p></div>
     </nav>
     
     <div class="container">
@@ -71,7 +73,8 @@
         const spinner = document.getElementById('loading');
         spinner.classList.add('loaded');
 
-        fromHTML_call_Loaded('index.html');
+        let obj =  fromHTML_call_Loaded_pageindex();
+        
       }
     </script>
   </body>
