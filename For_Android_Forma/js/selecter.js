@@ -856,6 +856,11 @@
       alert("えらんでください");
       return false;
     }
+    if(items[currentIndex].uuid === '')
+    {
+      alert("試着できない商品です。");
+      return false;
+    }
     return true;
   }
   function gotoCamera() {
