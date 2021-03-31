@@ -188,6 +188,86 @@
     new ClothItem('', '', 'H-019', 'img/ht16.png','','商品選択', 'ハトソン探偵団','オットセール'),
     new ClothItem('', '', 'H-020', 'img/ht20.png','','商品選択', 'ハトソン探偵団','オットセール'),
 
+    // はんこ
+    new ClothItem('', '', 'H-020', 'img/s1.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s2.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s3.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s4.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s5.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s6.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s7.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s8.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s9.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s10.png','','商品選択', 'はんこ',''),
+
+    new ClothItem('', '', 'H-020', 'img/s11.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s12.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s13.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s14.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s15.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s16.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s17.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s18.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s19.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s20.png','','商品選択', 'はんこ',''),
+
+    new ClothItem('', '', 'H-020', 'img/s31.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s32.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s33.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s34.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s35.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s36.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s37.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s38.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s39.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s40.png','','商品選択', 'はんこ',''),
+
+    new ClothItem('', '', 'H-020', 'img/s41.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s42.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s43.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s44.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s45.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s46.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s47.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s48.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s49.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s50.png','','商品選択', 'はんこ',''),
+
+    new ClothItem('', '', 'H-020', 'img/s51.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s52.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s53.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s54.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s55.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s56.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s57.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s58.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s59.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s60.png','','商品選択', 'はんこ',''),
+
+    new ClothItem('', '', 'H-020', 'img/s61.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s62.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s63.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s64.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s65.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s66.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s67.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s68.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s69.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s70.png','','商品選択', 'はんこ',''),
+
+    
+    new ClothItem('', '', 'H-020', 'img/s71.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s72.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s73.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s74.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s75.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s76.png','','商品選択', 'はんこ',''),
+    new ClothItem('', '', 'H-020', 'img/s77.png','','商品選択', 'はんこ',''),
+    
+
+
+    
+    
     new ClothItem('', '', '', 'img/SW_TDesign_01.png','img/SW_TDesign_01.png','商品選択', 'Tシャツ画像',''),
     new ClothItem('', '', '', 'img/SW_TDesign_01.png','img/SW_TDesign_02.png','商品選択', 'Tシャツ画像',''),
     new ClothItem('', '', '', 'img/SW_TDesign_01.png','img/SW_TDesign_01.png','商品選択', 'Tシャツ画像',''),
@@ -856,11 +936,11 @@
       alert("えらんでください");
       return false;
     }
-    if(items[currentIndex].uuid === '')
-    {
-      alert("試着できない商品です。");
-      return false;
-    }
+    // if(items[currentIndex].uuid === '')
+    // {
+    //   alert("試着できない商品です。");
+    //   return false;
+    // }
     return true;
   }
   function gotoCamera() {
