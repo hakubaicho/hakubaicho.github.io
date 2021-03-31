@@ -30,12 +30,12 @@
       <div class="order_container">
         <!-- デザイン -->
         <div class="order_design_container">
-          <img id="order_design_image" src="img/book1-1.png">
+          <img id="order_design_image">
         </div>
         <!-- 注文詳細 -->
       <div class="order_detail_container">
 
-          <p class="design_id">K-0001</p>
+          <p class="design_id" id="designID">K-0001</p>
           <p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
 
           <table>
@@ -112,7 +112,11 @@
     </footer>
     
     <script>
+      // Load完了時
       window.onload = function() {
+        //------------------------------
+        // 選択アイテムを取得します。
+        //------------------------------
         try
         {
           let obj =  fromHTML_call_Loaded_pageorder();
@@ -123,13 +127,16 @@
           }
           // window.alert(msg);
           // 画像の置き換え
-          document.getElementById('order_design_image').src = obj[1];          
+          document.getElementById('order_design_image').src = obj[3];
+          document.getElementById('designID').textContent = obj[2];     
         }
         catch(e)
         {
           window.alert(e.message);
         }
+        //------------------------------
         // 価格を取得する
+        //------------------------------
         try
         {
           let obj =  fromHTML_call_Get_ItemPrice();
