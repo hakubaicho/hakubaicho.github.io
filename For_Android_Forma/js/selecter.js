@@ -205,11 +205,11 @@
     new ClothItem('772bf012-6554-4d0f-baae-569b7a25f915', '', 'S-003', 'img/e3.png','img/s0006.png','TryOn', 'せなけいこ',''),
     new ClothItem('1c1afadd-ba61-4eb9-937d-a4002aad6714', '', 'S-004', 'img/e4.png','img/s0007.png','TryOn', 'せなけいこ',''),
     // [TryOn] スーツ
-    new ClothItem('ee4272f9-c172-4843-adc3-2c85360bf1b5', '', 'スーツ1', 'img/ee4272f9-c172-4843-adc3-2c85360bf1b5.jpg','','TryOn', 'スーツ',''),
-    new ClothItem('ccca02db-fdaf-42bd-a026-a1e6394b3499', '', 'スーツ2', 'img/ccca02db-fdaf-42bd-a026-a1e6394b3499.jpg','','TryOn', 'スーツ',''),
+    new ClothItem('6c3cd363-fb3a-4312-9c48-7f62cbbfa614', '', 'スーツ1', 'img/ee4272f9-c172-4843-adc3-2c85360bf1b5.jpg','','TryOn', 'スーツ',''),
+    new ClothItem('1617ff56-6575-42eb-9c64-f111b542683b', '', 'スーツ2', 'img/ccca02db-fdaf-42bd-a026-a1e6394b3499.jpg','','TryOn', 'スーツ',''),
     // [TryOn] 浴衣
-    new ClothItem('9ef29bde-cd79-4cec-8331-3418a92962e2', '', 'ゆかた1', 'img/9ef29bde-cd79-4cec-8331-3418a92962e2.jpg','','TryOn', 'ゆかた',''),
-    new ClothItem('f6f5eb8f-844d-43bf-82cd-77c0f0867ece', '', 'ゆかた2', 'img/f6f5eb8f-844d-43bf-82cd-77c0f0867ece.jpg','','TryOn', 'ゆかた',''),
+    new ClothItem('65481657-7d5c-4a20-9524-cda6d0286ec2', '', 'ゆかた1', 'img/9ef29bde-cd79-4cec-8331-3418a92962e2.jpg','','TryOn', 'ゆかた',''),
+    new ClothItem('53fffeef-91c7-4d0b-8d01-edc30075054b', '', 'ゆかた2', 'img/f6f5eb8f-844d-43bf-82cd-77c0f0867ece.jpg','','TryOn', 'ゆかた',''),
   ];
 
   // 現在選択中の画像
