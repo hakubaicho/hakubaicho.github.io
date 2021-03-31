@@ -79,6 +79,17 @@
   function Avatar_TryOnProc()
   {
     console.log("Avatar_TryOnProc: Start");
+    // 対象アイテムの取得
+    try
+    {
+      let obj = fromHTML_call_Get_ItemUUID();
+      document.getElementById('itemuuid').textContent = obj;
+      uuid_tryon_item = obj;
+    }
+    catch(e)
+    {
+      console.log(e);
+    }
     picture_tryon();
     console.log("Avatar_TryOnProc: End");
   }
