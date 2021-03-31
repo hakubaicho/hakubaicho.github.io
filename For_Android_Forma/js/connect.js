@@ -103,11 +103,13 @@
   //
   // 選択中のアイテムを送る
   //
-  function fromHTML_call_Set_Item(uuid, designsrc, wearedImageSrc,tag1,tag2,tag3) {
+  function fromHTML_call_Set_Item(uuid, itemname, designID, designsrc, wearedImageSrc,tag1,tag2,tag3) {
     try
     {
       android.fromHTML_call_Set_Item(
                                           uuid,
+                                          itemname,
+                                          designID,
                                           designsrc,
                                           wearedImageSrc,
                                           tag1,
