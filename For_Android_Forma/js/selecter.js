@@ -200,14 +200,16 @@
     new ClothItem('', '', '', 'img/SW_TDesign_01.png','img/SW_TDesign_02.png','商品選択', 'Tシャツ画像',''),
 
     // [TryOn] せなけいこ
-    new ClothItem('4eb4eadc-54ed-44ce-a825-b00e14f13bf7', '', 'S-001', 'img/e1.png','img/s0001.png','TryOn', '',''),
-    new ClothItem('5659faca-7d0a-44e6-97ee-831927bdf9c0', '', 'S-002', 'img/e2.png','img/s0002.png','TryOn', '',''),
-    new ClothItem('772bf012-6554-4d0f-baae-569b7a25f915', '', 'S-003', 'img/e3.png','img/s0006.png','TryOn', '',''),
-    new ClothItem('1c1afadd-ba61-4eb9-937d-a4002aad6714', '', 'S-004', 'img/e4.png','img/s0007.png','TryOn', '',''),
+    new ClothItem('4eb4eadc-54ed-44ce-a825-b00e14f13bf7', '', 'S-001', 'img/e1.png','img/s0001.png','TryOn', 'せなけいこ',''),
+    new ClothItem('5659faca-7d0a-44e6-97ee-831927bdf9c0', '', 'S-002', 'img/e2.png','img/s0002.png','TryOn', 'せなけいこ',''),
+    new ClothItem('772bf012-6554-4d0f-baae-569b7a25f915', '', 'S-003', 'img/e3.png','img/s0006.png','TryOn', 'せなけいこ',''),
+    new ClothItem('1c1afadd-ba61-4eb9-937d-a4002aad6714', '', 'S-004', 'img/e4.png','img/s0007.png','TryOn', 'せなけいこ',''),
     // [TryOn] スーツ
-
+    new ClothItem('ee4272f9-c172-4843-adc3-2c85360bf1b5', '', 'スーツ1', 'img/ee4272f9-c172-4843-adc3-2c85360bf1b5.jpg','','TryOn', 'スーツ',''),
+    new ClothItem('ccca02db-fdaf-42bd-a026-a1e6394b3499', '', 'スーツ2', 'img/ccca02db-fdaf-42bd-a026-a1e6394b3499.jpg','','TryOn', 'スーツ',''),
     // [TryOn] 浴衣
-
+    new ClothItem('9ef29bde-cd79-4cec-8331-3418a92962e2', '', 'ゆかた1', 'img/9ef29bde-cd79-4cec-8331-3418a92962e2.jpg','','TryOn', 'ゆかた',''),
+    new ClothItem('f6f5eb8f-844d-43bf-82cd-77c0f0867ece', '', 'ゆかた2', 'img/f6f5eb8f-844d-43bf-82cd-77c0f0867ece.jpg','','TryOn', 'ゆかた',''),
   ];
 
   // 現在選択中の画像
