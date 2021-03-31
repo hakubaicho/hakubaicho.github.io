@@ -169,6 +169,23 @@
     }
     return ret;
   }
+  //
+  // アバターUUIDを取得します。
+  // 
+  function fromHTML_call_Get_ItemUUID(uuid){
+    let ret;
+    try
+    {
+      ret = android.fromHTML_call_Get_ItemUUID();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      ret = e.message;
+      ret= '';
+    }
+    return ret;
+  }
   //----------------------------------------------------
   // KEYTOKENを取得します。
   //----------------------------------------------------

@@ -111,6 +111,14 @@
     //----------------------------------------
     // 確認画面
     //----------------------------------------
+     // Avatar / Item が選択されているか
+     if("" === uuid_tryon_item)
+     {
+       const msg = "Item を選択してください";
+       // document.getElementById("canTryOn").textContent = msg;
+       alert(msg);
+       return false;
+     }
     var res = confirm("Avatar登録しますか？");
     if( res === true ) {
       // OKならなにもしない
@@ -246,7 +254,7 @@
     //----------------------------------------
     // 必要項目を試しに代入
     //----------------------------------------
-    uuid_tryon_item     = '77db863c-b288-4f25-83ee-165f563a2e68';
+    // uuid_tryon_item     = '77db863c-b288-4f25-83ee-165f563a2e68';
     //----------------------------------------
     // 入力チェック
     //----------------------------------------
@@ -350,8 +358,10 @@
   //********************************************
   // ログインします。
   //********************************************
-  function LogIn(username, password){
+  function LogIn(_username, _password){
 
+    username = _username;
+    password = _password;
     // 入力チェック
     // ユーザー名とパスワードは必須
     if(("" === username) || ("" === password))

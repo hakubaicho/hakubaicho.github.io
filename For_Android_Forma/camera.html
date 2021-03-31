@@ -190,6 +190,9 @@
         <p>
           <span id="forma_login"></span>
         </p>
+        <p>
+          <span id="itemuuid"></span>
+        </p>
       </div>
     </main>
 
@@ -263,10 +266,29 @@
         // カメラの初期化
         jsCameraStart();
 
-        let obj = fromHTML_call_Loaded_pagecamera();
         // Formaにログインする。
         // htmlからもできるように　user pass コード内
-        LogIn(obj[0], obj[1]);
+        try
+        {
+          let obj = fromHTML_call_Loaded_pagecamera();
+          LogIn(obj[0], obj[1]);
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+        // 対象アイテムの取得
+        try
+        {
+          let obj = fromHTML_call_Get_ItemUUID();
+          document.getElementById('itemuuid').textContent = obj;
+          uuid_tryon_item = obj;
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+
       };
     </script>
   </body>
