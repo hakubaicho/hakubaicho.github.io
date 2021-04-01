@@ -130,7 +130,7 @@ ul {
 /* 縦方向に配置する */
 .category_list_container {
   height: 840px;
-  margin: 10px 10px;
+  margin: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;

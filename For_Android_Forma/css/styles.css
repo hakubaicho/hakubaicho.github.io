@@ -14,6 +14,7 @@ body {
   height: 100%;             /* bodyで100%を使うから */
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
+  background-image : url(../img/background.png);
 }
 div {
   border: 1px solid silver;
@@ -23,30 +24,30 @@ div {
 /* HEADER */
 /* ****************************** */
 header {
-  border: .5px solid black;
-  background-color: lightgray;
-  padding: 5px;
+  /* border: .5px solid black; */
+  /* background-color: lightgray; */
+  /* padding: 1px; */
 }
 /* ヘッダ内の高さを固定する */
 .header-container {
-  border: .5px solid gray;
-  background-color: whitesmoke;
+  /* border: .5px solid gray; */
+  /* background-color: whitesmoke; */
+  /* padding: 1px; */
   height: 300px;
-  padding: 5px;
 }
 /* ****************************** */
 /* NAV */
 /* ****************************** */
 nav {
-  border: .5px solid black;
-  background-color: coral;
-  padding: 5px;
+  /* border: .5px solid black; */
+  /* background-color: coral; */
+  /* padding: 1px; */
 }
 .nav-container {
-  border: .5px solid gray;
-  background-color: tomato;
+  /* border: .5px solid gray; */
+  /* background-color: tomato; */
+  /* padding: 1px; */
   height: 80px;
-  padding: 5px;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -55,66 +56,66 @@ nav {
 /* MAINを囲う */
 /* ****************************** */
 .main-area-container {
-  border: .5px solid black;
-  background-color: royalblue;
+  /* border: .5px solid black; */
+  /* background-color: royalblue; */
+  /* padding: 1px; */
   display: flex;
   flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
   flex-grow: 1;
-  padding: 5px;
 }
 /* ****************************** */
 /* MAIN */
 /* ****************************** */
 main {
-  border: .5px solid black;
-  background: lightsteelblue;
-  padding: 5px;
+  /* border: .5px solid black; */
+  /* background: lightsteelblue; */
+  /* padding: 1px; */
 }
 .main-area-container {
-  border: .5px solid gray;
-  background-color: royalblue;
+  /* border: .5px solid gray; */
+  /* background-color: royalblue; */
+  /* padding: 1px; */
   height: 900px;
-  padding: 5px;
 }
 /* ****************************** */
 /* ASIDE */
 /* ****************************** */
 aside {
-  border: .5px solid black;
-  background: lightgreen;
-  padding: 5px;
+  /* border: .5px solid black; */
+  /* background: lightgreen; */
+  /* padding: 1px; */
 }
 .aside-area-container {
-  border: .5px solid gray;
-  background-color: springgreen;
+  /* border: .5px solid gray; */
+  /* background-color: springgreen; */
+  /* padding: 1px; */
   width: 280px;
   height: 900px;
-  padding: 5px;
 }
 /* ****************************** */
 /* FOOTER */
 /* ****************************** */
 footer {
-  border: .5px solid black;
-  background: khaki;
+  /* border: .5px solid black; */
+  /* background: khaki; */
+  /* padding: 1px; */
   height: 100%;
-  padding: 5px;
   flex-direction: column;   /* 縦方向に並べる */
 }
 .footer-container {
-  border: .5px solid gray;
-  background: gold;
+  /* border: .5px solid gray; */
+  /* background: gold; */
+  /* padding: 1px; */
   height: 100px;
-  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .footer-command-area {
-  border: .5px solid gray;
-  background: gold;
+  /* border: .5px solid gray; */
+  /* background: gold; */
+  /* padding: 1px; */
   height: 100px;
-  padding: 5px;
   display: flex;
   /* justify-content: end; */
   float: right;
