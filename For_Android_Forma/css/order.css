@@ -5,14 +5,7 @@
 main {
   display: flex;            /* 縦幅いっぱいにするため */
 }
-/* FOOTERの構成 */
-footer {
-  border: .5px solid gray;
-  /* background: skyblue; */
-  height: 100%;
 
-  flex-direction: column;   /* 縦方向に並べる */
-}
 /* =========================== */
 /* 注文詳細コンテナDIVの囲いをつける */
 /* =========================== */

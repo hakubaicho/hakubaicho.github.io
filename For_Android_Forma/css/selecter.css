@@ -2,21 +2,12 @@
 /* ============================== */
 /* 全体の構造 */
 /* ============================== */
-html {
-  height: 100%;             /* bodyで100%を使うから */
-  width: 100%;
+main {
+  flex-grow: 1;
+  width: 800px;
 }
-body {
-  margin: 0;
-  display: flex;            /* 縦幅いっぱいにするため */
-  flex-direction: column;   /* 縦方向に並べる */
-  height: 100%;             /* 高さを100％にする */
-  user-select: none;         /* 文字列を選択させない */
-}
+
 /* パラメータの要素 */
-div {
-  border: 1px solid silver;
-}
 img {
   vertical-align: bottom;
   background-color: white;
@@ -30,10 +21,6 @@ ul {
   display: flex;
   flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
   flex-grow: 1;
-}
-main {
-  flex-grow: 1;
-  width: 800px;
 }
 
 /* ============================== */
@@ -143,12 +130,7 @@ main {
 /* ============================== */
 /* ASIDEの構成 */
 /* ============================== */
-aside {
-  /* border: .5px solid gray; */
-  /* background: lightgreen; */
-  width: 280px;
-  height: 900px;
-}
+
 /* カテゴリーボタンの配置エリア */
 /* 縦方向に配置する */
 .category_list_container {
@@ -214,14 +196,6 @@ aside button {
 .button_tag_all:active, .button_tag1:active, .button_tag2:active, .button_tag3:active{
   background-color: white;
   color: black;
-}
-/* FOOTERの構成 */
-footer {
-  /* border: .5px solid gray; */
-  /* background: skyblue; */
-  height: 100%;
-
-  flex-direction: column;   /* 縦方向に並べる */
 }
 .footer_area_button {
   height: 200px;

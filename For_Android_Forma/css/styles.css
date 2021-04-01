@@ -15,6 +15,9 @@ body {
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
 }
+div {
+  border: 1px solid silver;
+}
 
 /* ****************************** */
 /* HEADER */
@@ -29,7 +32,7 @@ header {
   border: .5px solid gray;
   background-color: whitesmoke;
   height: 300px;
-  display: flex;
+  padding: 20px;
 }
 /* ****************************** */
 /* NAV */
@@ -44,17 +47,44 @@ nav {
   background-color: tomato;
   height: 100px;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: row;
+}
+/* ****************************** */
+/* MAINを囲う */
+/* ****************************** */
+.main-area-container {
+  border: .5px solid black;
+  background-color: royalblue;
+  display: flex;
+  flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
+  flex-grow: 1;
 }
 /* ****************************** */
 /* MAIN */
 /* ****************************** */
 main {
   border: .5px solid black;
-  background: aqua;
+  background: lightsteelblue;
   height: 900px;
+}
+/* ****************************** */
+/* ASIDE */
+/* ****************************** */
+aside {
+  border: .5px solid black;
+  background: lightgreen;
+  width: 280px;
+  height: 900px;
+}
+/* ****************************** */
+/* FOOTER */
+/* ****************************** */
+footer {
+  border: .5px solid black;
+  background: gold;
+  height: 100%;
+  flex-direction: column;   /* 縦方向に並べる */
 }
 
 /* 共通コマンドボタン */
