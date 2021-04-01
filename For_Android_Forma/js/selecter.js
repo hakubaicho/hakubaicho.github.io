@@ -111,52 +111,52 @@
   // ClothItemのインスタンスを生成。
   const items = [
     // せなけいこ-ふうせんねこ
-    new ClothItem('', 'ふうせんねこ1',  'SNK001', 'img/SNK001.png','img/s0001.png','商品選択', 'せなけいこ','ふうせんねこ'),
-    new ClothItem('', 'ふうせんねこ2',  'SNK002', 'img/SNK002.png','img/s0002.png','商品選択', 'せなけいこ','ふうせんねこ'),
+    new ClothItem('', 'ふうせんねこ1',  'SNK001', 'img/SNK001.png','img/SNK001.png','商品選択', 'せなけいこ','ふうせんねこ'),
+    new ClothItem('', 'ふうせんねこ2',  'SNK002', 'img/SNK002.png','img/SNK002.png','商品選択', 'せなけいこ','ふうせんねこ'),
     
     // せなけいこ-きれいなはこ
-    new ClothItem('', 'おばけ', 'SNK003', 'img/SNK003.png','img/s0003.png','商品選択', 'せなけいこ','きれいなはこ'),
-    new ClothItem('', 'ねこちゃん', 'SNK004', 'img/SNK004.png','img/s0004.png','商品選択', 'せなけいこ','きれいなはこ'),
-    new ClothItem('', 'わんちゃん', 'SNK005', 'img/SNK005.png','img/s0005.png','商品選択', 'せなけいこ','きれいなはこ'),
+    new ClothItem('', 'おばけ', 'SNK003', 'img/SNK003.png','img/SNK003.png','商品選択', 'せなけいこ','きれいなはこ'),
+    new ClothItem('', 'ねこちゃん', 'SNK004', 'img/SNK004.png','img/SNK004.png','商品選択', 'せなけいこ','きれいなはこ'),
+    new ClothItem('', 'わんちゃん', 'SNK005', 'img/SNK005.png','img/SNK005.png','商品選択', 'せなけいこ','きれいなはこ'),
 
     // せなけいこ-ねないこだれだ
-    new ClothItem('', 'ふくろうとみみずく', 'SNK006', 'img/SNK006.png','img/s0006.png','商品選択', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'くろねこ', 'SNK007', 'img/SNK007.png','img/s0007.png','商品選択', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'ねずみ', 'SNK008', 'img/SNK008.png','img/s0008.png','商品選択', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'おばけ1', 'SNK009', 'img/SNK009.png','img/s0009.png','商品選択', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'おばけ2', 'SNK010', 'img/SNK010.png','img/s0010.png','商品選択', 'せなけいこ','ねないこだれだ'),
+    new ClothItem('', 'ふくろうとみみずく', 'SNK006', 'img/SNK006.png','img/SNK006.png','商品選択', 'せなけいこ','ねないこだれだ'),
+    new ClothItem('', 'くろねこ', 'SNK007', 'img/SNK007.png','img/SNK007.png','商品選択', 'せなけいこ','ねないこだれだ'),
+    new ClothItem('', 'ねずみ', 'SNK008', 'img/SNK008.png','img/SNK008.png','商品選択', 'せなけいこ','ねないこだれだ'),
+    new ClothItem('', 'おばけ1', 'SNK009', 'img/SNK009.png','img/SNK009.png','商品選択', 'せなけいこ','ねないこだれだ'),
+    new ClothItem('', 'おばけ2', 'SNK010', 'img/SNK010.png','img/SNK010.png','商品選択', 'せなけいこ','ねないこだれだ'),
 
 
     // せなけいこ-いやだいやだ
-    new ClothItem('', 'おひさま', 'SNK011', 'img/SNK011.png','img/s0011.png','商品選択', 'せなけいこ','いやだいやだ'),
-    new ClothItem('', 'くつ', 'SNK012', 'img/SNK012.png','img/s0012.png','商品選択', 'せなけいこ','いやだいやだ'),
-    new ClothItem('', 'くまちゃん', 'SNK013', 'img/SNK013.png','img/s0013.png','商品選択', 'せなけいこ','いやだいやだ'),
+    new ClothItem('', 'おひさま', 'SNK011', 'img/SNK011.png','img/SNK011.png','商品選択', 'せなけいこ','いやだいやだ'),
+    new ClothItem('', 'くつ', 'SNK012', 'img/SNK012.png','img/SNK012.png','商品選択', 'せなけいこ','いやだいやだ'),
+    new ClothItem('', 'くまちゃん', 'SNK013', 'img/SNK013.png','img/SNK013.png','商品選択', 'せなけいこ','いやだいやだ'),
 
     // せなけいこ-もじゃもじゃ
-    new ClothItem('', 'ころ', 'SNK014', 'img/SNK014.png','img/s0014.png','商品選択', 'せなけいこ','もじゃもじゃ'),
-    new ClothItem('', 'ルルちゃん2', 'SNK016', 'img/SNK015.png','img/s0015.png','商品選択', 'せなけいこ','もじゃもじゃ'),
-    new ClothItem('', 'ルルちゃん1', 'SNK015', 'img/SNK016.png','img/s0016.png','商品選択', 'せなけいこ','もじゃもじゃ'),
+    new ClothItem('', 'ころ', 'SNK014', 'img/SNK014.png','img/SNK014.png','商品選択', 'せなけいこ','もじゃもじゃ'),
+    new ClothItem('', 'ルルちゃん2', 'SNK016', 'img/SNK015.png','img/SNK015.png','商品選択', 'せなけいこ','もじゃもじゃ'),
+    new ClothItem('', 'ルルちゃん1', 'SNK015', 'img/SNK016.png','img/SNK016.png','商品選択', 'せなけいこ','もじゃもじゃ'),
 
     // せなけいこ-にんじん
-    new ClothItem('', 'うまさん', 'SNK017', 'img/SNK017.png','img/s0017.png','商品選択', 'せなけいこ','にんじん'),
-    new ClothItem('', 'きりんさん', 'SNK018', 'img/SNK018.png','img/s0018.png','商品選択', 'せなけいこ','にんじん'),
-    new ClothItem('', 'おさるさん', 'SNK019', 'img/SNK019.png','img/s0019.png','商品選択', 'せなけいこ','にんじん'),
-    new ClothItem('', 'ぶたさん', 'SNK020', 'img/SNK020.png','img/s0020.png','商品選択', 'せなけいこ','にんじん'),
-    new ClothItem('', 'かばさん', 'SNK021', 'img/SNK021.png','img/s0021.png','商品選択', 'せなけいこ','にんじん'),
-    new ClothItem('', 'うさぎさん', 'SNK022', 'img/SNK022.png','img/s0022.png','商品選択', 'せなけいこ','にんじん'),
-    new ClothItem('', 'ぼく', 'SNK023', 'img/SNK023.png','img/s0023.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'うまさん', 'SNK017', 'img/SNK017.png','img/SNK017.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'きりんさん', 'SNK018', 'img/SNK018.png','img/SNK018.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'おさるさん', 'SNK019', 'img/SNK019.png','img/SNK019.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'ぶたさん', 'SNK020', 'img/SNK020.png','img/SNK020.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'かばさん', 'SNK021', 'img/SNK021.png','img/SNK021.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'うさぎさん', 'SNK022', 'img/SNK022.png','img/SNK022.png','商品選択', 'せなけいこ','にんじん'),
+    new ClothItem('', 'ぼく', 'SNK023', 'img/SNK023.png','img/SNK023.png','商品選択', 'せなけいこ','にんじん'),
     
     // せなけいこ-あーんあん
-    new ClothItem('', 'みんな', 'SNK026', 'img/SNK024.png','img/s0024.png','商品選択', 'せなけいこ','あーんあん'),
-    new ClothItem('', 'ぼく2', 'SNK025', 'img/SNK025.png','img/s0025.png','商品選択', 'せなけいこ','あーんあん'),
-    new ClothItem('', 'ぼく1', 'SNK024', 'img/SNK026.png','img/s0026.png','商品選択', 'せなけいこ','あーんあん'),
+    new ClothItem('', 'みんな', 'SNK026', 'img/SNK024.png','img/SNK024.png','商品選択', 'せなけいこ','あーんあん'),
+    new ClothItem('', 'ぼく2', 'SNK025', 'img/SNK025.png','img/SNK025.png','商品選択', 'せなけいこ','あーんあん'),
+    new ClothItem('', 'ぼく1', 'SNK024', 'img/SNK026.png','img/SNK026.png','商品選択', 'せなけいこ','あーんあん'),
     
     // せなけいこ-ルルちゃんのくつした
-    new ClothItem('', 'ルルちゃん', 'SNK027', 'img/SNK027.png','img/s0027.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'うさこ', 'SNK028', 'img/SNK028.png','img/s0028.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'わんこ', 'SNK029', 'img/SNK029.png','img/s0029.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'ねこちゃん', 'SNK030', 'img/SNK030.png','img/s0030.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'ぞうさん', 'SNK031', 'img/SNK031.png','img/s0031.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
+    new ClothItem('', 'ルルちゃん', 'SNK027', 'img/SNK027.png','img/SNK027.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
+    new ClothItem('', 'うさこ', 'SNK028', 'img/SNK028.png','img/SNK028.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
+    new ClothItem('', 'わんこ', 'SNK029', 'img/SNK029.png','img/SNK029.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
+    new ClothItem('', 'ねこちゃん', 'SNK030', 'img/SNK030.png','img/SNK030.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
+    new ClothItem('', 'ぞうさん', 'SNK031', 'img/SNK031.png','img/SNK031.png','商品選択', 'せなけいこ','ルルちゃんのくつした'),
 
     // せなけいこ-にゃんにゃん
     new ClothItem('', 'とらねこ', 'SNK-032', 'img/SNK032.png','','商品選択', 'せなけいこ','にゃんにゃん'),
@@ -473,7 +473,8 @@
 
   // 現在選択中の画像
   let currentIndex = -1;
-
+  // 現在選択中のアイテム
+  let selectedItem = new ClothItem('', '', '', '','','', '','');
   // タグ要素の取得メイン画像の設定
   const imgDesign = document.getElementById('thumbnail_selected');
   const imgWeared = document.getElementById('thumbnail_selected_tryon');
@@ -669,7 +670,16 @@
                             items[index].tag2,
                             items[index].tag3
                               );
-
+    selectedItem = new ClothItem(
+                            items[index].uuid,
+                            items[index].itemName,
+                            items[index].designID,
+                            items[index].designsrc,
+                            items[index].wearedImageSrc,
+                            items[index].tag1,
+                            items[index].tag2,
+                            items[index].tag3
+                            );
     // thumbnailsのすべての要素を取得
     const thumbnails = document.querySelectorAll('.thumbnails > li');
     // 現在の付加されているcurrentを外す
@@ -1108,29 +1118,52 @@
 
   
 
-
+  //--------------------------------------------
+  // 商品が選ばれているか確認します。
+  //--------------------------------------------
   function IsSelectItem() {
     if(currentIndex < 0)
     {
       alert("えらんでください");
       return false;
     }
-    // if(items[currentIndex].uuid === '')
-    // {
-    //   alert("試着できない商品です。");
-    //   return false;
-    // }
     return true;
   }
+  //--------------------------------------------
+  // 試着可能なアイテムか確認します。
+  //--------------------------------------------
+  function IsHaveUUID() {
+    if(currentIndex < 0)
+    {
+      alert("えらんでください");
+      return false;
+    }
+    if(selectedItem.uuid === '')
+    {
+      alert("試着できない商品です。");
+      return false;
+    }
+    return true;
+  }
+  //--------------------------------------------
+  // カメラ撮影に遷移します。
+  //--------------------------------------------
   function gotoCamera() {
     if(!IsSelectItem())return;
+    if(!IsHaveUUID())return;
     location.href='camera.html'
   }
+  //--------------------------------------------
+  // 注文画面に遷移します。
+  //--------------------------------------------
   function gotoOrder() {
     if(!IsSelectItem())return;
     location.href='order.html'
   }
 
+  //--------------------------------------------
+  // 初期処理
+  //--------------------------------------------
   // 画面構成を作る
   // setItemList('');
   // setCategoryList();
