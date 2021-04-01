@@ -581,6 +581,7 @@
     let keyWord = '';
     document.getElementById('button_category_tag1').classList.add('item-hide');
     document.getElementById('button_category_tag2').classList.add('item-hide');
+    document.getElementById('button_category_tag3').classList.add('item-hide');
     if('string' == typeof(select_tag))
     {
       keyWord = select_tag;
@@ -613,8 +614,18 @@
               document.getElementById('button_category_tag2').classList.remove('item-hide');
               document.getElementById('button_category_tag2').classList.add('item-show');
             }
+            if(keyWord[2]=='')
+            {
+              document.getElementById('button_category_tag3').classList.add('item-hide');
+            }
+            else
+            {
+              document.getElementById('button_category_tag3').classList.remove('item-hide');
+              document.getElementById('button_category_tag3').classList.add('item-show');
+            }
             document.getElementById('category_tag1').textContent=keyWord[0];
             document.getElementById('category_tag2').textContent=keyWord[1];
+            document.getElementById('category_tag3').textContent=keyWord[2];
           }
         }
       }
