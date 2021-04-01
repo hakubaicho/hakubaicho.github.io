@@ -86,6 +86,18 @@ footer {
   height: 100%;
   flex-direction: column;   /* 縦方向に並べる */
 }
+.footer-container {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-command-area {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* 共通コマンドボタン */
 .button_command {
@@ -98,13 +110,6 @@ footer {
 
   /* 枠線を消す */
   outline: none;
-}
-/* フッタのボタンエリア */
-.footer_area_button {
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .item-show {
   display: block;
