@@ -49,20 +49,20 @@
   margin-right: 30px;
 }
 .box_command img {
-  height: 100px;
-  width: 100px;
+  height: 180px;
+  width: 180px;
   margin: 0;
 }
 .box_command p {
   text-align: center;
   line-height: 0px;
-  font-size:16px;
+  font-size:2em;
 }
 
 /* =========================== */
 /* モーダルウィンドウ */
 /* =========================== */
-#cancel, #accept {
+/* #cancel, #accept {
   cursor: pointer;
   width: 200px;
   border: 1px solid gray;
@@ -71,7 +71,7 @@
   padding: 12px 0;
   margin: 16px auto 0;
   user-select: none;
-}
+} */
 
 #mask {
   /* background: rgba(0, 0, 0, 0.4); */

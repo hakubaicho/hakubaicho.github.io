@@ -140,8 +140,8 @@
         </div>
       </div>
       <div class="footer-container">
-        <div id="cancel" class="button_command hidden">戻る</div>
-        <div id="accept" class="button_command hidden">進む</div>
+        <button id="cancel" class="button_command hidden">戻る</button>
+        <button id="accept" class="button_command hidden">進む</button>
       </div>
     </section>
     <!-- モーダルウィンドウの時のマスク -->
@@ -156,7 +156,7 @@
       </div>
       <!-- ボタンエリア -->
       <div  id="camera_result_footer">
-        <div class="footer_area_button">
+        <div class="footer-container">
           <button class="button_command" onclick="location.href='index.html'">戻る</button>
           <button class="button_command" onclick="location.href='order.html'">購入</button>
         </div>
@@ -164,8 +164,7 @@
     </div>
 
     <!-- HEADER -->
-    <header>
-    </header>
+    <!-- NAV -->
 
     <!-- MAIN -->
     <main>
@@ -180,22 +179,9 @@
           <canvas id="canvas-photo"></canvas>
         </div>
       </div>
-      <div>
-        <p>
-          <span id="camera-status"></span>
-        </p>
-        <p>
-          <span id="Forma_status"></span>
-        </p>
-        <p>
-          <span id="forma_login"></span>
-        </p>
-        <p>
-          <span id="itemuuid"></span>
-        </p>
-      </div>
     </main>
-
+    
+    
     <!-- FOOTER -->
     <footer>
       <!-- コントロールボタン -->
@@ -213,7 +199,20 @@
           <p>保存</p>
         </div>
       </div>
-      
+      <div>
+        <p>
+          <span id="camera-status"></span>
+        </p>
+        <p>
+          <span id="Forma_status"></span>
+        </p>
+        <p>
+          <span id="forma_login"></span>
+        </p>
+        <p>
+          <span id="itemuuid"></span>
+        </p>
+      </div>
       <!-- 音声 -->
       <div id="area-sound" class="area-container" hidden>
         <p>
@@ -252,7 +251,7 @@
         </div>
       </div>
     </footer>
-      
+    
     
     <script src="js/camera.js"></script>
     <script src="js/forma.js"></script>
