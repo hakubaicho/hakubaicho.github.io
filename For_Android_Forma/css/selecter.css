@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 /* ============================== */
 /* 全体の構造 */
 /* ============================== */
@@ -39,7 +40,7 @@ ul {
   margin: 10px 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 880px;
+  height: 840px;
   width:  780px;
   overflow-y: scroll;
   /* background-color: lightgray; */
@@ -108,17 +109,17 @@ ul {
 /* ============================== */
 /* 共通コマンドボタン */
 .button_category {
-  padding: 10px 20px;
-  width: 400px;
-  /* height: 150px; */
-  margin: 10px;
+  width: 250px;
+  height: 30px;
   border-radius: 10px;
-  color: white;
-  background-color: dimgray;
-  font-size: 1.5em;
-
+  padding: 20px;
+  margin: 10px;
   /* 枠線を消す */
   outline: none;
+}
+#category_tag1 #category_tag2 #category_tag3 {
+  /* margin: 0 auto; */
+  text-align: center;
 }
 
 /* ============================== */
@@ -128,7 +129,7 @@ ul {
 /* カテゴリーボタンの配置エリア */
 /* 縦方向に配置する */
 .category_list_container {
-  height: 880px;
+  height: 840px;
   margin: 10px 10px;
   padding-top: 10px;
   padding-bottom: 10px;
