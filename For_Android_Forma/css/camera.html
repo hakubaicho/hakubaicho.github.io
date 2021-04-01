@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!-- 
+      幅:1080に固定する
+      ほかにいいアイデアったらお願いします。
+    -->
+    <meta name="viewport" content="width=1080,initial-scale=1">
+    <title>カメラ撮影</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/camara.css">
+    <link rel="stylesheet" href="css/talkstyle.css">
+    <script src="js/connect.js"></script>
+  </head>
+  <body>
+    <!-- 写真の登録・トライオン中のローディング画面 -->
+    <div id="loading" class="loaded">
+      <!-- タイトル -->
+      <p>Status : <span id="title_logo">Tシャツを作ろう！！！</span></p>
+      <!-- くるくる -->
+      <!-- <div class="spinner"></div> -->
+      <!-- 吹き出しでフェーズ -->
+      <div class="area_talk">
+        <ul class="messages">
+          <!-- 1番目 -->
+          <li class="left_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_1" src="img/c1_character_pc.gif"> -->
+              <img id="logo_1" src="img/c1_character_sp.gif">
+              <img id="logo_moving_1" class="hidden_image" src="img/c1_character_pc.gif">
+              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_greet.png">
+            </div>
+            <div id="phase_1" class="text_conatainer">
+              <div class="text_header">
+                写真をとうろく
+              </div>
+              <div class="text" id="phase_1_text">
+                <!-- あなたの写真をとうろくちゅうです -->
+              </div>
+            </div>
+          </li>
+          <!-- 2番目 -->
+          <li class="right_side">
+            <div class="pic">
+              <!-- <img class="loading_icon_gif loading_icon_left" src="img/c2_character_pc.gif"> -->
+              <img id="logo_2" src="img/c2_character_sp.gif">
+              <img id="logo_moving_2" class="hidden_image" src="img/c2_character_pc.gif">
+              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_greet.png">
+            </div>
+            <div id="phase_2" class="text_conatainer">
+              <div class="text_header">
+                Tシャツをとうろく
+              </div>
+              <div class="text" id="phase_2_text">
+                <!-- 着てみるTしゃつをとうろくちゅうです -->
+              </div>
+            </div>
+          </li>
+          <!-- 3番目 -->
+          <li class="left_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_3" src="img/c3_character_pc.gif"> -->
+              <img id="logo_3" src="img/c3_character_sp.gif">
+              <img id="logo_moving_3" class="hidden_image" src="img/c3_character_pc.gif">
+              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_greet.png">
+            </div>
+            <div id="phase_3" class="text_conatainer">
+              <div class="text_header">
+                きせかえ
+              </div>
+              <div class="text" id="phase_3_text">
+                <!-- あなたにTシャツをきせています -->
+              </div>
+            </div>
+          </li>
+          <!-- 4番目 -->
+          <li class="right_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_4" src="img/c4_character_pc.gif"> -->
+              <img id="logo_4" src="img/c4_character_sp.gif">
+              <img id="logo_moving_4" class="hidden_image" src="img/c4_character_pc.gif">
+              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_greet.png">
+            </div>
+            <div id="phase_4" class="text_conatainer">
+              <div class="text_header">
+                みてみて
+              </div>
+              <div class="text" id="phase_4_text">
+                <!-- さあ　にあっているかな？ -->
+              </div>
+            </div>
+          </li>
+          <!-- おわり -->
+        </ul>
+      </div>
+    </div>
+    
+    <!-- モーダルウィンドウ プライバシーポリシーの表示 -->
+    <section id="modal">
+      <div>
+        <!-- プライバシーポリシー文章 -->
+        <div id="modal_text_container">
+          <p class="permission_camera">
+            プライバシーポリシー
+            <br>
+            下記を確認して下さい。
+          </p>
+          <p class="permission_message">
+            ◆はじめに<br>
+            株式会社テンプレートグループ（以下、当グループ）は、個人情報の取り扱いにおいて、下記のように定めます。<br>
+            
+            以下のプライバシーポリシーでは、個人情報の取得・利用・管理について記載しております。サービス利用にあたり、個人情報保護方針をお読みになり、ご理解いただけますと幸いです。<br>
+            
+            ◆個人情報の取得<br>
+            当サービスでは、ユーザーの皆様の個人情報（氏名、住所、メールアドレス、電話番号など個人を特定できる情報）を取得させて頂くことがあります。<br>
+            
+            ◆個人情報の利用<br>
+            取得した個人情報は、下記の目的で利用いたします。<br>
+            (1)ユーザーニーズに合わせたサービス提供<br>
+            (2)サービス改善に関するマーケティング<br>
+            (3)資料送付などの際の本人確認<br>
+            
+            ◆個人情報の安全管理<br>
+            当グループでは個人情報の管理について、全従業員・役員に対して第三者機関による教育研修を四半期に1度のペースで実施しています。<br>
+            また社則に個人情報保護規定を設け、現場での管理について厳格にチェックを行っています。<br>
+            
+            ◆第三者への開示・提供の禁止<br>
+            基本的に個人情報は第三者には提供しませんが、個人情報の保護に関する法律第23条第1項各号により、法令に基づいて提供する場合があります。<br>
+            
+            ◆個人情報に関する問い合わせ<br>
+            個人情報に関するお問い合わせは、下記までお願い致します。<br>
+            情報管理部 担当:山下<br>
+            電話番号:0120-000-000<br>
+            メールアドレス:jouhoukanri@xxxxxxx<br>
+            
+            ◆改変と見直しについて<br>
+            個人情報については、法令変更などを受けて随時見直しを行います。<br>
+          </p>
+        </div>
+      </div>
+      <div class="footer_area_button">
+        <div id="cancel" class="button_command hidden">戻る</div>
+        <div id="accept" class="button_command hidden">進む</div>
+      </div>
+    </section>
+    <!-- モーダルウィンドウの時のマスク -->
+    <div id="mask"></div>
+
+    <!-- カメラ撮影結果表示 -->
+    <div id="camera_result" class="loaded">
+      <!-- 画像の表示エリア -->
+      <div id="camera_result_header">
+        <!-- TryOnの結果画像 -->
+        <img id="tryon_result_picture" src="img/c1_character_pc.gif">
+      </div>
+      <!-- ボタンエリア -->
+      <div  id="camera_result_footer">
+        <div class="footer_area_button">
+          <button class="button_command" onclick="location.href='index.html'">戻る</button>
+          <button class="button_command" onclick="location.href='order.html'">購入</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <!-- カメラ -->
+      <div id="area-capture" class="area-container">
+        <div id="video_container">
+          <!-- VIDEOの映像 -->
+          <video id="camera" autoplay="1">
+            <p>動画の再生に対応していません</p>
+          </video>
+          <!-- チャプチャーした画像 -->
+          <canvas id="canvas-photo"></canvas>
+        </div>
+      </div>
+      <div>
+        <p>
+          <span id="camera-status"></span>
+        </p>
+        <p>
+          <span id="Forma_status"></span>
+        </p>
+        <p>
+          <span id="forma_login"></span>
+        </p>
+        <p>
+          <span id="itemuuid"></span>
+        </p>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <!-- コントロールボタン -->
+      <div id="area-button" class="area-container">
+        <div class="box_command">
+          <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()">
+          <p>戻る</p>
+        </div>
+        <div class="box_command">
+          <img src="img/shutter.png" id="btn_image_shutter" onclick="btnimg_click_shutter()">
+          <p>撮影(取り直し)</p>
+        </div>
+        <div class="box_command">
+          <img src="img/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
+          <p>保存</p>
+        </div>
+      </div>
+      
+      <!-- 音声 -->
+      <div id="area-sound" class="area-container" hidden>
+        <p>
+          <button type=button onclick="play_countdown()">テスト再生</button>
+          <span>再生状態:<span id="soundStatus"></span></span>
+        </p>
+        <!-- 
+          audioタグで先読みしておいたほうがいいです。
+          じゃないとエラーが出ました。
+          controlsでコントロールGUIの表示をします。
+        -->
+        <audio id="sound-countdown" controls src="sound/countdown3to1.mp3"></audio>
+        <audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
+      </div>
+      <!-- カメラコントロール -->
+      <div id="area-camera-ctrl" class="area-container" >
+        <!-- 解像度の設定ボタン -->
+        <div>
+          <button type="button" class="button_command" onclick="videoSize(1024, 576)">H:1024 * W:576</button>
+          <button type="button" class="button_command" onclick="videoSize(576, 1024)">H:576 * W:1024</button>
+        </div>
+        <!-- VIDEO選択画面 -->
+        <div>
+          <select id="camera_list" size="1" style="width:160pt;">
+            <option>(video)</option>
+          </select>
+          <button id="start_video_button" class="button_command" onclick="startSelectedVideo()">Start Video</button>
+        </div>
+        <p>H:<span id="resolution-height"></span></p>
+        <p>W:<span id="resolution-width"></span></p>
+        <div id="camera-devices">
+          <p>mediaDevicesを列挙します。</p>
+          <button type="button" onclick="getCameraDevices()">取得</button>
+          <div id="list-camera-devices">
+          </div>
+        </div>
+      </div>
+    </footer>
+      
+    
+    <script src="js/camera.js"></script>
+    <script src="js/forma.js"></script>
+    <script>
+      // ===============================================================
+      //
+      // 起動時処理
+      //
+      // ===============================================================
+      window.onload = () => {
+        // カメラの初期化
+        jsCameraStart();
+
+        // Formaにログインする。
+        // htmlからもできるように　user pass コード内
+        try
+        {
+          let obj = fromHTML_call_Loaded_pagecamera();
+          LogIn(obj[0], obj[1]);
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+        // 対象アイテムの取得
+        try
+        {
+          let obj = fromHTML_call_Get_ItemUUID();
+          document.getElementById('itemuuid').textContent = obj;
+          uuid_tryon_item = obj;
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+
+      };
+    </script>
+  </body>
+</html>

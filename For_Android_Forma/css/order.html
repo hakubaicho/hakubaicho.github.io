@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!-- 
+      幅:1080に固定する
+      ほかにいいアイデアったらお願いします。
+    -->
+    <meta name="viewport" content="width=1080,initial-scale=1">
+    <title>注文画面</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/order.css">
+
+    <script src="js/connect.js"></script>
+  </head>
+  <body>
+    
+    <!-- HEADER -->
+    <header>
+      <div class="header-container">
+
+      </div>
+    </header>
+    
+    <!-- NAV -->
+    <nav>
+      <div class="nav-container">
+      </div>
+    </nav>
+    <!-- MAIN-AREA -->
+    <div class="main-area-container">
+      <!-- MAIN -->
+      <main>
+        <div class="main-container">
+
+          <!-- 注文確認エリア -->
+          <div class="order_container">
+            <div class="order_title">
+              <span>購入画面</span>
+            </div>
+            <!-- デザイン -->
+            <div class="order_design_container">
+              <img id="order_design_image">
+            </div>
+            <!-- 注文詳細 -->
+            <div class="order_detail_container">
+              <!-- デザイン番号 -->
+              <p class="design_id" id="designID"></p>
+              <!-- 価格 -->
+              <p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+              <!-- サイズ選択 -->
+              <table>
+                <tr>
+                  <td>
+                    <span class="size-category">Ledies</span>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="size-category">Mens</span>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="size-category">Kids</span>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
+                  </td>
+                  <td>
+                    <label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
+                  </td>
+                </tr>
+              </table>
+          </div>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <button class="button_command" type=button onclick="location.href='index.html'">戻る</button>
+        <button class="button_command" type=button onclick="getPrintData()">印刷</button>
+      </div>
+      <div class="footer-command-area">
+        <button class="button_command" type=button onclick="call_exit()">終了</button>
+      </div>
+    </footer>
+    
+    <script>
+      // Load完了時
+      window.onload = function() {
+        //------------------------------
+        // 選択アイテムを取得します。
+        //------------------------------
+        try
+        {
+          let obj =  fromHTML_call_Loaded_pageorder();
+          let msg = '';
+          for(let i=0;i<obj.length;i++)
+          {
+            msg += obj[i] + '\t';
+          }
+          // window.alert(msg);
+          // 画像の置き換え
+          document.getElementById('order_design_image').src = obj[3];
+          document.getElementById('designID').textContent = obj[2];     
+        }
+        catch(e)
+        {
+          window.alert(e.message);
+        }
+        //------------------------------
+        // 価格を取得する
+        //------------------------------
+        try
+        {
+          let obj =  fromHTML_call_Get_ItemPrice();
+          document.getElementById('ItemPrice').textContent = obj;
+        }
+        catch(e)
+        {
+          window.alert(e.message);
+        }
+      }
+
+      function getPrintData()
+      {
+        // サイズを取得する
+        const el_size = document.getElementsByName('size');
+
+        let input_size = '';
+        let isOK = false;
+        for( let i=0; i<el_size.length;i++)
+        {
+          if(el_size[i].checked)
+          {
+            input_size =el_size[i].value;
+            isOK = true;
+            break;
+          }
+        }
+        if(!isOK)
+        {
+          alert("サイズをえらんでください");
+        }
+        console.log(input_size);
+        call_print(input_size);
+      }
+    </script>
+  </body>
+</html>
