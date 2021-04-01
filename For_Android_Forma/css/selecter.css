@@ -37,16 +37,32 @@ ul {
 /* アイテムを配置を囲むDIV */
 .item_list_container
 {
-  margin: 10px 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 840px;
+  background-color: lightgray;
+  /* border: .1px solid gray; */
+
+  height: 880px;
   width:  780px;
+  padding: 5px;
+  margin: 3px;
+  
   overflow-y: scroll;
-  /* background-color: lightgray; */
-  background-color: yellow;
   /* -webkit-overflow-scrolling: touch; */
   /* overflow-scrolling: touch; */
+}
+/* カテゴリーボタンの配置エリア */
+/* 縦方向に配置する */
+.category_list_container {
+  background-color: lightgray;
+  /* border: .1px solid gray; */
+
+  height: 880px;
+  padding: 5px;
+  margin: 3px;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  
 }
 /* スクロールバーの非表示 */
 .item_list_container::-webkit-scrollbar {
@@ -126,18 +142,6 @@ ul {
 /* ASIDEの構成 */
 /* ============================== */
 
-/* カテゴリーボタンの配置エリア */
-/* 縦方向に配置する */
-.category_list_container {
-  height: 840px;
-  margin: 1px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  
-}
 /* スクロールバーの非表示 */
 .category_list_container::-webkit-scrollbar {
   /* display: none; */
