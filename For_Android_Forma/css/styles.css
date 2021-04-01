@@ -108,7 +108,7 @@ footer {
   /* border: .5px solid gray; */
   /* background: gold; */
   /* padding: 1px; */
-  height: 200px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,7 +117,7 @@ footer {
   /* border: .5px solid gray; */
   /* background: gold; */
   /* padding: 1px; */
-  height: 200px;
+  height: 100px;
   display: flex;
   /* justify-content: end; */
   float: right;
@@ -139,14 +139,14 @@ footer {
   outline: none;
 }
 .button_caution {
-  height:100px;
+  height:80px;
   width: 200px;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 10px;
   color: white;
   background-color: crimson;
-  font-size: 2em;
+  font-size: 1.5em;
 
   /* 枠線を消す */
   outline: none;
