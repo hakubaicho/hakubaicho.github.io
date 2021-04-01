@@ -17,7 +17,33 @@ ul {
   padding: 0;
   margin: 0;
 }
+.header-container {
+  display: flex;
+}
+.header_box {
+  margin: 10px;
+  height: 300px;
+  width: 300px;
+}
+.header_box_last {
+  border: 2px solid gray;
+  border-radius: 20px;
+  background-color: white;
+  flex: 1;
+  margin: 0 auto;
+  vertical-align: middle; /* 上下中央に寄せる */ 
+}
+.detail_column_title {
+  text-align: right;
+}
+.detail_column_data {
+  padding-left: 20px;;
+}
 
+.cell_data, .cell_title {
+  color:dimgrey;
+  font-size: 1.5em;
+}
 /* ============================== */
 /* HEADERの構成 */
 /* ============================== */

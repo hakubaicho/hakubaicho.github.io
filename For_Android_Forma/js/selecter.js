@@ -335,7 +335,6 @@
     new ClothItem('', 'ねずみ', 'YRF042', 'img/YRF042.png','img/T-YRF042.png','商品選択', 'ゆるふわ','どうぶつ'),
     new ClothItem('', 'ねこ２', 'YRF043', 'img/YRF043.png','img/T-YRF043.png','商品選択', 'ゆるふわ','どうぶつ'),
     new ClothItem('', 'いぬ３', 'YRF044', 'img/YRF044.png','img/T-YRF044.png','商品選択', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'くろねこ', 'YRF045', 'img/YRF045.png','img/T-YRF045.png','商品選択', 'ゆるふわ','どうぶつ'),
     new ClothItem('', 'くろねこ', 'YRF046', 'img/YRF046.png','img/T-YRF046.png','商品選択', 'ゆるふわ','どうぶつ'),
     new ClothItem('', 'かえる', 'YRF047', 'img/YRF047.png','img/T-YRF047.png','商品選択', 'ゆるふわ','どうぶつ'),
     new ClothItem('', 'うさぎ４', 'YRF048', 'img/YRF048.png','img/T-YRF048.png','商品選択', 'ゆるふわ','どうぶつ'),
@@ -376,7 +375,7 @@
     new ClothItem('', 'くわがた(めす)', 'YRF078', 'img/YRF078.png','img/T-YRF078.png','商品選択', 'ゆるふわ','むし'),
     new ClothItem('', 'くわがた(おす)', 'YRF079', 'img/YRF079.png','img/T-YRF079.png','商品選択', 'ゆるふわ','むし'),
     new ClothItem('', 'くも', 'YRF80', 'img/YRF080.png','img/T-YRF080.png','商品選択', 'ゆるふわ','むし'),
-
+    
     new ClothItem('', 'くまぜみ', 'YRF081', 'img/YRF081.png','img/T-YRF081.png','商品選択', 'ゆるふわ','むし'),
     new ClothItem('', 'こおろぎ', 'YRF082', 'img/YRF082.png','img/T-YRF082.png','商品選択', 'ゆるふわ','むし'),
     new ClothItem('', 'きりぎりす', 'YRF083', 'img/YRF083.png','img/T-YRF083.png','商品選択', 'ゆるふわ','むし'),
@@ -395,7 +394,7 @@
     new ClothItem('', 'あげはちょう', 'YRF095', 'img/YRF095.png','img/T-YRF095.png','商品選択', 'ゆるふわ','むし'),
     new ClothItem('', 'あぶらぜみ', 'YRF096', 'img/YRF096.png','img/T-YRF096.png','商品選択', 'ゆるふわ','むし'),
     new ClothItem('', 'かたつむり', 'YRF097', 'img/YRF097.png','img/T-YRF097.png','商品選択', 'ゆるふわ','むし'),
-
+    
     // ゆるふわ-おさかな
     new ClothItem('', 'たこ', 'YRF098', 'img/YRF098.png','img/T-YRF098.png','商品選択', 'ゆるふわ',''),
     new ClothItem('', 'たい', 'YRF099', 'img/YRF099.png','img/T-YRF099.png','商品選択', 'ゆるふわ',''),
@@ -412,9 +411,9 @@
     new ClothItem('', 'かれい', 'YRF109', 'img/YRF109.png','img/T-YRF109.png','商品選択', 'ゆるふわ',''),
     new ClothItem('', 'いか', 'YRF110', 'img/YRF110.png','img/T-YRF110.png','商品選択', 'ゆるふわ',''),
     new ClothItem('', 'やどかり', 'YRF111', 'img/YRF111.png','img/T-YRF111.png','商品選択', 'ゆるふわ',''),
-
+    
     new ClothItem('', 'かに', 'YRF-112', 'img/YRF112.png','img/T-YRF112.png','商品選択', 'ゆるふわ',''),
-
+    
     // ゆるふわ-イベント
     new ClothItem('', 'イベント1', 'YRF113', 'img/YRF113.png','img/T-YRF113.png','商品選択', 'ゆるふわ','イベント'),
     new ClothItem('', 'イベント2', 'YRF114', 'img/YRF114.png','img/T-YRF114.png','商品選択', 'ゆるふわ','イベント'),
@@ -432,15 +431,16 @@
     new ClothItem('', 'イベント13', 'YRF125', 'img/YRF125.png','img/T-YRF125.png','商品選択', 'ゆるふわ','イベント'),
     new ClothItem('', 'イベント14', 'YRF126', 'img/YRF133.png','img/T-YRF133.png','商品選択', 'ゆるふわ','イベント'),
     new ClothItem('', 'イベント15', 'YRF127', 'img/YRF134.png','img/T-YRF134.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント16', 'YRF128', 'img/YRF135.png','img/T-YRF135.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント17', 'YRF129', 'img/YRF136.png','img/T-YRF136.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント18', 'YRF130', 'img/YRF138.png','img/T-YRF138.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント19', 'YRF131', 'img/YRF139.png','img/T-YRF139.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント20', 'YRF132', 'img/YRF140.png','img/T-YRF140.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント21', 'YRF133', 'img/YRF146.png','img/T-YRF146.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント22', 'YRF134', 'img/YRF141.png','img/T-YRF141.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント23', 'YRF135', 'img/YRF142.png','img/T-YRF142.png','商品選択', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント24', 'YRF136', 'img/YRF143.png','img/T-YRF143.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント16', 'YRF045', 'img/YRF045.png','img/T-YRF045.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント17', 'YRF128', 'img/YRF135.png','img/T-YRF135.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント18', 'YRF129', 'img/YRF136.png','img/T-YRF136.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント19', 'YRF130', 'img/YRF138.png','img/T-YRF138.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント20', 'YRF131', 'img/YRF139.png','img/T-YRF139.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント21', 'YRF132', 'img/YRF140.png','img/T-YRF140.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント22', 'YRF133', 'img/YRF146.png','img/T-YRF146.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント23', 'YRF134', 'img/YRF141.png','img/T-YRF141.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント24', 'YRF135', 'img/YRF142.png','img/T-YRF142.png','商品選択', 'ゆるふわ','イベント'),
+    new ClothItem('', 'イベント25', 'YRF136', 'img/YRF143.png','img/T-YRF143.png','商品選択', 'ゆるふわ','イベント'),
     
     // ゆるふわ-たべもの
     new ClothItem('', 'ぷりん', 'YRF137', 'img/YRF126.png','img/T-YRF126.png','商品選択', 'ゆるふわ','たべもの'),
@@ -691,6 +691,13 @@
                             items[index].tag2,
                             items[index].tag3
                             );
+
+      document.getElementById('item_detail_tag1').textContent = items[index].tag1;
+      document.getElementById('item_detail_tag2').textContent = items[index].tag2;
+      document.getElementById('item_detail_tag3').textContent = items[index].tag3;
+      document.getElementById('item_detail_name').textContent = items[index].itemName;
+      document.getElementById('item_detail_designID').textContent = items[index].designID;
+
     // thumbnailsのすべての要素を取得
     const thumbnails = document.querySelectorAll('.thumbnails > li');
     // 現在の付加されているcurrentを外す
