@@ -6,7 +6,6 @@ main {
   flex-grow: 1;
   width: 800px;
 }
-
 /* パラメータの要素 */
 img {
   vertical-align: bottom;
@@ -16,11 +15,6 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-.container {
-  display: flex;
-  flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
-  flex-grow: 1;
 }
 
 /* ============================== */
