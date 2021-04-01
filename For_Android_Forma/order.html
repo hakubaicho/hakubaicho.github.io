@@ -14,90 +14,89 @@
     <script src="js/connect.js"></script>
   </head>
   <body>
+    
+    <!-- HEADER -->
     <header>
       <div class="header-container">
 
       </div>
     </header>
+    
+    <!-- NAV -->
     <nav>
-
+      <div class="nav-container">
+      </div>
     </nav>
-    <main>
-      <div class="order_title">
-        <span>購入画面</span>
-      </div>
-      <!-- 注文確認エリア -->
-      <div class="order_container">
-        <!-- デザイン -->
-        <div class="order_design_container">
-          <img id="order_design_image">
+
+    <!-- MAIN -->
+    <div class="container">
+      <main>
+        <div class="order_title">
+          <span>購入画面</span>
         </div>
-        <!-- 注文詳細 -->
-      <div class="order_detail_container">
-
-          <p class="design_id" id="designID">K-0001</p>
-          <p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
-
-          <table>
-            <tr>
-              <td>
-                <span class="size-category">Ledies</span>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="size-category">Mens</span>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="size-category">Kids</span>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
-              </td>
-              <td>
-                <label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
-              </td>
-            </tr>
-          </table>
-
-          <label for="color"> 枚数</label>
-
-          <select id="color">  
-            <option selected>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-      </div>
-
+        <!-- 注文確認エリア -->
+        <div class="order_container">
+          <!-- デザイン -->
+          <div class="order_design_container">
+            <img id="order_design_image">
+          </div>
+          <!-- 注文詳細 -->
+          <div class="order_detail_container">
+            <!-- デザイン番号 -->
+            <p class="design_id" id="designID"></p>
+            <!-- 価格 -->
+            <p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+            <!-- サイズ選択 -->
+            <table>
+              <tr>
+                <td>
+                  <span class="size-category">Ledies</span>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="size-category">Mens</span>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="size-category">Kids</span>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
+                </td>
+                <td>
+                  <label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+        </div>
       </div>
       <div class="button_console">
         
@@ -154,13 +153,19 @@
         const el_size = document.getElementsByName('size');
 
         let input_size = '';
+        let isOK = false;
         for( let i=0; i<el_size.length;i++)
         {
           if(el_size[i].checked)
           {
             input_size =el_size[i].value;
+            isOK = true;
             break;
           }
+        }
+        if(!isOK)
+        {
+          alert("サイズをえらんでください");
         }
         console.log(input_size);
         call_print(input_size);

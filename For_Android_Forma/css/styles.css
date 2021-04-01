@@ -4,14 +4,59 @@
   --corporate-color-blue: #009FE8;
   --corporate-color-red: #E50013;
 }
+html {
+  height: 100%;             /* bodyで100%を使うから */
+  width: 100%;
+}
 body {
   user-select: none;         /* 文字列を選択させない */
   margin: 0;
+  height: 100%;             /* bodyで100%を使うから */
+  display: flex;            /* 縦幅いっぱいにするため */
+  flex-direction: column;   /* 縦方向に並べる */
+}
+
+/* ****************************** */
+/* HEADER */
+/* ****************************** */
+header {
+  border: .5px solid black;
+  background-color: lightgray;
+  padding: 20px;
 }
 /* ヘッダ内の高さを固定する */
 .header-container {
+  border: .5px solid gray;
+  background-color: whitesmoke;
   height: 300px;
+  display: flex;
 }
+/* ****************************** */
+/* NAV */
+/* ****************************** */
+nav {
+  border: .5px solid black;
+  background-color: coral;
+  padding: 20px;
+}
+.nav-container {
+  border: .5px solid gray;
+  background-color: tomato;
+  height: 100px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: row;
+}
+/* ****************************** */
+/* MAIN */
+/* ****************************** */
+main {
+  border: .5px solid black;
+  background: aqua;
+  height: 900px;
+}
+
 /* 共通コマンドボタン */
 .button_command {
   padding: 10px 20px;

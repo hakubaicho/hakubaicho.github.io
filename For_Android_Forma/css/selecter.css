@@ -15,7 +15,7 @@ body {
 }
 /* パラメータの要素 */
 div {
-  /* border: 1px solid silver; */
+  border: 1px solid silver;
 }
 img {
   vertical-align: bottom;
@@ -31,19 +31,14 @@ ul {
   flex-wrap: nowrap;        /* はみ出し分を縮小で対応 */
   flex-grow: 1;
 }
+main {
+  flex-grow: 1;
+  width: 800px;
+}
 
 /* ============================== */
 /* HEADERの構成 */
 /* ============================== */
-header {
-  border: .5px solid gainsboro;
-  background-color: lightgray;
-  height: 500px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-}
 /* MAINに配置された選択されたデザイン */
 #thumbnail_selected {
   height: 300px;
@@ -57,20 +52,17 @@ header {
 /* ============================== */
 /* MAINの構成 */
 /* ============================== */
-main {
-  /* background: aqua; */
-  flex-grow: 1;
-  width: 800px;
-  height: 900px;
-}
 /* アイテムを配置を囲むDIV */
 .item_list_container
 {
-  margin: 10px;
+  margin: 10px 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   height: 880px;
   width:  780px;
   overflow-y: scroll;
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color: yellow;
   /* -webkit-overflow-scrolling: touch; */
   /* overflow-scrolling: touch; */
 }
@@ -133,15 +125,6 @@ main {
 /* ============================== */
 /* NAVの構成 */
 /* ============================== */
-nav {
-  /* border: .5px solid gray; */
-  /* background: tomato; */
-  height: 200px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  flex-direction: row;
-}
 /* 共通コマンドボタン */
 .button_category {
   padding: 10px 20px;
@@ -169,8 +152,10 @@ aside {
 /* カテゴリーボタンの配置エリア */
 /* 縦方向に配置する */
 .category_list_container {
-  margin: 10px;
   height: 880px;
+  margin: 10px 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
