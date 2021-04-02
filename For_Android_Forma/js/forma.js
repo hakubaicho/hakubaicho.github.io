@@ -74,6 +74,9 @@
     alert(msg);
     return false;
   }
+  //
+  // Avater再利用でTryOnします。
+  //
   function Reuse_Avatar_TryOnProc()
   {
     console.log("Reuse_Avatar_TryOnProc: Start");
@@ -108,6 +111,9 @@
     reuse_tryon();
     console.log("Reuse_Avatar_TryOnProc: End");
   }
+  //
+  // Avater再利用でTryOnします。（同期処理で非同期）
+  // 
   async function reuse_tryon()
   {
     //----------------------------------------
@@ -254,6 +260,9 @@
     }
   }
   // https://qiita.com/_takeshi_24/items/1403727efb3fd86f0bcd
+  //
+  // Avatar登録とTryOnします。
+  //
   function Avatar_TryOnProc()
   {
     console.log("Avatar_TryOnProc: Start");
@@ -271,6 +280,9 @@
     picture_tryon();
     console.log("Avatar_TryOnProc: End");
   }
+  //
+  // Avatar登録とTryOnします。（同期処理で非同期）
+  //
   async function picture_tryon()
   {
     //----------------------------------------
