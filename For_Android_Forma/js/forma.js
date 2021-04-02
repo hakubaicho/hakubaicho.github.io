@@ -312,23 +312,24 @@
     //----------------------------------------
     // 確認画面
     //----------------------------------------
-     // Avatar / Item が選択されているか
-     if("" === uuid_tryon_item)
-     {
-       const msg = "Item を選択してください";
-       // document.getElementById("canTryOn").textContent = msg;
-       alert(msg);
-       return false;
-     }
-    var res = confirm("Avatar登録しますか？");
-    if( res === true ) {
-      // OKならなにもしない
+    // Avatar / Item が選択されているか
+    if("" === uuid_tryon_item)
+    {
+      const msg = "Item を選択してください";
+      // document.getElementById("canTryOn").textContent = msg;
+      alert(msg);
+      return false;
     }
-    else {
-      // キャンセルならアラートボックスを表示
-      alert("中止します。");
-      return;
-    }
+    // // 確認はしない
+    // var res = confirm("Avatar登録しますか？");
+    // if( res === true ) {
+    //   // OKならなにもしない
+    // }
+    // else {
+    //   // キャンセルならアラートボックスを表示
+    //   alert("中止します。");
+    //   return;
+    // }
     // ローディング画面を表示
     phase_init();
     const spinner = document.getElementById('loading');
