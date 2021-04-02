@@ -156,7 +156,7 @@
   // アバターUUIDを取得します。
   // 
   function fromHTML_call_Get_AvatarUUID(uuid){
-    let ret;
+    let ret = '';
     try
     {
       ret = android.fromHTML_call_Get_AvatarUUID();
@@ -164,8 +164,6 @@
     catch(e)
     {
       console.log(e.message);
-      ret = e.message;
-      ret= '9,999';
     }
     return ret;
   }

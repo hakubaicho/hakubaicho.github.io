@@ -464,8 +464,8 @@
     new ClothItem('772bf012-6554-4d0f-baae-569b7a25f915', 'おばけ', 'SNK003', 'img/SNK003.png','img/T-SNK003.png','TryOn', 'せなけいこ',''),
     new ClothItem('1c1afadd-ba61-4eb9-937d-a4002aad6714', 'ねこちゃん', 'SNK004', 'img/SNK004.png','img/T-SNK004.png','TryOn', 'せなけいこ',''),
     // [TryOn] スーツ
-    new ClothItem('6c3cd363-fb3a-4312-9c48-7f62cbbfa614', 'スーツ1', 'SUI001', 'img/SUT001.png','','TryOn', 'スーツ',''),
-    new ClothItem('1617ff56-6575-42eb-9c64-f111b542683b', 'スーツ2', 'SUI002', 'img/SUT002.png','','TryOn', 'スーツ',''),
+    new ClothItem('6c3cd363-fb3a-4312-9c48-7f62cbbfa614', 'スーツ1', 'SUT001', 'img/SUT001.png','','TryOn', 'スーツ',''),
+    new ClothItem('1617ff56-6575-42eb-9c64-f111b542683b', 'スーツ2', 'SUT002', 'img/SUT002.png','','TryOn', 'スーツ',''),
     // [TryOn] カジュアル
     new ClothItem('5fc20c2b-4198-489a-83fd-d45a5fb95254', 'カジュアル1', 'CAS001', 'img/CAS001.png','','TryOn', 'カジュアル',''),
     // [TryOn] 浴衣

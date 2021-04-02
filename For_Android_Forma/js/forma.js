@@ -74,7 +74,185 @@
     alert(msg);
     return false;
   }
+  function Reuse_Avatar_TryOnProc()
+  {
+    console.log("Reuse_Avatar_TryOnProc: Start");
+    // 対象アイテムの取得
+    try
+    {
+      let obj = fromHTML_call_Get_ItemUUID();
+      document.getElementById('itemuuid').textContent = obj;
+      uuid_tryon_item = obj;
+    }
+    catch(e)
+    {
+      console.log(e);
+    }
+    // 対象Avatarのセット
+    uuid_tryon_avatar ='5f8af8ac-7810-4daf-9a36-5aee2a3b5b57';
+    // 対象アイテムの取得
+    try
+    {
+      let obj = fromHTML_call_Get_AvatarUUID();
+      if(obj == '')
+      {
+        return;
+      }
+      document.getElementById('avataruuid').textContent = obj;
+      uuid_tryon_avatar = obj;
+    }
+    catch(e)
+    {
+      console.log(e);
+    }
+    reuse_tryon();
+    console.log("Reuse_Avatar_TryOnProc: End");
+  }
+  async function reuse_tryon()
+  {
+    //----------------------------------------
+    // 必要項目を試しに代入
+    //----------------------------------------
+    //----------------------------------------
+    // 入力チェック
+    //----------------------------------------
+    // トークンのチェック
+    if(true !== check_token())
+    {
+      alert('ログインできていません');
+      return;
+    }
+    //----------------------------------------
+    // 確認画面
+    //----------------------------------------
+     // Avatar / Item が選択されているか
+     if("" === uuid_tryon_item)
+     {
+       const msg = "Item を選択してください";
+       // document.getElementById("canTryOn").textContent = msg;
+       alert(msg);
+       return false;
+     }
+    // ローディング画面を表示
+    phase_init();
+    const spinner = document.getElementById('loading');
+    const resulter = document.getElementById('camera_result');
+    spinner.classList.remove('loaded');
 
+    /*************************************/
+    // ここはテスト
+    /*************************************/
+    // await ping_wait();
+    // phase_change(0);
+    // await ping_wait();
+    // phase_change(1);
+    // await ping_wait();
+    // phase_change(2);
+    // await ping_wait();
+    // phase_change(3);
+    // await ping_wait();
+    // phase_change(4);
+    // await ping_wait();
+    // spinner.classList.add('loaded');
+    // resulter.classList.remove('loaded');
+    // return;
+    /*************************************/
+    phase_change(0);
+    let doNext = true;
+
+    //***************************************************************************** */
+    // Avatar登録
+    //***************************************************************************** */
+    //***************************************************************************** */
+    // TryOn
+    //***************************************************************************** */
+    phase_change(1);
+    // Avatar / Item が選択されているか
+    if(("" === uuid_tryon_avatar) || ("" === uuid_tryon_item))
+    {
+      const msg = "Avater / Item を選択してください";
+      // document.getElementById("canTryOn").textContent = msg;
+      alert(msg);
+      return false;
+    }
+
+    doNext = true;
+    //----------------------------------------
+    // TryOnに送信する
+    //----------------------------------------
+    debug_console_log('[Start]TryOn-Request');
+    await TryOn()
+    .then(
+      function( response  ) {
+        // 正常結果
+        debug_console_log(`[OK]TryOn-Request : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        debug_console_log(`[NG]TryOn-Request : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // 送信後のPing
+    //----------------------------------------
+    phase_change(2);
+    if(doNext)
+    {
+      let isNext = true;
+      const RETRY_MAX = 100;
+      for(let i = 0 ; i < RETRY_MAX; i++)
+      {
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        debug_console_log(`[Start]TryOn-Ping(${i})`);
+        await TryOnPing()
+        .then(
+          function( response  ) {
+            switch(response)
+            {
+              case 0: //正常
+                isNext = false;
+                debug_console_log(`[OK]TryOn-Ping(${i}) = ${response}`);
+                document.getElementById('tryon_result_picture').src = tryon_media_source;
+                break;
+              case 1:
+                debug_console_log(`[WAIT]TryOn-Ping(${i}) = ${response}`);
+                break;
+              case 2:
+                isNext = false;
+                doNext = false;
+                debug_console_log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            debug_console_log(`[NG]TryOn-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
+        }
+      }
+    }
+    //***************************************************************************** */
+    phase_change(3);
+    // ローディング画面を非表示
+    // spinner = document.getElementById('loading');
+    phase_change(4);
+    await display_wait();
+    spinner.classList.add('loaded');
+    resulter.classList.remove('loaded');
+    if(!doNext)
+    {
+      alert('写真の合成に失敗しました。')
+      return;
+    }
+  }
   // https://qiita.com/_takeshi_24/items/1403727efb3fd86f0bcd
   function Avatar_TryOnProc()
   {
@@ -255,8 +433,8 @@
       spinner.classList.add('loaded');
       return;
     }
-    uuid_tryon_avatar   = avatar_from_camera_register;
-
+    uuid_tryon_avatar = avatar_from_camera_register;
+    fromHTML_call_Set_AvatarUUID(uuid_tryon_avatar);
 
     //***************************************************************************** */
     // TryOn

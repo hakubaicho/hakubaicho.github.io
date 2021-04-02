@@ -342,7 +342,6 @@
   }
   // [保存ボタン]
   function btnimg_click_save() {
-
     Avatar_TryOnProc();
   }
 
@@ -355,6 +354,8 @@
    // 要素の定数か
    const cancel = document.getElementById('cancel');
    const accept = document.getElementById('accept');
+   const reuseAvatar = document.getElementById('reuseAvatar');
+   
    const mask = document.getElementById("mask");
    const modal = document.getElementById("modal");
 
@@ -369,7 +370,12 @@
     // カメラの開始
     syncCamera(video);
   });
-
+  reuseAvatar.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    mask.classList.add('hidden');
+    // すぐにTryOn
+    Reuse_Avatar_TryOnProc();
+  });
   // [詳細を見る]
   mask.addEventListener('click', () => {
     // 確認必須なので何もしない
@@ -390,18 +396,25 @@
   async function init_camera() {
     // カメラデバイス情報の取得
     document.getElementById('camera-status').textContent='v 検索中...';
-    await getCameraDevices()
-    .then(
-      function( response  ) {
-        // 正常結果
-        console.log(`[OK]init_camera : ${response}`);
-      },
-      function( error ) {
-        //エラー処理を記述する
-        console.log(`[NG]init_camera : ${error}`);
-      }
-    )
-    document.getElementById('camera-status').textContent='v 検索完了';
+    try
+    {
+      await getCameraDevices()
+      .then(
+        function( response  ) {
+          // 正常結果
+          console.log(`[OK]init_camera : ${response}`);
+        },
+        function( error ) {
+          //エラー処理を記述する
+          console.log(`[NG]init_camera : ${error}`);
+        }
+      )
+      document.getElementById('camera-status').textContent='v 検索完了';
+    }
+    catch(e)
+    {
+      document.getElementById('camera-status').textContent='v 検索失敗';
+    }
 
     // カメラ接続
     // 前後カメラの設定
