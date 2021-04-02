@@ -134,13 +134,10 @@
         {
           // 最後のカテゴリ
           console.log('fromHTML_call_Category');
-          obj = fromHTML_call_Category();
+          obj = fromHTML_call_Get_Category();
           if(obj.length == 3)
           {
-            if((obj[0]!='') && (obj[1]!='') && (obj[2]!=''))
-            {
-              setItemListTree(obj);
-            }
+            setItemListTree(obj);
           }
         }
         catch(e)
