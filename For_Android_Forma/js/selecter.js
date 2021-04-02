@@ -469,8 +469,8 @@
     // [TryOn] カジュアル
     new ClothItem('5fc20c2b-4198-489a-83fd-d45a5fb95254', 'カジュアル1', 'CAS001', 'img/CAS001.png','','TryOn', 'カジュアル',''),
     // [TryOn] 浴衣
-    new ClothItem('65481657-7d5c-4a20-9524-cda6d0286ec2', '[NG]ゆかた1', 'YKT001', 'img/YKT001.png','','TryOn', 'ゆかた',''),
-    new ClothItem('53fffeef-91c7-4d0b-8d01-edc30075054b', '[NG]ゆかた2', 'YKT002', 'img/YKT002.png','','TryOn', 'ゆかた',''),
+    new ClothItem('65481657-7d5c-4a20-9524-cda6d0286ec2', '[NG]ゆかた1', 'YKT001', 'img/YKT101.png','','TryOn', 'ゆかた',''),
+    new ClothItem('53fffeef-91c7-4d0b-8d01-edc30075054b', '[NG]ゆかた2', 'YKT002', 'img/YKT100.png','','TryOn', 'ゆかた',''),
     new ClothItem('fa036677-d583-418c-9c7e-31db4f830b73', '[OK]ゆかた3', 'YKT003', 'img/YKT003.png','','TryOn', 'ゆかた',''),
     new ClothItem('a7ce30ad-048c-41b0-8161-e61092390b0d', '[OK]ゆかた4', 'YKT004', 'img/YKT009.png','','TryOn', 'ゆかた',''),
   ];
