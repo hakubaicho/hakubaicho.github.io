@@ -100,21 +100,36 @@
     }
     return ret;
   }
+
+  function fromHTML_call_Set_Category(tag1,tag2,tag3) {
+    try
+    {
+      android.fromHTML_call_Set_Category(
+                                          tag1,
+                                          tag2,
+                                          tag3
+                                            );
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
   //
   // 選択されているカテゴリを取得します。
   //
-  function fromHTML_call_Category() {
+  function fromHTML_call_Get_Category() {
     let ret;
     try
     {
-      ret = android.fromHTML_call_Category();
+      ret = android.fromHTML_call_Get_Category();
       ret = ret.split(',');
     }
     catch(e)
     {
       console.log(e.message);
       ret = e.message;
-      ret = ['','',''];
+      ret = ['TryOn','ゆかた',''];
     }
     return ret;
   }

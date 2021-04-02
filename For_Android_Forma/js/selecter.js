@@ -50,10 +50,10 @@
           const param_tag2 = taglist[1];
           const param_tag3 = taglist[2];
           
-          console.log('-------------------------------')
-          console.log(param_tag1, param_tag2, param_tag3);
-          console.log(this.tag1,  this.tag2,  this.tag3);
-          console.log('-------------------------------')
+          // console.log('-------------------------------')
+          // console.log(param_tag1, param_tag2, param_tag3);
+          // console.log(this.tag1,  this.tag2,  this.tag3);
+          // console.log('-------------------------------')
           // タグ１の一致
           if(param_tag1 !== '')
           {
@@ -639,6 +639,8 @@
             document.getElementById('category_tag1').textContent=keyWord[0];
             document.getElementById('category_tag2').textContent=keyWord[1];
             document.getElementById('category_tag3').textContent=keyWord[2];
+
+            fromHTML_call_Set_Category(keyWord[0], keyWord[1], keyWord[2]);
           }
         }
       }
@@ -880,19 +882,19 @@
         }
       });
     }
-    // 確認出力
-    for(let i=0; i<tagsTree.childrenArray.length; i++)
-    {
-      console.log(tagsTree.childrenArray[i].name);
-      for(let j=0; j<tagsTree.childrenArray[i].childrenArray.length; j++)
-      {
-        console.log('\t' + tagsTree.childrenArray[i].childrenArray[j].name);
-        for(let k=0;k<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
-        {
-          console.log('\t\t' + tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name);
-        }
-      }
-    }
+    // // 確認出力
+    // for(let i=0; i<tagsTree.childrenArray.length; i++)
+    // {
+    //   console.log(tagsTree.childrenArray[i].name);
+    //   for(let j=0; j<tagsTree.childrenArray[i].childrenArray.length; j++)
+    //   {
+    //     console.log('\t' + tagsTree.childrenArray[i].childrenArray[j].name);
+    //     for(let k=0;k<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
+    //     {
+    //       console.log('\t\t' + tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name);
+    //     }
+    //   }
+    // }
 
     //-----
     // タグリストから要素を生成する。
