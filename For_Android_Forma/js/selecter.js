@@ -1196,7 +1196,7 @@
   function IsSelectItem() {
     if(currentIndex < 0)
     {
-      alert("えらんでください");
+      alert("商品をえらんでください");
       return false;
     }
     return true;
@@ -1207,7 +1207,7 @@
   function IsHaveUUID() {
     if(currentIndex < 0)
     {
-      alert("えらんでください");
+      alert("商品をえらんでください");
       return false;
     }
     if(selectedItem.uuid === '')
