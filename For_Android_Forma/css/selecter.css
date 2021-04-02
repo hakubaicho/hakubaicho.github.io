@@ -29,9 +29,11 @@ ul {
   border: 2px solid gray;
   border-radius: 20px;
   background-color: white;
-  flex: 1;
-  margin: 0 auto;
-  vertical-align: middle; /* 上下中央に寄せる */ 
+  flex: 1; 
+  
+}
+.detail-box {
+  display: flex;
 }
 .detail_column_title {
   text-align: right;
@@ -39,7 +41,9 @@ ul {
 .detail_column_data {
   padding-left: 20px;;
 }
-
+.detailtable {
+  margin-top: 30px;
+}
 .cell_data, .cell_title {
   color:dimgrey;
   font-size: 1.5em;

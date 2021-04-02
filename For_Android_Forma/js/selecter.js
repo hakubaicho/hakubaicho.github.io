@@ -579,6 +579,15 @@
       targetTag.removeChild( targetTag.firstChild );
     }
     //--------------------------------
+    // 画像選択エリアのスクロール位置を上端に戻します。
+    // https://www.ipentec.com/document/javascript-scroll-element-on-screen#:~:text=JavaScript%E3%81%A7%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E4%BD%8D%E7%BD%AE,%E3%81%A6%E3%80%81%E3%81%9D%E3%81%AE%E5%80%A4%E3%82%92%20document.
+    //--------------------------------
+    var divElement = document.getElementsByClassName('item_list_container') ;
+    let targetTop = document.getElementById('topPos');
+    let rect = targetTop.getBoundingClientRect();
+    var elemtop = rect.top + divElement.pageYOffset;
+    divElement.scrollTop = elemtop;    
+    //--------------------------------
     // キーワードを取得
     //--------------------------------
     let keyWord = '';
@@ -694,12 +703,13 @@
                             items[index].tag2,
                             items[index].tag3
                             );
-
-      document.getElementById('item_detail_tag1').textContent = items[index].tag1;
-      document.getElementById('item_detail_tag2').textContent = items[index].tag2;
-      document.getElementById('item_detail_tag3').textContent = items[index].tag3;
-      document.getElementById('item_detail_name').textContent = items[index].itemName;
-      document.getElementById('item_detail_designID').textContent = items[index].designID;
+    document.getElementById('detail-box').classList.remove('item-hide');
+    document.getElementById('detail-box').classList.remove('item-show');
+    document.getElementById('item_detail_tag1').textContent = items[index].tag1;
+    document.getElementById('item_detail_tag2').textContent = items[index].tag2;
+    document.getElementById('item_detail_tag3').textContent = items[index].tag3;
+    document.getElementById('item_detail_name').textContent = items[index].itemName;
+    document.getElementById('item_detail_designID').textContent = items[index].designID;
 
     // thumbnailsのすべての要素を取得
     const thumbnails = document.querySelectorAll('.thumbnails > li');

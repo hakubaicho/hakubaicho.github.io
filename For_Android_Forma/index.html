@@ -29,29 +29,31 @@
         <div class="header_box">
           <img id="thumbnail_selected_tryon">
         </div>
-        <div class="header_box header_box_last">
-          <table>
-            <tr>
-              <td class="detail_column_title"><span class="cell_title">大分類:</span></td>
-              <td class="detail_column_data"><span class="cell_data" id="item_detail_tag1"></span></td>
-            </tr>
-            <tr>
-              <td class="detail_column_title"><span class="cell_title">中分類:</span></td>
-              <td class="detail_column_data"><span class="cell_data" id="item_detail_tag2"></span></td>
-            </tr>
-            <tr>
-              <td class="detail_column_title"><span class="cell_title">小分類:</span></td>
-              <td class="detail_column_data"><span class="cell_data" id="item_detail_tag3"></span></td>
-            </tr>
-            <tr>
-              <td class="detail_column_title"><span class="cell_title">名称:</span></td>
-              <td class="detail_column_data"><span class="cell_data" id="item_detail_name"></span></td>
-            </tr>
-            <tr>
-              <td class="detail_column_title"><span class="cell_title">デザイン番号:</span></td>
-              <td class="detail_column_data"><span class="cell_data" id="item_detail_designID"></span></td>
-            </tr>
-          </table>
+        <div class="header_box header_box_last item-hide" id="detail-box">
+          <div class="detail-box">
+            <table class="detailtable">
+              <tr>
+                <td class="detail_column_title"><span class="cell_title">大分類:</span></td>
+                <td class="detail_column_data"><span class="cell_data" id="item_detail_tag1"></span></td>
+              </tr>
+              <tr>
+                <td class="detail_column_title"><span class="cell_title">中分類:</span></td>
+                <td class="detail_column_data"><span class="cell_data" id="item_detail_tag2"></span></td>
+              </tr>
+              <tr>
+                <td class="detail_column_title"><span class="cell_title">小分類:</span></td>
+                <td class="detail_column_data"><span class="cell_data" id="item_detail_tag3"></span></td>
+              </tr>
+              <tr>
+                <td class="detail_column_title"><span class="cell_title">名称:</span></td>
+                <td class="detail_column_data"><span class="cell_data" id="item_detail_name"></span></td>
+              </tr>
+              <tr>
+                <td class="detail_column_title"><span class="cell_title">デザイン番号:</span></td>
+                <td class="detail_column_data"><span class="cell_data" id="item_detail_designID"></span></td>
+              </tr>
+            </table>
+          </div>
         </div>
         <!-- 画像の表示　選択されたデザインの人が試着しているもの -->
       </div>
@@ -73,6 +75,9 @@
         <!-- Itemの詳細を表示する -->
         <div class="main-container">
           <div class="item_list_container">
+            <!-- スクロールリセット要素 -->
+            <div id="topPos"></div>
+            <!-- 画像のリスト -->
             <ul class="thumbnails">
             </ul>
           </div>
