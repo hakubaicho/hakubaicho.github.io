@@ -175,8 +175,10 @@ footer {
   animation: sk-scaleout 1.0s infinite ease-in-out;
 }
 #loading {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  /* height: 100vh; */
+  width: 1080px;
+  height: 1920px;
   transition: all 1s;
   background-color: var(--corporate-color-blue);
  
@@ -185,6 +187,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 9999;
+  background-image : url(../img/background.png);
 }
 /* ローディングアニメーション */
 @keyframes sk-scaleout {

@@ -129,8 +129,10 @@
 /* =========================== */
 /* 結果のモーダルウィンドウ */
 #camera_result {
-  width: 100vw;
-  height: 100vh;
+  width: 1080px;
+  height: 1920px;
+  /* width: 100vw; */
+  /* height: 100vh; */
   transition: all 1s;
   background-color: var(--corporate-color-blue);
  
@@ -138,8 +140,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index:
-   9999;
+  z-index: 9999;
+  background-image : url(../img/background.png);
 }
 
 /* 結果のヘッダエリア */
