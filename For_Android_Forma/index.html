@@ -118,15 +118,22 @@
 
         try
         {
-
+          console.log('fromHTML_call_Loaded_pageindex');
           let obj =  fromHTML_call_Loaded_pageindex();
           let msg = '';
           for(let i=0;i<obj.length;i++)
           {
             msg += obj[i] + '\t';
           }
-          
+        }
+        catch(e)
+        {
+
+        }
+        try
+        {
           // 最後のカテゴリ
+          console.log('fromHTML_call_Category');
           obj = fromHTML_call_Category();
           if(obj.length == 3)
           {
