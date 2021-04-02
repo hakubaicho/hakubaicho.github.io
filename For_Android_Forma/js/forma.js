@@ -632,6 +632,9 @@
       isLogIn = true;
 
       document.getElementById('forma_login').textContent = keyOfToken;
+
+      document.getElementById('after_login').classList.remove('item-hide');
+
       // 正常ログインとして各コマンドエリアを表示する
       // area_display_after_login();
       result = true;

@@ -139,12 +139,14 @@
           </p>
         </div>
       </div>
-      <div class="footer-container">
-        <button id="cancel" class="button_command hidden">戻る</button>
-        <button id="accept" class="button_command hidden">進む</button>
-      </div>
-      <div class="footer-container">
-        <button id="reuseAvatar" class="button_command">前回の写真から</button>
+      <div id="after_login" class="item-hide">
+        <div class="footer-container">
+          <button id="cancel" class="button_command hidden">戻る</button>
+          <button id="accept" class="button_command hidden">進む</button>
+        </div>
+        <div class="footer-container">
+          <button id="reuseAvatar" class="button_command item-hide">前回の写真から</button>
+        </div>
       </div>
     </section>
     <!-- モーダルウィンドウの時のマスク -->
@@ -288,6 +290,21 @@
           let obj = fromHTML_call_Get_ItemUUID();
           document.getElementById('itemuuid').textContent = obj;
           uuid_tryon_item = obj;
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+        // 対象アバターの取得
+        try
+        {
+          let obj = fromHTML_call_Get_AvatarUUID();
+          document.getElementById('avataruuid').textContent = obj;
+          uuid_tryon_avatar = obj;
+          if(uuid_tryon_avatar != '')
+          {
+            document.getElementById('reuseAvatar').classList.remove('item-hide');
+          }
         }
         catch(e)
         {
