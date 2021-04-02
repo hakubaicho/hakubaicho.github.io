@@ -3,17 +3,32 @@
 /* 全体の構造 */
 /* ============================== */
 main {
-  display: flex;            /* 縦幅いっぱいにするため */
+  width: 100%;
 }
-
+.main-area-container {
+  display: flex;
+}
+.main-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order_title {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+}
 /* =========================== */
 /* 注文詳細コンテナDIVの囲いをつける */
 /* =========================== */
 .order_container {
+  /* width: 100%; */
+  margin: auto;
   border: 1px solid gray;
   background-color: gainsboro;
   border-radius: 5px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,15 +37,15 @@ main {
 .order_design_container {
   height: 300px;
   width: 300px;
-  border-radius: 5%;
+  /* border-radius: 5%; */
   margin: 20px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 
 #order_design_image {
   height: 300px;
   width: 300px;
-  border-radius: 5%;
+  border-radius: 5px;
   margin: 0;
   border: 1px solid white;
 }
@@ -38,7 +53,7 @@ main {
 /* 注文詳細 */
 .order_detail_container {
   height: 300px;
-  border-radius: 5%;
+  border-radius: 5px;
   margin: 20px;
   border: 1px solid white;
 
