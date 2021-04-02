@@ -101,6 +101,24 @@
     return ret;
   }
   //
+  // 選択されているカテゴリを取得します。
+  //
+  function fromHTML_call_Category() {
+    let ret;
+    try
+    {
+      ret = android.fromHTML_call_Category();
+      ret = ret.split(',');
+    }
+    catch(e)
+    {
+      console.log(e.message);
+      ret = e.message;
+      ret = ['','',''];
+    }
+    return ret;
+  }
+  //
   // 選択中のアイテムを送る
   //
   function fromHTML_call_Set_Item(uuid, itemname, designID, designsrc, wearedImageSrc,tag1,tag2,tag3) {

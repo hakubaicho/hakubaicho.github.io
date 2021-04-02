@@ -116,11 +116,29 @@
         const spinner = document.getElementById('loading');
         spinner.classList.add('loaded');
 
-        let obj =  fromHTML_call_Loaded_pageindex();
-        let msg = '';
-        for(let i=0;i<obj.length;i++)
+        try
         {
-          msg += obj[i] + '\t';
+
+          let obj =  fromHTML_call_Loaded_pageindex();
+          let msg = '';
+          for(let i=0;i<obj.length;i++)
+          {
+            msg += obj[i] + '\t';
+          }
+          
+          // 最後のカテゴリ
+          obj = fromHTML_call_Category();
+          if(obj.length == 3)
+          {
+            if((obj[0]!='') && (obj[1]!='') && (obj[2]!=''))
+            {
+              setItemListTree(obj);
+            }
+          }
+        }
+        catch(e)
+        {
+
         }
       }
 
