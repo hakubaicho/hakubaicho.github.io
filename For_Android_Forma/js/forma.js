@@ -644,6 +644,7 @@
       keyOfToken = obj.key;
       isLogIn = true;
 
+      // ログイン後のエリアを表示
       document.getElementById('forma_login').textContent = keyOfToken;
 
       document.getElementById('after_login').classList.remove('item-hide');

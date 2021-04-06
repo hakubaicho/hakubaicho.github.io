@@ -9,7 +9,10 @@
     <meta name="viewport" content="width=1080,initial-scale=1">
     <title>アイテム選択画面</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/selecter.css">
+    <link rel="stylesheet" href="css/select_item.css">
+    <link rel="stylesheet" href="css/accordion.css">
+    <link rel="stylesheet" href="css/accordion2.css">
+    <link rel="stylesheet" href="css/accordion3.css">
   </head>
   <body>
     <!-- loading中の画面 -->
@@ -88,8 +91,10 @@
         <!-- カテゴリーを表示する -->
         <div class="aside-container">
           <div class="category_list_container">
-            <ul id="categories">
-            </ul>
+            <div id="accordionbox">
+            </div>
+            <div id="accordion">
+            </div>
           </div>
         </div>
       </aside>
@@ -109,7 +114,7 @@
       </div>
     </footer>
 
-    <script src="js/selecter.js"></script>
+    <script src="js/select_item.js"></script>
     <script src="js/connect.js"></script>
     <script>
       window.onload = function() {
