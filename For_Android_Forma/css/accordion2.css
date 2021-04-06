@@ -1,0 +1,46 @@
+/* ▼アコーディオン掲載ボックス全体の装飾(必須ではありません) */
+#accordionbox { margin: 0px; padding: 1em 0.5em; border: 1px dashed #ccc; }
+
+/* ▼アコーディオン内の1項目の装飾 */
+.accordion label {
+    display: block;            /* ブロック化 */
+    /*margin: 5px 0px;*/           /* 外側の余白量 */
+    /*padding: 0.5em 1em;*/        /* 内側の余白量 */
+    /*background-color: #e0e0ff;*/ /* 背景色 */
+    /*border-radius: 0.5em;*/      /* 角丸 */
+    /*cursor: pointer;*/           /* マウスを指形に */
+}
+
+/* ▼ラジオボタンそのものを非表示にする（※セレクタを input[type="radio"] のように限定しても可） */
+#accordionbox input {
+    display: none;
+}
+
+/* ▼チェックが入っていない項目に対するボックスは非表示にする（※アニメーション効果のために、数値で指定できるプロパティを使って非表示状態を実現する） */
+#accordionbox input + label div {
+    opacity: 0;        /* 不透明度(0:完全に透明) */
+    padding: 0px 0px;  /* 内側の余白量 */
+    height: 0px;       /* ボックスの高さ */
+    font-weight: 100;  /* 文字の太さ(100:細い) */
+    overflow: hidden;  /* ※アニメーション途中に文字列がはみ出ないようにするために必要 */
+}
+#accordionbox input + div {
+    opacity: 0;        /* 不透明度(0:完全に透明) */
+    padding: 0px 0px;  /* 内側の余白量 */
+    height: 0px;       /* ボックスの高さ */
+    font-weight: 100;  /* 文字の太さ(100:細い) */
+    overflow: hidden;  /* ※アニメーション途中に文字列がはみ出ないようにするために必要 */
+}
+
+/* ▼チェックが入っている項目に対するボックスは表示する */
+#accordionbox input:checked + label div {
+    opacity: 1;        /* 不透明度(1:完全に不透明) */
+    padding: 5px 0px;  /* 内側の余白量 */
+    height: auto;      /* ボックスの高さ */
+    font-weight: 700;  /* 文字の太さ(700:太い) */
+}
+
+/* ▼アニメーション効果 */
+#accordionbox div {
+    transition: all 0.3s ease-out 0s;	/* 4つの値の意味：すべてのプロパティ(all)を、0.3秒間(0.3s)かけて、ゆっくり終わるように(ease-out)アニメーションさせる。アニメーション開始までの遅延時間は0秒(0s)。 */
+}
