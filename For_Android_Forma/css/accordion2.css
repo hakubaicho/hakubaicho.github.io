@@ -1,5 +1,9 @@
 /* ▼アコーディオン掲載ボックス全体の装飾(必須ではありません) */
-#accordionbox { margin: 0px; padding: 1em 0.5em; border: 1px dashed #ccc; }
+#accordionbox { 
+    margin: 0px; 
+    padding: 1em 0.5em; 
+    border: 1px dashed #ccc; 
+}
 
 /* ▼アコーディオン内の1項目の装飾 */
 .accordion label {

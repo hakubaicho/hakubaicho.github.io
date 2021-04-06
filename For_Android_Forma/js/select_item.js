@@ -1538,7 +1538,7 @@
     // [Tree]カテゴリーリストを生成します。
     // ラジオボタン型(3階層)
     //--------------------------------------------
-    function setCategoryListTree_ra() {
+    function setCategoryListTree_radio_() {
       const tagsTree = new TagsTree('root');   // タグのTree
   
       //-----
@@ -1673,7 +1673,7 @@
       {
         const div_tab1 = document.createElement('div');
         div_tab1.classList.add('accordion-tab');
-        div_tab1.classList.add('button_tag_all');
+        div_tab1.classList.add('button_tag1');
 
         // input
         const input_tag1 = document.createElement('input');
@@ -1727,7 +1727,7 @@
         {
           const div_tab2 = document.createElement('div');
           div_tab2.classList.add('accordion-tab');
-          div_tab2.classList.add('button_tag_all');
+          div_tab2.classList.add('button_tag2');
   
           // input
           const input_tag2 = document.createElement('input');
@@ -1780,7 +1780,7 @@
           {
             const div_tab3 = document.createElement('div');
             div_tab3.classList.add('accordion-tab');
-            div_tab3.classList.add('button_tag_all');
+            div_tab3.classList.add('button_tag3');
             
             // input
             const input_tag3 = document.createElement('input');
