@@ -5,7 +5,7 @@
 }
 
 .accordion {
-  width: 250px;
+  width: 245px;
   max-width: 100%;
 }
 .tag-container {
@@ -26,7 +26,7 @@
 .accordion-open {
   display: block;
   padding: 10px;
-  background: #52a261;
+  /* background: #52a261; */
   cursor: pointer;
   margin: 5px 0;
   font-weight: 700;
@@ -72,7 +72,7 @@
 .accordion-hidden:checked + .accordion-open + .accordion-close {
   height: auto;
   opacity: 1;
-  padding: 10px;
-  background: #55acee;
+  padding: 3px;
+  /* background: #55acee; */
   font-weight: 700;
 }

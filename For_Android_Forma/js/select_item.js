@@ -1133,13 +1133,14 @@
         const input = document.createElement('input');
         input.type = 'checkbox';
         input.id = 'check' + String(i);
-        input.classList.add('accordion-hidden')
+        input.classList.add('accordion-hidden');       
         div_accordion.append(input);
 
         // <label for="check1" class="accordion-open">Question1</label>
         const label_open = document.createElement('label');
         label_open.htmlFor = input.id;
         label_open.classList.add('accordion-open');
+        label_open.classList.add('button_tag1');
         label_open.textContent = `${tagsTree.childrenArray[i].name}`;
 
         // イベントの追加
@@ -1170,13 +1171,14 @@
           const input = document.createElement('input');
           input.type = 'checkbox';
           input.id = 'check' + String(i) + '_' + String(j);
-          input.classList.add('accordion-hidden')
+          input.classList.add('accordion-hidden');
           div_tag2.append(input);
 
           // <label for="check1" class="accordion-open">Question1</label>
           const label_open = document.createElement('label');
           label_open.htmlFor = input.id;
           label_open.classList.add('accordion-open');
+          label_open.classList.add('button_tag2');
           label_open.textContent = `${tagsTree.childrenArray[i].childrenArray[j].name}`;
 
           // イベントの追加
@@ -1213,6 +1215,7 @@
             const label_open = document.createElement('label');
             label_open.htmlFor = input.id;
             label_open.classList.add('accordion-open');
+            label_open.classList.add('button_tag3');
             label_open.textContent = `${tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name}`;
             // イベントの追加
             label_open.addEventListener("click", setItemListTree, false);
