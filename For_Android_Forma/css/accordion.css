@@ -5,7 +5,7 @@
 }
 
 .accordion {
-  width: 245px;
+  width: 240px;
   max-width: 100%;
 }
 .tag-container {
@@ -49,7 +49,7 @@
 /* 一本は縦にして+を作る */
 .accordion-open::after {
   transform: translateY(-50%) rotate(90deg);
-  transition: .5s;
+  transition: .3s;
 
 }
 
@@ -65,7 +65,7 @@
   overflow: hidden;
   padding: 0;
   opacity: 0;
-  transition: 0.5s;/* 表示速度の設定 */
+  transition: 0.3s;/* 表示速度の設定 */
 }
 
 /* チェックボックスにチェックが入ったらAnswer部分を表示する */
