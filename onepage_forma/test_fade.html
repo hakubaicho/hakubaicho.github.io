@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!-- 
+      幅:1080に固定する
+      ほかにいいアイデアったらお願いします。
+    -->
+    <meta name="viewport" content="width=1080,initial-scale=1">
+    <title>アイテム選択画面</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/selecter.css">
+    <link rel="stylesheet" href="css/talkstyle.css">
+  </head>
+  <body>
+
+    <div id="camera-loading">
+      <!-- タイトル -->
+      <p class="title_logo">Tシャツを作ろう！！！</p>
+      <!-- くるくる -->
+      <div class="spinner"></div>
+      <div class="area_talk">
+        <ul class="messages">
+          <!-- 1番目 -->
+          <li class="left_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_1" src="img/c1_character_pc.gif"> -->
+              <img id="logo_1" src="img/c1_character_sp.gif">
+              <img id="logo_moving_1" class="hidden_image" src="img/c1_character_pc.gif">
+              <img id="logo_stop_1" class="hidden_image" src="img/c1_character_greet.png">
+            </div>
+            <div id="phase_1" class="text_conatainer">
+              <div class="text_header">
+                写真をとうろく
+              </div>
+              <div class="text" id="phase_1_text">
+                <!-- あなたの写真をとうろくちゅうです -->
+              </div>
+            </div>
+          </li>
+          <!-- 2番目 -->
+          <li class="right_side">
+            <div class="pic">
+              <!-- <img class="loading_icon_gif loading_icon_left" src="img/c2_character_pc.gif"> -->
+              <img id="logo_2" src="img/c2_character_sp.gif">
+              <img id="logo_moving_2" class="hidden_image" src="img/c2_character_pc.gif">
+              <img id="logo_stop_2" class="hidden_image" src="img/c2_character_greet.png">
+            </div>
+            <div id="phase_2" class="text_conatainer">
+              <div class="text_header">
+                Tシャツをとうろく
+              </div>
+              <div class="text" id="phase_2_text">
+                <!-- 着てみるTしゃつをとうろくちゅうです -->
+              </div>
+            </div>
+          </li>
+          <!-- 3番目 -->
+          <li class="left_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_3" src="img/c3_character_pc.gif"> -->
+              <img id="logo_3" src="img/c3_character_sp.gif">
+              <img id="logo_moving_3" class="hidden_image" src="img/c3_character_pc.gif">
+              <img id="logo_stop_3" class="hidden_image" src="img/c3_character_greet.png">
+            </div>
+            <div id="phase_3" class="text_conatainer">
+              <div class="text_header">
+                きせかえ
+              </div>
+              <div class="text" id="phase_3_text">
+                <!-- あなたにTシャツをきせています -->
+              </div>
+            </div>
+          </li>
+          <!-- 4番目 -->
+          <li class="right_side">
+            <div class="pic">
+              <!-- <img id="logo_moving_4" src="img/c4_character_pc.gif"> -->
+              <img id="logo_4" src="img/c4_character_sp.gif">
+              <img id="logo_moving_4" class="hidden_image" src="img/c4_character_pc.gif">
+              <img id="logo_stop_4" class="hidden_image" src="img/c4_character_greet.png">
+            </div>
+            <div id="phase_4" class="text_conatainer">
+              <div class="text_header">
+                みてみて
+              </div>
+              <div class="text" id="phase_4_text">
+                <!-- さあ　にあっているかな？ -->
+              </div>
+            </div>
+          </li>
+          <!-- おわり -->
+        </ul>
+      </div>
+    </div>
+    <!-- HEADER -->
+    <header>
+      <div class="header-container">
+        <p>header</p>
+      </div>
+    </header>
+    <!-- NAV -->
+    <nav>
+      <p>nav</p>
+    </nav>
+    
+    <div class="container">
+      <!-- MAIN -->
+      <main>
+        <p>main</p>
+      </main>
+      <!-- ASEIDE -->
+      <aside>
+        <p>main</p>
+      </aside>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+      <p>footer</p>
+    </footer>
+
+    <script>
+      window.onload = function() {
+        loadingproc();
+      };
+      async function loadingproc() {
+        for(;;)
+        {
+          phase_init();
+          const spinner = document.getElementById('camera-loading');
+          spinner.classList.remove('loaded');
+          await ping_wait();
+          phase_change(0);
+          await ping_wait();
+          phase_change(1);
+          await ping_wait();
+          phase_change(2);
+          await ping_wait();
+          phase_change(3);
+          await ping_wait();
+          phase_change(4);
+          await ping_wait();
+          
+          spinner.classList.add('loaded');
+          await ping_wait();
+          await ping_wait();
+        }
+      }
+      async function ping_wait()
+      {
+        const waitms = 1500;
+        console.log('待ってます.....');
+        await sleep(waitms);
+        console.log(`${waitms}経過しました。`);
+      }
+      //
+      // 待ち時間処理
+      //
+      function sleep(msec) {
+        return new Promise(function(resolve) {
+          setTimeout(function() {resolve()}, msec);
+        })
+      }
+      function phase_init() {
+        phase1_img.src = phase1_img_move.src;
+        phase2_img.src = phase2_img_move.src;
+        phase3_img.src = phase3_img_move.src;
+        phase4_img.src = phase4_img_move.src;
+        phase1_text.textContent = '';
+        phase2_text.textContent = '';
+        phase2_text.textContent = '';
+        phase2_text.textContent = '';
+
+        tryonShutter.style.backgroundColor = 
+          getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-blue');
+      }
+      function phase_change(index) {
+        switch(index) {
+          case 0:
+            phase1_text.textContent = 'あなたの写真をとうろくちゅうです';
+            phase1.classList.add('fade_in_text_conatainer');
+            break;
+          case 1:
+            phase1_text.textContent = 'おわりました';
+            phase1_img.src = phase1_img_stop.src;
+            phase2_text.textContent = 'きるTしゃつをとうろくちゅうです';
+            phase2.classList.add('fade_in_text_conatainer');
+            break;
+          case 2:
+            phase2_text.textContent = 'おわりました';
+            phase2_img.src = phase2_img_stop.src;
+            phase3_text.textContent = 'あなたにTシャツをきせています';
+            phase3.classList.add('fade_in_text_conatainer');
+            break;
+          case 3:
+            phase3_text.textContent = 'おわりました';
+            phase3_img.src = phase3_img_stop.src;
+            phase4.classList.add('fade_in_text_conatainer');
+            break;
+          case 4:
+            phase3_img.src = phase4_img_stop.src;
+            phase1_img.src = phase1_img_move.src;
+            phase2_img.src = phase2_img_move.src;
+            phase3_img.src = phase3_img_move.src;
+            phase4_img.src = phase4_img_move.src;
+            phase4_text.textContent = 'さあ にあっているかな？';
+            tryonShutter.style.backgroundColor = 
+              getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-red');
+        }
+
+      }
+
+      const phase1 = document.getElementById('phase_1');
+      const phase2 = document.getElementById('phase_2');
+      const phase3 = document.getElementById('phase_3');
+      const phase4 = document.getElementById('phase_4');
+
+      const phase1_text = document.getElementById('phase_1_text');
+      const phase2_text = document.getElementById('phase_2_text');
+      const phase3_text = document.getElementById('phase_3_text');
+      const phase4_text = document.getElementById('phase_4_text');
+
+      const phase1_img = document.getElementById('logo_1');
+      const phase2_img = document.getElementById('logo_2');
+      const phase3_img = document.getElementById('logo_3');
+      const phase4_img = document.getElementById('logo_4');
+
+      const phase1_img_move = document.getElementById('logo_moving_1');
+      const phase2_img_move = document.getElementById('logo_moving_2');
+      const phase3_img_move = document.getElementById('logo_moving_3');
+      const phase4_img_move = document.getElementById('logo_moving_4');
+
+      const phase1_img_stop = document.getElementById('logo_stop_1');
+      const phase2_img_stop = document.getElementById('logo_stop_2');
+      const phase3_img_stop = document.getElementById('logo_stop_3');
+      const phase4_img_stop = document.getElementById('logo_stop_4');
+      // tryon処理中のWait画面
+      const tryonShutter = document.getElementById('camera-loading');
+    </script>
+  </body>
+</html>
