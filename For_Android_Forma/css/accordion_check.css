@@ -1,4 +1,4 @@
-@charset "utf-8";
+
 *,
 *::after,
 *::before {
@@ -24,7 +24,6 @@
   display: block;
   padding: 10px;
   /* background: #52a261; */
-  cursor: pointer;
   margin: 5px 0;
   font-weight: 700;
   position: relative;/* 変更部分 */
@@ -63,6 +62,35 @@
   padding: 0;
   opacity: 0;
   transition: 0.3s;/* 表示速度の設定 */
+}
+
+.accordion-open-none {
+  display: block;
+  padding: 10px;
+  /* background: #52a261; */
+  margin: 5px 0;
+  font-weight: 700;
+  position: relative;/* 変更部分 */
+}
+.accordion-open-none::before,
+.accordion-open-none::after {
+  /* content: ''; */
+  width: 20px;
+  height: 3px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+}
+
+.accordion-close-none {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;
+  /* 表示速度の設定 */
+  /* transition: 0.3s; */
 }
 
 /* チェックボックスにチェックが入ったらAnswer部分を表示する */

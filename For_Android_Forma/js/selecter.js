@@ -99,11 +99,20 @@
     //----------------------------------
     // ノードの追加
     //----------------------------------
-     addChild(childNode) {
+    addChild(childNode) {
       this.childrenArray.push(childNode);
       childNode.parent = this;
     }
-
+    //----------------------------------
+    // ノードがいるか
+    //----------------------------------
+    haveChild() {
+      if(0 < this.childNode.length)
+      {
+        return true;
+      }
+      return false;
+    }
   }
   // *********************************************
   // インスタンスの作成
@@ -1331,6 +1340,7 @@
       div_accordion.classList.add('accordion');
       categories.append(div_accordion);
       
+      let haveChild = false;
       // **********
       // 大分類
       // **********
@@ -1372,8 +1382,17 @@
         const div_tag2 = document.createElement('div');
         div_tag2.classList.add('tag-container');
         label_close.append(div_tag2);
+        
         for(let j=0; j<tagsTree.childrenArray[i].childrenArray.length; j++)
         {
+          if(0 < tagsTree.childrenArray[i].childrenArray[j].childrenArray.length)
+        {
+          haveChild = true;
+        }
+        else
+        {
+          haveChild = false;
+        }
           // <input type="checkbox" id="check1" class="accordion-hidden"></input>
           const input = document.createElement('input');
           input.type = 'checkbox';
@@ -1384,7 +1403,14 @@
           // <label for="check1" class="accordion-open">Question1</label>
           const label_open = document.createElement('label');
           label_open.htmlFor = input.id;
-          label_open.classList.add('accordion-open');
+          if(haveChild)
+          {
+            label_open.classList.add('accordion-open');
+          }
+          else
+          {
+            label_open.classList.add('accordion-open-none');
+          }
           label_open.classList.add('button_tag2');
           label_open.textContent = `${tagsTree.childrenArray[i].childrenArray[j].name}`;
 
@@ -1400,12 +1426,22 @@
           // <label for="check1" class="accordion-close"></label>
           const label_close = document.createElement('label');
           label_close.htmlFor = input.id;
-          label_close.classList.add('accordion-close');
+          if(haveChild)
+            {
+              label_close.classList.add('accordion-close');
+            }
+            else
+            {
+              label_close.classList.add('accordion-close-none');
+            }
           div_tag2.append(label_close);
           
           // **********
           // 小分類
           // **********
+
+            haveChild = false;
+
           const div_tag3 = document.createElement('div');
           div_tag3.classList.add('tag-container');
           label_close.append(div_tag3);
@@ -1421,7 +1457,14 @@
             // <label for="check1" class="accordion-open">Question1</label>
             const label_open = document.createElement('label');
             label_open.htmlFor = input.id;
-            label_open.classList.add('accordion-open');
+            if(haveChild)
+            {
+              label_open.classList.add('accordion-open');
+            }
+            else
+            {
+              label_open.classList.add('accordion-open-none');
+            }
             label_open.classList.add('button_tag3');
             label_open.textContent = `${tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name}`;
             // イベントの追加
@@ -1436,103 +1479,18 @@
             // <label for="check1" class="accordion-close"></label>
             const label_close = document.createElement('label');
             label_close.htmlFor = input.id;
-            label_close.classList.add('accordion-close');
+            if(haveChild)
+            {
+              label_close.classList.add('accordion-close');
+            }
+            else
+            {
+              label_close.classList.add('accordion-close-none');
+            }
             div_tag3.append(label_close);
           }
         }
       }
-      //==========================================
-      // 大分類
-      //==========================================
-      
-      for(let i=0; i<tagsTree.childrenArray.length; i++)
-      {
-        const li = document.createElement('li');            // li を生成
-        const button = document.createElement('button');    // button を生成(タグをテキストにしたボタン要素を追加する)
-        button.textContent = `${tagsTree.childrenArray[i].name}`;
-        button.classList.add('button_tag1');
-        // イベントの追加
-        button.addEventListener("click", setItemListTree, false);
-        button.eventParam = [
-                              tagsTree.childrenArray[i].name,
-                              '',
-                              '',
-                            ];
-      }
-      // //--------------------------------------
-      // // カテゴリボタンの生成
-      // //--------------------------------------
-      // for(let i=0; i<tagsTree.childrenArray.length; i++)
-      // {
-      //   console.log(tagsTree.childrenArray[i].name);
-      //   // =====
-      //   // [大分類]
-      //   // =====
-      //   // 要素の生成
-      //   const li = document.createElement('li');            // li を生成
-      //   const button = document.createElement('button');    // button を生成(タグをテキストにしたボタン要素を追加する)
-      //   button.textContent = `${tagsTree.childrenArray[i].name}`;
-      //   button.classList.add('button_tag1');
-      //   // イベントの追加
-      //   button.addEventListener("click", setItemListTree, false);
-      //   button.eventParam = [
-      //                         tagsTree.childrenArray[i].name,
-      //                         '',
-      //                         '',
-      //                       ];
-        
-      //   // **********************************
-      //   // ここで中分類
-      //   // **********************************
-      //   // =====
-      //   for(let j=0; j<tagsTree.childrenArray[i].childrenArray.length; j++)
-      //   {
-      //     console.log('\t' + tagsTree.childrenArray[i].childrenArray[j].name);
-      //     // =====
-      //     // [中分類]
-      //     // =====
-      //     // 要素の生成
-      //     const li = document.createElement('li');            // li を生成
-      //     const button = document.createElement('button');    // button を生成(タグをテキストにしたボタン要素を追加する)
-      //     button.textContent = `${tagsTree.childrenArray[i].childrenArray[j].name}`;
-      //     button.classList.add('button_tag2');
-      //     // イベントの追加
-      //     button.addEventListener("click", setItemListTree, false);
-      //     button.eventParam = [
-      //                           tagsTree.childrenArray[i].name,
-      //                           tagsTree.childrenArray[i].childrenArray[j].name,
-      //                           '',
-      //                         ];
-
-      //     // 配置
-      //     li.appendChild(button);         // button の配置
-      //     categories.appendChild(li);   // li の配置
-      //     // =====
-      //     for(let k=0;k<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
-      //     {
-      //       console.log('\t\t' + tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name);
-      //       // =====
-      //       // [小分類]
-      //       // =====
-      //       // 要素の生成
-      //       const li = document.createElement('li');            // li を生成
-      //       const button = document.createElement('button');    // button を生成(タグをテキストにしたボタン要素を追加する)
-      //       button.textContent = `${tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name}`;
-      //       button.classList.add('button_tag3');
-      //       // イベントの追加
-      //       button.addEventListener("click", setItemListTree, false); 
-      //       button.eventParam = [
-      //                             tagsTree.childrenArray[i].name,
-      //                             tagsTree.childrenArray[i].childrenArray[j].name,
-      //                             tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name,
-      //                           ];
-      //       // 配置
-      //       li.appendChild(button);         // button の配置
-      //       categories.appendChild(li);   // li の配置
-      //       // =====
-      //     }
-      //   }
-      // }
     }
 
     //--------------------------------------------
@@ -1707,6 +1665,7 @@
         // span
         const span1 = document.createElement('span');
         span1.classList.add('platform-name');
+        span1.classList.add('button_tag1');
         span1.textContent = `${tagsTree.childrenArray[i].name}`;
         div_info1.append(span1);
 
@@ -1761,6 +1720,7 @@
           // span
           const span2 = document.createElement('span');
           span2.classList.add('platform-name');
+          span2.classList.add('button_tag2');
           span2.textContent = `${tagsTree.childrenArray[i].childrenArray[j].name}`;
           div_info2.append(span2);
           // 配置
@@ -1769,55 +1729,60 @@
           // **********
           // 小分類
           // **********
-          // 子要素を包む
-          const div_tab_content2 = document.createElement('div');
-          div_tab_content2.classList.add('accordion-tab-content');
-          div_tab2.append(div_tab_content2);
-
-          const div_wapper2 = document.createElement('div');
-          div_wapper2.classList.add('wrapper');
-          div_tab_content2.append(div_wapper2);
-          for(let k=0; k<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
+          if(0<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length)
           {
-            const div_tab3 = document.createElement('div');
-            div_tab3.classList.add('accordion-tab');
-            div_tab3.classList.add('button_tag3');
+
+            // 子要素を包む
+            const div_tab_content2 = document.createElement('div');
+            div_tab_content2.classList.add('accordion-tab-content');
+            div_tab2.append(div_tab_content2);
             
-            // input
-            const input_tag3 = document.createElement('input');
-            input_tag3.type = 'radio';
-            input_tag3.name = 'tag_root_' + String(i) + '_' + String(j);
-            input_tag3.id = 'radio_tag_root_' + String(i) + '_' + String(j) + '_' + String(k);
-            input_tag3.classList.add('accordion-input');
-            div_tab3.append(input_tag3);
-            // label
-            const label_tag3 = document.createElement('label');
-            label_tag3.htmlFor = input_tag3.id;
-            label_tag3.classList.add('accordion-label');
-            // イベントの追加
-            label_tag3.addEventListener("click", setItemListTree, false);
-            label_tag3.eventParam = [
-              tagsTree.childrenArray[i].name,
-              tagsTree.childrenArray[i].childrenArray[j].name,
-              tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name,
-            ];
-            div_tab3.append(label_tag3);
-            
-            // content
-            const div_content3 = document.createElement('div');
-            div_content3.classList.add('accordion-content');
-            div_tab3.append(div_content3);
-            // info
-            const div_info3 = document.createElement('div');
-            div_info3.classList.add('accordion-info');
-            div_content3.append(div_info3);
-            // span
-            const span3 = document.createElement('span');
-            span3.classList.add('platform-name');
-            span3.textContent = `${tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name}`;
-            div_info3.append(span3);
-            // 配置
-            div_wapper2.append(div_tab3);            
+            const div_wapper2 = document.createElement('div');
+            div_wapper2.classList.add('wrapper');
+            div_tab_content2.append(div_wapper2);
+            for(let k=0; k<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
+            {
+              const div_tab3 = document.createElement('div');
+              div_tab3.classList.add('accordion-tab');
+              div_tab3.classList.add('button_tag3');
+              
+              // input
+              const input_tag3 = document.createElement('input');
+              input_tag3.type = 'radio';
+              input_tag3.name = 'tag_root_' + String(i) + '_' + String(j);
+              input_tag3.id = 'radio_tag_root_' + String(i) + '_' + String(j) + '_' + String(k);
+              input_tag3.classList.add('accordion-input');
+              div_tab3.append(input_tag3);
+              // label
+              const label_tag3 = document.createElement('label');
+              label_tag3.htmlFor = input_tag3.id;
+              label_tag3.classList.add('accordion-label');
+              // イベントの追加
+              label_tag3.addEventListener("click", setItemListTree, false);
+              label_tag3.eventParam = [
+                tagsTree.childrenArray[i].name,
+                tagsTree.childrenArray[i].childrenArray[j].name,
+                tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name,
+              ];
+              div_tab3.append(label_tag3);
+              
+              // content
+              const div_content3 = document.createElement('div');
+              div_content3.classList.add('accordion-content');
+              div_tab3.append(div_content3);
+              // info
+              const div_info3 = document.createElement('div');
+              div_info3.classList.add('accordion-info');
+              div_content3.append(div_info3);
+              // span
+              const span3 = document.createElement('span');
+              span3.classList.add('platform-name');
+              span3.classList.add('button_tag3');
+              span3.textContent = `${tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name}`;
+              div_info3.append(span3);
+              // 配置
+              div_wapper2.append(div_tab3);            
+            }
           }
         }
       }
