@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=1080,initial-scale=1">
     <title>アイテム選択画面</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/select_item.css">
-    <link rel="stylesheet" href="css/accordion_check.css">
-    <link rel="stylesheet" href="css/accordion_radio.css">
+    <link rel="stylesheet" href="css/selecter.css">
   </head>
   <body>
     <!-- loading中の画面 -->
@@ -89,12 +87,10 @@
       <aside>
         <!-- カテゴリーを表示する -->
         <div class="aside-container">
-          <!-- <div class="category_list_container"> -->
-            <div id="accordionbox" class="category_list_container">
-            </div>
-            <!-- <div id="accordion">
-            </div> -->
-          <!-- </div> -->
+          <div class="category_list_container">
+            <ul id="categories">
+            </ul>
+          </div>
         </div>
       </aside>
     </div>
@@ -108,9 +104,8 @@
         <button class="button_command" onclick="gotoOrder()">撮影せずに購入</button>
       </div>
       <div class="footer-command-area">
-        <button class="button_warning" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
-        <button class="button_warning" onclick="setCategoryListTree_radiobutton()">ラジオ</button>
-        
+        <button class="button_caution" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
+        <button class="button_caution" onclick="setCategoryListTree_radiobutton()">ラジオ</button>
         <button class="button_caution" onclick="location.href='test_fade.html'">試着中デモ</button>
         <button class="button_caution" onclick="call_exit()">終 了</button>
       </div>

@@ -139,11 +139,13 @@
           </p>
         </div>
       </div>
+      <!-- 今回の写真撮影 -->
+      <div class="footer-container">
+        <button id="cancel" class="button_command">やめる</button>
+        <button id="accept" class="button_command hidden">撮影する</button>
+      </div>
+      <!-- 前回の写真の再利用 -->
       <div id="after_login" class="item-hide">
-        <div class="footer-container">
-          <button id="cancel" class="button_command hidden">やめる</button>
-          <button id="accept" class="button_command hidden">撮影する</button>
-        </div>
         <div class="footer-container">
           <button id="reuseAvatar" class="button_command item-hide">前回の写真から</button>
         </div>
@@ -197,7 +199,8 @@
         </div>
         <div class="box_command">
           <img src="img/shutter.png" id="btn_image_shutter" onclick="btnimg_click_shutter()">
-          <p>撮影(取り直し)</p>
+          <p>撮影</p>
+          <p>(撮り直し)</p>
         </div>
         <div class="box_command">
           <img src="img/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
