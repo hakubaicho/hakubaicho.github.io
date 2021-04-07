@@ -61,6 +61,10 @@
   let register_item_source_uuid       = '';
 
   
+  function Set_itemUUid(itemuuid)
+  {
+    uuid_tryon_item = itemuuid;
+  }
   //--------------------------------------------
   // ログイン状態か確認します。
   //--------------------------------------------
@@ -80,17 +84,17 @@
   function Reuse_Avatar_TryOnProc()
   {
     console.log("Reuse_Avatar_TryOnProc: Start");
-    // 対象アイテムの取得
-    try
-    {
-      let obj = fromHTML_call_Get_ItemUUID();
-      document.getElementById('itemuuid').textContent = obj;
-      uuid_tryon_item = obj;
-    }
-    catch(e)
-    {
-      console.log(e);
-    }
+    // // 対象アイテムの取得
+    // try
+    // {
+    //   let obj = fromHTML_call_Get_ItemUUID();
+    //   document.getElementById('itemuuid').textContent = obj;
+    //   uuid_tryon_item = obj;
+    // }
+    // catch(e)
+    // {
+    //   console.log(e);
+    // }
     // 対象Avatarのセット
     uuid_tryon_avatar ='5f8af8ac-7810-4daf-9a36-5aee2a3b5b57';
     // 対象アイテムの取得
@@ -264,17 +268,17 @@
   function Avatar_TryOnProc()
   {
     console.log("Avatar_TryOnProc: Start");
-    // 対象アイテムの取得
-    try
-    {
-      let obj = fromHTML_call_Get_ItemUUID();
-      document.getElementById('itemuuid').textContent = obj;
-      uuid_tryon_item = obj;
-    }
-    catch(e)
-    {
-      console.log(e);
-    }
+    // // 対象アイテムの取得
+    // try
+    // {
+    //   let obj = fromHTML_call_Get_ItemUUID();
+    //   document.getElementById('itemuuid').textContent = obj;
+    //   uuid_tryon_item = obj;
+    // }
+    // catch(e)
+    // {
+    //   console.log(e);
+    // }
     picture_tryon();
     console.log("Avatar_TryOnProc: End");
   }

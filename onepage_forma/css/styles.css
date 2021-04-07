@@ -241,6 +241,20 @@ footer {
   /* background-image : url(../img/background.png); */
 }
 
+#order-page {
+  width: 1080px;
+  height: 1920px;
+  /* transition: all 1s; */
+  /* background-color: var(--corporate-color-blue); */
+ 
+/* 以下のコードを追加 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  /* background-image : url(../img/background.png); */
+}
+
 /* ローディングアニメーション */
 @keyframes sk-scaleout {
   0% {

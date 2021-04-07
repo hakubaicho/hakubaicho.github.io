@@ -865,6 +865,9 @@
   const imgDesign = document.getElementById('thumbnail_selected');
   const imgWeared = document.getElementById('thumbnail_selected_tryon');
   
+  function GetSelected_Item() {
+    return selectedItem;
+  }
   //--------------------------------------------
   // アイテムリストを生成します。
   // セレクトタグで該当するものを

@@ -16,6 +16,8 @@
     <!-- Camera.html -->
     <link rel="stylesheet" href="css/camara.css">
     <link rel="stylesheet" href="css/talkstyle.css">
+		<!-- Order.html -->
+		<link rel="stylesheet" href="css/order.css">
 		
   </head>
   <body>
@@ -111,7 +113,7 @@
 				<div class="footer-container">
 					<!-- <button class="button_command" onclick="gotoCamera()">撮影して試着</button> -->
 					<button class="button_command" onclick="jumpto_Camera()">撮影して試着</button>
-					<button class="button_command" onclick="gotoOrder()">撮影せずに購入</button>
+					<button class="button_command" onclick="jumpto_Order()">撮影せずに購入</button>
 				</div>
 				<div class="footer-command-area">
 					<button class="button_warning" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
@@ -275,11 +277,11 @@
 			<div  id="camera_result_footer">
 				<div class="footer-container">
 					<button class="button_command" onclick="jumpto_index_from_camera()">選びなおす</button>
-					<button class="button_command" onclick="location.href='order.html'">購入</button>
+					<button class="button_command" onclick="jumpto_Order()">購入</button>
 				</div>
 			</div>
 		</div>
-		<!-- indexのメイン部分 -->
+		<!-- cameraのメイン部分 -->
 		<div id="camera-page" class="loaded">
 			<!-- HEADER -->
 			<!-- NAV -->
@@ -378,7 +380,103 @@
 		<!-- ******************************************************************************* -->
 		<!-- order.html -->
 		<!-- ******************************************************************************* -->
-
+		<div id="order-page" class="loaded">
+			<!-- HEADER -->
+			<header>
+				<div class="header-container">
+	
+				</div>
+			</header>
+			
+			<!-- NAV -->
+			<nav>
+				<div class="nav-container">
+					<div class="order_title">
+						<span>購入画面</span>
+					</div>
+				</div>
+			</nav>
+			<!-- MAIN-AREA -->
+			<div class="main-area-container">
+				<!-- MAIN -->
+				<main>
+					<div class="main-container">
+						
+						<!-- 注文確認エリア -->
+						<div class="order_container">
+							<!-- デザイン -->
+							<div class="order_design_container">
+								<img id="order_design_image">
+							</div>
+							<!-- 注文詳細 -->
+							<div class="order_detail_container">
+								<!-- デザイン番号 -->
+								<p class="design_id" id="designID"></p>
+								<!-- 価格 -->
+								<p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+								<!-- サイズ選択 -->
+								<table>
+									<tr>
+										<td>
+											<span class="size-category">Ledies</span>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="size-category">Mens</span>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="size-category">Kids</span>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
+										</td>
+										<td>
+											<label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
+										</td>
+									</tr>
+								</table>
+						</div>
+					</div>
+					</div>
+				</div>
+			</main>
+			<footer>
+				<div class="footer-container">
+					<button class="button_command" type=button onclick="jumpto_index_from_order()">選びなおす</button>
+					<button class="button_command" type=button onclick="getPrintData()">印刷</button>
+				</div>
+				<div class="footer-command-area">
+					<button class="button_caution" type=button onclick="call_exit()">終 了</button>
+				</div>
+			</footer>
+		</div>
 
 		<script src="js/selecter.js"></script>
 		<script src="js/connect.js"></script>
@@ -467,7 +565,10 @@
 
       };
 		
-			// カメラ撮影からメインページに遷移する
+			// **********************
+			// ページ間の移動
+			// **********************
+			// index <- camera
 			function jumpto_index_from_camera() {
 				// ほかのページを消し込む
 				document.getElementById('modal').classList.add('hidden');
@@ -478,6 +579,53 @@
 				// 対象ページを開く
 				document.getElementById('index-page').classList.remove('loaded');
 			}
+			// index <- order
+			function jumpto_index_from_order() {
+				// ほかのページを消し込む
+				document.getElementById('order-page').classList.add('loaded');
+
+				// 対象ページを開く
+				document.getElementById('index-page').classList.remove('loaded');
+			}
+			// camera <- index
+			function jumpto_Camera() {
+				if(!IsSelectItem())return;
+				if(!IsHaveUUID())return;
+
+				document.getElementById('itemuuid').textContent = GetSelected_Item().uuid;
+				Set_itemUUid(GetSelected_Item().uuid);
+				console.log(uuid_tryon_item);
+				// ほかのページを消し込む
+				document.getElementById('index-page').classList.add('loaded');
+
+				// 対象ページを開く
+				document.getElementById('modal').classList.remove('hidden');
+				document.getElementById('mask').classList.remove('hidden');
+				// document.getElementById('camera-page').classList.remove('loaded');
+				}
+			// order <- index, camera
+			function jumpto_Order() {
+				if(!IsSelectItem())return;
+
+				// 選択されているアイテムを反映
+				document.getElementById('order_design_image').src = GetSelected_Item().designsrc;
+				document.getElementById('designID').textContent = GetSelected_Item().designID;
+
+				// ほかのページを消し込む
+				document.getElementById('index-page').classList.add('loaded');
+
+				document.getElementById('modal').classList.add('hidden');
+		    document.getElementById('mask').classList.add('hidden');
+		    document.getElementById('camera_result').classList.add('loaded');
+				document.getElementById('camera-page').classList.add('loaded');
+
+				// 対象ページを開く
+				document.getElementById('order-page').classList.remove('loaded');
+			}
+			
+			// **********************
+			// camera.html
+			// **********************
 			// プライバシーポリシーの[すすむ]
 			function camera_accept_click() {
 				// プライバシーの消し込み
@@ -490,22 +638,6 @@
 				syncCamera(video);
 			}
 
-			function jumpto_Camera() {
-				if(!IsSelectItem())return;
-				if(!IsHaveUUID())return;
-
-				// ほかのページを消し込む
-				document.getElementById('index-page').classList.add('loaded');
-
-				// 対象ページを開く
-				document.getElementById('modal').classList.remove('hidden');
-				document.getElementById('mask').classList.remove('hidden');
-				// document.getElementById('camera-page').classList.remove('loaded');
- 			 }
-			
-			function jumpto_Order() {
-
-			}
 		
 		</script>
   </body>

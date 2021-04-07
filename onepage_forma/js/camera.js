@@ -85,6 +85,14 @@
     
     // すでにカメラと接続していたら停止
     stopCamera();
+
+    // videoタグの表示
+    video.classList.remove("item-hide");
+    video.classList.add("item-show");
+    // canvasタグの非表示
+    $canvas_Photo.classList.remove("item-show");
+    $canvas_Photo.classList.add("item-hide");
+    
     // カメラと接続する
     navigator.mediaDevices.getUserMedia(CONSTRAINTS)
       .then( (stream) => {
@@ -279,10 +287,10 @@
 
   // カウントダウン音声
   function play_countdown() {
-    // videoタグの非表示
+    // videoタグの表示
     video.classList.remove("item-hide");
     video.classList.add("item-show");
-    // canvasタグの表示
+    // canvasタグの非表示
     $canvas_Photo.classList.remove("item-show");
     $canvas_Photo.classList.add("item-hide");
 
