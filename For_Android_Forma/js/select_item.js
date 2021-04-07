@@ -985,7 +985,7 @@
     // [Tree]カテゴリーリストを生成します。
     // チェックボックス型
     //--------------------------------------------
-    function setCategoryListTree() {
+    function setCategoryListTree_checkbox() {
       const tagsTree = new TagsTree('root');   // タグのTree
   
       //-----
@@ -1327,221 +1327,12 @@
       //   }
       // }
     }
-    //--------------------------------------------
-    // [Tree]カテゴリーリストを生成します。
-    // ラジオボタン型
-    //--------------------------------------------
-    function setCategoryListTree_radio() {
-      const tagsTree = new TagsTree('root');   // タグのTree
-  
-      //-----
-      // カテゴリーボタンの要素をクリア
-      //-----
-      const categories = document.getElementById("accordionbox");
-      while( categories.firstChild ){
-        categories.removeChild( categories.firstChild );
-      }
-      //-----
-      // タグのツリー作成
-      //-----
-      // 大分類
-      items.forEach((item) => {
-        let hit = false;
-        for(let i = 0; i < tagsTree.childrenArray.length; i++)
-        {
-            if(item.tag1 === tagsTree.childrenArray[i].name)
-            {
-              hit = true;
-            }
-        }
-        if(!hit)
-        {
-          if(item.tag1 != '')
-          {
-            tagsTree.addChild(new TagsTree(item.tag1));
-          }
-        }
-      });
-        
-      // 中分類
-      for(let i = 0; i < tagsTree.childrenArray.length; i++) {
-        items.forEach((item) => {
-          if(tagsTree.childrenArray[i].name === item.tag1) {
-            let hit = false;
-            for(let j = 0; j < tagsTree.childrenArray[i].childrenArray.length; j++)
-            {
-                if(item.tag2 === tagsTree.childrenArray[i].childrenArray[j].name)
-                {
-                  hit = true;
-                }
-            }
-            if(!hit)
-            {
-              if(item.tag2 != '')
-              {
-                tagsTree.childrenArray[i].addChild(new TagsTree(item.tag2));
-              }
-            }
-          }
-        });
-      }
-      // 小分類
-      for(let i = 0; i < tagsTree.childrenArray.length; i++) {
-        items.forEach((item) => {
-          if(tagsTree.childrenArray[i].name === item.tag1) 
-          {
-            for(let j = 0; j < tagsTree.childrenArray[i].childrenArray.length; j++)
-            {
-              if(item.tag2 === tagsTree.childrenArray[i].childrenArray[j].name)
-              {
-                let hit = false;
-                for(let k = 0; k < tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
-                {
-                    if(item.tag3 === tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name)
-                    {
-                      hit = true;
-                    }
-                }
-                if(!hit)
-                {
-                  if(item.tag3 != '')
-                  {
-                    tagsTree.childrenArray[i].childrenArray[j].addChild(new TagsTree(item.tag3));
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-
-      //--------------------------------------
-      // カテゴリすべてボタンの生成
-      //--------------------------------------
-      const div = document.createElement('div');
-      const button = document.createElement('button');    // button を生成(タグをテキストにしたボタン要素を追加する)
-      button.textContent = `すべて`;
-      button.classList.add('button_tag_all');
-      // イベントの追加
-      button.addEventListener("click", setItemListTree, false);
-      button.eventParam = [
-                            '',
-                            '',
-                            '',
-                          ];
-      // 配置
-      div.appendChild(button);         // button の配置
-      categories.append(div);
-      
-      // **********
-      // 大分類
-      // **********
-      for(let i=0; i<tagsTree.childrenArray.length; i++)
-      {
-        // 大元のアコーディオン
-        const div_tag1 = document.createElement('div');
-        div_tag1.classList.add('accordion');
-        categories.append(div_tag1);
-
-        // <input type="radio" name="accordion1" id="accordion1A"></input>
-        const input_tag1 = document.createElement('input');
-        input_tag1.type = 'radio';
-        input_tag1.name = 'tag_root';
-        input_tag1.id = 'radio' + String(i);
-        // イベントの追加
-        input_tag1.addEventListener("click", setItemListTree, false);
-        input_tag1.eventParam = [
-                              tagsTree.childrenArray[i].name,
-                              '',
-                              '',
-                            ];
-        div_tag1.appendChild(input_tag1);
-
-        // <label for="accordion1A">
-        const label_tag1 = document.createElement('label');
-        label_tag1.classList.add('button_tag1');
-        label_tag1.classList.add('button');
-        label_tag1.htmlFor = input_tag1.id;
-        label_tag1.textContent = `${tagsTree.childrenArray[i].name}`;
-        div_tag1.appendChild(label_tag1);
-
-
-
-        // **********
-        // 中分類
-        // **********
-        const div_tag2 = document.createElement('div');
-        div_tag2.classList.add('accordion');
-        label_tag1.append(div_tag2);
-
-        for(let j=0; j<tagsTree.childrenArray[i].childrenArray.length; j++)
-        {
-          // <input type="radio" name="accordion1" id="accordion1A"></input>
-          const input_tag2 = document.createElement('input');
-          input_tag2.type = 'radio';
-          input_tag2.name = 'tag' + String(i);
-          input_tag2.id = 'radio' + String(i) + '_' + String(j);
-          // イベントの追加
-          input_tag2.addEventListener("click", setItemListTree, false);
-          input_tag2.eventParam = [
-                                tagsTree.childrenArray[i].name,
-                                tagsTree.childrenArray[i].childrenArray[j].name,
-                                '',
-                              ];
-          div_tag2.appendChild(input_tag2);
-
-          // <label for="accordion1A">
-          const label_tag2 = document.createElement('label');
-          label_tag2.classList.add('button_tag2');
-          label_tag2.classList.add('button');
-          
-          label_tag2.htmlFor = input_tag2.id;
-          label_tag2.textContent = `${tagsTree.childrenArray[i].childrenArray[j].name}`;
-
-          div_tag2.appendChild(label_tag2);
-          
-          // **********
-          // 小分類
-          // **********
-          const div_tag3 = document.createElement('div');
-          div_tag3.classList.add('accordion');
-          label_tag2.append(div_tag3);
-
-          for(let k=0; k<tagsTree.childrenArray[i].childrenArray[j].childrenArray.length; k++)
-          {
-            // <input type="radio" name="accordion1" id="accordion1A"></input>
-            const input_tag3 = document.createElement('input');
-            input_tag3.type = 'radio';
-            input_tag3.name = 'tag' + String(i) + '_' + String(j);
-            input_tag3.id = 'radio' + String(i) + '_' + String(j) + '_' + String(k);
-            // イベントの追加
-            input_tag3.addEventListener("click", setItemListTree, false);
-            input_tag3.eventParam = [
-                                tagsTree.childrenArray[i].name,
-                                tagsTree.childrenArray[i].childrenArray[j].name,
-                                tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name,
-                              ];
-            div_tag3.appendChild(input_tag3);
-
-            // <label for="accordion1A">
-            const label_tag3 = document.createElement('label');
-            label_tag3.classList.add('button_tag3');
-            label_tag3.classList.add('button');
-            label_tag3.htmlFor = input_tag3.id;
-            label_tag3.textContent = `${tagsTree.childrenArray[i].childrenArray[j].childrenArray[k].name}`;
-
-
-            div_tag3.appendChild(label_tag3);
-          }
-        }
-      }
-    }
 
     //--------------------------------------------
     // [Tree]カテゴリーリストを生成します。
     // ラジオボタン型(3階層)
     //--------------------------------------------
-    function setCategoryListTree_radio_() {
+    function setCategoryListTree_radiobutton() {
       const tagsTree = new TagsTree('root');   // タグのTree
   
       //-----
@@ -1876,6 +1667,7 @@
     // 画面構成を作る
     // setItemList('');
     // setCategoryList();
-    setCategoryListTree();
+    // setCategoryListTree();
+    setCategoryListTree_radiobutton();
     setItemListTree(['','','']);
   }

@@ -10,9 +10,8 @@
     <title>アイテム選択画面</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/select_item.css">
-    <link rel="stylesheet" href="css/accordion.css">
-    <link rel="stylesheet" href="css/accordion2.css">
-    <!-- <link rel="stylesheet" href="css/accordion3.css"> -->
+    <link rel="stylesheet" href="css/accordion_check.css">
+    <link rel="stylesheet" href="css/accordion_radio.css">
   </head>
   <body>
     <!-- loading中の画面 -->
@@ -93,8 +92,8 @@
           <div class="category_list_container">
             <div id="accordionbox">
             </div>
-            <div id="accordion">
-            </div>
+            <!-- <div id="accordion">
+            </div> -->
           </div>
         </div>
       </aside>
@@ -109,12 +108,15 @@
         <button class="button_command" onclick="gotoOrder()">撮影せずに購入</button>
       </div>
       <div class="footer-command-area">
+        <button class="button_caution" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
+        <button class="button_caution" onclick="setCategoryListTree_radiobutton()">ラジオ</button>
+        
         <button class="button_caution" onclick="location.href='test_fade.html'">試着中デモ</button>
         <button class="button_caution" onclick="call_exit()">終 了</button>
       </div>
     </footer>
 
-    <script src="js/select_item.js"></script>
+    <script src="js/selecter.js"></script>
     <script src="js/connect.js"></script>
     <script>
       window.onload = function() {

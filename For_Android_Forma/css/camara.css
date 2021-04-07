@@ -47,6 +47,7 @@
 .box_command {
   margin-left: 30px;
   margin-right: 30px;
+  height: 200px;  /* これで画像のトップ合わせ */
 }
 .box_command img {
   height: 180px;
@@ -57,6 +58,7 @@
   text-align: center;
   line-height: 0px;
   font-size:2em;
+  vertical-align: top;
 }
 
 /* =========================== */
