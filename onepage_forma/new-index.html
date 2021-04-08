@@ -33,7 +33,7 @@
     </div>
 		
     <!-- indexのメイン部分 -->
-    <div id="index-page">
+    <div id="index-page" class="loaded">
 			<!-- HEADER -->
 			<header>
 				<div class="header-container">
@@ -496,6 +496,8 @@
 				// 初期処理
 				index_onloaded();
 				camera_onloaded();
+
+				jumpto_index();
 			}
 			// index.htmlがロードされた時の処理
 			function index_onloaded() {
