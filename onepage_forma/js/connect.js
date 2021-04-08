@@ -14,6 +14,7 @@
   {
     try
     {
+      // androidにも送信する。
       android.fromHTML_call_exit();
     }
     catch(e)

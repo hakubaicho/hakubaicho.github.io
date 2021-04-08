@@ -214,7 +214,7 @@ footer {
   z-index: 0;
   /* background-image : url(../img/background.png); */
 }
-#camera-loading {
+#camera-tryon {
   width: 1080px;
   height: 1920px;
   transition: all 1s;

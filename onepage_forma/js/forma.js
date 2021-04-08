@@ -60,15 +60,25 @@
   let register_item_signature         = '';
   let register_item_source_uuid       = '';
 
-  
+  //--------------------------------------------
+  // プロパティ
+  //--------------------------------------------
+  // itemUUIDを設定する。
   function Set_itemUUid(itemuuid)
   {
     uuid_tryon_item = itemuuid;
   }
+  // itemUUIDを取得する。
+  function Get_itemUUid()
+  {
+    return uuid_tryon_item;
+  }
+  // AvatarUUIDを取得する。
   function Get_avatarUUid()
   {
     return uuid_tryon_avatar;
   }
+  // AvatarUUIDを設定する。
   function Set_avatarUUid(avataruuid)
   {
     uuid_tryon_avatar = avataruuid;
@@ -91,7 +101,8 @@
   //
   function Reuse_Avatar_TryOnProc()
   {
-    console.log("Reuse_Avatar_TryOnProc: Start");
+    debugConsole_forma("Reuse_Avatar_TryOnProc: Start");
+
     // // 対象アイテムの取得
     // try
     // {
@@ -120,7 +131,7 @@
     //   console.log(e);
     // }
     reuse_tryon();
-    console.log("Reuse_Avatar_TryOnProc: End");
+    debugConsole_forma("Reuse_Avatar_TryOnProc: End");
   }
   //
   // Avater再利用でTryOnします。（同期処理で非同期）
@@ -195,16 +206,16 @@
     //----------------------------------------
     // TryOnに送信する
     //----------------------------------------
-    debug_console_log('[Start]TryOn-Request');
+    display_status_toElement('[Start]TryOn-Request');
     await TryOn()
     .then(
       function( response  ) {
         // 正常結果
-        debug_console_log(`[OK]TryOn-Request : ${response}`);
+        display_status_toElement(`[OK]TryOn-Request : ${response}`);
       },
       function( error ) {
         //エラー処理を記述する
-        debug_console_log(`[NG]TryOn-Request : ${error}`);
+        display_status_toElement(`[NG]TryOn-Request : ${error}`);
         doNext = false;
       }
     )
@@ -221,7 +232,7 @@
         // 待ち時間処理
         await ping_wait();
         // 処理結果を取得する。
-        debug_console_log(`[Start]TryOn-Ping(${i})`);
+        display_status_toElement(`[Start]TryOn-Ping(${i})`);
         await TryOnPing()
         .then(
           function( response  ) {
@@ -229,22 +240,22 @@
             {
               case 0: //正常
                 isNext = false;
-                debug_console_log(`[OK]TryOn-Ping(${i}) = ${response}`);
+                display_status_toElement(`[OK]TryOn-Ping(${i}) = ${response}`);
                 document.getElementById('tryon_result_picture').src = tryon_media_source;
                 break;
               case 1:
-                debug_console_log(`[WAIT]TryOn-Ping(${i}) = ${response}`);
+                display_status_toElement(`[WAIT]TryOn-Ping(${i}) = ${response}`);
                 break;
               case 2:
                 isNext = false;
                 doNext = false;
-                debug_console_log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
+                display_status_toElement(`[FAILD]TryOn-Ping(${i}) = ${response}`);
                 break;
             }
           },
           function( error ) {
             //エラー
-            debug_console_log(`[NG]TryOn-Ping(${i}) = ${error}`);
+            display_status_toElement(`[NG]TryOn-Ping(${i}) = ${error}`);
             isNext = false;
           }
         )
@@ -274,7 +285,7 @@
   //
   function Avatar_TryOnProc()
   {
-    console.log("Avatar_TryOnProc: Start");
+    debugConsole_forma("Avatar_TryOnProc: Start");
     // // 対象アイテムの取得
     // try
     // {
@@ -287,7 +298,7 @@
     //   console.log(e);
     // }
     picture_tryon();
-    console.log("Avatar_TryOnProc: End");
+    debugConsole_forma("Avatar_TryOnProc: End");
   }
   //
   // Avatar登録とTryOnします。（同期処理で非同期）
@@ -315,7 +326,7 @@
     }
     catch(e)
     {
-      debug_console_log(e.message);
+      display_status_toElement(e.message);
       return;
     }
     //----------------------------------------
@@ -369,16 +380,16 @@
     //----------------------------------------
     // Presign
     //----------------------------------------
-    debug_console_log('[Start]RegisterAvatar-PreSign');
+    display_status_toElement('[Start]RegisterAvatar-PreSign');
     await register_Avatar_PreSign()
     .then(
       function( response ) {
         // 正常結果
-        debug_console_log(`[OK]RegisterAvatar-PreSign : ${response}`);
+        display_status_toElement(`[OK]RegisterAvatar-PreSign : ${response}`);
       },
       function( error ) {
         //エラー処理を記述する
-        debug_console_log(`[NG]RegisterAvatar-PreSign : ${error}`);
+        display_status_toElement(`[NG]RegisterAvatar-PreSign : ${error}`);
         doNext = false;
       }
     )
@@ -387,16 +398,16 @@
     //----------------------------------------
     if(doNext)
     {
-      debug_console_log('[Start]RegisterAvatar-Data');
+      display_status_toElement('[Start]RegisterAvatar-Data');
       await register_Avatar_Data()
       .then(
         function( response ) {
           // 正常結果
-          debug_console_log(`[OK]RegisterAvatar-Data : ${response}`);
+          display_status_toElement(`[OK]RegisterAvatar-Data : ${response}`);
         },
         function( error ) {
           //エラー処理を記述する
-          debug_console_log(`[NG]RegisterAvatar-Data : ${error}`);
+          display_status_toElement(`[NG]RegisterAvatar-Data : ${error}`);
           doNext = false;
         }
       )
@@ -406,7 +417,7 @@
     //----------------------------------------
     if(doNext)
     {
-      debug_console_log('[Start]RegisterAvatar-Ping');
+      display_status_toElement('[Start]RegisterAvatar-Ping');
       let isNext = true;
       const RETRY_MAX = 100;
       for(let i = 0 ; i < RETRY_MAX; i++)
@@ -414,7 +425,7 @@
         // 待ち時間処理
         await ping_wait();
         // 処理結果を取得する。
-        debug_console_log(`[Start]RegisterAvatar-Ping(${i})`);
+        display_status_toElement(`[Start]RegisterAvatar-Ping(${i})`);
         await register_Avatar_Ping()
         .then(
           function( response  ) {
@@ -423,21 +434,21 @@
             {
               case 0: //正常終了
                 isNext = false;
-                debug_console_log(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
+                display_status_toElement(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
               case 1: // 処理中
-                debug_console_log(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
+                display_status_toElement(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
               case 2: // 処理失敗
                 isNext = false;
                 doNext = false;
-                debug_console_log(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
+                display_status_toElement(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
             }
           },
           function( error ) {
             //エラー
-            debug_console_log(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
+            display_status_toElement(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
             isNext = false;
           }
         )
@@ -485,16 +496,16 @@
     //----------------------------------------
     // TryOnに送信する
     //----------------------------------------
-    debug_console_log('[Start]TryOn-Request');
+    display_status_toElement('[Start]TryOn-Request');
     await TryOn()
     .then(
       function( response  ) {
         // 正常結果
-        debug_console_log(`[OK]TryOn-Request : ${response}`);
+        display_status_toElement(`[OK]TryOn-Request : ${response}`);
       },
       function( error ) {
         //エラー処理を記述する
-        debug_console_log(`[NG]TryOn-Request : ${error}`);
+        display_status_toElement(`[NG]TryOn-Request : ${error}`);
         doNext = false;
       }
     )
@@ -511,7 +522,7 @@
         // 待ち時間処理
         await ping_wait();
         // 処理結果を取得する。
-        debug_console_log(`[Start]TryOn-Ping(${i})`);
+        display_status_toElement(`[Start]TryOn-Ping(${i})`);
         await TryOnPing()
         .then(
           function( response  ) {
@@ -519,22 +530,22 @@
             {
               case 0: //正常
                 isNext = false;
-                debug_console_log(`[OK]TryOn-Ping(${i}) = ${response}`);
+                display_status_toElement(`[OK]TryOn-Ping(${i}) = ${response}`);
                 document.getElementById('tryon_result_picture').src = tryon_media_source;
                 break;
               case 1:
-                debug_console_log(`[WAIT]TryOn-Ping(${i}) = ${response}`);
+                display_status_toElement(`[WAIT]TryOn-Ping(${i}) = ${response}`);
                 break;
               case 2:
                 isNext = false;
                 doNext = false;
-                debug_console_log(`[FAILD]TryOn-Ping(${i}) = ${response}`);
+                display_status_toElement(`[FAILD]TryOn-Ping(${i}) = ${response}`);
                 break;
             }
           },
           function( error ) {
             //エラー
-            debug_console_log(`[NG]TryOn-Ping(${i}) = ${error}`);
+            display_status_toElement(`[NG]TryOn-Ping(${i}) = ${error}`);
             isNext = false;
           }
         )
@@ -558,17 +569,12 @@
       return;
     }
   }
-  // 状態を画面に表示する
-  function debug_console_log(message)
-  {
-    document.getElementById('Forma_status').textContent = message;
-    document.getElementById('title_logo').textContent = message;
-  }
+ 
   //********************************************
   // ログインします。
   //********************************************
   function LogIn(_username, _password){
-
+    debugConsole_forma_communication('LogIn()');
     username = _username;
     password = _password;
     // 入力チェック
@@ -622,6 +628,7 @@
   // ログインJsonの解釈
   //--------------------------------------------
   function getJson_login(response){
+    debugConsole_forma_communication('getJson_login()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -635,6 +642,7 @@
     // username: "hogehoge"
     // uuid: "alphabet and numeric and -"
     //------------------------------------------
+
     let result = false;
     try{
       let obj = JSON.parse(response);
@@ -671,6 +679,7 @@
   // アバターリストの取得
   //********************************************
   function GetTheListOfAvaters() {
+    debugConsole_forma_communication('GetTheListOfAvaters()');
     // トークンのチェック
     if(true !== check_token())
     {
@@ -707,6 +716,7 @@
   // アバターリストJsonの解釈
   //--------------------------------------------
   function getJson_get_the_list_of_avatars(response){
+    debugConsole_forma_communication('getJson_get_the_list_of_avatars()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -795,6 +805,7 @@
   // アイテムリストの取得
   //********************************************
   function GetTheListOfItems() {
+    debugConsole_forma_communication('GetTheListOfItems()');
     // トークンのチェック
     if(true !== check_token())
     {
@@ -831,6 +842,7 @@
   // アイテムリストJsonの解釈
   //--------------------------------------------
   function getJson_get_the_list_of_itemss(response){
+    debugConsole_forma_communication('getJson_get_the_list_of_itemss()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1032,7 +1044,7 @@
   // TryOnの取得
   //********************************************
   function TryOn() {
-
+    debugConsole_forma_communication('TryOn()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject) {
       // 送信先URL 
@@ -1086,6 +1098,7 @@
   // TryOnのJsonの解釈
   //--------------------------------------------
   function getJson_tryon(response){
+    debugConsole_forma_communication('getJson_tryon()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1161,6 +1174,7 @@
   // TryOnPingの取得
   //********************************************
   function TryOnPing() {
+    debugConsole_forma_communication('TryOnPing()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject) {
       // 送信先URL 
@@ -1209,6 +1223,7 @@
   // TryOnPingのJsonの解釈
   //--------------------------------------------
   function getJson_tryonping(response){
+    debugConsole_forma_communication('getJson_tryonping()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1397,7 +1412,7 @@
   // AWS[Avatar]へのログイン情報の取得
   //********************************************
   function register_Avatar_PreSign() {
-
+    debugConsole_forma_communication('register_Avatar_PreSign()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject) {
       // 送信先URL 
@@ -1441,6 +1456,7 @@
   // AWS[Avatar]へのログイン情報のJsonの解釈
   //--------------------------------------------
   function getJson_register_Avatar_PreSign(response){
+    debugConsole_forma_communication('getJson_register_Avatar_PreSign()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1499,7 +1515,7 @@
     register_Avatar_Data();
   }
   function register_Avatar_Data() {
-    
+    debugConsole_forma_communication('register_Avatar_Data()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject) {
       try{
@@ -1558,6 +1574,7 @@
   // AWS[Avatar]への画像登録処理のJsonの解釈
   //--------------------------------------------
   function getJson_register_Avatar_Data(response){
+    debugConsole_forma_communication('getJson_register_Avatar_Data()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1579,6 +1596,7 @@
   // AWS[Avatar]の登録後のPing
   //********************************************
   function register_Avatar_Ping() {
+    debugConsole_forma_communication('register_Avatar_Ping()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject){
       // 送信先URL
@@ -1627,6 +1645,7 @@
   // AWS[Avatar]の登録後のPingのJsonの解釈
   //--------------------------------------------
   function getJson_register_Avatar_Ping(response){
+    debugConsole_forma_communication('getJson_register_Avatar_Ping()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1683,6 +1702,7 @@
   // asyncでアイテム登録を行う
   //
   async function asyncRegisterItem() {
+    debugConsole_forma_communication('asyncRegisterItem()');
     //----------------------------------------
     // 入力チェック
     //----------------------------------------
@@ -1802,7 +1822,7 @@
   // AWS[Item]へのログイン情報の取得
   //********************************************
   function register_Item_PreSign() {
-
+    debugConsole_forma_communication('register_Item_PreSign()');
     // 処理完了まで非同期で待つ
     return new Promise(function(resolve, reject) {
       // 送信先URL 
@@ -1853,9 +1873,10 @@
     });
   }
   //--------------------------------------------
-  // AWS[Avatar]へのログイン情報のJsonの解釈
+  // AWS[Item]へのログイン情報のJsonの解釈
   //--------------------------------------------
   function getJson_register_Item_PreSign(response){
+    debugConsole_forma_communication('getJson_register_Item_PreSign()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1915,10 +1936,10 @@
     return result;
   }
   //********************************************
-  // AWS[Avatar]への画像登録処理
+  // AWS[Item]への画像登録処理
   //********************************************
   function register_Item_Data() {
-
+    debugConsole_forma_communication('register_Item_Data()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject){
       try{
@@ -1974,9 +1995,10 @@
 
   }
   //--------------------------------------------
-  // AWS[Avatar]へのへの画像登録処理のJsonの解釈
+  // AWS[Item]へのへの画像登録処理のJsonの解釈
   //--------------------------------------------
   function getJson_register_Item_Data(response){
+    debugConsole_forma_communication('getJson_register_Item_Data()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -1999,6 +2021,7 @@
   // AWS[Item]の登録後のPing
   //********************************************
   function register_Item_Ping() {
+    debugConsole_forma_communication('register_Item_Ping()');
     // 処理完了を非同期で待つ
     return new Promise(function(resolve, reject){
       // 送信先URL
@@ -2047,6 +2070,7 @@
   // AWS[Item]の登録後のPingのJsonの解釈
   //--------------------------------------------
   function getJson_register_Item_Ping(response){
+    debugConsole_forma_communication('getJson_register_Item_Ping()');
     //------------------------------------------
     // 取得できるJSON
     //------------------------------------------
@@ -2105,20 +2129,42 @@
   async function ping_wait()
   {
     const waitms = 700;
-    console.log('待ってます.....');
     await sleep(waitms);
-    console.log(`${waitms}経過しました。`);
+    console.log(`${waitms}ms waited for ping`);
   }
-
+  //
+  // tryOn完了後の表示までの待ち時間
+  //
   async function display_wait()
   {
     const waitms = 1500;
-    console.log('待ってます.....');
     await sleep(waitms);
-    console.log(`${waitms}経過しました。`);
+    console.log(`${waitms}ms waited for display`);
   }
   //======================================================================
-
+  
+  
+  
+  //======================================================================
+  // 状態をデバッグする。
+  //======================================================================
+  // 状態を画面に表示する
+  function display_status_toElement(message)
+  {
+    document.getElementById('Forma_status').textContent = message;
+    document.getElementById('title_logo').textContent = message;
+    debugConsole_forma(message);
+  }
+  // console出力[処理名]
+  function debugConsole_forma(message)
+  {
+    console.log(`\t\t[forma.js]PROC :${message}`);
+  }
+  // consolt出力[Formaとの通信]
+  function debugConsole_forma_communication(message)
+  {
+    console.log(`\t\t\t :${message}`);
+  }
   //======================================================================
   // ローディング画面
   //======================================================================

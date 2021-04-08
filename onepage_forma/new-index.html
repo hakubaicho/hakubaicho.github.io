@@ -121,7 +121,7 @@
 					<button class="button_warning" onclick="setCategoryListTree_radiobutton()">ラジオ</button>
 					
 					<button class="button_caution" onclick="location.href='test_fade.html'">試着中デモ</button>
-					<button class="button_caution" onclick="call_exit()">終 了</button>
+					<button class="button_caution" onclick="endproc()">終 了</button>
 				</div>
 			</footer>
 		</div>
@@ -474,7 +474,7 @@
 					<button class="button_command" type=button onclick="getPrintData()">印刷</button>
 				</div>
 				<div class="footer-command-area">
-					<button class="button_caution" type=button onclick="call_exit()">終 了</button>
+					<button class="button_caution" type=button onclick="endproc_order()">終 了</button>
 				</div>
 			</footer>
 		</div>
@@ -617,6 +617,10 @@
 				{
 					document.getElementById('reuseAvatar').classList.remove('item-hide');
 				}
+				else
+				{
+					document.getElementById('reuseAvatar').classList.add('item-hide');
+				}
 
 				hide_index();
 				show_camera();
@@ -659,7 +663,27 @@
 				const video = document.querySelector("#camera");
 				syncCamera(video);
 			}
+			// **********************
+			// 各ページ共通の処理
+			// **********************
+			// 終了処理
+			function endproc() {
+				// 現在のItem・Avatarをクリアする。
+				Set_itemUUid('');
+	      Set_avatarUUid('');
 
+				// 表示の初期化
+				setItemListTree(['','','']);
+				clear_selectitem();
+				// androidに送信
+				call_exit();
+			}
+			// 終了処理(orderでの)
+			function endproc_order() {
+				endproc();
+				// indexに戻る
+				jumpto_index();
+			}
 			// **********************
 			// 各ページ要素の表示非表示
 			// **********************
@@ -701,6 +725,8 @@
 			{
 				console.log(`[index.html]PROC :${message}`);
 			}
+
+
 		</script>
   </body>
 </html>

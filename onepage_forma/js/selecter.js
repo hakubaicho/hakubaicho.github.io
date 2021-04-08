@@ -865,6 +865,10 @@
   const imgDesign = document.getElementById('thumbnail_selected');
   const imgWeared = document.getElementById('thumbnail_selected_tryon');
   
+  //--------------------------------------------
+  // プロパティ
+  //--------------------------------------------
+  // 選択中のアイテムを返却します。
   function GetSelected_Item() {
     return selectedItem;
   }
@@ -1130,7 +1134,7 @@
                             items[index].tag3
                             );
     document.getElementById('detail-box').classList.remove('item-hide');
-    document.getElementById('detail-box').classList.remove('item-show');
+    document.getElementById('detail-box').classList.add('item-show');
     document.getElementById('item_detail_tag1').textContent = items[index].tag1;
     document.getElementById('item_detail_tag2').textContent = items[index].tag2;
     document.getElementById('item_detail_tag3').textContent = items[index].tag3;
@@ -1146,6 +1150,44 @@
     // currentの更新
     currentIndex = items[index].location;
     thumbnails[currentIndex].classList.add('current');
+  }
+  //--------------------------------------------
+  // 選択中のアイテムをクリアする。
+  //--------------------------------------------
+  function clear_selectitem() {
+    
+
+    // androidに選択したデータを送る
+    selectedItem = new ClothItem('', '', '', '','','', '','');
+    fromHTML_call_Set_Item(
+                            selectedItem.uuid,
+                            selectedItem.itemName,
+                            selectedItem.designID,
+                            selectedItem.designsrc,
+                            selectedItem.wearedImageSrc,
+                            selectedItem.tag1,
+                            selectedItem.tag2,
+                            selectedItem.tag3
+                              );
+
+                              // 画像の切り替え
+    imgDesign.src = selectedItem.designsrc;
+    imgWeared.src = selectedItem.wearedImageSrc;
+    document.getElementById('detail-box').classList.add('item-hide');
+    document.getElementById('item_detail_tag1').textContent = selectedItem.tag1;
+    document.getElementById('item_detail_tag2').textContent = selectedItem.tag2;
+    document.getElementById('item_detail_tag3').textContent = selectedItem.tag3;
+    document.getElementById('item_detail_name').textContent = selectedItem.itemName;
+    document.getElementById('item_detail_designID').textContent = selectedItem.designID;
+
+    // thumbnailsのすべての要素を取得
+    const thumbnails = document.querySelectorAll('.thumbnails > li');
+    // 現在の付加されているcurrentを外す
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.classList.remove('current');
+    });
+    // currentの更新
+    currentIndex = -1;
   }
   //--------------------------------------------
   // カテゴリーリストを生成します。
