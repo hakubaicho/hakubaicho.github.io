@@ -2,20 +2,21 @@
 <html lang="ja">
 	<head>
 		<meta charset="utf-8">
-    <!-- 
+		<!-- 
 			幅:1080に固定する
-      ほかにいいアイデアったらお願いします。
-    -->
-    <meta name="viewport" content="width=1080,initial-scale=1">
-    <title>アイテム選択画面</title>
-    <!-- Index.html -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/select_item.css">
-    <link rel="stylesheet" href="css/accordion_check.css">
-    <link rel="stylesheet" href="css/accordion_radio.css">
-    <!-- Camera.html -->
-    <link rel="stylesheet" href="css/camara.css">
-    <link rel="stylesheet" href="css/talkstyle.css">
+			ほかにいいアイデアったらお願いします。
+		-->
+		<meta name="viewport" content="width=1080,initial-scale=1">
+		<title>アイテム選択画面</title>
+		
+		<!-- Index.html -->
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/select_item.css">
+		<link rel="stylesheet" href="css/accordion_check.css">
+		<link rel="stylesheet" href="css/accordion_radio.css">
+		<!-- Camera.html -->
+		<link rel="stylesheet" href="css/camara.css">
+		<link rel="stylesheet" href="css/talkstyle.css">
 		<!-- Order.html -->
 		<link rel="stylesheet" href="css/order.css">
 		
@@ -129,7 +130,7 @@
 		<!-- camera.html -->
 		<!-- ******************************************************************************* -->
 		<!-- 写真の登録・トライオン中のローディング画面 -->
-		<div id="camera-loading" class="loaded">
+		<div id="camera-tryon" class="loaded">
 			<!-- タイトル -->
 			<p>Status : <span id="title_logo">Tシャツを作ってみる！</span></p>
 			<!-- くるくる -->
@@ -254,7 +255,7 @@
       </div>
       <!-- 今回の写真撮影 -->
       <div class="footer-container">
-        <button id="cancel" onclick="jumpto_index_from_camera()" class="button_command">やめる</button>
+        <button id="cancel" onclick="jumpto_index()" class="button_command">やめる</button>
         <button id="accept" onclick="camera_accept_click()" class="button_command hidden">撮影する</button>
       </div>
       <!-- 前回の写真の再利用 -->
@@ -276,7 +277,7 @@
 			<!-- ボタンエリア -->
 			<div  id="camera_result_footer">
 				<div class="footer-container">
-					<button class="button_command" onclick="jumpto_index_from_camera()">選びなおす</button>
+					<button class="button_command" onclick="jumpto_index()">選びなおす</button>
 					<button class="button_command" onclick="jumpto_Order()">購入</button>
 				</div>
 			</div>
@@ -307,7 +308,7 @@
 				<div id="area-button" class="area-container">
 					<div class="box_command">
 						<!-- <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()"> -->
-						<img src="img/arrow_left.png" id="btn_image_back" onclick="jumpto_index_from_camera()">
+						<img src="img/arrow_left.png" id="btn_image_back" onclick="jumpto_index()">
 						<p>選びなおす</p>
 					</div>
 					<div class="box_command">
@@ -330,10 +331,10 @@
 					<p>
 						<span id="forma_login"></span>
 					</p>
-					<p>
+					<p>itemUUID: 
 						<span id="itemuuid"></span>
 					</p>
-					<p>
+					<p>avatarUUID: 
 						<span id="avataruuid"></span>
 					</p>
 				</div>
@@ -469,7 +470,7 @@
 			</main>
 			<footer>
 				<div class="footer-container">
-					<button class="button_command" type=button onclick="jumpto_index_from_order()">選びなおす</button>
+					<button class="button_command" type=button onclick="jumpto_index()">選びなおす</button>
 					<button class="button_command" type=button onclick="getPrintData()">印刷</button>
 				</div>
 				<div class="footer-command-area">
@@ -483,13 +484,26 @@
 		<script src="js/camera.js"></script>
 		<script src="js/forma.js"></script>
 		<script>
+			// **********************
+			// ページロード時の処理
+			// **********************
 			window.onload = function() {
-							
+				debugConsole_proc('window.onload()');		
 				// index-Loadingを閉じる
 				const spinner = document.getElementById('index-loading');
 				spinner.classList.add('loaded');
 				
 				// 初期処理
+				index_onloaded();
+				camera_onloaded();
+			}
+			// index.htmlがロードされた時の処理
+			function index_onloaded() {
+				debugConsole_proc('index_onloaded()');
+
+				//------------------------------
+				// ロード時の処理
+				//------------------------------
 				try
 				{
 						console.log('fromHTML_call_Loaded_pageindex');
@@ -504,9 +518,11 @@
 				{
 						
 				}
+				//------------------------------
+				// 最後に選択されていたカテゴリを反映
+				//------------------------------
 				try
-				{
-					// 最後のカテゴリ
+				{	
 					console.log('fromHTML_call_Category');
 					obj = fromHTML_call_Get_Category();
 					if(obj.length == 3)
@@ -518,10 +534,10 @@
 				{
 
 				}
-
-				cameraonload();
 			}
-			function cameraonload() {
+			// camera.htmlがロードされた時の処理
+			function camera_onloaded() {
+				debugConsole_proc('camera_onloaded()');
         // カメラの初期化
         jsCameraStart();
 
@@ -568,65 +584,71 @@
 			// **********************
 			// ページ間の移動
 			// **********************
-			// index <- camera
-			function jumpto_index_from_camera() {
-				// ほかのページを消し込む
-				document.getElementById('modal').classList.add('hidden');
-		    document.getElementById('mask').classList.add('hidden');
-		    document.getElementById('camera_result').classList.add('loaded');
-				document.getElementById('camera-page').classList.add('loaded');
-
-				// 対象ページを開く
-				document.getElementById('index-page').classList.remove('loaded');
+			//------------------------
+			// メインページ(セレクタ)に遷移する。
+			// index.html
+			//------------------------
+			function jumpto_index() {
+				debugConsole_proc('jumpto_index()');
+				// 消し込み
+				hide_camera();
+				hide_order();
+				// 表示
+				show_index();
 			}
-			// index <- order
-			function jumpto_index_from_order() {
-				// ほかのページを消し込む
-				document.getElementById('order-page').classList.add('loaded');
-
-				// 対象ページを開く
-				document.getElementById('index-page').classList.remove('loaded');
-			}
-			// camera <- index
+			//------------------------
+			// カメラページに遷移する。
+			// camera.html
+			//------------------------
 			function jumpto_Camera() {
+				debugConsole_proc('jumpto_Camera()');
+				// 選択アイテムのチェック
 				if(!IsSelectItem())return;
 				if(!IsHaveUUID())return;
 
+				// 選択中のItemのUUIDを設定する。
 				document.getElementById('itemuuid').textContent = GetSelected_Item().uuid;
 				Set_itemUUid(GetSelected_Item().uuid);
-				console.log(uuid_tryon_item);
-				// ほかのページを消し込む
-				document.getElementById('index-page').classList.add('loaded');
+				console.log(`uuid_try_item = ${uuid_tryon_item}`);
 
-				// 対象ページを開く
-				document.getElementById('modal').classList.remove('hidden');
-				document.getElementById('mask').classList.remove('hidden');
-				// document.getElementById('camera-page').classList.remove('loaded');
+				// Avatarが存在すれば、前回の写真からを有効にする
+				document.getElementById('avataruuid').textContent = Get_avatarUUid();
+				if(Get_avatarUUid() != '')
+				{
+					document.getElementById('reuseAvatar').classList.remove('item-hide');
 				}
-			// order <- index, camera
+
+				hide_index();
+				show_camera();
+			}
+			//------------------------
+			// 注文ページに遷移する。
+			// order.html
+			//------------------------
 			function jumpto_Order() {
+				debugConsole_proc('jumpto_Order()');
+				// 選択アイテムのチェック
 				if(!IsSelectItem())return;
 
-				// 選択されているアイテムを反映
+				// 選択中のアイテムを反映
 				document.getElementById('order_design_image').src = GetSelected_Item().designsrc;
 				document.getElementById('designID').textContent = GetSelected_Item().designID;
 
 				// ほかのページを消し込む
-				document.getElementById('index-page').classList.add('loaded');
-
-				document.getElementById('modal').classList.add('hidden');
-		    document.getElementById('mask').classList.add('hidden');
-		    document.getElementById('camera_result').classList.add('loaded');
-				document.getElementById('camera-page').classList.add('loaded');
+				hide_index();
+				hide_camera();
 
 				// 対象ページを開く
-				document.getElementById('order-page').classList.remove('loaded');
+				show_order();
 			}
 			
 			// **********************
-			// camera.html
+			// ページ内遷移
 			// **********************
-			// プライバシーポリシーの[すすむ]
+			//------------------------
+			// カメラページのプライバシーポリシー
+			// [すすむ]
+			//------------------------
 			function camera_accept_click() {
 				// プライバシーの消し込み
 				document.getElementById('modal').classList.add('hidden');
@@ -638,7 +660,47 @@
 				syncCamera(video);
 			}
 
+			// **********************
+			// 各ページ要素の表示非表示
+			// **********************
+			// index.htmlの表示
+			function show_index() {
+				// 対象ページを開く
+				document.getElementById('index-page').classList.remove('loaded');
+			}
+			// index.htmlの非表示
+			function hide_index() {
+				// 要素の消し込み
+				document.getElementById('index-page').classList.add('loaded');
+			}
+			// camera.indexの表示
+			function show_camera() {
+				// 対象ページを開く
+				document.getElementById('modal').classList.remove('hidden');
+				document.getElementById('mask').classList.remove('hidden');
+			}
+			// camera.indexの非表示
+			function hide_camera() {
+				// 要素の消し込み
+				document.getElementById('modal').classList.add('hidden');
+		    document.getElementById('mask').classList.add('hidden');
+		    document.getElementById('camera_result').classList.add('loaded');
+				document.getElementById('camera-page').classList.add('loaded');
+			}
+			// order.htmlの表示
+			function show_order() {
+				document.getElementById('order-page').classList.remove('loaded');
+			}
+			// order.htmlの非表示
+			function hide_order() {
+				document.getElementById('order-page').classList.add('loaded');
+			}
+			// **********************
 		
+			function debugConsole_proc(message)
+			{
+				console.log(`[index.html]PROC :${message}`);
+			}
 		</script>
   </body>
 </html>

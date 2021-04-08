@@ -65,6 +65,14 @@
   {
     uuid_tryon_item = itemuuid;
   }
+  function Get_avatarUUid()
+  {
+    return uuid_tryon_avatar;
+  }
+  function Set_avatarUUid(avataruuid)
+  {
+    uuid_tryon_avatar = avataruuid;
+  }
   //--------------------------------------------
   // ログイン状態か確認します。
   //--------------------------------------------
@@ -96,22 +104,21 @@
     //   console.log(e);
     // }
     // 対象Avatarのセット
-    uuid_tryon_avatar ='5f8af8ac-7810-4daf-9a36-5aee2a3b5b57';
     // 対象アイテムの取得
-    try
-    {
-      let obj = fromHTML_call_Get_AvatarUUID();
-      if(obj == '')
-      {
-        return;
-      }
-      document.getElementById('avataruuid').textContent = obj;
-      uuid_tryon_avatar = obj;
-    }
-    catch(e)
-    {
-      console.log(e);
-    }
+    // try
+    // {
+    //   let obj = fromHTML_call_Get_AvatarUUID();
+    //   if(obj == '')
+    //   {
+    //     return;
+    //   }
+    //   document.getElementById('avataruuid').textContent = obj;
+    //   uuid_tryon_avatar = obj;
+    // }
+    // catch(e)
+    // {
+    //   console.log(e);
+    // }
     reuse_tryon();
     console.log("Reuse_Avatar_TryOnProc: End");
   }
@@ -2127,7 +2134,7 @@
     phase3_text.textContent = '';
     phase4_text.textContent = '';
 
-    document.getElementById('camera-loading').style.backgroundColor =
+    tryonShutter.style.backgroundColor =
       getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-blue');
   }
   // フェーズの変更
@@ -2198,7 +2205,9 @@
     };
   }
 
+  //========================================================
   // 要素を代入しておく
+  //========================================================
   const phase1 = document.getElementById('phase_1');
   const phase2 = document.getElementById('phase_2');
   const phase3 = document.getElementById('phase_3');
@@ -2225,7 +2234,7 @@
   const phase4_img_stop = document.getElementById('logo_stop_4');
 
   // tryon処理中のWait画面
-  const tryonShutter = document.getElementById('camera-loading');
+  const tryonShutter = document.getElementById('camera-tryon');
   // tryon結果画面
   const tryonResult = document.getElementById('camera_result');
 }
