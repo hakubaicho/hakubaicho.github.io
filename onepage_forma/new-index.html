@@ -114,7 +114,7 @@
 				<div class="footer-container">
 					<!-- <button class="button_command" onclick="gotoCamera()">撮影して試着</button> -->
 					<button class="button_command" onclick="jumpto_Camera()">撮影して試着</button>
-					<button class="button_command" onclick="jumpto_Order()">撮影せずに購入</button>
+					<button class="button_command" id="btn_index_goto_order" onclick="jumpto_Order()">撮影せずに購入</button>
 				</div>
 				<div class="footer-command-area">
 					<button class="button_warning" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
@@ -595,6 +595,8 @@
 				// 消し込み
 				hide_camera();
 				hide_order();
+				// カメラの停止
+				stopCamera();
 				// 表示
 				show_index();
 			}
@@ -604,6 +606,20 @@
 			//------------------------
 			function jumpto_Camera() {
 				debugConsole_proc('jumpto_Camera()');
+
+				// Formaに接続できていない場合の処理
+				if(!Get_logInStatus())
+				{
+					let msg = '試着サーバーに接続できません。\n';
+					msg += 'お手数ですが\n';
+					msg += '['
+					msg += document.getElementById('btn_index_goto_order').textContent; 
+					msg += ']\n';
+					msg += 'におすすみください。';
+					alert(msg);
+					return;
+				}
+
 				// 選択アイテムのチェック
 				if(!IsSelectItem())return;
 				if(!IsHaveUUID())return;
@@ -643,6 +659,8 @@
 				// ほかのページを消し込む
 				hide_index();
 				hide_camera();
+				// カメラの停止
+				stopCamera();
 
 				// 対象ページを開く
 				show_order();
@@ -725,6 +743,7 @@
 			}
 			// **********************
 		
+			// デバッグ出力
 			function debugConsole_proc(message)
 			{
 				console.log(`[index.html]PROC :${message}`);

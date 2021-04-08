@@ -122,9 +122,16 @@
   {
     // すでにカメラと接続していたら停止
     if( curSTREAM !== null ){
-      curSTREAM.getVideoTracks().forEach( (camera) => {
-        camera.stop();
-      });
+      try
+      {
+        curSTREAM.getVideoTracks().forEach( (camera) => {
+          camera.stop();
+        });
+      }
+      catch(e)
+      {
+        
+      }
     }
   }
   // 前後カメラの切り替え

@@ -73,15 +73,20 @@
   {
     return uuid_tryon_item;
   }
+  // AvatarUUIDを設定する。
+  function Set_avatarUUid(avataruuid)
+  {
+    uuid_tryon_avatar = avataruuid;
+  }
   // AvatarUUIDを取得する。
   function Get_avatarUUid()
   {
     return uuid_tryon_avatar;
   }
-  // AvatarUUIDを設定する。
-  function Set_avatarUUid(avataruuid)
+  // ログインしているかを返却します。
+  function Get_logInStatus()
   {
-    uuid_tryon_avatar = avataruuid;
+    return isLogIn;
   }
   //--------------------------------------------
   // ログイン状態か確認します。
@@ -586,42 +591,58 @@
       return;
     }
 
-    // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/auth/login/" ;
-    //Ajax通信用のオブジェクトを作成
-    const xhr =new XMLHttpRequest();
-    // 送信パラメータ
-    let myJson = 
-      {
-        "username" : username
-        ,
-        "password" : password
-      };
-    //JSONにエンコード
-    var json_text = JSON.stringify(myJson);
-    
-    //通信方式とURLを設定   
-    xhr.open("POST", requestUrl, true);
 
-    // 必要なHTTPヘッダを追加します。
-    // * ここでno-cache入れるとダメ* 
-    // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-    xhr.setRequestHeader( 'Content-Type', 'application/json' );
-    //通信を実行する
-    xhr.send(json_text);
-
-    //通信ステータスが変わったら実行される関数
-    xhr.onreadystatechange = function(){
-      //通信が完了
-      if(xhr.readyState == 4){
-        // とりあえずなんでも画面に出す
-        // document.getElementById("login_result").textContent = xhr.responseText;
-        // 正常
-        if(xhr.status == 200)
+    try
+    {
+      // 送信先URL 
+      const requestUrl = "https://social.isabq.com/api/v1/auth/login/" ;
+      //Ajax通信用のオブジェクトを作成
+      const xhr =new XMLHttpRequest();
+      // 送信パラメータ
+      let myJson = 
         {
-          getJson_login(xhr.responseText);
+          "username" : username
+          ,
+          "password" : password
+        };
+      //JSONにエンコード
+      var json_text = JSON.stringify(myJson);
+      
+      //通信方式とURLを設定   
+      xhr.open("POST", requestUrl, true);
+  
+      // 必要なHTTPヘッダを追加します。
+      // * ここでno-cache入れるとダメ* 
+      // xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+      xhr.setRequestHeader( 'Content-Type', 'application/json' );
+      //通信を実行する
+      xhr.send(json_text);
+  
+      //通信ステータスが変わったら実行される関数
+      xhr.onreadystatechange = function(){
+        //通信が完了
+        if(xhr.readyState == 4){
+          // とりあえずなんでも画面に出す
+          // document.getElementById("login_result").textContent = xhr.responseText;
+          // 正常
+          if(xhr.status == 200)
+          {
+            getJson_login(xhr.responseText);
+          }
+          else
+          {
+            // 失敗。
+            // ログイン後のエリアを表示
+            document.getElementById('forma_login').textContent = 'ログインできませんでした。';
+          }
         }
       }
+    }
+    catch(e)
+    {
+      // 失敗。
+      // ログイン後のエリアを表示
+      document.getElementById('forma_login').textContent = 'ログインできませんでした。';
     }
   }
   //--------------------------------------------
