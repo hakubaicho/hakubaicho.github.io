@@ -642,6 +642,7 @@
 
 				hide_index();
 				show_camera();
+				camera_accept_click();
 			}
 			//------------------------
 			// 注文ページに遷移する。
@@ -675,8 +676,8 @@
 			//------------------------
 			function camera_accept_click() {
 				// プライバシーの消し込み
-				document.getElementById('modal').classList.add('hidden');
-				document.getElementById('mask').classList.add('hidden');
+				//document.getElementById('modal').classList.add('hidden');
+				//document.getElementById('mask').classList.add('hidden');
 				// カメラの表示
 				document.getElementById('camera-page').classList.remove('loaded');
 				// カメラの開始
@@ -724,8 +725,8 @@
 			// camera.indexの表示
 			function show_camera() {
 				// 対象ページを開く
-				document.getElementById('modal').classList.remove('hidden');
-				document.getElementById('mask').classList.remove('hidden');
+				// document.getElementById('modal').classList.remove('hidden');
+				// document.getElementById('mask').classList.remove('hidden');
 			}
 			// camera.indexの非表示
 			function hide_camera() {
