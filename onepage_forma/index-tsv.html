@@ -8,6 +8,7 @@
     <form name="myform">
         <input name="myfile" type="file" />
         <textarea name="output" cols="80" rows="10"></textarea>
+				<textarea name="output-tsv"></textarea>
 		<button onclick="getCSV()">CSVread</button>
     </form>
 
@@ -73,10 +74,13 @@
 					result[i] = tmp[i].split('\t');
 				}
 			
+				let value = '';
 				for(let i=0;i<tmp.length;i++)
 				{
 					console.log(result[i]);
+					value += '[${i}] ${tmp[i]}';
 				}
+				document.getElementById('output-tsv').textContent = value;
 				alert(result[1][2]); // 300yen
 			}
 		</script>
