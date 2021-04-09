@@ -53,7 +53,7 @@
 			function getCSV() {
 				const filepath = "http://hakubaicho.github.io/onepage_forma/data/items.txt";
 				var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
-    		req.open("get", "sample.csv", true); // アクセスするファイルを指定
+    		req.open("get", filepath, true); // アクセスするファイルを指定
     		req.send(null); // HTTPリクエストの発行
 	
 				// レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ	
