@@ -1,15 +1,13 @@
 {
 	function getCSV() {
-		const filepath = "http://hakubaicho.github.io/onepage_forma/data/items.txt";
+		const filepath = "../data/items.txt";
 		let req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+		req.addEventListener('load', (event) => { // ロードさせ実行
+			const response = event.target.responseText; // 受け取ったテキストを返す
+			document.getElementById('output-tsv').textContent = response; // 表示
+		});
 		req.open("get", filepath, true); // アクセスするファイルを指定
-		req.send(null); // HTTPリクエストの発行
-
-		// レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ	
-		req.onload = function(){
-				convertTSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
-				console.log('req onload');
-		}
+		req.send(); // HTTPリクエストの発行
 	}
 	// 読み込んだCSVデータを二次元配列に変換する関数convertCSVtoArray()の定義
 	function convertTSVtoArray(str){ // 読み込んだCSVデータが文字列として渡される
