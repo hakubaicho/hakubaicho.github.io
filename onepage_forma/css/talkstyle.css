@@ -1,6 +1,10 @@
 @charset "utf-8";
 
 
+/* Tryon遷移画面のheaderの高さ */
+.tryonheader {
+  height: 500px;
+}
 /* アイコンを囲むエリア */
 .area_talk {
   padding: 32px;
@@ -38,13 +42,20 @@ li.right_side {
   text-align: center;
 
 }
-/* 画像のスタイル */
+/* 画像のスタイル「アイコンキャラクター」 */
 .pic img{
   /* 幅だけ指定 */
   width: 180px;
   /* 透過する */
   background-color: transparent;
   
+}
+/* 画像のスタイル「メッセージ」 */
+.message_conatainer img {
+  /* 幅だけ指定 */
+  width: 700px;
+  /* 透過する */
+  background-color: transparent;
 }
 /* テキストのスタイル */
 .text_conatainer {
@@ -99,7 +110,7 @@ li.right_side {
   top: 12px;
   left: -45px;
   /* 左だけ枠線 */
-  border-right-color:  #fff;
+  /* border-right-color:  #fff; */
 
 }
 /* 右のふきだし */
@@ -107,7 +118,7 @@ li.right_side {
   top: 12px;
   right: -45px;
   /* 左だけ枠線 */
-  border-left-color:  #fff;
+  /* border-left-color:  #fff; */
 }
 .text_header {
   font-size: 48px;

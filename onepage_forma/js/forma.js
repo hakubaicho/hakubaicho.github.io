@@ -173,20 +173,20 @@
     /*************************************/
     // ここはテスト
     /*************************************/
-    // await ping_wait();
-    // phase_change(0);
-    // await ping_wait();
-    // phase_change(1);
-    // await ping_wait();
-    // phase_change(2);
-    // await ping_wait();
-    // phase_change(3);
-    // await ping_wait();
-    // phase_change(4);
-    // await ping_wait();
-    // tryonShutter.classList.add('loaded');
-    // tryonResult.classList.remove('loaded');
-    // return;
+    await ping_wait();
+    phase_change(0);
+    await ping_wait();
+    phase_change(1);
+    await ping_wait();
+    phase_change(2);
+    await ping_wait();
+    phase_change(3);
+    await ping_wait();
+    phase_change(4);
+    await ping_wait();
+    tryonShutter.classList.add('loaded');
+    tryonResult.classList.remove('loaded');
+    return;
     /*************************************/
     phase_change(0);
     let doNext = true;
@@ -362,20 +362,30 @@
     /*************************************/
     // ここはテスト
     /*************************************/
-    // await ping_wait();
-    // phase_change(0);
-    // await ping_wait();
-    // phase_change(1);
-    // await ping_wait();
-    // phase_change(2);
-    // await ping_wait();
-    // phase_change(3);
-    // await ping_wait();
-    // phase_change(4);
-    // await ping_wait();
-    // tryonShutter.classList.add('loaded');
-    // tryonResult.classList.remove('loaded');
-    // return;
+    await ping_wait();
+    phase_change(0);
+    await ping_wait();
+    await ping_wait();
+    await ping_wait();
+    phase_change(1);
+    await ping_wait();
+    await ping_wait();
+    await ping_wait();
+    phase_change(2);
+    await ping_wait();
+    await ping_wait();
+    await ping_wait();
+    phase_change(3);
+    await ping_wait();
+    await ping_wait();
+    await ping_wait();
+    phase_change(4);
+    await ping_wait();
+    await ping_wait();
+    await ping_wait();
+    tryonShutter.classList.add('loaded');
+    tryonResult.classList.remove('loaded');
+    return;
     /*************************************/
     phase_change(0);
     //***************************************************************************** */
@@ -2196,11 +2206,13 @@
     phase2_img.src = phase2_img_move.src;
     phase3_img.src = phase3_img_move.src;
     phase4_img.src = phase4_img_move.src;
-    phase1_text.textContent = '';
-    phase2_text.textContent = '';
-    phase3_text.textContent = '';
-    phase4_text.textContent = '';
 
+    phase1_msg_img.src = '';
+    phase2_msg_img.src = '';
+    phase3_msg_img.src = '';
+    phase4_msg_img.src = '';
+
+    phase1_msg_img.src= phase1_msg_img_move.src;
     tryonShutter.style.backgroundColor =
       getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-blue');
   }
@@ -2208,33 +2220,36 @@
   function phase_change(index) {
     switch(index) {
       case 0:
-        phase1_text.textContent = 'あなたの写真をとうろくちゅうです';
-        phase1.classList.add('fade_in_text_conatainer');
+        //phase1.classList.add('fade_in_text_conatainer');
+        phase1_img.src = phase1_img_stop.src;
+        phase1_msg_img.src= phase1_msg_img_stop.src;
         break;
       case 1:
-        phase1_text.textContent = 'おわりました';
+        
         phase1_img.src = phase1_img_stop.src;
-        phase2_text.textContent = 'きるTしゃつをとうろくちゅうです';
-        phase2.classList.add('fade_in_text_conatainer');
+        phase1_msg_img.src= phase1_msg_img_stop.src;
+        phase2_msg_img.src= phase2_msg_img_move.src;
+        //phase2.classList.add('fade_in_text_conatainer');
         break;
       case 2:
-        phase2_text.textContent = 'おわりました';
         phase2_img.src = phase2_img_stop.src;
-        phase3_text.textContent = 'あなたにTシャツをきせています';
-        phase3.classList.add('fade_in_text_conatainer');
+        phase2_msg_img.src= phase2_msg_img_stop.src;
+        phase3_msg_img.src= phase3_msg_img_move.src;
+        //phase3.classList.add('fade_in_text_conatainer');
         break;
       case 3:
-        phase3_text.textContent = 'おわりました';
         phase3_img.src = phase3_img_stop.src;
-        phase4.classList.add('fade_in_text_conatainer');
+        phase3_msg_img.src= phase3_msg_img_stop.src;
+        phase4_msg_img.src= phase4_msg_img_move.src;
+        //phase4.classList.add('fade_in_text_conatainer');
         break;
       case 4:
+        phase4_msg_img.src= phase4_msg_img_stop.src;
         phase3_img.src = phase4_img_stop.src;
         phase1_img.src = phase1_img_move.src;
         phase2_img.src = phase2_img_move.src;
         phase3_img.src = phase3_img_move.src;
         phase4_img.src = phase4_img_move.src;
-        phase4_text.textContent = 'さあ にあっているかな？';
         tryonShutter.style.backgroundColor = 
           getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-red');
     }
@@ -2280,11 +2295,6 @@
   const phase3 = document.getElementById('phase_3');
   const phase4 = document.getElementById('phase_4');
 
-  const phase1_text = document.getElementById('phase_1_text');
-  const phase2_text = document.getElementById('phase_2_text');
-  const phase3_text = document.getElementById('phase_3_text');
-  const phase4_text = document.getElementById('phase_4_text');
-
   const phase1_img = document.getElementById('logo_1');
   const phase2_img = document.getElementById('logo_2');
   const phase3_img = document.getElementById('logo_3');
@@ -2299,6 +2309,21 @@
   const phase2_img_stop = document.getElementById('logo_stop_2');
   const phase3_img_stop = document.getElementById('logo_stop_3');
   const phase4_img_stop = document.getElementById('logo_stop_4');
+
+  const phase1_msg_img = document.getElementById('message_1');
+  const phase2_msg_img = document.getElementById('message_2');
+  const phase3_msg_img = document.getElementById('message_3');
+  const phase4_msg_img = document.getElementById('message_4');
+
+  const phase1_msg_img_move = document.getElementById('message_moving_1');
+  const phase2_msg_img_move = document.getElementById('message_moving_2');
+  const phase3_msg_img_move = document.getElementById('message_moving_3');
+  const phase4_msg_img_move = document.getElementById('message_moving_4');
+
+  const phase1_msg_img_stop = document.getElementById('message_stop_1');
+  const phase2_msg_img_stop = document.getElementById('message_stop_2');
+  const phase3_msg_img_stop = document.getElementById('message_stop_3');
+  const phase4_msg_img_stop = document.getElementById('message_stop_4');
 
   // tryon処理中のWait画面
   const tryonShutter = document.getElementById('camera-tryon');

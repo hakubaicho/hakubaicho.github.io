@@ -41,25 +41,16 @@
       this.itemName       = itemName;
       this.price          = price;
 
-      if(designsrc != '')
-      {
-        this.designsrc      = 'img/' + designsrc;
-      }
-      else
-      {
-        this.designsrc      = '';
-      }
-      if(wearedImageSrc != '')
-      {
-        this.wearedImageSrc = 'img/' + wearedImageSrc;
-      }
-      else
-      {
-        this.wearedImageSrc = '';
-      }
+      this.designsrc      = 'img/' + designsrc;
+      this.wearedImageSrc = 'img/' + wearedImageSrc;
+     
       this.uuid           = uuid;
       
       this.location       = 0;
+    }
+    clear_img_src() {
+      this.designsrc      = '';
+      this.wearedImageSrc = '';
     }
     //----------------------------------
     // メソッド
@@ -716,17 +707,27 @@
                             items[index].tag2,
                             items[index].tag3
                               );
+    // onepage用
     selectedItem = new ClothItem(
-                          items[index].tag1,items[index].tag2, items[index].tag3,
-                          '',                    
-                          items[index].designID, items[index].itemName, items[index].price,
-                          '','','','','','','',
+      '', '', '', 
+      '', 
+      '', '', '', '', '', '', '','','','',
+      '', '','',
+      ''
+    );
+    selectedItem.tag1           = items[index].tag1;
+    selectedItem.tag2           = items[index].tag2;
+    selectedItem.tag3           = items[index].tag3;
+     
+    selectedItem.designID       = items[index].designID;
+    selectedItem.itemName       = items[index].itemName;
+    selectedItem.price          = items[index].price;
 
-                          items[index].designsrc,
-                          items[index].wearedImageSrc,
-                          '',
-                          items[index].uuid
-                            );
+    selectedItem.designsrc      = items[index].designsrc;
+    selectedItem.wearedImageSrc = items[index].wearedImageSrc;
+     
+    selectedItem.uuid           = items[index].uuid;
+
     document.getElementById('detail-box').classList.remove('item-hide');
     document.getElementById('detail-box').classList.add('item-show');
     document.getElementById('item_detail_tag1').textContent = items[index].tag1;
@@ -759,6 +760,8 @@
       '', '','',
       ''
     );
+    // 画像をクリアする。
+    selectedItem.clear_img_src();
     fromHTML_call_Set_Item(
                             selectedItem.uuid,
                             selectedItem.itemName,
@@ -1370,7 +1373,7 @@
       input.id = 'check' + String(i);
       input.classList.add('accordion-hidden');       
       div_accordion.append(input);
-
+      
       // <label for="check1" class="accordion-open">Question1</label>
       const label_open = document.createElement('label');
       label_open.htmlFor = input.id;
@@ -1679,6 +1682,11 @@
       const div_info1 = document.createElement('div');
       div_info1.classList.add('accordion-info');
       div_content1.append(div_info1);
+        // img
+        const img_tag2 = document.createElement('img');
+        img_tag2.classList.add('imgcategory');
+        img_tag2.src = "img/hts001.webp";
+        div_info1.append(img_tag2);
       // span
       const span1 = document.createElement('span');
       span1.classList.add('platform-name');
@@ -1713,6 +1721,8 @@
         input_tag2.id = 'radio_tag_root_' + String(i) + '_' + String(j);
         input_tag2.classList.add('accordion-input');
         div_tab2.append(input_tag2);
+
+       
         // label
         const label_tag2 = document.createElement('label');
         label_tag2.htmlFor = input_tag2.id;
@@ -1724,8 +1734,10 @@
                               tagsTree.childrenArray[i].childrenArray[j].name,
                               '',
                             ];
+      
+      
         div_tab2.append(label_tag2);
-
+      
         // content
         const div_content2 = document.createElement('div');
         div_content2.classList.add('accordion-content');
@@ -1734,6 +1746,7 @@
         const div_info2 = document.createElement('div');
         div_info2.classList.add('accordion-info');
         div_content2.append(div_info2);
+      
         // span
         const span2 = document.createElement('span');
         span2.classList.add('platform-name');

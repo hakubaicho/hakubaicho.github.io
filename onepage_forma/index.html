@@ -134,8 +134,11 @@
 			<!-- タイトル -->
 			<p>Status : <span id="title_logo">Tシャツを作ってみる！</span></p>
 			<!-- くるくる -->
-			<div class="spinner"></div>
+			<!-- <div class="spinner"></div> -->
 			<!-- 吹き出しでフェーズ -->
+			<div class="tryonheader">
+				
+			</div>
 			<div class="area_talk">
 				<ul class="messages">
 					<!-- 1番目 -->
@@ -146,13 +149,10 @@
 							<img id="logo_moving_1" class="hidden_image" src="img/c1_character_pc.gif">
 							<img id="logo_stop_1" class="hidden_image" src="img/c1_character_greet.png">
 						</div>
-						<div id="phase_1" class="text_conatainer">
-							<div class="text_header">
-								写真をとうろく
-							</div>
-							<div class="text" id="phase_1_text">
-								<!-- あなたの写真をとうろくちゅうです -->
-							</div>
+						<div id="phase_1" class="message_conatainer">
+							<img id="message_1">
+							<img id="message_moving_1" class="hidden_image" src="img/message01_start.webp">
+							<img id="message_stop_1" class="hidden_image" src="img/message01_end.webp">
 						</div>
 					</li>
 					<!-- 2番目 -->
@@ -163,13 +163,10 @@
 							<img id="logo_moving_2" class="hidden_image" src="img/c2_character_pc.gif">
 							<img id="logo_stop_2" class="hidden_image" src="img/c2_character_greet.png">
 						</div>
-						<div id="phase_2" class="text_conatainer">
-							<div class="text_header">
-								Tシャツをとうろく
-							</div>
-							<div class="text" id="phase_2_text">
-								<!-- 着てみるTしゃつをとうろくちゅうです -->
-							</div>
+						<div id="phase_2" class="message_conatainer">
+							<img id="message_2">
+							<img id="message_moving_2" class="hidden_image" src="img/message02_start.webp">
+							<img id="message_stop_2" class="hidden_image" src="img/message02_end.webp">
 						</div>
 					</li>
 					<!-- 3番目 -->
@@ -180,13 +177,10 @@
 							<img id="logo_moving_3" class="hidden_image" src="img/c3_character_pc.gif">
 							<img id="logo_stop_3" class="hidden_image" src="img/c3_character_greet.png">
 						</div>
-						<div id="phase_3" class="text_conatainer">
-							<div class="text_header">
-								きせかえ
-							</div>
-							<div class="text" id="phase_3_text">
-								<!-- あなたにTシャツをきせています -->
-							</div>
+						<div id="phase_3" class="message_conatainer">
+							<img id="message_3">
+							<img id="message_moving_3" class="hidden_image" src="img/message03_start.webp">
+							<img id="message_stop_3" class="hidden_image" src="img/message03_end.webp">
 						</div>
 					</li>
 					<!-- 4番目 -->
@@ -197,13 +191,10 @@
 							<img id="logo_moving_4" class="hidden_image" src="img/c4_character_pc.gif">
 							<img id="logo_stop_4" class="hidden_image" src="img/c4_character_greet.png">
 						</div>
-						<div id="phase_4" class="text_conatainer">
-							<div class="text_header">
-								みてみて
-							</div>
-							<div class="text" id="phase_4_text">
-								<!-- さあ　にあっているかな？ -->
-							</div>
+						<div id="phase_4" class="message_conatainer">
+							<img id="message_4">
+							<img id="message_moving_4" class="hidden_image" src="img/message04_start.webp">
+							<img id="message_stop_4" class="hidden_image" src="img/message04_end.webp">
 						</div>
 					</li>
 					<!-- おわり -->
@@ -309,16 +300,12 @@
 					<div class="box_command">
 						<!-- <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()"> -->
 						<img src="img/arrow_left.png" id="btn_image_back" onclick="jumpto_index()">
-						<p>選びなおす</p>
 					</div>
 					<div class="box_command">
 						<img src="img/shutter.png" id="btn_image_shutter" onclick="btnimg_click_shutter()">
-						<p>撮影</p>
-						<p>(撮り直し)</p>
 					</div>
 					<div class="box_command">
 						<img src="img/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
-						<p>試着</p>
 					</div>
 				</div>
 				<div>
@@ -667,7 +654,16 @@
 				// 選択中のアイテムを反映
 				document.getElementById('order_design_image').src = GetSelected_Item().designsrc;
 				document.getElementById('designID').textContent = GetSelected_Item().designID;
-				
+
+
+				let num = 0;
+				try {
+					num = Number(GetSelected_Item().price);
+				}
+				catch {
+
+				}
+				document.getElementById('ItemPrice').textContent = num.toLocaleString();
 				// ほかのページを消し込む
 				hide_index();
 				hide_camera();

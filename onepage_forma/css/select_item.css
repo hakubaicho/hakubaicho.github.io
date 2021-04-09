@@ -243,3 +243,7 @@ aside button {
   justify-content: center;
   align-items: center;
 } 
+.imgcategory {
+  height: 50px;
+  background-color: transparent;
+}
