@@ -54,6 +54,7 @@
   height: 180px;
   width: 180px;
   margin: 0;
+  background-color: transparent;
 }
 .box_command p {
   text-align: center;
@@ -143,8 +144,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  background-image : url(../img/background.png);
+  z-index: 9998;
+  background-image : url(../img/camera_result.png);
 }
 
 /* 結果のヘッダエリア */

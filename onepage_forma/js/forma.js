@@ -2139,7 +2139,7 @@
   //
   // 待ち時間開始
   //
-  async function start() {
+  async function start_wait() {
     console.log("待ってます.....");
     await sleep(5000);
     console.log("5秒経過しました！");

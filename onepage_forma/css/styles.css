@@ -192,14 +192,14 @@ footer {
   width: 1080px;
   height: 1920px;
   transition: all 1s;
-  background-color: var(--corporate-color-blue);
+  /* background-color: var(--corporate-color-blue); */
  
 /* 以下のコードを追加 */
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
-  background-image : url(../img/index-loading.png);
+  background-image : url(../img/index-loading.webp);
 }
 #index-page {
   width: 1080px;
@@ -224,8 +224,8 @@ footer {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  background-image : url(../img/background.png);
+  z-index: 9998;
+  background-image : url(../img/skyback.png);
 }
 #camera-page {
   width: 1080px;
@@ -238,7 +238,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 0;
-  /* background-image : url(../img/background.png); */
+  background-image : url(../img/skyback.png);
 }
 
 #order-page {

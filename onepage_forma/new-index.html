@@ -487,7 +487,7 @@
 			// ページロード時の処理
 			// **********************
 			window.onload = function() {
-				debugConsole_proc('window.onload()');		
+				debugConsole_proc('window.onload()');
 				// index-Loadingを閉じる
 				const spinner = document.getElementById('index-loading');
 				spinner.classList.add('loaded');
@@ -498,6 +498,7 @@
 
 				jumpto_index();
 			}
+			 
 			// index.htmlがロードされた時の処理
 			function index_onloaded() {
 				debugConsole_proc('index_onloaded()');
@@ -547,7 +548,7 @@
         try
         {
           let obj = fromHTML_call_Loaded_pagecamera();
-          LogIn(obj[0], obj[1]);
+         	// LogIn(obj[0], obj[1]);
         }
         catch(e)
         {
@@ -607,17 +608,17 @@
 				debugConsole_proc('jumpto_Camera()');
 
 				// Formaに接続できていない場合の処理
-				if(!Get_logInStatus())
-				{
-					let msg = '試着サーバーに接続できません。\n';
-					msg += 'お手数ですが\n';
-					msg += '['
-					msg += document.getElementById('btn_index_goto_order').textContent; 
-					msg += ']\n';
-					msg += 'におすすみください。';
-					alert(msg);
-					return;
-				}
+				// if(!Get_logInStatus())
+				// {
+				// 	let msg = '試着サーバーに接続できません。\n';
+				// 	msg += 'お手数ですが\n';
+				// 	msg += '['
+				// 	msg += document.getElementById('btn_index_goto_order').textContent; 
+				// 	msg += ']\n';
+				// 	msg += 'におすすみください。';
+				// 	alert(msg);
+				// 	return;
+				// }
 
 				// 選択アイテムのチェック
 				if(!IsSelectItem())return;
