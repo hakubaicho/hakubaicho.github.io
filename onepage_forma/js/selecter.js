@@ -8,25 +8,57 @@
     //----------------------------------
     // コンストラクタ
     //----------------------------------
-    // uuid             : FormaのItem登録uuid
-    // itemName         : itemの名称
-    // designId         : デザインID
-    // designsrc        : デザイン
-    // wearedImageSrc   : 着衣イメージ
     // tag1             : 大分類
     // tag2             : 中分類
     // tag3             : 小分類
+    // kind             : 種別
+    // remark01         : デザインID    [designId]
+    // remark02         : 名称          [itemName]
+    // remark03         : 価格          [price]
+    // remark04         : 未使用
+    // remark05         : 未使用
+    // remark06         : 未使用
+    // remark07         : 未使用
+    // remark08         : 未使用
+    // remark09         : 未使用
+    // remark10         : 未使用
+    // designsrc        : デザイン
+    // wearedImageSrc   : 着衣イメージ
+    // formaSrc         : フォルマへの登録画像
+    // uuid             : FormaのItem登録uuid
     // location         : 配置場所(ItemListの置き場所index)
-    constructor(uuid, itemName, designID, designsrc, wearedImageSrc, tag1,tag2, tag3)
+    constructor(tag1, tag2, tag3, 
+                kind, 
+                designID, itemName, price, remark4, remrk5, remark6, remark7,remark8,remark9,remark10,
+                designsrc, wearedImageSrc, formaSrc,
+                uuid)
     {
-      this.uuid           = uuid;
-      this.itemName       = itemName;
-      this.designID       = designID;
-      this.designsrc      = designsrc;
-      this.wearedImageSrc = wearedImageSrc;
       this.tag1           = tag1;
       this.tag2           = tag2;
       this.tag3           = tag3;
+     
+      this.designID       = designID;
+      this.itemName       = itemName;
+      this.price          = price;
+
+      if(designsrc != '')
+      {
+        this.designsrc      = 'img/' + designsrc;
+      }
+      else
+      {
+        this.designsrc      = '';
+      }
+      if(wearedImageSrc != '')
+      {
+        this.wearedImageSrc = 'img/' + wearedImageSrc;
+      }
+      else
+      {
+        this.wearedImageSrc = '';
+      }
+      this.uuid           = uuid;
+      
       this.location       = 0;
     }
     //----------------------------------
@@ -118,749 +150,310 @@
   // インスタンスの作成
   // *********************************************
   // ClothItemのインスタンスを生成。
-  //********************************** */
-  // 画像が ".pmg"
-  //********************************** */
-  // const items = [
-  //   // せなけいこ-ふうせんねこ
-  //   new ClothItem('', 'ふうせんねこ1',  'SNK001', 'img/SNK001.png','img/T-SNK001.png','Tシャツ', 'せなけいこ','ふうせんねこ'),
-  //   new ClothItem('', 'ふうせんねこ2',  'SNK002', 'img/SNK002.png','img/T-SNK002.png','Tシャツ', 'せなけいこ','ふうせんねこ'),
-    
-  //   // せなけいこ-きれいなはこ
-  //   new ClothItem('', 'おばけ', 'SNK003', 'img/SNK003.png','img/T-SNK003.png','Tシャツ', 'せなけいこ','きれいなはこ'),
-  //   new ClothItem('', 'ねこちゃん', 'SNK004', 'img/SNK004.png','img/T-SNK004.png','Tシャツ', 'せなけいこ','きれいなはこ'),
-  //   new ClothItem('', 'わんちゃん', 'SNK005', 'img/SNK005.png','img/T-SNK005.png','Tシャツ', 'せなけいこ','きれいなはこ'),
-
-  //   // せなけいこ-ねないこだれだ
-  //   new ClothItem('', 'ふくろうとみみずく', 'SNK006', 'img/SNK006.png','img/T-SNK006.png','Tシャツ', 'せなけいこ','ねないこだれだ'),
-  //   new ClothItem('', 'くろねこ', 'SNK007', 'img/SNK007.png','img/T-SNK007.png','Tシャツ', 'せなけいこ','ねないこだれだ'),
-  //   new ClothItem('', 'ねずみ', 'SNK008', 'img/SNK008.png','img/T-SNK008.png','Tシャツ', 'せなけいこ','ねないこだれだ'),
-  //   new ClothItem('', 'おばけ1', 'SNK009', 'img/SNK009.png','img/T-SNK009.png','Tシャツ', 'せなけいこ','ねないこだれだ'),
-  //   new ClothItem('', 'おばけ2', 'SNK010', 'img/SNK010.png','img/T-SNK010.png','Tシャツ', 'せなけいこ','ねないこだれだ'),
-
-
-  //   // せなけいこ-いやだいやだ
-  //   new ClothItem('', 'おひさま', 'SNK011', 'img/SNK011.png','img/T-SNK011.png','Tシャツ', 'せなけいこ','いやだいやだ'),
-  //   new ClothItem('', 'くつ', 'SNK012', 'img/SNK012.png','img/T-SNK012.png','Tシャツ', 'せなけいこ','いやだいやだ'),
-  //   new ClothItem('', 'くまちゃん', 'SNK013', 'img/SNK013.png','img/T-SNK013.png','Tシャツ', 'せなけいこ','いやだいやだ'),
-
-  //   // せなけいこ-もじゃもじゃ
-  //   new ClothItem('', 'ころ', 'SNK014', 'img/SNK014.png','img/T-SNK014.png','Tシャツ', 'せなけいこ','もじゃもじゃ'),
-  //   new ClothItem('', 'ルルちゃん2', 'SNK016', 'img/SNK015.png','img/T-SNK015.png','Tシャツ', 'せなけいこ','もじゃもじゃ'),
-  //   new ClothItem('', 'ルルちゃん1', 'SNK015', 'img/SNK016.png','img/T-SNK016.png','Tシャツ', 'せなけいこ','もじゃもじゃ'),
-
-  //   // せなけいこ-にんじん
-  //   new ClothItem('', 'うまさん', 'SNK017', 'img/SNK017.png','img/T-SNK017.png','Tシャツ', 'せなけいこ','にんじん'),
-  //   new ClothItem('', 'きりんさん', 'SNK018', 'img/SNK018.png','img/T-SNK018.png','Tシャツ', 'せなけいこ','にんじん'),
-  //   new ClothItem('', 'おさるさん', 'SNK019', 'img/SNK019.png','img/T-SNK019.png','Tシャツ', 'せなけいこ','にんじん'),
-  //   new ClothItem('', 'ぶたさん', 'SNK020', 'img/SNK020.png','img/T-SNK020.png','Tシャツ', 'せなけいこ','にんじん'),
-  //   new ClothItem('', 'かばさん', 'SNK021', 'img/SNK021.png','img/T-SNK021.png','Tシャツ', 'せなけいこ','にんじん'),
-  //   new ClothItem('', 'うさぎさん', 'SNK022', 'img/SNK022.png','img/T-SNK022.png','Tシャツ', 'せなけいこ','にんじん'),
-  //   new ClothItem('', 'ぼく', 'SNK023', 'img/SNK023.png','img/T-SNK023.png','Tシャツ', 'せなけいこ','にんじん'),
-    
-  //   // せなけいこ-あーんあん
-  //   new ClothItem('', 'みんな', 'SNK026', 'img/SNK024.png','img/T-SNK024.png','Tシャツ', 'せなけいこ','あーんあん'),
-  //   new ClothItem('', 'ぼく2', 'SNK025', 'img/SNK025.png','img/T-SNK025.png','Tシャツ', 'せなけいこ','あーんあん'),
-  //   new ClothItem('', 'ぼく1', 'SNK024', 'img/SNK026.png','img/T-SNK026.png','Tシャツ', 'せなけいこ','あーんあん'),
-    
-  //   // せなけいこ-ルルちゃんのくつした
-  //   new ClothItem('', 'ルルちゃん', 'SNK027', 'img/SNK027.png','img/T-SNK027.png','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-  //   new ClothItem('', 'うさこ', 'SNK028', 'img/SNK028.png','img/T-SNK028.png','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-  //   new ClothItem('', 'わんこ', 'SNK029', 'img/SNK029.png','img/T-SNK029.png','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-  //   new ClothItem('', 'ねこちゃん', 'SNK030', 'img/SNK030.png','img/T-SNK030.png','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-  //   new ClothItem('', 'ぞうさん', 'SNK031', 'img/SNK031.png','img/T-SNK031.png','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-
-  //   // せなけいこ-にゃんにゃん
-  //   new ClothItem('', 'とらねこ', 'SNK032', 'img/SNK032.png','img/T-SNK032.png','Tシャツ', 'せなけいこ','にゃんにゃん'),
-  //   new ClothItem('', 'くろいねこ', 'SNK033', 'img/SNK033.png','img/T-SNK033.png','Tシャツ', 'せなけいこ','にゃんにゃん'),
-  //   new ClothItem('', 'ねこちゃん', 'SNK034', 'img/SNK034.png','img/T-SNK034.png','Tシャツ', 'せなけいこ','にゃんにゃん'),
-  //   new ClothItem('', 'ぶちねこ', 'SNK035', 'img/SNK035.png','img/T-SNK035.png','Tシャツ', 'せなけいこ','にゃんにゃん'),
-  //   new ClothItem('', 'にゃんにゃん', 'SNK036', 'img/SNK036.png','img/T-SNK036.png','Tシャツ', 'せなけいこ','にゃんにゃん'),
-
-
-
-  //   // ハトソン探偵団
-  //   new ClothItem('', 'ハトソンくん(基本)', 'HTS001', 'img/HTS001.png','img/T-HTS001.png','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-  //   new ClothItem('', 'よろこビーバー(基本)', 'HTS002', 'img/HTS002.png','img/T-HTS002.png','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-  //   new ClothItem('', 'ほしいゾウ(基本)', 'HTS003', 'img/HTS003.png','img/T-HTS003.png','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-  //   new ClothItem('', 'オットセール(基本)', 'HTS004', 'img/HTS004.png','img/T-HTS004.png','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-  //   new ClothItem('', 'ハトソンくん(説明)', 'HTS005', 'img/HTS005.png','img/T-HTS005.png','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-  //   new ClothItem('', 'よろこビーバー(説明)', 'HTS006', 'img/HTS006.png','img/T-HTS006.png','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-  //   new ClothItem('', 'ほしいゾウ(説明)', 'HTS007', 'img/HTS007.png','img/T-HTS007.png','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-  //   new ClothItem('', 'オットセール(説明)', 'HTS008', 'img/HTS008.png','img/T-HTS008.png','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-  //   new ClothItem('', 'ハトソンくん(歩く)', 'HTS009', 'img/HTS009.png','img/T-HTS009.png','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-  //   new ClothItem('', 'よろこビーバー(歩く)', 'HTS010', 'img/HTS010.png','img/T-HTS010.png','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-  //   new ClothItem('', 'ほしいゾウ(歩く)', 'HTS011', 'img/HTS011.png','img/T-HTS011.png','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-  //   new ClothItem('', 'オットセール(歩く)', 'HTS012', 'img/HTS012.png','img/T-HTS012.png','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-  //   new ClothItem('', 'ハトソンくん(よろこぶ)', 'HTS013', 'img/HTS013.png','img/T-HTS013.png','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-  //   new ClothItem('', 'よろこビーバー(よろこぶ)', 'HTS014', 'img/HTS014.png','img/T-HTS014.png','Tシャツ', 'ハトソン探偵団','よろこビーバー'),NK047.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'ひつじ', 'HNK048', 'img/HNK048.png','img/T-HNK048.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'ぞう', 'HNK049', 'img/HNK049.png','img/T-HNK049.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'はと', 'HNK042', 'img/HNK042.png','img/T-HNK042.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'ねこ', 'HNK043', 'img/HNK043.png','img/T-HNK043.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'いぬ', 'HNK044', 'img/HNK044.png','img/T-HNK044.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'はりねずみ', 'HNK045', 'img/HNK045.png','img/T-HNK045.png','Tシャツ', 'はんこ','どうぶつ'),
-    
-  //   // はんこ-お花
-  //   new ClothItem('', 'お花1', 'HNK005', 'img/HNK005.png','img/T-HNK005.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花2', 'HNK006', 'img/HNK006.png','img/T-HNK006.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothIte
-  //   new ClothItem('', 'ほしいゾウ(よろこぶ)', 'HTS015', 'img/HTS015.png','img/T-HTS015.png','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-  //   new ClothItem('', 'オットセール(よろこぶ)', 'HTS016', 'img/HTS016.png','img/T-HTS016.png','Tシャツ', 'ハトソン探偵団','オットセール'),
-    
-  //   new ClothItem('', 'ハトソンくん(おじぎ)', 'HTS017', 'img/HTS017.png','img/T-HTS017.png','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-  //   new ClothItem('', 'よろこビーバー(おじぎ)', 'HTS018', 'img/HTS018.png','img/T-HTS018.png','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-  //   new ClothItem('', 'ほしいゾウ(おじぎ)', 'HTS019', 'img/HTS019.png','img/T-HTS019.png','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-  //   new ClothItem('', 'オットセール(おじぎ)', 'HTS020', 'img/HTS020.png','img/T-HTS020.png','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-    
-    
-  //   // はんこ-動物
-  //   new ClothItem('', 'にわとり', 'HNK046', 'img/HNK046.png','img/T-HNK046.png','Tシャツ', 'はんこ','どうぶつ'),
-  //   new ClothItem('', 'りす', 'HNK047', 'img/HNK047.png','img/T-Hm('', 'お花3', 'HNK007', 'img/HNK007.png','img/T-HNK007.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花4', 'HNK008', 'img/HNK008.png','img/T-HNK008.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花5', 'HNK009', 'img/HNK009.png','img/T-HNK009.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花6', 'HNK010', 'img/HNK010.png','img/T-HNK010.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花7', 'HNK011', 'img/HNK011.png','img/T-HNK011.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花8', 'HNK012', 'img/HNK012.png','img/T-HNK012.png','Tシャツ', 'はんこ','お花'),
-  //   new ClothItem('', 'お花9', 'HNK013', 'img/HNK013.png','img/T-HNK013.png','Tシャツ', 'はんこ','お花'),
-    
-  //   // はんこ-食べ物
-  //   new ClothItem('', 'みかん', 'HNK031', 'img/HNK031.png','img/T-HNK031.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', '洋ナシ', 'HNK032', 'img/HNK032.png','img/T-HNK032.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'にんじん', 'HNK014', 'img/HNK014.png','img/T-HNK014.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'えだまめ', 'HNK015', 'img/HNK015.png','img/T-HNK015.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'ぴーまん', 'HNK016', 'img/HNK016.png','img/T-HNK016.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'とうがらし', 'HNK017', 'img/HNK017.png','img/T-HNK017.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'ばなな', 'HNK018', 'img/HNK018.png','img/T-HNK018.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'りんご１', 'HNK019', 'img/HNK019.png','img/T-HNK019.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'おれんじ', 'HNK020', 'img/HNK020.png','img/T-HNK020.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'すいか', 'HNK021', 'img/HNK021.png','img/T-HNK021.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'りんご2', 'HNK029', 'img/HNK029.png','img/T-HNK029.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'さくらんぼ', 'HNK030', 'img/HNK030.png','img/T-HNK030.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'アイスクリーム', 'HNK033', 'img/HNK033.png','img/T-HNK033.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'ソフトクリーム', 'HNK034', 'img/HNK034.png','img/T-HNK034.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'アイス', 'HNK035', 'img/HNK035.png','img/T-HNK035.png','Tシャツ', 'はんこ','たべもの'),
-  //   new ClothItem('', 'かき氷', 'HNK036', 'img/HNK036.png','img/T-HNK036.png','Tシャツ', 'はんこ','たべもの'),
-    
-  //   // はんこ-日本
-  //   new ClothItem('', 'こけし', 'HNK058', 'img/HNK058.png','img/T-HNK058.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'けん玉', 'HNK059', 'img/HNK059.png','img/T-HNK059.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', '紙ふうせん', 'HNK060', 'img/HNK060.png','img/T-HNK060.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'こま', 'HNK061', 'img/HNK061.png','img/T-HNK061.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', '折リヅル', 'HNK062', 'img/HNK062.png','img/T-HNK062.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'さけ1', 'HNK063', 'img/HNK063.png','img/T-HNK063.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'さけ2', 'HNK064', 'img/HNK064.png','img/T-HNK064.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'さけ3', 'HNK065', 'img/HNK065.png','img/T-HNK065.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'ひょうたん', 'HNK066', 'img/HNK066.png','img/T-HNK066.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'きゅうす', 'HNK067', 'img/HNK067.png','img/T-HNK067.png','Tシャツ', 'はんこ','日本'),
-  //   new ClothItem('', 'お茶', 'HNK068', 'img/HNK068.png','img/T-HNK068.png','Tシャツ', 'はんこ','日本'),
-    
-  //   // はんこ-お天気
-  //   new ClothItem('', '雪', 'HNK069', 'img/HNK069.png','img/T-HNK069.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '晴れ', 'HNK070', 'img/HNK070.png','img/T-HNK070.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '雨', 'HNK071', 'img/HNK071.png','img/T-HNK071.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '雷雲', 'HNK072', 'img/HNK072.png','img/T-HNK072.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '雨雲', 'HNK073', 'img/HNK073.png','img/T-HNK073.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', 'くもり', 'HNK074', 'img/HNK074.png','img/T-HNK074.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '星', 'HNK075', 'img/HNK075.png','img/T-HNK075.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '月', 'HNK076', 'img/HNK076.png','img/T-HNK076.png','Tシャツ', 'はんこ','お天気'),
-  //   new ClothItem('', '太陽', 'HNK077', 'img/HNK077.png','img/T-HNK077.png','Tシャツ', 'はんこ','お天気'),
-    
-  //   // はんこ-乗り物
-  //   new ClothItem('', '車', 'HNK045', 'img/HNK037.png','img/T-HNK037.png','Tシャツ', 'はんこ','乗り物'),
-  //   new ClothItem('', 'バス', 'HNK046', 'img/HNK038.png','img/T-HNK038.png','Tシャツ', 'はんこ','乗り物'),
-  //   new ClothItem('', '飛行機', 'HNK047', 'img/HNK039.png','img/T-HNK039.png','Tシャツ', 'はんこ','乗り物'),
-  //   new ClothItem('', 'バイク', 'HNK048', 'img/HNK040.png','img/T-HNK040.png','Tシャツ', 'はんこ','乗り物'),    
-  //   new ClothItem('', '自転車', 'HNK049', 'img/HNK041.png','img/T-HNK041.png','Tシャツ', 'はんこ','乗り物'),
-    
-  //   // はんこ-その他
-  //   new ClothItem('', 'ハート1', 'HNK001', 'img/HNK001.png','img/T-HNK001.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'スター1', 'HNK002', 'img/HNK002.png','img/T-HNK002.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'スター2', 'HNK003', 'img/HNK003.png','img/T-HNK003.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'ハート2', 'HNK004', 'img/HNK004.png','img/T-HNK004.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'パーティ1', 'HNK022', 'img/HNK022.png','img/T-HNK022.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'パーティ2', 'HNK023', 'img/HNK023.png','img/T-HNK023.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'パーティ3', 'HNK024', 'img/HNK024.png','img/T-HNK024.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'パーティ4', 'HNK025', 'img/HNK025.png','img/T-HNK025.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '旅1', 'HNK026', 'img/HNK026.png','img/T-HNK026.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '旅2', 'HNK027', 'img/HNK027.png','img/T-HNK027.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '旅3', 'HNK028', 'img/HNK028.png','img/T-HNK028.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'マリン1', 'HNK050', 'img/HNK050.png','img/T-HNK050.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'マリン2', 'HNK051', 'img/HNK051.png','img/T-HNK051.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'マリン3', 'HNK052', 'img/HNK052.png','img/T-HNK052.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', 'マリン4', 'HNK053', 'img/HNK053.png','img/T-HNK053.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '楽器1', 'HNK054', 'img/HNK054.png','img/T-HNK054.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '楽器2', 'HNK055', 'img/HNK055.png','img/T-HNK055.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '楽器3', 'HNK056', 'img/HNK056.png','img/T-HNK056.png','Tシャツ', 'はんこ','その他'),
-  //   new ClothItem('', '楽器4', 'HNK057', 'img/HNK057.png','img/T-HNK057.png','Tシャツ', 'はんこ','その他'),
-
-  //   // ゆるふわ-どうぶつ
-  //   new ClothItem('', 'くじら', 'YRF001', 'img/YRF001.png','img/T-YRF001.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'らいおん', 'YRF002', 'img/YRF002.png','img/T-YRF002.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'くま１', 'YRF003', 'img/YRF003.png','img/T-YRF003.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'こあら', 'YRF004', 'img/YRF004.png','img/T-YRF004.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'かんがるー', 'YRF005', 'img/YRF005.png','img/T-YRF005.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'かば', 'YRF006', 'img/YRF006.png','img/T-YRF006.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'いか', 'YRF007', 'img/YRF007.png','img/T-YRF007.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ひつじ１', 'YRF008', 'img/YRF008.png','img/T-YRF008.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'はむすたー', 'YRF009', 'img/YRF009.png','img/T-YRF009.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ごりら', 'YRF010', 'img/YRF010.png','img/T-YRF010.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-
-  //   new ClothItem('', 'ぞう', 'YRF011', 'img/YRF011.png','img/T-YRF011.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'いぬ１', 'YRF012', 'img/YRF012.png','img/T-YRF012.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'だちょう', 'YRF013', 'img/YRF013.png','img/T-YRF013.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ねこ１', 'YRF014', 'img/YRF014.png','img/T-YRF014.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ぶた', 'YRF015', 'img/YRF015.png','img/T-YRF015.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'あひる', 'YRF016', 'img/YRF016.png','img/T-YRF016.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ありくい', 'YRF017', 'img/YRF017.png','img/T-YRF017.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'やぎ', 'YRF018', 'img/YRF018.png','img/T-YRF018.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'わし', 'YRF019', 'img/YRF019.png','img/T-YRF019.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'わに', 'YRF020', 'img/YRF020.png','img/T-YRF020.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-  //   new ClothItem('', 'うさぎ１', 'YRF021', 'img/YRF021.png','img/T-YRF021.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'はくちょう', 'YRF022', 'img/YRF022.png','img/T-YRF022.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'しか', 'YRF023', 'img/YRF023.png','img/T-YRF023.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'おおかみ', 'YRF024', 'img/YRF024.png','img/T-YRF024.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'さる１', 'YRF025', 'img/YRF025.png','img/T-YRF025.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'くま２', 'YRF026', 'img/YRF026.png','img/T-YRF026.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'たこ', 'YRF027', 'img/YRF027.png','img/T-YRF027.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'うさぎ２', 'YRF028', 'img/YRF028.png','img/T-YRF028.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'となかい', 'YRF029', 'img/YRF029.png','img/T-YRF029.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'うま', 'YRF030', 'img/YRF030.png','img/T-YRF030.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-  //   new ClothItem('', 'つるかめ', 'YRF031', 'img/YRF031.png','img/T-YRF031.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'いのしし', 'YRF032', 'img/YRF032.png','img/T-YRF032.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ひつじ２', 'YRF033', 'img/YRF033.png','img/T-YRF033.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'りゅう', 'YRF034', 'img/YRF034.png','img/T-YRF034.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'いぬ２', 'YRF035', 'img/YRF035.png','img/T-YRF035.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'にわとり', 'YRF036', 'img/YRF036.png','img/T-YRF036.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'さる２', 'YRF037', 'img/YRF037.png','img/T-YRF037.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'へび', 'YRF038', 'img/YRF038.png','img/T-YRF038.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'うし', 'YRF039', 'img/YRF039.png','img/T-YRF039.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'うさぎ３', 'YRF040', 'img/YRF040.png','img/T-YRF040.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-  //   new ClothItem('', 'とら', 'YRF041', 'img/YRF041.png','img/T-YRF041.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ねずみ', 'YRF042', 'img/YRF042.png','img/T-YRF042.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'ねこ２', 'YRF043', 'img/YRF043.png','img/T-YRF043.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'いぬ３', 'YRF044', 'img/YRF044.png','img/T-YRF044.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'くろねこ', 'YRF046', 'img/YRF046.png','img/T-YRF046.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'かえる', 'YRF047', 'img/YRF047.png','img/T-YRF047.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'うさぎ４', 'YRF048', 'img/YRF048.png','img/T-YRF048.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-  //   new ClothItem('', 'りす', 'YRF049', 'img/YRF049.png','img/T-YRF049.png','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-  //   // ゆるふわ-お花
-  //   new ClothItem('', 'つばき', 'YRF050', 'img/YRF050.png','img/T-YRF050.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'たんぽぽ', 'YRF051', 'img/YRF051.png','img/T-YRF051.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'すずらん', 'YRF052', 'img/YRF052.png','img/T-YRF052.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'すみれ', 'YRF053', 'img/YRF053.png','img/T-YRF053.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'すいせん', 'YRF054', 'img/YRF054.png','img/T-YRF054.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'らん', 'YRF055', 'img/YRF055.png','img/T-YRF055.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'らなんきゅらす', 'YRF056', 'img/YRF056.png','img/T-YRF056.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'ぱんじー', 'YRF057', 'img/YRF057.png','img/T-YRF057.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'なのはな', 'YRF058', 'img/YRF058.png','img/T-YRF058.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'ねこじゃらし', 'YRF059', 'img/YRF059.png','img/T-YRF059.png','Tシャツ', 'ゆるふわ','お花'),
-  //   new ClothItem('', 'もも', 'YRF060', 'img/YRF060.png','img/T-YRF060.png','Tシャツ', 'ゆるふわ','お花'),
-    
-  //   new ClothItem('', 'まーがれっと', 'YRF061', 'img/YRF061.png','img/T-YRF061.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'きく', 'YRF062', 'img/YRF062.png','img/T-YRF062.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'いね', 'YRF063', 'img/YRF063.png','img/T-YRF063.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'ひがんばな', 'YRF064', 'img/YRF064.png','img/T-YRF064.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'ふじのはな', 'YRF065', 'img/YRF065.png','img/T-YRF065.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'ふりーじあ', 'YRF066', 'img/YRF066.png','img/T-YRF066.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'くろっかす', 'YRF067', 'img/YRF067.png','img/T-YRF067.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'しくらめん', 'YRF068', 'img/YRF068.png','img/T-YRF068.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'こすもす', 'YRF069', 'img/YRF069.png','img/T-YRF069.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'ひまわり', 'YRF070', 'img/YRF070.png','img/T-YRF070.png','Tシャツ', 'ゆるふわ',''),
-    
-  //   // ゆるふわ-むし
-  //   new ClothItem('', 'てんとうむし', 'YRF071', 'img/YRF071.png','img/T-YRF071.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'たまむし', 'YRF072', 'img/YRF072.png','img/T-YRF072.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'おにやんま', 'YRF073', 'img/YRF073.png','img/T-YRF073.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'もんしろちょう', 'YRF074', 'img/YRF074.png','img/T-YRF074.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'みつばち', 'YRF075', 'img/YRF075.png','img/T-YRF075.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'みのむし', 'YRF076', 'img/YRF076.png','img/T-YRF076.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'みんみんぜみ', 'YRF077', 'img/YRF077.png','img/T-YRF077.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'くわがた(めす)', 'YRF078', 'img/YRF078.png','img/T-YRF078.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'くわがた(おす)', 'YRF079', 'img/YRF079.png','img/T-YRF079.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'くも', 'YRF80', 'img/YRF080.png','img/T-YRF080.png','Tシャツ', 'ゆるふわ','むし'),
-    
-  //   new ClothItem('', 'くまぜみ', 'YRF081', 'img/YRF081.png','img/T-YRF081.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'こおろぎ', 'YRF082', 'img/YRF082.png','img/T-YRF082.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'きりぎりす', 'YRF083', 'img/YRF083.png','img/T-YRF083.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'かめむし', 'YRF084', 'img/YRF084.png','img/T-YRF084.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'かまきり', 'YRF085', 'img/YRF085.png','img/T-YRF085.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'かぶとむし', 'YRF086', 'img/YRF086.png','img/T-YRF086.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'いととんぼ', 'YRF087', 'img/YRF087.png','img/T-YRF087.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'いもむし', 'YRF088', 'img/YRF088.png','img/T-YRF088.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'ほたる', 'YRF089', 'img/YRF089.png','img/T-YRF089.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'ぎんやんま', 'YRF090', 'img/YRF090.png','img/T-YRF090.png','Tシャツ', 'ゆるふわ','むし'),
-    
-  //   new ClothItem('', 'かたつむり', 'YRF091', 'img/YRF091.png','img/T-YRF091.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'だんごむし', 'YRF092', 'img/YRF092.png','img/T-YRF092.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'あり', 'YRF093', 'img/YRF093.png','img/T-YRF093.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'あかとんぼ', 'YRF094', 'img/YRF094.png','img/T-YRF094.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'あげはちょう', 'YRF095', 'img/YRF095.png','img/T-YRF095.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'あぶらぜみ', 'YRF096', 'img/YRF096.png','img/T-YRF096.png','Tシャツ', 'ゆるふわ','むし'),
-  //   new ClothItem('', 'かたつむり', 'YRF097', 'img/YRF097.png','img/T-YRF097.png','Tシャツ', 'ゆるふわ','むし'),
-    
-  //   // ゆるふわ-おさかな
-  //   new ClothItem('', 'たこ', 'YRF098', 'img/YRF098.png','img/T-YRF098.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'たい', 'YRF099', 'img/YRF099.png','img/T-YRF099.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'さんま', 'YRF100', 'img/YRF100.png','img/T-YRF100.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'さめ', 'YRF101', 'img/YRF101.png','img/T-YRF101.png','Tシャツ', 'ゆるふわ',''),
-    
-  //   new ClothItem('', 'さけ', 'YRF102', 'img/YRF102.png','img/T-YRF102.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'まぐろ', 'YRF103', 'img/YRF103.png','img/T-YRF103.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'かい', 'YRF104', 'img/YRF104.png','img/T-YRF104.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'えび', 'YRF105', 'img/YRF105.png','img/T-YRF105.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'さば', 'YRF106', 'img/YRF106.png','img/T-YRF106.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'ひらめ', 'YRF107', 'img/YRF107.png','img/T-YRF107.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'ふぐ', 'YRF108', 'img/YRF108.png','img/T-YRF108.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'かれい', 'YRF109', 'img/YRF109.png','img/T-YRF109.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'いか', 'YRF110', 'img/YRF110.png','img/T-YRF110.png','Tシャツ', 'ゆるふわ',''),
-  //   new ClothItem('', 'やどかり', 'YRF111', 'img/YRF111.png','img/T-YRF111.png','Tシャツ', 'ゆるふわ',''),
-    
-  //   new ClothItem('', 'かに', 'YRF112', 'img/YRF112.png','img/T-YRF112.png','Tシャツ', 'ゆるふわ',''),
-    
-  //   // ゆるふわ-イベント
-  //   new ClothItem('', 'イベント1', 'YRF113', 'img/YRF113.png','img/T-YRF113.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント2', 'YRF114', 'img/YRF114.png','img/T-YRF114.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント3', 'YRF115', 'img/YRF115.png','img/T-YRF115.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント4', 'YRF116', 'img/YRF116.png','img/T-YRF116.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント5', 'YRF117', 'img/YRF117.png','img/T-YRF117.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント6', 'YRF118', 'img/YRF118.png','img/T-YRF118.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント7', 'YRF119', 'img/YRF119.png','img/T-YRF119.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント8', 'YRF120', 'img/YRF120.png','img/T-YRF120.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント9', 'YRF121', 'img/YRF121.png','img/T-YRF121.png','Tシャツ', 'ゆるふわ','イベント'),
-    
-  //   new ClothItem('', 'イベント10', 'YRF122', 'img/YRF122.png','img/T-YRF122.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント11', 'YRF123', 'img/YRF123.png','img/T-YRF123.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント12', 'YRF124', 'img/YRF124.png','img/T-YRF124.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント13', 'YRF125', 'img/YRF125.png','img/T-YRF125.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント14', 'YRF126', 'img/YRF133.png','img/T-YRF133.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント15', 'YRF127', 'img/YRF134.png','img/T-YRF134.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント16', 'YRF045', 'img/YRF045.png','img/T-YRF045.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント17', 'YRF128', 'img/YRF135.png','img/T-YRF135.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント18', 'YRF129', 'img/YRF136.png','img/T-YRF136.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント19', 'YRF130', 'img/YRF138.png','img/T-YRF138.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント20', 'YRF131', 'img/YRF139.png','img/T-YRF139.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント21', 'YRF132', 'img/YRF140.png','img/T-YRF140.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント22', 'YRF133', 'img/YRF146.png','img/T-YRF146.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント23', 'YRF134', 'img/YRF141.png','img/T-YRF141.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント24', 'YRF135', 'img/YRF142.png','img/T-YRF142.png','Tシャツ', 'ゆるふわ','イベント'),
-  //   new ClothItem('', 'イベント25', 'YRF136', 'img/YRF143.png','img/T-YRF143.png','Tシャツ', 'ゆるふわ','イベント'),
-    
-  //   // ゆるふわ-たべもの
-  //   new ClothItem('', 'ぷりん', 'YRF137', 'img/YRF126.png','img/T-YRF126.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'たいやき', 'YRF138', 'img/YRF127.png','img/T-YRF127.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'ぱふぇ', 'YRF139', 'img/YRF128.png','img/T-YRF128.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'けーき', 'YRF140', 'img/YRF129.png','img/T-YRF129.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'だんご', 'YRF141', 'img/YRF130.png','img/T-YRF130.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'ほっとけーき', 'YRF142', 'img/YRF131.png','img/T-YRF131.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'きゃんでぃー', 'YRF143', 'img/YRF132.png','img/T-YRF132.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'そふとくりーむ', 'YRF144', 'img/YRF137.png','img/T-YRF137.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'すし', 'YRF145', 'img/YRF144.png','img/T-YRF144.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'すいか', 'YRF146', 'img/YRF145.png','img/T-YRF145.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'ぴざ', 'YRF147', 'img/YRF147.png','img/T-YRF147.png','Tシャツ', 'ゆるふわ','たべもの'),
-  //   new ClothItem('', 'おにぎり', 'YRF148', 'img/YRF148.png','img/T-YRF148.png','Tシャツ', 'ゆるふわ','たべもの'),
-    
-    
-
-  //   // [TryOn] せなけいこ
-  //   new ClothItem('4eb4eadc-54ed-44ce-a825-b00e14f13bf7', 'ふうせんねこ1', 'SNK001', 'img/SNK001.png','img/T-SNK001.png','TryOn', 'せなけいこ',''),
-  //   new ClothItem('5659faca-7d0a-44e6-97ee-831927bdf9c0', 'ふうせんねこ2', 'SNK002', 'img/SNK002.png','img/T-SNK002.png','TryOn', 'せなけいこ',''),
-  //   new ClothItem('772bf012-6554-4d0f-baae-569b7a25f915', 'おばけ', 'SNK003', 'img/SNK003.png','img/T-SNK003.png','TryOn', 'せなけいこ',''),
-  //   new ClothItem('1c1afadd-ba61-4eb9-937d-a4002aad6714', 'ねこちゃん', 'SNK004', 'img/SNK004.png','img/T-SNK004.png','TryOn', 'せなけいこ',''),
-  //   // [TryOn] スーツ
-  //   new ClothItem('6c3cd363-fb3a-4312-9c48-7f62cbbfa614', 'スーツ1', 'SUT001', 'img/SUT001.png','','TryOn', 'スーツ',''),
-  //   new ClothItem('1617ff56-6575-42eb-9c64-f111b542683b', 'スーツ2', 'SUT002', 'img/SUT002.png','','TryOn', 'スーツ',''),
-  //   // [TryOn] カジュアル
-  //   new ClothItem('5fc20c2b-4198-489a-83fd-d45a5fb95254', 'カジュアル1', 'CAS001', 'img/CAS001.png','','TryOn', 'カジュアル',''),
-  //   // [TryOn] 浴衣
-  //   new ClothItem('65481657-7d5c-4a20-9524-cda6d0286ec2', '[NG]ゆかた1', 'YKT001', 'img/YKT101.png','','TryOn', 'ゆかた',''),
-  //   new ClothItem('53fffeef-91c7-4d0b-8d01-edc30075054b', '[NG]ゆかた2', 'YKT002', 'img/YKT100.png','','TryOn', 'ゆかた',''),
-  //   new ClothItem('fa036677-d583-418c-9c7e-31db4f830b73', '[OK]ゆかた3', 'YKT003', 'img/YKT003.png','','TryOn', 'ゆかた',''),
-  //   new ClothItem('a7ce30ad-048c-41b0-8161-e61092390b0d', '[OK]ゆかた4', 'YKT004', 'img/YKT009.png','','TryOn', 'ゆかた',''),
-  // ];
 
   //********************************** */
   // 画像が ".webp"
   //********************************** */
   const items = [
-    // せなけいこ-ふうせんねこ
-    new ClothItem('', 'ふうせんねこ1',  'SNK001', 'img/SNK001.webp','img/T-SNK001.webp','Tシャツ', 'せなけいこ','ふうせんねこ'),
-    new ClothItem('', 'ふうせんねこ2',  'SNK002', 'img/SNK002.webp','img/T-SNK002.webp','Tシャツ', 'せなけいこ','ふうせんねこ'),
-    
-    // せなけいこ-きれいなはこ
-    new ClothItem('', 'おばけ', 'SNK003', 'img/SNK003.webp','img/T-SNK003.webp','Tシャツ', 'せなけいこ','きれいなはこ'),
-    new ClothItem('', 'ねこちゃん', 'SNK004', 'img/SNK004.webp','img/T-SNK004.webp','Tシャツ', 'せなけいこ','きれいなはこ'),
-    new ClothItem('', 'わんちゃん', 'SNK005', 'img/SNK005.webp','img/T-SNK005.webp','Tシャツ', 'せなけいこ','きれいなはこ'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ふうせんねこ','','SNK001','ふうせんねこ①','2189','','','','','','','','SNK001.webp','T-SNK001.webp','et1.png','05c8e7df-0c0a-4ce8-80c6-56e121785578'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ふうせんねこ','','SNK002','ふうせんねこ②','2189','','','','','','','','SNK002.webp','T-SNK002.webp','et2.png','8b6fddf5-17ac-49e5-9e45-6154f30f0e9e'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','きれいなはこ','','SNK003','おばけ','2189','','','','','','','','SNK003.webp','T-SNK003.webp','et3.png','11d7f474-5525-4c2f-8c35-8f923a1344bd'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','きれいなはこ','','SNK004','ねこちゃん','2189','','','','','','','','SNK004.webp','T-SNK004.webp','et4.png','a6ae0d47-01a3-4d1c-81bd-9bfebcd9decd'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','きれいなはこ','','SNK005','わんちゃん','2189','','','','','','','','SNK005.webp','T-SNK005.webp','et5.png','55017871-19d3-4edc-826e-e4c88195f0b3'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ねないこだれだ','','SNK006','ふくろうとみみずく','2189','','','','','','','','SNK006.webp','T-SNK006.webp','et6.png','c18cdde3-eaf6-4f01-8fe0-83d508e4e5fb'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ねないこだれだ','','SNK007','くろねこ','2189','','','','','','','','SNK007.webp','T-SNK007.webp','et7.png','decd82e2-8b87-4b5a-bebe-e24bd8ac0992'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ねないこだれだ','','SNK008','ねずみ','2189','','','','','','','','SNK008.webp','T-SNK008.webp','et8.png','da4b0dda-ad8a-4c59-b79d-fd773baf2dff'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ねないこだれだ','','SNK009','おばけ①','2189','','','','','','','','SNK009.webp','T-SNK009.webp','et9.png','032b985b-670c-46f2-8053-d4afa61b8cd4'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ねないこだれだ','','SNK010','おばけ②','2189','','','','','','','','SNK010.webp','T-SNK010.webp','et10.png','49ee4f15-c313-45be-8bb6-ebbeb97880c8'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','いやだいやだ','','SNK011','おひさま','2189','','','','','','','','SNK011.webp','T-SNK011.webp','et11.png','c2239929-2196-458c-a4eb-f3ca639025a3'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','いやだいやだ','','SNK012','くつ','2189','','','','','','','','SNK012.webp','T-SNK012.webp','et12.png','b1cc5e0b-8eea-44e5-93fb-dcc70179fe9a'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','いやだいやだ','','SNK013','くまちゃん','2189','','','','','','','','SNK013.webp','T-SNK013.webp','et13.png','eea93b1e-ac3c-4c7a-ad31-ca7b4be318b3'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','もじゃもじゃ','','SNK014','ころ','2189','','','','','','','','SNK014.webp','T-SNK014.webp','et14.png','8be8a64e-1059-4ff4-b7cc-a3cb1d7d8cf3'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','もじゃもじゃ','','SNK015','ルルちゃん①','2189','','','','','','','','SNK015.webp','T-SNK015.webp','et15.png','15e9b1af-606d-45b7-977e-097edba290f6'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','もじゃもじゃ','','SNK016','ルルちゃん②','2189','','','','','','','','SNK016.webp','T-SNK016.webp','et16.png','89ba4823-bb1b-49b3-99fa-b7606fb1dd4b'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK017','うまさん','2189','','','','','','','','SNK017.webp','T-SNK017.webp','et17.png','22773ae6-2be0-4085-9441-2f0c5ea684c2'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK018','きりんさん','2189','','','','','','','','SNK018.webp','T-SNK018.webp','et18.png','7daeaf8b-5334-463e-aace-7419348cf8e4'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK019','おさるさん','2189','','','','','','','','SNK019.webp','T-SNK019.webp','et19.png','9b2890d5-2250-4053-82e3-d3b0545bf14e'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK020','ぶたさん','2189','','','','','','','','SNK020.webp','T-SNK020.webp','et20.png','16c6ec5b-71b9-4d74-adda-c05880648a40'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK021','かばさん','2189','','','','','','','','SNK021.webp','T-SNK021.webp','et21.png','c7be5c5a-2314-4366-b512-a5ed590c5daa'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK022','うさぎさん','2189','','','','','','','','SNK022.webp','T-SNK022.webp','et22.png','782e533a-21e3-4867-a6c8-096b1714c73a'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にんじん','','SNK023','ぼく','2189','','','','','','','','SNK023.webp','T-SNK023.webp','et23.png','46648342-0429-4bda-b602-f4d7c78d16a6'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','あーんあん','','SNK024','みんな','2189','','','','','','','','SNK024.webp','T-SNK024.webp','et24.png','6676c15f-11f7-48f3-9f50-c7e747d9d7ab'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','あーんあん','','SNK025','ぼく②','2189','','','','','','','','SNK025.webp','T-SNK025.webp','et25.png','b09e1c08-4816-4c5f-b49c-88e17d658927'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','あーんあん','','SNK026','ぼく①','2189','','','','','','','','SNK026.webp','T-SNK026.webp','et26.png','1382f553-5b25-4284-9e6d-5fd805457e6e'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ルルちゃんのくつした','','SNK027','ルルちゃん','2189','','','','','','','','SNK027.webp','T-SNK027.webp','et27.png','dc2814e2-154b-41f5-826a-87c073070a11'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ルルちゃんのくつした','','SNK028','うさこ','2189','','','','','','','','SNK028.webp','T-SNK028.webp','et28.png','58074f2c-e4fc-488d-abbe-1f2ab879c00e'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ルルちゃんのくつした','','SNK029','わんこ','2189','','','','','','','','SNK029.webp','T-SNK029.webp','et29.png','4d1ed7b7-b6ae-4599-8980-4ac489360a24'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ルルちゃんのくつした','','SNK030','ねこちゃん','2189','','','','','','','','SNK030.webp','T-SNK030.webp','et30.png','cc41912f-7f87-4541-a92d-e8949b82eb6f'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','ルルちゃんのくつした','','SNK031','ぞうさん','2189','','','','','','','','SNK031.webp','T-SNK031.webp','et31.png','861b6497-020c-4ddc-b35b-4a1f205fdf6e'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にゃんにゃん','','SNK032','とらねこ','2189','','','','','','','','SNK032.webp','T-SNK032.webp','et32.png','204ffd5c-809a-45f3-ba73-b2bc7aba1edd'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にゃんにゃん','','SNK033','くろいねこ','2189','','','','','','','','SNK033.webp','T-SNK033.webp','et33.png','ece4e97d-8ad5-44f7-b84d-036dd5a27699'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にゃんにゃん','','SNK034','ねこちゃん','2189','','','','','','','','SNK034.webp','T-SNK034.webp','et34.png','aa9790b1-98e5-4ea1-b9ea-5602807cd9ea'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にゃんにゃん','','SNK035','ぶちねこ','2189','','','','','','','','SNK035.webp','T-SNK035.webp','et35.png','8c2835d3-190a-4e5a-b6ac-aafe9e6f563c'),
+    new ClothItem('せなけいこシリーズ','せなけいこ','にゃんにゃん','','SNK036','にゃんにゃん','2189','','','','','','','','SNK036.webp','T-SNK036.webp','et36.png','d188a2b5-37c1-4029-8a62-ed84c4d79f98'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ハトソンくん','','HTS001','ハトソンくん','2189','','','','','','','','HTS001.webp','T-HTS001.webp','hts1.png','e48859fe-4be5-42da-89e6-086ba412b226'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ハトソンくん','','HTS005','ハトソンくん　説明','2189','','','','','','','','HTS005.webp','T-HTS005.webp','hts5.png','7cfffc63-bd79-46b9-a292-e179b172a14c'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ハトソンくん','','HTS009','ハトソンくん　歩く','2189','','','','','','','','HTS009.webp','T-HTS009.webp','hts9.png','57367387-193c-4618-b75d-3215ddf62b79'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ハトソンくん','','HTS023','ハトソンくん　よろこぶ','2189','','','','','','','','HTS013.webp','T-HTS013.webp','hts13.png','18b8bae4-10e3-4c32-bfc3-de58205f5da9'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ハトソンくん','','HTS017','ハトソンくん　おじぎ','2189','','','','','','','','HTS017.webp','T-HTS017.webp','hts17.png','82330404-c6fc-4b2a-bfed-17d9a3f716f8'),
+    new ClothItem('ハトソンシリーズ','ハトソン','よろこビーバー','','HTS002','よろこビーバー','2189','','','','','','','','HTS002.webp','T-HTS002.webp','hts2.png','5a8835e0-efce-4679-98a4-26a9c586075f'),
+    new ClothItem('ハトソンシリーズ','ハトソン','よろこビーバー','','HTS006','よろこビーバー　説明','2189','','','','','','','','HTS006.webp','T-HTS006.webp','hts6.png','073242bc-fd22-4878-911a-4636301668e7'),
+    new ClothItem('ハトソンシリーズ','ハトソン','よろこビーバー','','HTS010','よろこビーバー　歩く','2189','','','','','','','','HTS010.webp','T-HTS010.webp','hts10.png','c9de7bb1-75a4-41e3-bf25-75faaabfcbc8'),
+    new ClothItem('ハトソンシリーズ','ハトソン','よろこビーバー','','HTS014','よろこビーバー　よろこぶ','2189','','','','','','','','HTS014.webp','T-HTS014.webp','hts14.png','c7773d40-9961-4831-9b22-34e9a9ce1786'),
+    new ClothItem('ハトソンシリーズ','ハトソン','よろこビーバー','','HTS018','よろこビーバー　おじぎ','2189','','','','','','','','HTS018.webp','T-HTS018.webp','hts18.png','ddf1acab-6f5b-4c4a-9428-ff2fdf5f4742'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ほしいゾウ','','HTS003','ほしいゾウ','2189','','','','','','','','HTS003.webp','T-HTS003.webp','hts3.png','66d3ef77-94f4-4f93-80d1-6839b324917f'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ほしいゾウ','','HTS007','ほしいゾウ　説明','2189','','','','','','','','HTS007.webp','T-HTS007.webp','hts7.png','87052758-86d8-4200-9d40-f7ef90c9418a'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ほしいゾウ','','HTS011','ほしいゾウ　歩く','2189','','','','','','','','HTS011.webp','T-HTS011.webp','hts11.png','de0ed779-b6cf-4dae-a26f-d241d1543ade'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ほしいゾウ','','HTS015','ほしいゾウ　よろこぶ','2189','','','','','','','','HTS015.webp','T-HTS015.webp','hts15.png','4156322a-ea23-4455-b99a-420ccc389fca'),
+    new ClothItem('ハトソンシリーズ','ハトソン','ほしいゾウ','','HTS019','ほしいゾウ　おじぎ','2189','','','','','','','','HTS019.webp','T-HTS019.webp','hts19.png','0d5cea27-7249-4b9f-9072-cdda2e6fa2f6'),
+    new ClothItem('ハトソンシリーズ','ハトソン','オットセール','','HTS004','オットセール','2189','','','','','','','','HTS004.webp','T-HTS004.webp','hts4.png','9a55328a-cda6-4de6-b804-50bcf510c87a'),
+    new ClothItem('ハトソンシリーズ','ハトソン','オットセール','','HTS008','オットセール　説明','2189','','','','','','','','HTS008.webp','T-HTS008.webp','hts8.png','14425363-e692-446a-9940-ca031936a9d8'),
+    new ClothItem('ハトソンシリーズ','ハトソン','オットセール','','HTS012','オットセール　歩く','2189','','','','','','','','HTS012.webp','T-HTS012.webp','hts12.png','9bc7c7b0-ce25-49be-9431-b413e6fd5af2'),
+    new ClothItem('ハトソンシリーズ','ハトソン','オットセール','','HTS016','オットセール　よろこぶ','2189','','','','','','','','HTS016.webp','T-HTS016.webp','hts16.png','0eca6f31-3479-4e8e-92bc-e69e89f565e9'),
+    new ClothItem('ハトソンシリーズ','ハトソン','オットセール','','HTS020','オットセール　おじぎ','2189','','','','','','','','HTS020.webp','T-HTS020.webp','hts20.png','e5795055-aa8f-4018-b191-51d0d7aa6d6e'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK001','ハート①','2189','','','','','','','','HNK001.webp','T-HNK001.webp','t1.png','f54d5e8f-0431-4cd9-91de-b42e7abb1db5'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK002','スター①','2189','','','','','','','','HNK002.webp','T-HNK002.webp','t2.png','0fa0e9ab-911d-4f43-a5f8-a5720a1216bd'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK003','スター②','2189','','','','','','','','HNK003.webp','T-HNK003.webp','t3.png','3c429862-a6d2-465c-adf4-791750fdb250'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK004','ハート②','2189','','','','','','','','HNK004.webp','T-HNK004.webp','t4.png','bb2e84e2-ef90-49b9-a1e2-d1b4f36a9a8d'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK005','お花①','2189','','','','','','','','HNK005.webp','T-HNK005.webp','t5.png','14ed1d7b-1481-4eae-91fa-4f7ab6a89930'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK006','お花②','2189','','','','','','','','HNK006.webp','T-HNK006.webp','t6.png','805499ba-5cd3-42d5-92f3-542cd524dc6f'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK007','お花③','2189','','','','','','','','HNK007.webp','T-HNK007.webp','t7.png','a7a08f8c-4dfa-4b2c-b8fd-68ed3b7ea075'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK008','お花④','2189','','','','','','','','HNK008.webp','T-HNK008.webp','t8.png','1517ccd1-16f2-426c-8cec-82a4a2deccb4'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK009','お花⑤','2189','','','','','','','','HNK009.webp','T-HNK009.webp','t9.png','7eb5d642-5204-490d-a17a-2417454034f1'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK010','お花⑥','2189','','','','','','','','HNK010.webp','T-HNK010.webp','t10.png','a61e0abb-723e-4260-a52d-fe9b4266d34b'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK011','お花⑦','2189','','','','','','','','HNK011.webp','T-HNK011.webp','t11.png','04f5f9f8-c364-460e-a022-7a0cce8d513a'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK012','お花⑧','2189','','','','','','','','HNK012.webp','T-HNK012.webp','t12.png','1df42e32-2500-40a0-b559-28417703615b'),
+    new ClothItem('はんこシリーズ','お花','お花','','HNK013','お花⑨','2189','','','','','','','','HNK013.webp','T-HNK013.webp','t13.png','f46d27c9-bb7f-4367-86d2-53ff4ce24630'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK014','ニンジン','2189','','','','','','','','HNK014.webp','T-HNK014.webp','t14.png','9a006c3c-c551-49cf-bd94-1de8539eb9fc'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK015','エダマメ','2189','','','','','','','','HNK015.webp','T-HNK015.webp','t15.png','ac503afe-cd65-4854-879e-a3ab77206fee'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK016','ピーマン','2189','','','','','','','','HNK016.webp','T-HNK016.webp','t16.png','18a24e29-284d-4b5b-a553-2352e89c0f8f'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK017','トウガラシ','2189','','','','','','','','HNK017.webp','T-HNK017.webp','t17.png','8f5098fd-746c-4dde-9f21-59bfe8e78b68'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK018','バナナ','2189','','','','','','','','HNK018.webp','T-HNK018.webp','t18.png','50c0e876-80f7-493a-b79a-ae41b3fb1421'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK019','リンゴ①','2189','','','','','','','','HNK019.webp','T-HNK019.webp','t19.png','071d82b7-132b-4ab8-9f47-985586dcd7d5'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK020','オレンジ','2189','','','','','','','','HNK020.webp','T-HNK020.webp','t20.png','8f2b893f-7552-4165-801c-ec4070898e71'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK021','スイカ','2189','','','','','','','','HNK021.webp','T-HNK021.webp','t21.png','73d9633f-dc71-4767-a306-9459b3b8644d'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK022','パーティ①','2189','','','','','','','','HNK022.webp','T-HNK022.webp','t22.png','c6df3b41-f3c2-4b27-8bad-b58bf7812ddc'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK023','パーティ②','2189','','','','','','','','HNK023.webp','T-HNK023.webp','t23.png','94dae3a2-52c3-47ce-9bce-4de90dcdfe37'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK024','パーティ③','2189','','','','','','','','HNK024.webp','T-HNK024.webp','t24.png','5ace3264-dfad-46e5-8856-7328f748b70d'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK025','パーティ④','2189','','','','','','','','HNK025.webp','T-HNK025.webp','t25.png','b3975c0b-a390-44d7-be91-90f13167147a'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK026','旅①','2189','','','','','','','','HNK026.webp','T-HNK026.webp','t26.png','e9552b54-4dfb-4b46-a6bc-528fc71e6b54'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK027','旅②','2189','','','','','','','','HNK027.webp','T-HNK027.webp','t27.png','0dc5df7b-df29-4a97-9659-2c313a315d98'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK028','旅③','2189','','','','','','','','HNK028.webp','T-HNK028.webp','t28.png','37592b9f-6fe7-4f82-ad5c-a75c769ecda0'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK029','リンゴ②','2189','','','','','','','','HNK029.webp','T-HNK029.webp','t29.png','45441798-b3c4-477f-b0a1-95faa3b41881'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK030','サクランボ','2189','','','','','','','','HNK030.webp','T-HNK030.webp','t30.png','25eef3b2-fdf9-4ed9-bb46-603a18b77ebd'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK031','ミカン','2189','','','','','','','','HNK031.webp','T-HNK031.webp','t31.png','cfaa5e92-e0e6-4048-b899-f766b114b323'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK032','洋ナシ','2189','','','','','','','','HNK032.webp','T-HNK032.webp','t32.png','93968834-a8b7-40bf-91c8-d22f54f11811'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK033','アイスクリーム','2189','','','','','','','','HNK033.webp','T-HNK033.webp','t33.png','823a8324-ac93-4f9f-8e60-07793a19462b'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK034','ソフトクリーム','2189','','','','','','','','HNK034.webp','T-HNK034.webp','t34.png','16c59b4f-8d07-4fd3-a35f-7ea9abeaa08f'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK035','アイス','2189','','','','','','','','HNK035.webp','T-HNK035.webp','t35.png','86450e37-2c2a-4f6f-8b3e-b25d6c3c792e'),
+    new ClothItem('はんこシリーズ','食べ物','食べ物','','HNK036','カキ氷','2189','','','','','','','','HNK036.webp','T-HNK036.webp','t36.png','14f4e6a7-f600-40af-8a50-22dd5aa980d5'),
+    new ClothItem('はんこシリーズ','乗り物','乗り物','','HNK037','車','2189','','','','','','','','HNK037.webp','T-HNK037.webp','t37.png','42f531d4-1106-458e-b10f-22a8d302f5e3'),
+    new ClothItem('はんこシリーズ','乗り物','乗り物','','HNK038','バス','2189','','','','','','','','HNK038.webp','T-HNK038.webp','t38.png','5ef8119c-c441-4e04-bc04-27db9ca2ad14'),
+    new ClothItem('はんこシリーズ','乗り物','乗り物','','HNK039','飛行機','2189','','','','','','','','HNK039.webp','T-HNK039.webp','t39.png','c0fecb73-ae55-4ddd-b1ac-d95fee6b679f'),
+    new ClothItem('はんこシリーズ','乗り物','乗り物','','HNK040','バイク','2189','','','','','','','','HNK040.webp','T-HNK040.webp','t40.png','2a9c9b35-f0ae-424c-a21b-8165ece08722'),
+    new ClothItem('はんこシリーズ','乗り物','乗り物','','HNK041','自転車','2189','','','','','','','','HNK041.webp','T-HNK041.webp','t41.png','ef34b610-31a1-4898-8dad-3de0894c57e2'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK042','ハト','2189','','','','','','','','HNK042.webp','T-HNK042.webp','t42.png','96d0f0cb-5b05-4def-828c-d8963e56642d'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK043','ネコ','2189','','','','','','','','HNK043.webp','T-HNK043.webp','t43.png','39b4bdbd-e617-4e1d-aa4f-d78dfd719908'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK044','イヌ','2189','','','','','','','','HNK044.webp','T-HNK044.webp','t44.png','8025c570-d091-45f6-9b19-8bbc4344658f'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK045','ハリネズミ','2189','','','','','','','','HNK045.webp','T-HNK045.webp','t45.png','5f127eaf-3b75-4fbe-9bc2-f2d6ef647e53'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK046','ニワトリ','2189','','','','','','','','HNK046.webp','T-HNK046.webp','t46.png','fe287144-0202-478e-82ad-9e3474223730'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK047','リス','2189','','','','','','','','HNK047.webp','T-HNK047.webp','t47.png','43682cc7-6066-4133-a256-15e19e968380'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK048','ヒツジ','2189','','','','','','','','HNK048.webp','T-HNK048.webp','t48.png','4ace6bb7-6d90-48c6-acce-8da42a4c18c9'),
+    new ClothItem('はんこシリーズ','動物','動物','','HNK049','ゾウ','2189','','','','','','','','HNK049.webp','T-HNK049.webp','t49.png','2941a35e-50aa-440a-8486-723caf29c163'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK050','マリン①','2189','','','','','','','','HNK050.webp','T-HNK050.webp','t50.png','86d354ff-7031-4c2e-b3cd-6bef27811f8c'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK051','マリン②','2189','','','','','','','','HNK051.webp','T-HNK051.webp','t51.png','3a6fd1a0-d83e-4e06-85f1-d4205654b232'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK052','マリン③','2189','','','','','','','','HNK052.webp','T-HNK052.webp','t52.png','15d61e06-4098-4f28-9100-d15ec916fe71'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK053','マリン④','2189','','','','','','','','HNK053.webp','T-HNK053.webp','t53.png','c4069551-afac-471e-92f8-1625f47a66e1'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK054','楽器①','2189','','','','','','','','HNK054.webp','T-HNK054.webp','t54.png','1e7a91f5-2cbd-40f9-93c3-e07d7eb26514'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK055','楽器②','2189','','','','','','','','HNK055.webp','T-HNK055.webp','t55.png','35a5746f-067c-45e2-86f8-582e8b1f03f4'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK056','楽器③','2189','','','','','','','','HNK056.webp','T-HNK056.webp','t56.png','0f58d6ff-9d33-412d-98ca-bb1ca5d7bfac'),
+    new ClothItem('はんこシリーズ','その他','その他','','HNK057','楽器④','2189','','','','','','','','HNK057.webp','T-HNK057.webp','t57.png','1568aba3-982b-4050-9837-f281d1bc1fd7'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK058','こけし','2189','','','','','','','','HNK058.webp','T-HNK058.webp','t58.png','56e5afc6-2da2-43b1-98f3-574a6e8cd056'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK059','けん玉','2189','','','','','','','','HNK059.webp','T-HNK059.webp','t59.png','5e4afa09-17ef-444c-98ea-e14e0f4ef0d8'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK060','紙ふうせん','2189','','','','','','','','HNK060.webp','T-HNK060.webp','t60.png','00d08c7e-6da6-463e-b600-e8d7c04268c2'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK061','こま','2189','','','','','','','','HNK061.webp','T-HNK061.webp','t61.png','8b767b74-7954-4b06-a381-fb6ad5e7b060'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK062','折りヅル','2189','','','','','','','','HNK062.webp','T-HNK062.webp','t62.png','2e32b1a4-ded9-48a7-b7a1-32c5b5045659'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK063','サケ①','2189','','','','','','','','HNK063.webp','T-HNK063.webp','t63.png','3283294d-46ed-4533-a23c-1d4feb827f94'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK064','サケ②','2189','','','','','','','','HNK064.webp','T-HNK064.webp','t64.png','800081c4-5b9a-4f28-91fb-a026ff0aa128'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK065','サケ③','2189','','','','','','','','HNK065.webp','T-HNK065.webp','t65.png','35175675-0090-47a6-994e-b6b7e9bb6996'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK066','ひょうたん','2189','','','','','','','','HNK066.webp','T-HNK066.webp','t66.png','bb57366a-72d1-4533-a373-eaa490d85bd4'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK067','きゅうす','2189','','','','','','','','HNK067.webp','T-HNK067.webp','t67.png','c5e828aa-d7d6-4c09-95dd-bcf12842ebc3'),
+    new ClothItem('はんこシリーズ','日本','日本','','HNK068','お茶','2189','','','','','','','','HNK068.webp','T-HNK068.webp','t68.png','d63ec4e4-9dab-4450-8753-62f03f8a5c6e'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK069','雪','2189','','','','','','','','HNK069.webp','T-HNK069.webp','t69.png','d53f9f31-7c77-4e68-88e2-7a13f47a99c3'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK070','晴れ','2189','','','','','','','','HNK070.webp','T-HNK070.webp','t70.png','e9a62499-7fcd-4202-a80d-756667b5079c'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK071','雨','2189','','','','','','','','HNK071.webp','T-HNK071.webp','t71.png','60f2581c-cde9-4ec2-8f29-a8842b33aadd'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK072','雷雲','2189','','','','','','','','HNK072.webp','T-HNK072.webp','t72.png','25c2f55f-a155-4004-ad78-d616068a7391'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK073','雨雲','2189','','','','','','','','HNK073.webp','T-HNK073.webp','t73.png','d321402d-6c89-4695-aaeb-7a5442af4e13'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK074','くもり','2189','','','','','','','','HNK074.webp','T-HNK074.webp','t74.png','71fdbe37-efd0-49fa-ae3d-8439c39ea467'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK075','星','2189','','','','','','','','HNK075.webp','T-HNK075.webp','t75.png','3d450174-5d24-465d-a452-2ec2d13693b9'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK076','月','2189','','','','','','','','HNK076.webp','T-HNK076.webp','t76.png','6a049702-d685-4727-a2f2-cfead2a6a08a'),
+    new ClothItem('はんこシリーズ','お天気','お天気','','HNK077','太陽','2189','','','','','','','','HNK077.webp','T-HNK077.webp','t77.png','81c77e0a-7184-482b-9dab-a0b0cda97a42'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF001','クジラ','2189','','','','','','','','YRF001.webp','T-YRF001.webp','y001.png','0554bcfe-811c-4a58-b7ab-bda02ede5c6c'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF002','ライオン','2189','','','','','','','','YRF002.webp','T-YRF002.webp','y002.png','82650395-d327-43ba-afac-66b50e4c734e'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF003','クマ①','2189','','','','','','','','YRF003.webp','T-YRF003.webp','y003.png','0a2d521e-4ee6-41f1-a818-555c2e9c3a80'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF004','コアラ','2189','','','','','','','','YRF004.webp','T-YRF004.webp','y004.png','abca8598-2d59-4fe7-97f0-7eded26b27f9'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF005','カンガルー','2189','','','','','','','','YRF005.webp','T-YRF005.webp','y005.png','92ab7984-b410-4154-bcec-368ab0f42e4e'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF006','カバ','2189','','','','','','','','YRF006.webp','T-YRF006.webp','y006.png','57daa558-dc10-42c6-9fc8-c290fa7cf7e4'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF007','イカ','2189','','','','','','','','YRF007.webp','T-YRF007.webp','y007.png','e5788776-3340-436c-a07f-31ce75b4aa6b'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF008','ヒツジ①','2189','','','','','','','','YRF008.webp','T-YRF008.webp','y008.png','d9f20420-eed4-4b8d-b46e-f37720f0642c'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF009','ハムスター','2189','','','','','','','','YRF009.webp','T-YRF009.webp','y009.png','4192fcf2-303d-4198-bd34-37e2901e9376'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF010','ゴリラ','2189','','','','','','','','YRF010.webp','T-YRF010.webp','y010.png','a70ca89a-e1a7-433d-b333-f8a56cde212a'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF011','ゾウ','2189','','','','','','','','YRF011.webp','T-YRF011.webp','y011.png','f3aef71e-3ac1-45d0-9756-4e9fca305f73'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF012','イヌ①','2189','','','','','','','','YRF012.webp','T-YRF012.webp','y012.png','f010d4e7-8a64-4f36-8865-1d1387145a3a'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF013','ダチョウ','2189','','','','','','','','YRF013.webp','T-YRF013.webp','y013.png','bd18f418-d46e-4f80-8db0-0442bd584524'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF014','ネコ①','2189','','','','','','','','YRF014.webp','T-YRF014.webp','y014.png','700db9bf-72aa-4819-803d-1682140036bb'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF015','ブタ','2189','','','','','','','','YRF015.webp','T-YRF015.webp','y015.png','6c717dd5-7eaf-48e2-baae-40e42d46e546'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF016','アヒル','2189','','','','','','','','YRF016.webp','T-YRF016.webp','y016.png','83aebd30-89e8-44c0-b0b0-4d40dd8ed692'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF017','アリクイ','2189','','','','','','','','YRF017.webp','T-YRF017.webp','y017.png','7384cc68-b186-4b04-9889-8afceab423d9'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF018','ヤギ','2189','','','','','','','','YRF018.webp','T-YRF018.webp','y018.png','a39fe471-c971-4950-b7f7-92580b18fa9a'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF019','ワシ','2189','','','','','','','','YRF019.webp','T-YRF019.webp','y019.png','8099454b-c2a2-4341-8d99-fbbb69c264de'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF020','ワニ','2189','','','','','','','','YRF020.webp','T-YRF020.webp','y020.png','c7662c8b-9ca0-4945-bc1b-8c23e5ecd6ab'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF021','ウサギ①','2189','','','','','','','','YRF021.webp','T-YRF021.webp','y021.png','18afce0d-1d1b-4fb2-8ccd-d6eba6d844f9'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF022','ハクチョウ','2189','','','','','','','','YRF022.webp','T-YRF022.webp','y022.png','03531e6d-41ab-4056-b644-5e43341b55d7'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF023','シカ','2189','','','','','','','','YRF023.webp','T-YRF023.webp','y023.png','45cde873-942f-4890-bb13-21fb13c75ece'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF024','オオカミ','2189','','','','','','','','YRF024.webp','T-YRF024.webp','y024.png','31c95d5b-0bc2-4734-8ed3-e2394727c7e7'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF025','サル①','2189','','','','','','','','YRF025.webp','T-YRF025.webp','y025.png','c8154d1e-7a24-4654-b1b8-33286fbc54a0'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF026','クマ②','2189','','','','','','','','YRF026.webp','T-YRF026.webp','y026.png','8dd546bb-05d3-4b0a-a12a-1762b1c16174'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF027','タコ','2189','','','','','','','','YRF027.webp','T-YRF027.webp','y027.png','512c5e56-0cf2-4920-ae27-371497a4b8ea'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF028','ウサギ②','2189','','','','','','','','YRF028.webp','T-YRF028.webp','y028.png','57b6c81f-24a8-4e00-be86-9cac3b9f750c'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF029','トナカイ','2189','','','','','','','','YRF029.webp','T-YRF029.webp','y029.png','970bb2b1-72a8-4116-b81c-5217b7075fc5'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF030','ウマ','2189','','','','','','','','YRF030.webp','T-YRF030.webp','y030.png','d85e23a6-284e-4032-a8bf-cdb09ffb2705'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF031','ツルカメ','2189','','','','','','','','YRF031.webp','T-YRF031.webp','y031.png','2906f147-bb9d-47c6-af71-b55e09a0fe0b'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF032','イノシシ','2189','','','','','','','','YRF032.webp','T-YRF032.webp','y032.png','2b2235cc-8936-4a1a-95bc-39bbe469f20a'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF033','ヒツジ②','2189','','','','','','','','YRF033.webp','T-YRF033.webp','y033.png','b2908eb0-6fcb-4dfa-9dee-e1fe0a322102'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF034','リュウ','2189','','','','','','','','YRF034.webp','T-YRF034.webp','y034.png','d1b02365-5026-4052-bf12-ee8fe9b70eb4'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF035','イヌ②','2189','','','','','','','','YRF035.webp','T-YRF035.webp','y035.png','8ed7d1d9-4f95-4ec3-a3f1-70d93996ccd3'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF036','ニワトリ','2189','','','','','','','','YRF036.webp','T-YRF036.webp','y036.png','7e2fd2ae-8336-4819-8d86-a6dccec2a204'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF037','サル②','2189','','','','','','','','YRF037.webp','T-YRF037.webp','y037.png','57451e91-1f1c-47ed-b3ff-d748862314b0'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF038','ヘビ','2189','','','','','','','','YRF038.webp','T-YRF038.webp','y038.png','dfa2042b-42cf-46a9-b91b-32a4f1dfbab8'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF039','ウシ','2189','','','','','','','','YRF039.webp','T-YRF039.webp','y039.png','e37fe8bd-d626-4848-a8a2-0614a777187a'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF040','ウサギ③','2189','','','','','','','','YRF040.webp','T-YRF040.webp','y040.png','7adfd951-23b5-4567-8157-25aea0ef988f'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF041','トラ','2189','','','','','','','','YRF041.webp','T-YRF041.webp','y041.png','6a48d7e4-a442-461a-bf01-f86666f7f673'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF042','ネズミ','2189','','','','','','','','YRF042.webp','T-YRF042.webp','y042.png','d60dc78b-1aa2-4488-af88-e457843451ae'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF043','ネコ②','2189','','','','','','','','YRF043.webp','T-YRF043.webp','y043.png','00fcf484-7bac-4ebe-9fbb-8d0caade591a'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF044','イヌ③','2189','','','','','','','','YRF044.webp','T-YRF044.webp','y044.png','25527ebb-5084-404d-8a34-90c0931c3bab'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF046','クロネコ','2189','','','','','','','','YRF046.webp','T-YRF046.webp','y046.png','3e0bd296-bd91-444b-b42f-3b37f1e872f3'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF047','カエル','2189','','','','','','','','YRF047.webp','T-YRF047.webp','y047.png','8e7ee0e2-6bc7-4590-ac8a-fc59671b587f'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF048','ウサギ④','2189','','','','','','','','YRF048.webp','T-YRF048.webp','y048.png','1a26a28c-d664-453a-837a-a47c987f35d2'),
+    new ClothItem('ゆるふわシリーズ','動物','動物','','YRF049','リス','2189','','','','','','','','YRF049.webp','T-YRF049.webp','y049.png','8b304f97-d46c-41c0-a04a-ca1265c2a1d4'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF050','椿','2189','','','','','','','','YRF050.webp','T-YRF050.webp','y050.png','e4dd6f4e-d9df-4e24-a186-710f31d54a6b'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF051','たんぽぽ','2189','','','','','','','','YRF051.webp','T-YRF051.webp','y051.png','b2cb4f39-002f-466d-b0de-ba306010efd9'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF052','すずらん','2189','','','','','','','','YRF052.webp','T-YRF052.webp','y052.png','b86a212f-77b1-4193-b1fe-27064f6a59a8'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF053','すみれ','2189','','','','','','','','YRF053.webp','T-YRF053.webp','y053.png','83f39aea-94b1-4e57-99b9-c89f98eae36f'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF054','水仙','2189','','','','','','','','YRF054.webp','T-YRF054.webp','y054.png','e2f9223e-760e-45e4-bc99-7598268be3ed'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF055','ラン','2189','','','','','','','','YRF055.webp','T-YRF055.webp','y055.png','c0c871f5-e845-4062-8921-9b438b1a137a'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF056','ラナンキュラス','2189','','','','','','','','YRF056.webp','T-YRF056.webp','y056.png','6d40f68f-9d7b-4c9a-830a-f8becb406298'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF057','パンジー','2189','','','','','','','','YRF057.webp','T-YRF057.webp','y057.png','77d34b18-d5a0-47f4-9180-25775d3132c4'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF058','菜の花','2189','','','','','','','','YRF058.webp','T-YRF058.webp','y058.png','d608bdd5-715a-47d9-bd14-22be784dc529'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF059','猫じゃらし','2189','','','','','','','','YRF059.webp','T-YRF059.webp','y059.png','fe27b386-5826-4447-990e-af1b7d3bfabc'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF060','桃','2189','','','','','','','','YRF060.webp','T-YRF060.webp','y060.png','c07c6d70-8021-49c9-b554-1751061e2569'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF061','マーガレット','2189','','','','','','','','YRF061.webp','T-YRF061.webp','y061.png','cf5e2d10-55a7-4244-b79d-2f24f2241372'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF062','菊','2189','','','','','','','','YRF062.webp','T-YRF062.webp','y062.png','bd58396d-4292-44a3-af9b-1112819837a4'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF063','稲','2189','','','','','','','','YRF063.webp','T-YRF063.webp','y063.png','6bceb549-8346-4066-a7d5-7edca12f4b1e'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF064','彼岸花','2189','','','','','','','','YRF064.webp','T-YRF064.webp','y064.png','4a3275e8-fbe9-419e-9ffb-4c4acd2a2d41'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF065','藤の花','2189','','','','','','','','YRF065.webp','T-YRF065.webp','y065.png','ff448490-b473-4d78-8aa5-998a7c0ce7b9'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF066','フリージア','2189','','','','','','','','YRF066.webp','T-YRF066.webp','y066.png','795c10a6-45d3-4fd0-9d0d-ebdc259178c7'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF067','クロッカス','2189','','','','','','','','YRF067.webp','T-YRF067.webp','y067.png','1b418fdd-4b12-4998-8550-eacb47f0cd7b'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF068','シクラメン','2189','','','','','','','','YRF068.webp','T-YRF068.webp','y068.png','856fd743-7a2d-4bd8-96f4-ef4bf41dc14f'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF069','コスモス','2189','','','','','','','','YRF069.webp','T-YRF069.webp','y069.png','70ace135-61ba-4255-9a96-0f5848ac79a0'),
+    new ClothItem('ゆるふわシリーズ','お花','お花','','YRF070','ヒマワリ','2189','','','','','','','','YRF070.webp','T-YRF070.webp','y070.png','e7a76f6d-3030-43de-ad9b-fe67f4b6128a'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF071','てんとう虫','2189','','','','','','','','YRF071.webp','T-YRF071.webp','y071.png','60ba087a-6af0-4b4e-8165-87ae59c4b690'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF072','タマムシ','2189','','','','','','','','YRF072.webp','T-YRF072.webp','y072.png','5488298a-db39-489a-81ed-2e9b4888ca4d'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF073','オニヤンマ','2189','','','','','','','','YRF073.webp','T-YRF073.webp','y073.png','80e5af07-4db2-44f7-b631-bffa02227689'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF074','モンシロチョウ','2189','','','','','','','','YRF074.webp','T-YRF074.webp','y074.png','274c12f6-1138-4a42-a7db-ddba487a623f'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF075','ミツバチ','2189','','','','','','','','YRF075.webp','T-YRF075.webp','y075.png','83fda250-3e99-476b-aa19-23065ef9e8c1'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF076','ミノムシ','2189','','','','','','','','YRF076.webp','T-YRF076.webp','y076.png','3528a9e6-1fda-48cd-92a6-93965d763f19'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF077','ミンミンゼミ','2189','','','','','','','','YRF077.webp','T-YRF077.webp','y077.png','6910ea15-ee1f-436d-98c4-b27d1035893f'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF078','クワガタ（メス）','2189','','','','','','','','YRF078.webp','T-YRF078.webp','y078.png','6cea28f6-7c2c-4bc7-acbf-c064825428e8'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF079','クワガタ（オス）','2189','','','','','','','','YRF079.webp','T-YRF079.webp','y079.png','d0671e80-e642-4328-9ae9-04e6e5e0549e'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF080','クモ','2189','','','','','','','','YRF080.webp','T-YRF080.webp','y080.png','a06f0ae7-6438-4074-ba5c-dea911143d20'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF081','クマゼミ','2189','','','','','','','','YRF081.webp','T-YRF081.webp','y081.png','c7a012d3-061c-4804-9677-4960b1c9a37b'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF082','コオロギ','2189','','','','','','','','YRF082.webp','T-YRF082.webp','y082.png','b454e091-b73f-4edf-8a3c-9c87e5aa83a4'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF083','キリギリス','2189','','','','','','','','YRF083.webp','T-YRF083.webp','y083.png','7b8eab52-6e84-4825-914a-c6ad4013159f'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF084','カメムシ','2189','','','','','','','','YRF084.webp','T-YRF084.webp','y084.png','89645d63-042f-4615-9e52-b147bd526e99'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF085','カマキリ','2189','','','','','','','','YRF085.webp','T-YRF085.webp','y085.png','26c71307-e1b7-4b72-9688-ecaf90b3c110'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF086','カブトムシ','2189','','','','','','','','YRF086.webp','T-YRF086.webp','y086.png','b28a0d52-84af-41ae-b259-e9e54bc20abf'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF087','イトトンボ','2189','','','','','','','','YRF087.webp','T-YRF087.webp','y087.png','0cedb802-4f32-41ad-84fd-23805be3e3fe'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF088','イモムシ','2189','','','','','','','','YRF088.webp','T-YRF088.webp','y088.png','d2c99747-a6c5-4a76-adc8-a6452f8167ed'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF089','ホタル','2189','','','','','','','','YRF089.webp','T-YRF089.webp','y089.png','97e6ac6a-c707-4637-8563-d9d9a57b5b9c'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF090','ギンヤンマ','2189','','','','','','','','YRF090.webp','T-YRF090.webp','y090.png','f2cde8fd-1e0c-4643-9736-bfd7c18db9d3'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF091','カタツムリ①','2189','','','','','','','','YRF091.webp','T-YRF091.webp','y091.png','ccce18fc-1f17-41e8-ba28-9b4ed4eee9ad'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF092','ダンゴムシ','2189','','','','','','','','YRF092.webp','T-YRF092.webp','y092.png','85a3eca9-30c2-4752-8b20-6596daa4e819'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF093','アリ','2189','','','','','','','','YRF093.webp','T-YRF093.webp','y093.png','9ff6533c-b415-4512-abea-dd5e2c17c469'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF094','赤とんぼ','2189','','','','','','','','YRF094.webp','T-YRF094.webp','y094.png','ce969775-e718-4f36-8666-9e1e93b62142'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF095','アゲハチョウ','2189','','','','','','','','YRF095.webp','T-YRF095.webp','y095.png','c323b32d-96f0-4ab0-826a-0cd4e77fadbc'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF096','アブラゼミ','2189','','','','','','','','YRF096.webp','T-YRF096.webp','y096.png','d089ba66-ae33-47e5-96ba-b64125da2b14'),
+    new ClothItem('ゆるふわシリーズ','虫','虫','','YRF097','カタツムリ②','2189','','','','','','','','YRF097.webp','T-YRF097.webp','y097.png','5e805a3b-b26e-4d49-8685-96c31ba4d6b3'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF098','タコ','2189','','','','','','','','YRF098.webp','T-YRF098.webp','y098.png','06318f7c-6d2a-4e3b-ac91-c46fece811a8'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF099','タイ','2189','','','','','','','','YRF099.webp','T-YRF099.webp','y099.png','9dfb9a9d-6c3b-4eaa-8730-522cc11353a0'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF100','サンマ','2189','','','','','','','','YRF100.webp','T-YRF100.webp','y100.png','f01cc1fe-0032-4eec-96f6-ce8fd8c384c3'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF101','サメ','2189','','','','','','','','YRF101.webp','T-YRF101.webp','y101.png','8b5eaad3-dc46-49d6-8899-09b491ccaff8'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF102','サケ','2189','','','','','','','','YRF102.webp','T-YRF102.webp','y102.png','e64f20a0-f5af-4fd4-91f5-fcda024e5d8b'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF103','マグロ','2189','','','','','','','','YRF103.webp','T-YRF103.webp','y103.png','82e2b7c5-c4dc-4158-b4c5-3f88ac78d19a'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF104','貝','2189','','','','','','','','YRF104.webp','T-YRF104.webp','y104.png','d09c482d-1205-48e3-8338-9c745d11c26f'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF105','エビ','2189','','','','','','','','YRF105.webp','T-YRF105.webp','y105.png','ed5a7578-d385-4abd-80a6-1844eaad340f'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF106','サバ','2189','','','','','','','','YRF106.webp','T-YRF106.webp','y106.png','d03a11d6-7564-4746-91be-9a8d9f62fe8a'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF107','ヒラメ','2189','','','','','','','','YRF107.webp','T-YRF107.webp','y107.png','cfc1396d-cd6d-4bb0-b210-47c956aa3846'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF108','フグ','2189','','','','','','','','YRF108.webp','T-YRF108.webp','y108.png','0e0c8d7f-5fab-4f12-8f7e-d15cf3c52b43'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF109','カレイ','2189','','','','','','','','YRF109.webp','T-YRF109.webp','y109.png','0c116598-0a48-445e-96e2-69f41a547173'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF110','イカ','2189','','','','','','','','YRF110.webp','T-YRF110.webp','y110.png','f6d13298-2e62-480c-9006-9668e514cfe7'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF111','ヤドカリ','2189','','','','','','','','YRF111.webp','T-YRF111.webp','y111.png','52d51c24-cbd5-4c5f-9de3-0a36f7fb752b'),
+    new ClothItem('ゆるふわシリーズ','お魚','お魚','','YRF112','カニ','2189','','','','','','','','YRF112.webp','T-YRF112.webp','y112.png','45175306-31b9-4906-a908-85e8a8c1d84d'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF113','イベント①','2189','','','','','','','','YRF113.webp','T-YRF113.webp','y113.png','aa5f11fd-8119-4fb4-8bd1-4a44317665a1'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF114','イベント②','2189','','','','','','','','YRF114.webp','T-YRF114.webp','y114.png','d8abd3f9-3da1-4dcc-b1bd-c852b7e5c454'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF115','イベント③','2189','','','','','','','','YRF115.webp','T-YRF115.webp','y115.png','22fa6ea2-2325-4101-b3aa-8f0c4e713394'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF116','イベント④','2189','','','','','','','','YRF116.webp','T-YRF116.webp','y116.png','d45dfe2d-7c69-4f30-99d7-6196bba727db'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF117','イベント⑤','2189','','','','','','','','YRF117.webp','T-YRF117.webp','y117.png','17d9f7ca-6ee8-49c3-b8ad-8e856e988cf0'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF118','イベント⑥','2189','','','','','','','','YRF118.webp','T-YRF118.webp','y118.png','e120eeaf-60be-434e-8f1e-5322db052da2'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF119','イベント⑦','2189','','','','','','','','YRF119.webp','T-YRF119.webp','y119.png','d824cd28-5a8c-4f1f-895b-ce729e3d68bf'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF120','イベント⑧','2189','','','','','','','','YRF120.webp','T-YRF120.webp','y120.png','61a40247-a04a-4292-92eb-ced1ea28529c'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF121','イベント⑨','2189','','','','','','','','YRF121.webp','T-YRF121.webp','y121.png','1268c6f0-53c2-45cd-94cc-6b8693e82ebc'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF122','イベント⑩','2189','','','','','','','','YRF122.webp','T-YRF122.webp','y122.png','f1bcb684-90b8-465f-aa25-da369ddb368e'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF123','イベント⑪','2189','','','','','','','','YRF123.webp','T-YRF123.webp','y123.png','1d4ea832-a3a5-482c-98a5-282e1ec0281e'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF124','イベント⑫','2189','','','','','','','','YRF124.webp','T-YRF124.webp','y124.png','085f2ffc-e5a3-4cae-bac0-df94f41af989'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF125','イベント⑬','2189','','','','','','','','YRF125.webp','T-YRF125.webp','y125.png','898e6a80-7fba-42d0-a438-90a06444aace'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF138','イベント⑭','2189','','','','','','','','YRF138.webp','T-YRF138.webp','y138.png','0f6aef4e-3476-41ef-8c9d-6981ca4f72bb'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF139','イベント⑮','2189','','','','','','','','YRF139.webp','T-YRF139.webp','y139.png','b38b5de8-a5c0-4cff-ba4e-b8137c3ee7fe'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF140','イベント⑯','2189','','','','','','','','YRF140.webp','T-YRF140.webp','y140.png','f4ce3fab-06c1-4281-b3f9-f49a96fdea7e'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF141','イベント⑰','2189','','','','','','','','YRF141.webp','T-YRF141.webp','y141.png','44fd0ba7-0225-4b24-b160-a90375af83e6'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF142','イベント⑱','2189','','','','','','','','YRF142.webp','T-YRF142.webp','y142.png','2796000c-997c-432b-be25-c331a0107420'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF143','イベント⑲','2189','','','','','','','','YRF143.webp','T-YRF143.webp','y143.png','4389fdca-87aa-45dc-8d28-8148ab6cbf73'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF146','イベント⑳','2189','','','','','','','','YRF146.webp','T-YRF146.webp','y146.png','5e0a03b3-ab51-46b3-a725-7bd5b1f180db'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF133','イベント?','2189','','','','','','','','YRF133.webp','T-YRF133.webp','y133.png','5f474ad0-aa66-46ee-8530-eac59680d40e'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF134','イベント?','2189','','','','','','','','YRF134.webp','T-YRF134.webp','y134.png','a3592e9c-e8b2-4fb4-baec-f24019c0373c'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF045','イベント?','2189','','','','','','','','YRF045.webp','T-YRF045.webp','y045.png','3d40f956-86ba-408d-bbf1-1e4cde508a8f'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF135','イベント?','2189','','','','','','','','YRF135.webp','T-YRF135.webp','y135.png','1d6674a4-e69c-4c99-80ab-3210b3131608'),
+    new ClothItem('ゆるふわシリーズ','イベント','イベント','','YRF136','イベント?','2189','','','','','','','','YRF136.webp','T-YRF136.webp','y136.png','aef34ba5-54cf-4361-919e-1666579bd8bb'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF126','プリン','2189','','','','','','','','YRF126.webp','T-YRF126.webp','y126.png','0ff2c8bb-16e2-48b9-ae88-4df8c1c6f555'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF127','たい焼き','2189','','','','','','','','YRF127.webp','T-YRF127.webp','y127.png','9292f3c7-c4b1-4879-8ee1-069542bf193f'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF128','パフェ','2189','','','','','','','','YRF128.webp','T-YRF128.webp','y128.png','1bf0e724-bb28-483b-8501-d94f792504ff'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF129','ケーキ','2189','','','','','','','','YRF129.webp','T-YRF129.webp','y129.png','538e41d3-694c-4e3e-8b5a-1873ad27249e'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF130','だんご','2189','','','','','','','','YRF130.webp','T-YRF130.webp','y130.png','d2d0ff68-016f-4b2b-86b0-8ec4bcf1e695'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF131','ホットケーキ','2189','','','','','','','','YRF131.webp','T-YRF131.webp','y131.png','16193ffa-3ee7-4d22-b711-8e5ad13d5407'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF132','キャンディー','2189','','','','','','','','YRF132.webp','T-YRF132.webp','y132.png','aeca51d9-99d6-4610-ba89-242f9b1c73c9'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF137','ソフトクリーム','2189','','','','','','','','YRF137.webp','T-YRF137.webp','y137.png','b0d68423-6066-4ae8-842f-f9ca9f9325fc'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF144','すし','2189','','','','','','','','YRF144.webp','T-YRF144.webp','y144.png','25731b54-5996-4a1c-8fc9-54f3ddd8c544'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF145','スイカ','2189','','','','','','','','YRF145.webp','T-YRF145.webp','y145.png','538a5433-f25b-48e3-9aff-89b627877de3'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF147','ピザ','2189','','','','','','','','YRF147.webp','T-YRF147.webp','y147.png','59316a31-28f9-4b05-889a-676acff65584'),
+    new ClothItem('ゆるふわシリーズ','食べ物','食べ物','','YRF148','おにぎり','2189','','','','','','','','YRF148.webp','T-YRF148.webp','y148.png','84c2e5dc-7c16-4b28-9dcc-6bb054c7dbdc'),
 
-    // せなけいこ-ねないこだれだ
-    new ClothItem('', 'ふくろうとみみずく', 'SNK006', 'img/SNK006.webp','img/T-SNK006.webp','Tシャツ', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'くろねこ', 'SNK007', 'img/SNK007.webp','img/T-SNK007.webp','Tシャツ', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'ねずみ', 'SNK008', 'img/SNK008.webp','img/T-SNK008.webp','Tシャツ', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'おばけ1', 'SNK009', 'img/SNK009.webp','img/T-SNK009.webp','Tシャツ', 'せなけいこ','ねないこだれだ'),
-    new ClothItem('', 'おばけ2', 'SNK010', 'img/SNK010.webp','img/T-SNK010.webp','Tシャツ', 'せなけいこ','ねないこだれだ'),
-
-
-    // せなけいこ-いやだいやだ
-    new ClothItem('', 'おひさま', 'SNK011', 'img/SNK011.webp','img/T-SNK011.webp','Tシャツ', 'せなけいこ','いやだいやだ'),
-    new ClothItem('', 'くつ', 'SNK012', 'img/SNK012.webp','img/T-SNK012.webp','Tシャツ', 'せなけいこ','いやだいやだ'),
-    new ClothItem('', 'くまちゃん', 'SNK013', 'img/SNK013.webp','img/T-SNK013.webp','Tシャツ', 'せなけいこ','いやだいやだ'),
-
-    // せなけいこ-もじゃもじゃ
-    new ClothItem('', 'ころ', 'SNK014', 'img/SNK014.webp','img/T-SNK014.webp','Tシャツ', 'せなけいこ','もじゃもじゃ'),
-    new ClothItem('', 'ルルちゃん2', 'SNK016', 'img/SNK015.webp','img/T-SNK015.webp','Tシャツ', 'せなけいこ','もじゃもじゃ'),
-    new ClothItem('', 'ルルちゃん1', 'SNK015', 'img/SNK016.webp','img/T-SNK016.webp','Tシャツ', 'せなけいこ','もじゃもじゃ'),
-
-    // せなけいこ-にんじん
-    new ClothItem('', 'うまさん', 'SNK017', 'img/SNK017.webp','img/T-SNK017.webp','Tシャツ', 'せなけいこ','にんじん'),
-    new ClothItem('', 'きりんさん', 'SNK018', 'img/SNK018.webp','img/T-SNK018.webp','Tシャツ', 'せなけいこ','にんじん'),
-    new ClothItem('', 'おさるさん', 'SNK019', 'img/SNK019.webp','img/T-SNK019.webp','Tシャツ', 'せなけいこ','にんじん'),
-    new ClothItem('', 'ぶたさん', 'SNK020', 'img/SNK020.webp','img/T-SNK020.webp','Tシャツ', 'せなけいこ','にんじん'),
-    new ClothItem('', 'かばさん', 'SNK021', 'img/SNK021.webp','img/T-SNK021.webp','Tシャツ', 'せなけいこ','にんじん'),
-    new ClothItem('', 'うさぎさん', 'SNK022', 'img/SNK022.webp','img/T-SNK022.webp','Tシャツ', 'せなけいこ','にんじん'),
-    new ClothItem('', 'ぼく', 'SNK023', 'img/SNK023.webp','img/T-SNK023.webp','Tシャツ', 'せなけいこ','にんじん'),
-    
-    // せなけいこ-あーんあん
-    new ClothItem('', 'みんな', 'SNK026', 'img/SNK024.webp','img/T-SNK024.webp','Tシャツ', 'せなけいこ','あーんあん'),
-    new ClothItem('', 'ぼく2', 'SNK025', 'img/SNK025.webp','img/T-SNK025.webp','Tシャツ', 'せなけいこ','あーんあん'),
-    new ClothItem('', 'ぼく1', 'SNK024', 'img/SNK026.webp','img/T-SNK026.webp','Tシャツ', 'せなけいこ','あーんあん'),
-    
-    // せなけいこ-ルルちゃんのくつした
-    new ClothItem('', 'ルルちゃん', 'SNK027', 'img/SNK027.webp','img/T-SNK027.webp','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'うさこ', 'SNK028', 'img/SNK028.webp','img/T-SNK028.webp','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'わんこ', 'SNK029', 'img/SNK029.webp','img/T-SNK029.webp','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'ねこちゃん', 'SNK030', 'img/SNK030.webp','img/T-SNK030.webp','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-    new ClothItem('', 'ぞうさん', 'SNK031', 'img/SNK031.webp','img/T-SNK031.webp','Tシャツ', 'せなけいこ','ルルちゃんのくつした'),
-
-    // せなけいこ-にゃんにゃん
-    new ClothItem('', 'とらねこ', 'SNK032', 'img/SNK032.webp','img/T-SNK032.webp','Tシャツ', 'せなけいこ','にゃんにゃん'),
-    new ClothItem('', 'くろいねこ', 'SNK033', 'img/SNK033.webp','img/T-SNK033.webp','Tシャツ', 'せなけいこ','にゃんにゃん'),
-    new ClothItem('', 'ねこちゃん', 'SNK034', 'img/SNK034.webp','img/T-SNK034.webp','Tシャツ', 'せなけいこ','にゃんにゃん'),
-    new ClothItem('', 'ぶちねこ', 'SNK035', 'img/SNK035.webp','img/T-SNK035.webp','Tシャツ', 'せなけいこ','にゃんにゃん'),
-    new ClothItem('', 'にゃんにゃん', 'SNK036', 'img/SNK036.webp','img/T-SNK036.webp','Tシャツ', 'せなけいこ','にゃんにゃん'),
-
-
-
-    // ハトソン探偵団
-    new ClothItem('', 'ハトソンくん(基本)', 'HTS001', 'img/HTS001.webp','img/T-HTS001.webp','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-    new ClothItem('', 'よろこビーバー(基本)', 'HTS002', 'img/HTS002.webp','img/T-HTS002.webp','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-    new ClothItem('', 'ほしいゾウ(基本)', 'HTS003', 'img/HTS003.webp','img/T-HTS003.webp','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-    new ClothItem('', 'オットセール(基本)', 'HTS004', 'img/HTS004.webp','img/T-HTS004.webp','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-    new ClothItem('', 'ハトソンくん(説明)', 'HTS005', 'img/HTS005.webp','img/T-HTS005.webp','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-    new ClothItem('', 'よろこビーバー(説明)', 'HTS006', 'img/HTS006.webp','img/T-HTS006.webp','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-    new ClothItem('', 'ほしいゾウ(説明)', 'HTS007', 'img/HTS007.webp','img/T-HTS007.webp','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-    new ClothItem('', 'オットセール(説明)', 'HTS008', 'img/HTS008.webp','img/T-HTS008.webp','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-    new ClothItem('', 'ハトソンくん(歩く)', 'HTS009', 'img/HTS009.webp','img/T-HTS009.webp','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-    new ClothItem('', 'よろこビーバー(歩く)', 'HTS010', 'img/HTS010.webp','img/T-HTS010.webp','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-    new ClothItem('', 'ほしいゾウ(歩く)', 'HTS011', 'img/HTS011.webp','img/T-HTS011.webp','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-    new ClothItem('', 'オットセール(歩く)', 'HTS012', 'img/HTS012.webp','img/T-HTS012.webp','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-    new ClothItem('', 'ハトソンくん(よろこぶ)', 'HTS013', 'img/HTS013.webp','img/T-HTS013.webp','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-    new ClothItem('', 'よろこビーバー(よろこぶ)', 'HTS014', 'img/HTS014.webp','img/T-HTS014.webp','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-    new ClothItem('', 'ほしいゾウ(よろこぶ)', 'HTS015', 'img/HTS015.webp','img/T-HTS015.webp','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-    new ClothItem('', 'オットセール(よろこぶ)', 'HTS016', 'img/HTS016.webp','img/T-HTS016.webp','Tシャツ', 'ハトソン探偵団','オットセール'),
-    
-    new ClothItem('', 'ハトソンくん(おじぎ)', 'HTS017', 'img/HTS017.webp','img/T-HTS017.webp','Tシャツ', 'ハトソン探偵団','ハトソンくん'),
-    new ClothItem('', 'よろこビーバー(おじぎ)', 'HTS018', 'img/HTS018.webp','img/T-HTS018.webp','Tシャツ', 'ハトソン探偵団','よろこビーバー'),
-    new ClothItem('', 'ほしいゾウ(おじぎ)', 'HTS019', 'img/HTS019.webp','img/T-HTS019.webp','Tシャツ', 'ハトソン探偵団','ほしいゾウ'),
-    new ClothItem('', 'オットセール(おじぎ)', 'HTS020', 'img/HTS020.webp','img/T-HTS020.webp','Tシャツ', 'ハトソン探偵団','オットセール'),
-
-    
-    
-    // はんこ-動物
-    new ClothItem('', 'にわとり', 'HNK046', 'img/HNK046.webp','img/T-HNK046.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'りす', 'HNK047', 'img/HNK047.webp','img/T-HNK047.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'ひつじ', 'HNK048', 'img/HNK048.webp','img/T-HNK048.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'ぞう', 'HNK049', 'img/HNK049.webp','img/T-HNK049.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'はと', 'HNK042', 'img/HNK042.webp','img/T-HNK042.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'ねこ', 'HNK043', 'img/HNK043.webp','img/T-HNK043.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'いぬ', 'HNK044', 'img/HNK044.webp','img/T-HNK044.webp','Tシャツ', 'はんこ','どうぶつ'),
-    new ClothItem('', 'はりねずみ', 'HNK045', 'img/HNK045.webp','img/T-HNK045.webp','Tシャツ', 'はんこ','どうぶつ'),
-    
-    // はんこ-お花
-    new ClothItem('', 'お花1', 'HNK005', 'img/HNK005.webp','img/T-HNK005.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花2', 'HNK006', 'img/HNK006.webp','img/T-HNK006.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花3', 'HNK007', 'img/HNK007.webp','img/T-HNK007.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花4', 'HNK008', 'img/HNK008.webp','img/T-HNK008.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花5', 'HNK009', 'img/HNK009.webp','img/T-HNK009.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花6', 'HNK010', 'img/HNK010.webp','img/T-HNK010.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花7', 'HNK011', 'img/HNK011.webp','img/T-HNK011.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花8', 'HNK012', 'img/HNK012.webp','img/T-HNK012.webp','Tシャツ', 'はんこ','お花'),
-    new ClothItem('', 'お花9', 'HNK013', 'img/HNK013.webp','img/T-HNK013.webp','Tシャツ', 'はんこ','お花'),
-    
-    // はんこ-食べ物
-    new ClothItem('', 'みかん', 'HNK031', 'img/HNK031.webp','img/T-HNK031.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', '洋ナシ', 'HNK032', 'img/HNK032.webp','img/T-HNK032.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'にんじん', 'HNK014', 'img/HNK014.webp','img/T-HNK014.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'えだまめ', 'HNK015', 'img/HNK015.webp','img/T-HNK015.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'ぴーまん', 'HNK016', 'img/HNK016.webp','img/T-HNK016.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'とうがらし', 'HNK017', 'img/HNK017.webp','img/T-HNK017.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'ばなな', 'HNK018', 'img/HNK018.webp','img/T-HNK018.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'りんご１', 'HNK019', 'img/HNK019.webp','img/T-HNK019.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'おれんじ', 'HNK020', 'img/HNK020.webp','img/T-HNK020.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'すいか', 'HNK021', 'img/HNK021.webp','img/T-HNK021.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'りんご2', 'HNK029', 'img/HNK029.webp','img/T-HNK029.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'さくらんぼ', 'HNK030', 'img/HNK030.webp','img/T-HNK030.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'アイスクリーム', 'HNK033', 'img/HNK033.webp','img/T-HNK033.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'ソフトクリーム', 'HNK034', 'img/HNK034.webp','img/T-HNK034.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'アイス', 'HNK035', 'img/HNK035.webp','img/T-HNK035.webp','Tシャツ', 'はんこ','たべもの'),
-    new ClothItem('', 'かき氷', 'HNK036', 'img/HNK036.webp','img/T-HNK036.webp','Tシャツ', 'はんこ','たべもの'),
-    
-    // はんこ-日本
-    new ClothItem('', 'こけし', 'HNK058', 'img/HNK058.webp','img/T-HNK058.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'けん玉', 'HNK059', 'img/HNK059.webp','img/T-HNK059.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', '紙ふうせん', 'HNK060', 'img/HNK060.webp','img/T-HNK060.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'こま', 'HNK061', 'img/HNK061.webp','img/T-HNK061.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', '折リヅル', 'HNK062', 'img/HNK062.webp','img/T-HNK062.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'さけ1', 'HNK063', 'img/HNK063.webp','img/T-HNK063.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'さけ2', 'HNK064', 'img/HNK064.webp','img/T-HNK064.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'さけ3', 'HNK065', 'img/HNK065.webp','img/T-HNK065.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'ひょうたん', 'HNK066', 'img/HNK066.webp','img/T-HNK066.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'きゅうす', 'HNK067', 'img/HNK067.webp','img/T-HNK067.webp','Tシャツ', 'はんこ','日本'),
-    new ClothItem('', 'お茶', 'HNK068', 'img/HNK068.webp','img/T-HNK068.webp','Tシャツ', 'はんこ','日本'),
-    
-    // はんこ-お天気
-    new ClothItem('', '雪', 'HNK069', 'img/HNK069.webp','img/T-HNK069.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '晴れ', 'HNK070', 'img/HNK070.webp','img/T-HNK070.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '雨', 'HNK071', 'img/HNK071.webp','img/T-HNK071.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '雷雲', 'HNK072', 'img/HNK072.webp','img/T-HNK072.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '雨雲', 'HNK073', 'img/HNK073.webp','img/T-HNK073.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', 'くもり', 'HNK074', 'img/HNK074.webp','img/T-HNK074.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '星', 'HNK075', 'img/HNK075.webp','img/T-HNK075.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '月', 'HNK076', 'img/HNK076.webp','img/T-HNK076.webp','Tシャツ', 'はんこ','お天気'),
-    new ClothItem('', '太陽', 'HNK077', 'img/HNK077.webp','img/T-HNK077.webp','Tシャツ', 'はんこ','お天気'),
-    
-    // はんこ-乗り物
-    new ClothItem('', '車', 'HNK045', 'img/HNK037.webp','img/T-HNK037.webp','Tシャツ', 'はんこ','乗り物'),
-    new ClothItem('', 'バス', 'HNK046', 'img/HNK038.webp','img/T-HNK038.webp','Tシャツ', 'はんこ','乗り物'),
-    new ClothItem('', '飛行機', 'HNK047', 'img/HNK039.webp','img/T-HNK039.webp','Tシャツ', 'はんこ','乗り物'),
-    new ClothItem('', 'バイク', 'HNK048', 'img/HNK040.webp','img/T-HNK040.webp','Tシャツ', 'はんこ','乗り物'),    
-    new ClothItem('', '自転車', 'HNK049', 'img/HNK041.webp','img/T-HNK041.webp','Tシャツ', 'はんこ','乗り物'),
-    
-    // はんこ-その他
-    new ClothItem('', 'ハート1', 'HNK001', 'img/HNK001.webp','img/T-HNK001.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'スター1', 'HNK002', 'img/HNK002.webp','img/T-HNK002.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'スター2', 'HNK003', 'img/HNK003.webp','img/T-HNK003.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'ハート2', 'HNK004', 'img/HNK004.webp','img/T-HNK004.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'パーティ1', 'HNK022', 'img/HNK022.webp','img/T-HNK022.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'パーティ2', 'HNK023', 'img/HNK023.webp','img/T-HNK023.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'パーティ3', 'HNK024', 'img/HNK024.webp','img/T-HNK024.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'パーティ4', 'HNK025', 'img/HNK025.webp','img/T-HNK025.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '旅1', 'HNK026', 'img/HNK026.webp','img/T-HNK026.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '旅2', 'HNK027', 'img/HNK027.webp','img/T-HNK027.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '旅3', 'HNK028', 'img/HNK028.webp','img/T-HNK028.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'マリン1', 'HNK050', 'img/HNK050.webp','img/T-HNK050.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'マリン2', 'HNK051', 'img/HNK051.webp','img/T-HNK051.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'マリン3', 'HNK052', 'img/HNK052.webp','img/T-HNK052.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', 'マリン4', 'HNK053', 'img/HNK053.webp','img/T-HNK053.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '楽器1', 'HNK054', 'img/HNK054.webp','img/T-HNK054.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '楽器2', 'HNK055', 'img/HNK055.webp','img/T-HNK055.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '楽器3', 'HNK056', 'img/HNK056.webp','img/T-HNK056.webp','Tシャツ', 'はんこ','その他'),
-    new ClothItem('', '楽器4', 'HNK057', 'img/HNK057.webp','img/T-HNK057.webp','Tシャツ', 'はんこ','その他'),
-
-    // ゆるふわ-どうぶつ
-    new ClothItem('', 'くじら', 'YRF001', 'img/YRF001.webp','img/T-YRF001.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'らいおん', 'YRF002', 'img/YRF002.webp','img/T-YRF002.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'くま１', 'YRF003', 'img/YRF003.webp','img/T-YRF003.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'こあら', 'YRF004', 'img/YRF004.webp','img/T-YRF004.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'かんがるー', 'YRF005', 'img/YRF005.webp','img/T-YRF005.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'かば', 'YRF006', 'img/YRF006.webp','img/T-YRF006.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'いか', 'YRF007', 'img/YRF007.webp','img/T-YRF007.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ひつじ１', 'YRF008', 'img/YRF008.webp','img/T-YRF008.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'はむすたー', 'YRF009', 'img/YRF009.webp','img/T-YRF009.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ごりら', 'YRF010', 'img/YRF010.webp','img/T-YRF010.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-
-    new ClothItem('', 'ぞう', 'YRF011', 'img/YRF011.webp','img/T-YRF011.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'いぬ１', 'YRF012', 'img/YRF012.webp','img/T-YRF012.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'だちょう', 'YRF013', 'img/YRF013.webp','img/T-YRF013.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ねこ１', 'YRF014', 'img/YRF014.webp','img/T-YRF014.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ぶた', 'YRF015', 'img/YRF015.webp','img/T-YRF015.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'あひる', 'YRF016', 'img/YRF016.webp','img/T-YRF016.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ありくい', 'YRF017', 'img/YRF017.webp','img/T-YRF017.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'やぎ', 'YRF018', 'img/YRF018.webp','img/T-YRF018.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'わし', 'YRF019', 'img/YRF019.webp','img/T-YRF019.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'わに', 'YRF020', 'img/YRF020.webp','img/T-YRF020.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-    new ClothItem('', 'うさぎ１', 'YRF021', 'img/YRF021.webp','img/T-YRF021.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'はくちょう', 'YRF022', 'img/YRF022.webp','img/T-YRF022.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'しか', 'YRF023', 'img/YRF023.webp','img/T-YRF023.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'おおかみ', 'YRF024', 'img/YRF024.webp','img/T-YRF024.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'さる１', 'YRF025', 'img/YRF025.webp','img/T-YRF025.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'くま２', 'YRF026', 'img/YRF026.webp','img/T-YRF026.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'たこ', 'YRF027', 'img/YRF027.webp','img/T-YRF027.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'うさぎ２', 'YRF028', 'img/YRF028.webp','img/T-YRF028.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'となかい', 'YRF029', 'img/YRF029.webp','img/T-YRF029.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'うま', 'YRF030', 'img/YRF030.webp','img/T-YRF030.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-    new ClothItem('', 'つるかめ', 'YRF031', 'img/YRF031.webp','img/T-YRF031.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'いのしし', 'YRF032', 'img/YRF032.webp','img/T-YRF032.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ひつじ２', 'YRF033', 'img/YRF033.webp','img/T-YRF033.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'りゅう', 'YRF034', 'img/YRF034.webp','img/T-YRF034.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'いぬ２', 'YRF035', 'img/YRF035.webp','img/T-YRF035.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'にわとり', 'YRF036', 'img/YRF036.webp','img/T-YRF036.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'さる２', 'YRF037', 'img/YRF037.webp','img/T-YRF037.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'へび', 'YRF038', 'img/YRF038.webp','img/T-YRF038.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'うし', 'YRF039', 'img/YRF039.webp','img/T-YRF039.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'うさぎ３', 'YRF040', 'img/YRF040.webp','img/T-YRF040.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-    new ClothItem('', 'とら', 'YRF041', 'img/YRF041.webp','img/T-YRF041.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ねずみ', 'YRF042', 'img/YRF042.webp','img/T-YRF042.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'ねこ２', 'YRF043', 'img/YRF043.webp','img/T-YRF043.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'いぬ３', 'YRF044', 'img/YRF044.webp','img/T-YRF044.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'くろねこ', 'YRF046', 'img/YRF046.webp','img/T-YRF046.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'かえる', 'YRF047', 'img/YRF047.webp','img/T-YRF047.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'うさぎ４', 'YRF048', 'img/YRF048.webp','img/T-YRF048.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    new ClothItem('', 'りす', 'YRF049', 'img/YRF049.webp','img/T-YRF049.webp','Tシャツ', 'ゆるふわ','どうぶつ'),
-    
-    // ゆるふわ-お花
-    new ClothItem('', 'つばき', 'YRF050', 'img/YRF050.webp','img/T-YRF050.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'たんぽぽ', 'YRF051', 'img/YRF051.webp','img/T-YRF051.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'すずらん', 'YRF052', 'img/YRF052.webp','img/T-YRF052.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'すみれ', 'YRF053', 'img/YRF053.webp','img/T-YRF053.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'すいせん', 'YRF054', 'img/YRF054.webp','img/T-YRF054.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'らん', 'YRF055', 'img/YRF055.webp','img/T-YRF055.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'らなんきゅらす', 'YRF056', 'img/YRF056.webp','img/T-YRF056.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'ぱんじー', 'YRF057', 'img/YRF057.webp','img/T-YRF057.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'なのはな', 'YRF058', 'img/YRF058.webp','img/T-YRF058.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'ねこじゃらし', 'YRF059', 'img/YRF059.webp','img/T-YRF059.webp','Tシャツ', 'ゆるふわ','お花'),
-    new ClothItem('', 'もも', 'YRF060', 'img/YRF060.webp','img/T-YRF060.webp','Tシャツ', 'ゆるふわ','お花'),
-    
-    new ClothItem('', 'まーがれっと', 'YRF061', 'img/YRF061.webp','img/T-YRF061.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'きく', 'YRF062', 'img/YRF062.webp','img/T-YRF062.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'いね', 'YRF063', 'img/YRF063.webp','img/T-YRF063.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'ひがんばな', 'YRF064', 'img/YRF064.webp','img/T-YRF064.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'ふじのはな', 'YRF065', 'img/YRF065.webp','img/T-YRF065.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'ふりーじあ', 'YRF066', 'img/YRF066.webp','img/T-YRF066.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'くろっかす', 'YRF067', 'img/YRF067.webp','img/T-YRF067.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'しくらめん', 'YRF068', 'img/YRF068.webp','img/T-YRF068.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'こすもす', 'YRF069', 'img/YRF069.webp','img/T-YRF069.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'ひまわり', 'YRF070', 'img/YRF070.webp','img/T-YRF070.webp','Tシャツ', 'ゆるふわ',''),
-    
-    // ゆるふわ-むし
-    new ClothItem('', 'てんとうむし', 'YRF071', 'img/YRF071.webp','img/T-YRF071.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'たまむし', 'YRF072', 'img/YRF072.webp','img/T-YRF072.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'おにやんま', 'YRF073', 'img/YRF073.webp','img/T-YRF073.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'もんしろちょう', 'YRF074', 'img/YRF074.webp','img/T-YRF074.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'みつばち', 'YRF075', 'img/YRF075.webp','img/T-YRF075.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'みのむし', 'YRF076', 'img/YRF076.webp','img/T-YRF076.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'みんみんぜみ', 'YRF077', 'img/YRF077.webp','img/T-YRF077.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'くわがた(めす)', 'YRF078', 'img/YRF078.webp','img/T-YRF078.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'くわがた(おす)', 'YRF079', 'img/YRF079.webp','img/T-YRF079.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'くも', 'YRF80', 'img/YRF080.webp','img/T-YRF080.webp','Tシャツ', 'ゆるふわ','むし'),
-    
-    new ClothItem('', 'くまぜみ', 'YRF081', 'img/YRF081.webp','img/T-YRF081.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'こおろぎ', 'YRF082', 'img/YRF082.webp','img/T-YRF082.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'きりぎりす', 'YRF083', 'img/YRF083.webp','img/T-YRF083.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'かめむし', 'YRF084', 'img/YRF084.webp','img/T-YRF084.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'かまきり', 'YRF085', 'img/YRF085.webp','img/T-YRF085.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'かぶとむし', 'YRF086', 'img/YRF086.webp','img/T-YRF086.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'いととんぼ', 'YRF087', 'img/YRF087.webp','img/T-YRF087.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'いもむし', 'YRF088', 'img/YRF088.webp','img/T-YRF088.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'ほたる', 'YRF089', 'img/YRF089.webp','img/T-YRF089.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'ぎんやんま', 'YRF090', 'img/YRF090.webp','img/T-YRF090.webp','Tシャツ', 'ゆるふわ','むし'),
-    
-    new ClothItem('', 'かたつむり', 'YRF091', 'img/YRF091.webp','img/T-YRF091.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'だんごむし', 'YRF092', 'img/YRF092.webp','img/T-YRF092.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'あり', 'YRF093', 'img/YRF093.webp','img/T-YRF093.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'あかとんぼ', 'YRF094', 'img/YRF094.webp','img/T-YRF094.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'あげはちょう', 'YRF095', 'img/YRF095.webp','img/T-YRF095.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'あぶらぜみ', 'YRF096', 'img/YRF096.webp','img/T-YRF096.webp','Tシャツ', 'ゆるふわ','むし'),
-    new ClothItem('', 'かたつむり', 'YRF097', 'img/YRF097.webp','img/T-YRF097.webp','Tシャツ', 'ゆるふわ','むし'),
-    
-    // ゆるふわ-おさかな
-    new ClothItem('', 'たこ', 'YRF098', 'img/YRF098.webp','img/T-YRF098.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'たい', 'YRF099', 'img/YRF099.webp','img/T-YRF099.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'さんま', 'YRF100', 'img/YRF100.webp','img/T-YRF100.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'さめ', 'YRF101', 'img/YRF101.webp','img/T-YRF101.webp','Tシャツ', 'ゆるふわ',''),
-    
-    new ClothItem('', 'さけ', 'YRF102', 'img/YRF102.webp','img/T-YRF102.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'まぐろ', 'YRF103', 'img/YRF103.webp','img/T-YRF103.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'かい', 'YRF104', 'img/YRF104.webp','img/T-YRF104.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'えび', 'YRF105', 'img/YRF105.webp','img/T-YRF105.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'さば', 'YRF106', 'img/YRF106.webp','img/T-YRF106.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'ひらめ', 'YRF107', 'img/YRF107.webp','img/T-YRF107.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'ふぐ', 'YRF108', 'img/YRF108.webp','img/T-YRF108.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'かれい', 'YRF109', 'img/YRF109.webp','img/T-YRF109.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'いか', 'YRF110', 'img/YRF110.webp','img/T-YRF110.webp','Tシャツ', 'ゆるふわ',''),
-    new ClothItem('', 'やどかり', 'YRF111', 'img/YRF111.webp','img/T-YRF111.webp','Tシャツ', 'ゆるふわ',''),
-    
-    new ClothItem('', 'かに', 'YRF112', 'img/YRF112.webp','img/T-YRF112.webp','Tシャツ', 'ゆるふわ',''),
-    
-    // ゆるふわ-イベント
-    new ClothItem('', 'イベント1', 'YRF113', 'img/YRF113.webp','img/T-YRF113.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント2', 'YRF114', 'img/YRF114.webp','img/T-YRF114.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント3', 'YRF115', 'img/YRF115.webp','img/T-YRF115.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント4', 'YRF116', 'img/YRF116.webp','img/T-YRF116.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント5', 'YRF117', 'img/YRF117.webp','img/T-YRF117.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント6', 'YRF118', 'img/YRF118.webp','img/T-YRF118.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント7', 'YRF119', 'img/YRF119.webp','img/T-YRF119.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント8', 'YRF120', 'img/YRF120.webp','img/T-YRF120.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント9', 'YRF121', 'img/YRF121.webp','img/T-YRF121.webp','Tシャツ', 'ゆるふわ','イベント'),
-    
-    new ClothItem('', 'イベント10', 'YRF122', 'img/YRF122.webp','img/T-YRF122.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント11', 'YRF123', 'img/YRF123.webp','img/T-YRF123.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント12', 'YRF124', 'img/YRF124.webp','img/T-YRF124.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント13', 'YRF125', 'img/YRF125.webp','img/T-YRF125.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント14', 'YRF126', 'img/YRF133.webp','img/T-YRF133.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント15', 'YRF127', 'img/YRF134.webp','img/T-YRF134.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント16', 'YRF045', 'img/YRF045.webp','img/T-YRF045.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント17', 'YRF128', 'img/YRF135.webp','img/T-YRF135.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント18', 'YRF129', 'img/YRF136.webp','img/T-YRF136.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント19', 'YRF130', 'img/YRF138.webp','img/T-YRF138.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント20', 'YRF131', 'img/YRF139.webp','img/T-YRF139.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント21', 'YRF132', 'img/YRF140.webp','img/T-YRF140.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント22', 'YRF133', 'img/YRF146.webp','img/T-YRF146.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント23', 'YRF134', 'img/YRF141.webp','img/T-YRF141.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント24', 'YRF135', 'img/YRF142.webp','img/T-YRF142.webp','Tシャツ', 'ゆるふわ','イベント'),
-    new ClothItem('', 'イベント25', 'YRF136', 'img/YRF143.webp','img/T-YRF143.webp','Tシャツ', 'ゆるふわ','イベント'),
-    
-    // ゆるふわ-たべもの
-    new ClothItem('', 'ぷりん', 'YRF137', 'img/YRF126.webp','img/T-YRF126.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'たいやき', 'YRF138', 'img/YRF127.webp','img/T-YRF127.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'ぱふぇ', 'YRF139', 'img/YRF128.webp','img/T-YRF128.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'けーき', 'YRF140', 'img/YRF129.webp','img/T-YRF129.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'だんご', 'YRF141', 'img/YRF130.webp','img/T-YRF130.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'ほっとけーき', 'YRF142', 'img/YRF131.webp','img/T-YRF131.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'きゃんでぃー', 'YRF143', 'img/YRF132.webp','img/T-YRF132.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'そふとくりーむ', 'YRF144', 'img/YRF137.webp','img/T-YRF137.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'すし', 'YRF145', 'img/YRF144.webp','img/T-YRF144.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'すいか', 'YRF146', 'img/YRF145.webp','img/T-YRF145.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'ぴざ', 'YRF147', 'img/YRF147.webp','img/T-YRF147.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    new ClothItem('', 'おにぎり', 'YRF148', 'img/YRF148.webp','img/T-YRF148.webp','Tシャツ', 'ゆるふわ','たべもの'),
-    
-    
-
-    // [TryOn] せなけいこ
-    new ClothItem('4eb4eadc-54ed-44ce-a825-b00e14f13bf7', 'ふうせんねこ1', 'SNK001', 'img/SNK001.png','img/T-SNK001.png','TryOn', 'せなけいこ',''),
-    new ClothItem('5659faca-7d0a-44e6-97ee-831927bdf9c0', 'ふうせんねこ2', 'SNK002', 'img/SNK002.png','img/T-SNK002.png','TryOn', 'せなけいこ',''),
-    new ClothItem('772bf012-6554-4d0f-baae-569b7a25f915', 'おばけ', 'SNK003', 'img/SNK003.png','img/T-SNK003.png','TryOn', 'せなけいこ',''),
-    new ClothItem('1c1afadd-ba61-4eb9-937d-a4002aad6714', 'ねこちゃん', 'SNK004', 'img/SNK004.png','img/T-SNK004.png','TryOn', 'せなけいこ',''),
     // [TryOn] スーツ
-    new ClothItem('6c3cd363-fb3a-4312-9c48-7f62cbbfa614', 'スーツ1', 'SUT001', 'img/SUT001.png','','TryOn', 'スーツ',''),
-    new ClothItem('1617ff56-6575-42eb-9c64-f111b542683b', 'スーツ2', 'SUT002', 'img/SUT002.png','','TryOn', 'スーツ',''),
+    new ClothItem('TryOn', 'スーツ','','',      'SUT001', 'スーツ1','10000','','','','','','','','SUT001.png','','','6c3cd363-fb3a-4312-9c48-7f62cbbfa614'),
+    new ClothItem('TryOn', 'スーツ','','',      'SUT001', 'スーツ1','20000','','','','','','','','SUT002.png','','','1617ff56-6575-42eb-9c64-f111b542683b'),
     // [TryOn] カジュアル
-    new ClothItem('5fc20c2b-4198-489a-83fd-d45a5fb95254', 'カジュアル1', 'CAS001', 'img/CAS001.png','','TryOn', 'カジュアル',''),
+    new ClothItem('TryOn', 'カジュアル','','',  'CAS001', 'カジュアル1','30000','','','','','','','','CAS001.png','','','5fc20c2b-4198-489a-83fd-d45a5fb95254'),
     // [TryOn] 浴衣
-    new ClothItem('65481657-7d5c-4a20-9524-cda6d0286ec2', '[NG]ゆかた1', 'YKT001', 'img/YKT101.png','','TryOn', 'ゆかた',''),
-    new ClothItem('53fffeef-91c7-4d0b-8d01-edc30075054b', '[NG]ゆかた2', 'YKT002', 'img/YKT100.png','','TryOn', 'ゆかた',''),
-    new ClothItem('fa036677-d583-418c-9c7e-31db4f830b73', '[OK]ゆかた3', 'YKT003', 'img/YKT003.png','','TryOn', 'ゆかた',''),
-    new ClothItem('a7ce30ad-048c-41b0-8161-e61092390b0d', '[OK]ゆかた4', 'YKT004', 'img/YKT009.png','','TryOn', 'ゆかた',''),
+    new ClothItem('TryOn', 'ゆかた','','',      'YKT001','[NG]ゆかた1','100000','','','','','','','','YKT101.png','','','65481657-7d5c-4a20-9524-cda6d0286ec2'),
+    new ClothItem('TryOn', 'ゆかた','','',      'YKT002','[NG]ゆかた2','110000','','','','','','','','YKT100.png','','','53fffeef-91c7-4d0b-8d01-edc30075054b'),
+    new ClothItem('TryOn', 'ゆかた','','',      'YKT003','[OK]ゆかた3','120000','','','','','','','','YKT003.png','','','fa036677-d583-418c-9c7e-31db4f830b73'),
+    new ClothItem('TryOn', 'ゆかた','','',      'YKT004','[OK]ゆかた4','130000','','','','','','','','YKT009.png','','','a7ce30ad-048c-41b0-8161-e61092390b0d'),
   ];
 
 
   // 現在選択中の画像
   let currentIndex = -1;
   // 現在選択中のアイテム
-  let selectedItem = new ClothItem('', '', '', '','','', '','');
+  let selectedItem = new ClothItem();
   // タグ要素の取得メイン画像の設定
   const imgDesign = document.getElementById('thumbnail_selected');
   const imgWeared = document.getElementById('thumbnail_selected_tryon');
@@ -1124,14 +717,15 @@
                             items[index].tag3
                               );
     selectedItem = new ClothItem(
-                            items[index].uuid,
-                            items[index].itemName,
-                            items[index].designID,
-                            items[index].designsrc,
-                            items[index].wearedImageSrc,
-                            items[index].tag1,
-                            items[index].tag2,
-                            items[index].tag3
+                          items[index].tag1,items[index].tag2, items[index].tag3,
+                          '',                    
+                          items[index].designID, items[index].itemName, items[index].price,
+                          '','','','','','','',
+
+                          items[index].designsrc,
+                          items[index].wearedImageSrc,
+                          '',
+                          items[index].uuid
                             );
     document.getElementById('detail-box').classList.remove('item-hide');
     document.getElementById('detail-box').classList.add('item-show');
@@ -1158,7 +752,13 @@
     
 
     // androidに選択したデータを送る
-    selectedItem = new ClothItem('', '', '', '','','', '','');
+    selectedItem = new ClothItem(
+      '', '', '', 
+      '', 
+      '', '', '', '', '', '', '','','','',
+      '', '','',
+      ''
+    );
     fromHTML_call_Set_Item(
                             selectedItem.uuid,
                             selectedItem.itemName,
@@ -2254,8 +1854,8 @@
   // カテゴリーの作成
   // setCategoryList();
   // setCategoryListTree();
-  setCategoryListTree_radiobutton();
-
+  //setCategoryListTree_radiobutton();
+  setCategoryListTree_checkbox();
   // アイテムデザインの作成
   // setItemList('');
   setItemListTree(['','','']);

@@ -52,7 +52,7 @@
   height: 200px;  /* これで画像のトップ合わせ */
 }
 .box_command img {
-  height: 180px;
+  /* height: 180px; */
   width: 180px;
   margin: 0;
   background-color: transparent;
@@ -146,7 +146,7 @@
   top: 0;
   left: 0;
   z-index: 9998;
-  background-image : url(../img/camera_result.png);
+  background-image : url(../img/skyback.png);
 }
 
 /* 結果のヘッダエリア */
