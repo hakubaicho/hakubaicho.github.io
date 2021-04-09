@@ -683,6 +683,7 @@
 				const video = document.querySelector("#camera");
 				syncCamera(video);
 			}
+		
 			// **********************
 			// 各ページ共通の処理
 			// **********************
@@ -706,6 +707,7 @@
 				// indexに戻る
 				jumpto_index();
 			}
+			
 			// **********************
 			// 各ページ要素の表示非表示
 			// **********************
@@ -742,14 +744,11 @@
 				document.getElementById('order-page').classList.add('loaded');
 			}
 			// **********************
-		
 			// デバッグ出力
 			function debugConsole_proc(message)
 			{
 				console.log(`[index.html]PROC :${message}`);
 			}
-
-
 		</script>
   </body>
 </html>
