@@ -15,7 +15,7 @@ body {
   height: 100%;             /* bodyで100%を使うから */
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
-  background-image : url(../img/background.png);
+  background-image : url(../img/logos/background.png);
 }
 div {
   /* border: 1px solid silver; */
@@ -199,7 +199,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 9999;
-  background-image : url(../img/index-loading.webp);
+  background-image : url(../img/logos/index-loading.webp);
 }
 #index-page {
   width: 1080px;
@@ -225,7 +225,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 9998;
-  background-image : url(../img/tryon-loading.webp);
+  background-image : url(../img/logos/tryon-loading.webp);
 }
 #camera-page {
   width: 1080px;
@@ -238,7 +238,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 0;
-  background-image : url(../img/skyback.png);
+  background-image : url(../img/logos/skyback.png);
 }
 
 #order-page {
