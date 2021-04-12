@@ -393,12 +393,7 @@
     // すぐにTryOn
     Reuse_Avatar_TryOnProc();
   });
-  // [詳細を見る]
-  mask.addEventListener('click', () => {
-    // 確認必須なので何もしない
-    // 同じ処理なのでまとめておく。
-    // close.click();
-  });
+ 
   // ===============================================================
   //
   // 起動時処理
@@ -450,8 +445,8 @@
       CONSTRAINTS.video.deviceId = camera_device_ids[1];
     }
     // モーダルの「もどる」「すすむ」を表示
-    cancel.classList.remove('hidden');
-    accept.classList.remove('hidden');
+    // cancel.classList.remove('hidden');
+    //accept.classList.remove('hidden');
     
     // 表示・非表示
     video.classList.add("item-show");
