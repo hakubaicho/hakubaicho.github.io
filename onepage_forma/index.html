@@ -647,9 +647,6 @@
 				Set_itemUUid(GetSelected_Item().uuid);
 				console.log(`uuid_try_item = ${uuid_tryon_item}`);
 
-
-				modal.classList.add('hidden');
-				mask.classList.add('hidden');
 				// すぐにTryOn
 				Reuse_Avatar_TryOnProc();
 			}
@@ -658,9 +655,6 @@
 			// [すすむ]
 			//------------------------
 			function camera_accept_click() {
-				// プライバシーの消し込み
-				//document.getElementById('modal').classList.add('hidden');
-				//document.getElementById('mask').classList.add('hidden');
 				// カメラの表示
 				document.getElementById('camera-page').classList.remove('loaded');
 				// カメラの開始

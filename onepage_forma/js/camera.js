@@ -386,13 +386,13 @@
     syncCamera(video);
   }
 
-  // アバターの再利用
-  reuseAvatar.addEventListener('click', () => {
-    modal.classList.add('hidden');
-    mask.classList.add('hidden');
-    // すぐにTryOn
-    Reuse_Avatar_TryOnProc();
-  });
+  // // アバターの再利用
+  // reuseAvatar.addEventListener('click', () => {
+  //   modal.classList.add('hidden');
+  //   mask.classList.add('hidden');
+  //   // すぐにTryOn
+  //   Reuse_Avatar_TryOnProc();
+  // });
  
   // ===============================================================
   //

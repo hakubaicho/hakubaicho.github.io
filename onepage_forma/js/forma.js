@@ -173,20 +173,20 @@
     /*************************************/
     // ここはテスト
     /*************************************/
-    await ping_wait();
-    phase_change(0);
-    await ping_wait();
-    phase_change(1);
-    await ping_wait();
-    phase_change(2);
-    await ping_wait();
-    phase_change(3);
-    await ping_wait();
-    phase_change(4);
-    await ping_wait();
-    tryonShutter.classList.add('loaded');
-    tryonResult.classList.remove('loaded');
-    return;
+    // await ping_wait();
+    // phase_change(0);
+    // await ping_wait();
+    // phase_change(1);
+    // await ping_wait();
+    // phase_change(2);
+    // await ping_wait();
+    // phase_change(3);
+    // await ping_wait();
+    // phase_change(4);
+    // await ping_wait();
+    // tryonShutter.classList.add('loaded');
+    // tryonResult.classList.remove('loaded');
+    // return;
     /*************************************/
     phase_change(0);
     let doNext = true;
@@ -362,30 +362,30 @@
     /*************************************/
     // ここはテスト
     /*************************************/
-    await ping_wait();
-    phase_change(0);
-    await ping_wait();
-    await ping_wait();
-    await ping_wait();
-    phase_change(1);
-    await ping_wait();
-    await ping_wait();
-    await ping_wait();
-    phase_change(2);
-    await ping_wait();
-    await ping_wait();
-    await ping_wait();
-    phase_change(3);
-    await ping_wait();
-    await ping_wait();
-    await ping_wait();
-    phase_change(4);
-    await ping_wait();
-    await ping_wait();
-    await ping_wait();
-    tryonShutter.classList.add('loaded');
-    tryonResult.classList.remove('loaded');
-    return;
+    // await ping_wait();
+    // phase_change(0);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(1);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(2);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(3);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(4);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // tryonShutter.classList.add('loaded');
+    // tryonResult.classList.remove('loaded');
+    // return;
     /*************************************/
     phase_change(0);
     //***************************************************************************** */
@@ -692,9 +692,6 @@
 
       // ログイン後のエリアを表示
       document.getElementById('forma_login').textContent = keyOfToken;
-
-      document.getElementById('after_login').classList.remove('item-hide');
-
       // 正常ログインとして各コマンドエリアを表示する
       // area_display_after_login();
       result = true;
@@ -2212,7 +2209,6 @@
     phase3_msg_img.src = '';
     phase4_msg_img.src = '';
 
-    phase1_msg_img.src= phase1_msg_img_move.src;
     tryonShutter.style.backgroundColor =
       getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-blue');
   }
@@ -2220,28 +2216,24 @@
   function phase_change(index) {
     switch(index) {
       case 0:
-        //phase1.classList.add('fade_in_text_conatainer');
-        phase1_img.src = phase1_img_stop.src;
-        phase1_msg_img.src= phase1_msg_img_stop.src;
+        phase1_img.src = phase1_img_move.src;
+        phase1_msg_img.src= phase1_msg_img_move.src;
         break;
       case 1:
         
         phase1_img.src = phase1_img_stop.src;
         phase1_msg_img.src= phase1_msg_img_stop.src;
         phase2_msg_img.src= phase2_msg_img_move.src;
-        //phase2.classList.add('fade_in_text_conatainer');
         break;
       case 2:
         phase2_img.src = phase2_img_stop.src;
         phase2_msg_img.src= phase2_msg_img_stop.src;
         phase3_msg_img.src= phase3_msg_img_move.src;
-        //phase3.classList.add('fade_in_text_conatainer');
         break;
       case 3:
         phase3_img.src = phase3_img_stop.src;
         phase3_msg_img.src= phase3_msg_img_stop.src;
         phase4_msg_img.src= phase4_msg_img_move.src;
-        //phase4.classList.add('fade_in_text_conatainer');
         break;
       case 4:
         phase4_msg_img.src= phase4_msg_img_stop.src;
@@ -2251,7 +2243,7 @@
         phase3_img.src = phase3_img_move.src;
         phase4_img.src = phase4_img_move.src;
         tryonShutter.style.backgroundColor = 
-          getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-red');
+        getComputedStyle(document.documentElement).getPropertyValue('--corporate-color-red');
     }
   }
 
