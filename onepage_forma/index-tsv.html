@@ -7,7 +7,7 @@
   <body>
     <form name="myform">
         <input name="myfile" type="file" />
-        <textarea name="output" cols="80" rows="10"></textarea>
+        <textarea name="output"></textarea>
 				<button onclick="getCSV()">CSVread</button>
 				<textarea name="output-tsv"></textarea>
     </form>
@@ -41,13 +41,66 @@
   	    	form.output.textContent = reader.result; 
 					
 					//CSVを1行ずつ読み込む
-					const lines = reader.result.split('\n');
+					const lines = reader.result.split('\r\n');
 			    console.log(lines);
+
+					let value = '';
+					
 					for(let i = 0; i < lines.length; i++)
 					{
 						const columns = lines[i].split('\t');
-						console.log(columns);
+
+						if(columns.length==18)
+						{
+							let oneline = '';
+							oneline += 'new ClothItem(';
+							oneline += `\'${columns[0]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[1]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[2]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[3]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[4]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[5]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[6]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[7]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[8]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[9]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[10]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[11]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[12]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[13]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[14]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[15]}\'`;
+							oneline += ',';
+							oneline += `\'${columns[16]}\'`;
+							oneline += ',';
+							for(let j=0;j<columns[17].length;j++)
+							{
+								console.log(columns[17][j]);
+							}
+							oneline += `\'${columns[17]}\'`;
+							oneline += '),';
+							
+							value += oneline + '\n';
+							console.log(columns);
+						}
 					}
+					form.output.textContent = value; 
+					//document.getElementById('output-tsv').textContent = value;				
   			})
 
     	})

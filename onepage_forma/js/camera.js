@@ -83,8 +83,12 @@
     // // 前後カメラの設定
     // CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
     
+    // 既にカメラ開始なら処理しない。
+    if( curSTREAM !== null ){
+        return;
+    }
     // すでにカメラと接続していたら停止
-    stopCamera();
+    // stopCamera();
 
     // videoタグの表示
     video.classList.remove("item-hide");
@@ -326,7 +330,7 @@
     // 必要な処理を行う
     // -----------------------------------
     // シャッター音を鳴らす。
-    play_shutter();
+    // play_shutter();
     // 撮影処理を行う。
     take_Photo();
     // -----------------------------------
@@ -401,8 +405,12 @@
   // ===============================================================
   function jsCameraStart() {
     init_camera();
+    //--------------------------------------------------
+    // カメラの開始は、ユーザーの行動でしなければならない
+    // そのため開始はしない。
     // OK後が遅いから即
     // カメラの開始
+    //--------------------------------------------------
     //syncCamera(video);
   }
   async function init_camera() {

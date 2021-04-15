@@ -10,7 +10,7 @@
 		<title>アイテム選択画面</title>
 		
 		<!-- Index.html -->
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/styles_coordinate.css">
 		<link rel="stylesheet" href="css/select_item.css">
 		<link rel="stylesheet" href="css/accordion_check.css">
 		<link rel="stylesheet" href="css/accordion_radio.css">
@@ -41,29 +41,41 @@
 					<div class="header_box">
 						<img id="thumbnail_selected">
 					</div>
-					<div class="header_box">
+					<div class="header_box" hidden>
 						<img id="thumbnail_selected_tryon">
 					</div>
 					<div class="header_box header_box_last item-hide" id="detail-box">
 						<div class="detail-box">
 							<table class="detailtable">
-								<tr>
+								<tr class="item-hide">
 									<td class="detail_column_title"><span class="cell_title">大分類:</span></td>
 									<td class="detail_column_data"><span class="cell_data" id="item_detail_tag1"></span></td>
 								</tr>
-								<tr>
+								<tr class="item-hide">
 									<td class="detail_column_title"><span class="cell_title">中分類:</span></td>
 									<td class="detail_column_data"><span class="cell_data" id="item_detail_tag2"></span></td>
 								</tr>
-								<tr>
+								<tr class="item-hide">
 									<td class="detail_column_title"><span class="cell_title">小分類:</span></td>
 									<td class="detail_column_data"><span class="cell_data" id="item_detail_tag3"></span></td>
+								</tr>
+								<tr>
+									<td class="detail_column_title"><span class="cell_title">品番:</span></td>
+									<td class="detail_column_data"><span class="cell_data" id="item_detail_jancode"></span></td>
 								</tr>
 								<tr>
 									<td class="detail_column_title"><span class="cell_title">名称:</span></td>
 									<td class="detail_column_data"><span class="cell_data" id="item_detail_name"></span></td>
 								</tr>
 								<tr>
+									<td class="detail_column_title"><span class="cell_title">色名:</span></td>
+									<td class="detail_column_data"><span class="cell_data" id="item_detail_color"></span></td>
+								</tr>
+								<tr>
+									<td class="detail_column_title"><span class="cell_title">金額:</span></td>
+									<td class="detail_column_data"><span class="cell_data" id="item_detail_price"></span></td>
+								</tr>
+								<tr class="item-hide">
 									<td class="detail_column_title"><span class="cell_title">No:</span></td>
 									<td class="detail_column_data"><span class="cell_data" id="item_detail_designID"></span></td>
 								</tr>
@@ -143,9 +155,9 @@
 					<li class="left_side">
 						<div class="pic">
 							<!-- <img id="logo_moving_1" src="img/c1_character_pc.gif"> -->
-							<img id="logo_1" src="img/logos/c1_character.gif">
-							<img id="logo_moving_1" class="hidden_image" src="img/logos/c1_character.gif">
-							<img id="logo_stop_1" class="hidden_image" src="img/logos/c1_character_greet.png">
+							<img id="logo_1" src="img/logos/coordinate_moveing.png">
+							<img id="logo_moving_1" class="hidden_image" src="img/logos/coordinate_moveing.png">
+							<img id="logo_stop_1" class="hidden_image" src="img/logos/coordinate_greet.png">
 						</div>
 						<div id="phase_1" class="message_conatainer">
 							<img id="message_1">
@@ -157,9 +169,9 @@
 					<li class="right_side">
 						<div class="pic">
 							<!-- <img class="loading_icon_gif loading_icon_left" src="img/c2_character_pc.gif"> -->
-							<img id="logo_2" src="img/logos/c2_character.gif">
-							<img id="logo_moving_2" class="hidden_image" src="img/logos/c2_character.gif">
-							<img id="logo_stop_2" class="hidden_image" src="img/logos/c2_character_greet.png">
+							<img id="logo_2" src="img/logos/coordinate_moveing.png">
+							<img id="logo_moving_2" class="hidden_image" src="img/logos/coordinate_moveing.png">
+							<img id="logo_stop_2" class="hidden_image" src="img/logos/coordinate_greet.png">
 						</div>
 						<div id="phase_2" class="message_conatainer">
 							<img id="message_2">
@@ -171,9 +183,9 @@
 					<li class="left_side">
 						<div class="pic">
 							<!-- <img id="logo_moving_3" src="img/c3_character_pc.gif"> -->
-							<img id="logo_3" src="img/logos/c3_character.gif">
-							<img id="logo_moving_3" class="hidden_image" src="img/logos/c3_character.gif">
-							<img id="logo_stop_3" class="hidden_image" src="img/logos/c3_character_greet.png">
+							<img id="logo_3" src="img/logos/coordinate_moveing.png">
+							<img id="logo_moving_3" class="hidden_image" src="img/logos/coordinate_moveing.png">
+							<img id="logo_stop_3" class="hidden_image" src="img/logos/coordinate_greet.png">
 						</div>
 						<div id="phase_3" class="message_conatainer">
 							<img id="message_3">
@@ -185,9 +197,9 @@
 					<li class="right_side">
 						<div class="pic">
 							<!-- <img id="logo_moving_4" src="img/c4_character_pc.gif"> -->
-							<img id="logo_4" src="img/logos/c4_character.gif">
-							<img id="logo_moving_4" class="hidden_image" src="img/logos/c4_character.gif">
-							<img id="logo_stop_4" class="hidden_image" src="img/logos/c4_character_greet.png">
+							<img id="logo_4" src="img/logos/coordinate_moveing.png">
+							<img id="logo_moving_4" class="hidden_image" src="img/logos/coordinate_moveing.png">
+							<img id="logo_stop_4" class="hidden_image" src="img/logos/coordinate_greet.png">
 						</div>
 						<div id="phase_4" class="message_conatainer">
 							<img id="message_4">
@@ -341,12 +353,18 @@
 							</div>
 							<!-- 注文詳細 -->
 							<div class="order_detail_container">
+								<!-- 品番 -->
+								<p class="design_id" id="order_detail_jancode"></p>
+								<!-- 名称 -->
+								<p class="design_id" id="order_detail_name"></p>
+								<!-- 色名 -->
+								<p class="design_id" id="order_detail_color"></p>
 								<!-- デザイン番号 -->
-								<p class="design_id" id="designID"></p>
+								<p class="design_id" id="designID" hidden></p>
 								<!-- 価格 -->
 								<p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
 								<!-- サイズ選択 -->
-								<table>
+								<table hidden>
 									<tr>
 										<td>
 											<span class="size-category">Ledies</span>
@@ -409,7 +427,7 @@
 			</footer>
 		</div>
 
-		<script src="js/selecter.js"></script>
+		<script src="js/selecter_coordinate.js"></script>
 		<script src="js/connect.js"></script>
 		<script src="js/camera.js"></script>
 		<script src="js/forma.js"></script>
@@ -420,8 +438,8 @@
 			window.onload = function() {
 				debugConsole_proc('window.onload()');
 				// index-Loadingを閉じる
-				const index_loading = document.getElementById('index-loading');
-				index_loading.classList.add('loaded');
+				const spinner = document.getElementById('index-loading');
+				spinner.classList.add('loaded');
 				
 				// 初期処理
 				index_onloaded();
@@ -556,7 +574,10 @@
 				// 選択中のアイテムを反映
 				document.getElementById('order_design_image').src = GetSelected_Item().designsrc;
 				document.getElementById('designID').textContent = GetSelected_Item().designID;
-
+				// コーディネート特有
+				document.getElementById('order_detail_jancode').textContent = GetSelected_Item().janCode;
+				document.getElementById('order_detail_name').textContent = GetSelected_Item().itemName;
+				document.getElementById('order_detail_color').textContent = GetSelected_Item().colorCode;
 
 				let num = 0;
 				try {

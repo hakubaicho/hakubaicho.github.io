@@ -101,7 +101,9 @@
     }
     return ret;
   }
-
+  //
+  // 選択されているカテゴリをAndoridに送信します。
+  // 
   function fromHTML_call_Set_Category(tag1,tag2,tag3) {
     try
     {
@@ -149,6 +151,31 @@
                                           tag1,
                                           tag2,
                                           tag3
+                                            );
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
+  //
+  // 選択中のアイテムを送る
+  //
+  function fromHTML_call_Set_ItemFullData(
+                                          tag1, tag2, tag3, 
+                                          kind, 
+                                          remark01, remark02, remark03, remark04, remark05, remark06, remark07,remark08,remark09,remark10,
+                                          designsrc, wearedImageSrc, formaSrc,
+                                          uuid) 
+  {
+    try
+    {
+      android.fromHTML_call_Set_ItemFullData(
+                                          tag1, tag2, tag3,
+                                          kind, 
+                                          remark01, remark02, remark03, remark04, remark05, remark06, remark07,remark08,remark09,remark10,
+                                          designsrc, wearedImageSrc, formaSrc,
+                                          uuid
                                             );
     }
     catch(e)
