@@ -409,6 +409,43 @@
 			</footer>
 		</div>
 
+		<script>
+			// この時間経過したら終了
+			const COUNT_MAX = 10;
+
+			let count = 0;
+			let flagExit = false;
+			//
+			// タイマーをリセットします。
+			//
+			function countReset() {
+				count = 0;
+			}
+			//
+			// タイマーを中止します。
+			//
+			function countStop() {
+				console.log('タイムアウトを中止しました');
+				flagExit = true;
+			}
+			const countUp = () => {
+				console.log(count++);
+				// 指定時間経過で終了
+				if(COUNT_MAX < count)
+				{
+					console.log('タイムアウトで終了しました');
+					endproc_order();
+					return;
+				}
+				if(flagExit)
+				{
+					return;
+				}
+				setTimeout(countUp, 1000);
+			}
+			
+			countUp();
+		</script>
 		<script src="js/selecter.js"></script>
 		<script src="js/connect.js"></script>
 		<script src="js/camera.js"></script>
@@ -655,6 +692,7 @@
 			// **********************
 			// 終了処理
 			function endproc() {
+				countStop();
 				// 現在のItem・Avatarをクリアする。
 				Set_itemUUid('');
 	      Set_avatarUUid('');
