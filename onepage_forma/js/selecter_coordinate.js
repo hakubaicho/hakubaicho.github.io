@@ -37,6 +37,8 @@
       this.tag2           = tag2;
       this.tag3           = tag3;
 
+      this.kind           = kind;
+
       this.designID       = remark01;
       this.itemName       = remark02;
       this.price          = remark03;
@@ -448,7 +450,7 @@
     fromHTML_call_Set_ItemFullData(
                             items[index].tag1, items[index].tag2, items[index].tag3,
                             items[index].kind, 
-                            items[index].remark01, items[index].remark02, items[index].remark03, items[index].remark04, items[index].remark05, 
+                            items[index].designID, items[index].itemName, items[index].price, items[index].janCode, items[index].colorCode, 
                             items[index].remark06, items[index].remark07, items[index].remark08, items[index].remark09, items[index].remark10,
                             items[index].designsrc, items[index].wearedImageSrc, items[index].formaSrc,
                             items[index].uuid
