@@ -132,23 +132,6 @@
 /* =========================== */
 /* カメラ撮影結果 */
 /* =========================== */
-/* 結果のモーダルウィンドウ */
-#camera_result {
-  width: 1080px;
-  height: 1920px;
-  /* width: 100vw; */
-  /* height: 100vh; */
-  transition: all 1s;
-  background-color: var(--corporate-color-blue);
- 
-/* 以下のコードを追加 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9998;
-  background-image : url(../img/logos/skyback.png);
-}
-
 /* 結果のヘッダエリア */
 #camera_result_header {
   /* 
@@ -171,7 +154,3 @@
   border: 1px solid dimgray;
   height: 1200px;
 }
-/* div {
-  border: 1px solid dimgray;
-}
- */

@@ -44,7 +44,7 @@ main {
 
 #order_design_image {
   height: 300px;
-  width: 300px;
+  /* width: 300px; */
   border-radius: 5px;
   margin: 0;
   border: 1px solid white;
@@ -53,6 +53,7 @@ main {
 /* 注文詳細 */
 .order_detail_container {
   height: 300px;
+  width: 600px;
   border-radius: 5px;
   margin: 20px;
   border: 1px solid white;
