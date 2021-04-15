@@ -67,6 +67,7 @@
       this.wearedImageSrc = '';
       }
 
+      this.formaSrc       = formaSrc;
       this.uuid           = uuid;
 
       this.location       = 0;
@@ -482,6 +483,7 @@
 
     selectedItem.designsrc      = items[index].designsrc;
     selectedItem.wearedImageSrc = items[index].wearedImageSrc;
+    selectedItem.formaSrc = items[index].formaSrc;
      
     selectedItem.uuid           = items[index].uuid;
 

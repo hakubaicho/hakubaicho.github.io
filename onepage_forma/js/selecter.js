@@ -36,7 +36,9 @@
       this.tag1           = tag1;
       this.tag2           = tag2;
       this.tag3           = tag3;
-     
+
+      this.kind           = kind;
+
       this.designID       = remark01;
       this.itemName       = remark02;
       this.price          = remark03;
@@ -50,23 +52,24 @@
 
       if(designsrc != '')
       {
-        this.designsrc      = 'img/' + designsrc;
+      this.designsrc      = 'img/' + designsrc;
       }
       else
       {
-        this.designsrc      = '';
+      this.designsrc      = '';
       }
       if(wearedImageSrc != '')
       {
-        this.wearedImageSrc = 'img/' + wearedImageSrc;
+      this.wearedImageSrc = 'img/' + wearedImageSrc;
       }
       else
       {
-        this.wearedImageSrc = '';
+      this.wearedImageSrc = '';
       }
-     
+
+      this.formaSrc       = formaSrc;
       this.uuid           = uuid;
-      
+
       this.location       = 0;
     }
     //----------------------------------
