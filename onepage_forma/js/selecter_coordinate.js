@@ -5,7 +5,7 @@
   // *********************************************
   // 洋服クラス
   class ClothItem {
-     //----------------------------------
+    //----------------------------------
     // コンストラクタ
     //----------------------------------
     // tag1             : 大分類
@@ -438,24 +438,24 @@
     imgWeared.src = items[index].wearedImageSrc;
 
     // androidに選択したデータを送る
-    fromHTML_call_Set_Item(
-                            items[index].uuid,
-                            items[index].itemName,
-                            items[index].designID,
-                            items[index].designsrc,
-                            items[index].wearedImageSrc,
-                            items[index].tag1,
-                            items[index].tag2,
-                            items[index].tag3
-                              );
+    // fromHTML_call_Set_Item(
+    //                         items[index].uuid,
+    //                         items[index].itemName,
+    //                         items[index].designID,
+    //                         items[index].designsrc,
+    //                         items[index].wearedImageSrc,
+    //                         items[index].tag1,
+    //                         items[index].tag2,
+    //                         items[index].tag3
+    //                           );
     fromHTML_call_Set_ItemFullData(
-                            items[index].tag1, items[index].tag2, items[index].tag3,
-                            items[index].kind, 
-                            items[index].designID, items[index].itemName, items[index].price, items[index].janCode, items[index].colorCode, 
-                            items[index].remark06, items[index].remark07, items[index].remark08, items[index].remark09, items[index].remark10,
-                            items[index].designsrc, items[index].wearedImageSrc, items[index].formaSrc,
-                            items[index].uuid
-                            );
+                              items[index].tag1, items[index].tag2, items[index].tag3,
+                              items[index].kind, 
+                              items[index].designID, items[index].itemName, items[index].price, items[index].janCode, items[index].colorCode, 
+                              items[index].remark06, items[index].remark07, items[index].remark08, items[index].remark09, items[index].remark10,
+                              items[index].designsrc, items[index].wearedImageSrc, items[index].formaSrc,
+                              items[index].uuid
+                              );
 
     // onepage用
     selectedItem = new ClothItem(
@@ -480,10 +480,9 @@
     selectedItem.remark09       = items[index].remark09;
     selectedItem.remark10       = items[index].remark10;
 
-
     selectedItem.designsrc      = items[index].designsrc;
     selectedItem.wearedImageSrc = items[index].wearedImageSrc;
-    selectedItem.formaSrc = items[index].formaSrc;
+    selectedItem.formaSrc       = items[index].formaSrc;
      
     selectedItem.uuid           = items[index].uuid;
 
