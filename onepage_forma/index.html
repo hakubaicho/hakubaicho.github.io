@@ -45,7 +45,7 @@
 						<img id="thumbnail_selected_tryon">
 					</div>
 					<div class="header_box header_box_last item-hide" id="detail-box">
-						<div class="detail-box">
+						<div class="item_detail_container">
 							<table class="detailtable">
 								<tr>
 									<td class="detail_column_title"><span class="cell_title">大分類:</span></td>
@@ -341,64 +341,66 @@
 							</div>
 							<!-- 注文詳細 -->
 							<div class="order_detail_container">
-								<!-- デザイン番号 -->
-								<p class="design_id" id="designID"></p>
-								<!-- 価格 -->
-								<p><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
-								<!-- サイズ選択 -->
-								<table>
-									<tr>
-										<td>
-											<span class="size-category">Ledies</span>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<span class="size-category">Mens</span>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<span class="size-category">Kids</span>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
-										</td>
-										<td>
-											<label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
-										</td>
-									</tr>
-								</table>
+								<div class="order_detail_data_container">
+
+									<!-- デザイン番号 -->
+									<p class="design_id" id="designID"></p>
+									<!-- 価格 -->
+									<p p class="design_id"><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+									<!-- サイズ選択 -->
+									<table>
+										<tr>
+											<td>
+												<span class="size-category">Ledies</span>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Ladies) L"><span class="size-caption">L</span></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="size-category">Mens</span>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Mens) M"><span class="size-caption">M</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Mens) L"><span class="size-caption">L</span></label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="size-category">Kids</span>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Kids) 80"><span class="size-caption">80</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Kids) 90"><span class="size-caption">90</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Kids) 100"><span class="size-caption">100</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Kids) 110"><span class="size-caption">110</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Kids) 120"><span class="size-caption">120</span></label>
+											</td>
+											<td>
+												<label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
-					</div>
-				</div>
-			</main>
-			<footer>
+				</main>
+				<footer>
 				<div class="footer-container">
 					<button class="button_command" type=button onclick="jumpto_index()">選びなおす</button>
 					<button class="button_command" type=button onclick="getPrintData()">印刷</button>

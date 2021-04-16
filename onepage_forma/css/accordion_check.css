@@ -27,6 +27,7 @@
   margin: 5px 0;
   font-weight: 300;
   position: relative;/* 変更部分 */
+  /* text-align: center; */
 }
 
 /* 開閉状態を示すアイコン+の作成 */

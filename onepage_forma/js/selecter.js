@@ -170,6 +170,13 @@
   // ファイルから作成する。
   //********************************** */
   const items = [
+    new ClothItem('ｲﾄｰﾖｰｶﾄﾞｰ ﾛｺﾞ','','','','SNK001','','2189','','','','','','','','iy_100th_01.png','T-iy_100th_01.png','et1.png',''),
+    new ClothItem('ｲﾄｰﾖｰｶﾄﾞｰ ﾛｺﾞ','','','','SNK001','','2189','','','','','','','','iy_100th_02.png','T-iy_100th_02.png','et1.png',''),
+    new ClothItem('ｲﾄｰﾖｰｶﾄﾞｰ ﾛｺﾞ','','','','SNK001','','2189','','','','','','','','iy_100th_03.png','T-iy_100th_03.png','et1.png',''),
+    new ClothItem('ｲﾄｰﾖｰｶﾄﾞｰ ﾛｺﾞ','','','','SNK001','','2189','','','','','','','','iy_100th_04.png','T-iy_100th_04.png','et1.png',''),
+    new ClothItem('ｲﾄｰﾖｰｶﾄﾞｰ ﾛｺﾞ','','','','SNK001','','2189','','','','','','','','iy_100th_05.png','T-iy_100th_05.png','et1.png',''),
+    new ClothItem('ｲﾄｰﾖｰｶﾄﾞｰ ﾛｺﾞ','','','','SNK001','','2189','','','','','','','','iy_100th_06.png','T-iy_100th_06.png','et1.png',''),
+
     new ClothItem('せなけいこ','ふうせんねこ','','','SNK001','ふうせんねこ①','2189','','','','','','','','SNK001.webp','T-SNK001.webp','et1.png','05c8e7df-0c0a-4ce8-80c6-56e121785578'),
     new ClothItem('せなけいこ','ふうせんねこ','','','SNK002','ふうせんねこ②','2189','','','','','','','','SNK002.webp','T-SNK002.webp','et2.png','8b6fddf5-17ac-49e5-9e45-6154f30f0e9e'),
     new ClothItem('せなけいこ','きれいなはこ','','','SNK003','おばけ','2189','','','','','','','','SNK003.webp','T-SNK003.webp','et3.png','11d7f474-5525-4c2f-8c35-8f923a1344bd'),
@@ -712,6 +719,37 @@
     // タイムアウト
     countReset();
     // **********
+    // 選択中のボタン表示
+    if(items[index].tag1 =='')
+    {
+      document.getElementById('button_category_tag1').classList.add('item-hide');
+    }
+    else
+    {
+      document.getElementById('button_category_tag1').classList.remove('item-hide');
+      document.getElementById('button_category_tag1').classList.add('item-show');
+    }
+    if(items[index].tag2 =='')
+    {
+      document.getElementById('button_category_tag2').classList.add('item-hide');
+    }
+    else
+    {
+      document.getElementById('button_category_tag2').classList.remove('item-hide');
+      document.getElementById('button_category_tag2').classList.add('item-show');
+    }
+    if(items[index].tag3 =='')
+    {
+      document.getElementById('button_category_tag3').classList.add('item-hide');
+    }
+    else
+    {
+      document.getElementById('button_category_tag3').classList.remove('item-hide');
+      document.getElementById('button_category_tag3').classList.add('item-show');
+    }
+    document.getElementById('category_tag1').textContent=items[index].tag1;
+    document.getElementById('category_tag2').textContent=items[index].tag2;
+    document.getElementById('category_tag3').textContent=items[index].tag3;
     // 画像の切り替え
     imgDesign.src = items[index].designsrc;
     imgWeared.src = items[index].wearedImageSrc;
@@ -1046,7 +1084,6 @@
      categories.appendChild(li);   // li の配置
     });
   }
-
   //--------------------------------------------
   // [Tree]カテゴリーリストを生成します。
   //--------------------------------------------
@@ -1257,7 +1294,6 @@
       }
     }
   }
-
   //--------------------------------------------
   // [Tree]カテゴリーリストを生成します。
   // チェックボックス型
@@ -1414,13 +1450,28 @@
       input.classList.add('accordion-hidden');       
       div_accordion.append(input);
       
+      if(0 < tagsTree.childrenArray[i].childrenArray.length)
+      {
+        haveChild = true;
+      }
+      else
+      {
+        haveChild = false;
+      }
       // <label for="check1" class="accordion-open">Question1</label>
       const label_open = document.createElement('label');
 
  
 
       label_open.htmlFor = input.id;
-      label_open.classList.add('accordion-open');
+      if(haveChild)
+      {
+        label_open.classList.add('accordion-open');
+      }
+      else
+      {
+        label_open.classList.add('accordion-open-none');
+      }
       label_open.classList.add('button_tag1');
       label_open.textContent = `${tagsTree.childrenArray[i].name}`;
       // イベントの追加
@@ -1444,16 +1495,8 @@
           break;
         }
       }
-      
-      // img_category.htmlFor = input.id;
-      img_categorytag1.style.height = '100px';
-      // img_category.style.width = '100px';
-      img_categorytag1.style.textAlign = 'center';
-      img_categorytag1.style.verticalAlign = 'center';
-      img_categorytag1.style. display = 'inline-block';
-      img_categorytag1.style.float =  'left';
-      img_categorytag1.style.borderRadius = '5%';
-      img_categorytag1.style.border = '2px solid silver';
+      img_categorytag1.classList.add('img_categorytag1');
+      img_categorytag1.classList.add('imgcategory');
       img_categorytag1.eventParam = [
         tagsTree.childrenArray[i].name,
         '',
@@ -1467,6 +1510,14 @@
       // <label for="check1" class="accordion-close"></label>
       const label_close = document.createElement('label');
       label_close.htmlFor = input.id;
+      if(haveChild)
+      {
+        label_close.classList.add('accordion-close');
+      }
+      else
+      {
+        label_close.classList.add('accordion-close-none');
+      }
       label_close.classList.add('accordion-close');
       div_accordion.append(label_close);
 
@@ -1528,16 +1579,8 @@
             break;
           }
         }
-        
-        // img_category.htmlFor = input.id;
-        img_categorytag2.style.height = '50px';
-        // img_category.style.width = '100px';
-        img_categorytag2.style.textAlign = 'center';
-        img_categorytag2.style.verticalAlign = 'center';
-        img_categorytag2.style. display = 'inline-block';
-        img_categorytag2.style.float =  'left';
-        img_categorytag2.style.borderRadius = '5%';
-        img_categorytag2.style.border = '2px solid silver';
+        img_categorytag2.classList.add('img_categorytag2');
+        img_categorytag2.classList.add('imgcategory');
         img_categorytag2.eventParam = [
           tagsTree.childrenArray[i].name,
           tagsTree.childrenArray[i].childrenArray[j].name,

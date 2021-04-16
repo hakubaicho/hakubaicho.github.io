@@ -23,14 +23,13 @@ ul {
 .header_box {
   margin: 10px;
   height: 300px;
-  width: 300px;
+  /* width: 300px; */
 }
 .header_box_last {
   border: 2px solid gray;
   border-radius: 20px;
   background-color: white;
   flex: 1; 
-  
 }
 .detail-box {
   display: flex;
@@ -42,11 +41,20 @@ ul {
   padding-left: 20px;;
 }
 .detailtable {
-  margin-top: 30px;
+  /* 子要素を中央 */
+  display: block;
 }
 .cell_data, .cell_title {
   color:dimgrey;
   font-size: 1.5em;
+}
+.item_detail_container {
+  height: 300px;
+  width: 100%;
+  /* 子要素を中央 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* ============================== */
 /* HEADERの構成 */
@@ -246,6 +254,21 @@ aside button {
   align-items: center;
 } 
 .imgcategory {
+  text-align: center;
+  vertical-align: center;
+  display: inline-block;
+  float: left;
+  border-radius: 5%;
+  border: 2px solid silver;
   height: 50px;
-  background-color: transparent;
+  background-color: white;
+}
+
+.img_categorytag1 {
+  height: 100px ;
+  /* width: 100px ; */
+}
+.img_categorytag2 {
+  height: 50px ;
+  /* width: 100px ; */
 }

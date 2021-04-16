@@ -36,7 +36,7 @@ main {
 /* デザイン詳細コンテナ */
 .order_design_container {
   height: 300px;
-  width: 300px;
+  /* width: 300px; */
   /* border-radius: 5%; */
   margin: 20px;
   /* border: 1px solid white; */
@@ -59,11 +59,20 @@ main {
   border: 1px solid white;
 
   flex: 1;
+  /* 子要素を中央 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order_detail_data_container {
+  /* 子要素を中央 */
+  display: block;
 }
 
 /* 注文詳細 */
-.design_id, .yen_mark, .price {
+.design_id {
   font-size: 24px;
+  margin: 10px;
 }
 input[type=radio] {
   width: 30px;
