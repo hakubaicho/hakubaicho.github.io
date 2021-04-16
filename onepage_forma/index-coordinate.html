@@ -427,6 +427,50 @@
 			</footer>
 		</div>
 
+		<!-- タイムアウトのスクリプト -->
+		<script>
+			// この時間経過したら終了
+			const COUNT_MAX = 180;
+
+			let count = 0;
+			let flagExit = false;
+			//
+			// タイマーをリセットします。
+			//
+			function countReset() {
+				count = 0;
+			}
+			//
+			// タイマーを中止します。
+			//
+			function countStop() {
+				console.log('タイムアウトを中止しました');
+				flagExit = true;
+			}
+			//
+			// タイマーを開始します。
+			//
+			function countStart() {
+				console.log('タイムアウト処理を開始しました');
+				flagExit = false;
+				countUp();
+			}
+			const countUp = () => {
+				console.log(count++);
+				// 指定時間経過で終了
+				if(COUNT_MAX < count)
+				{
+					console.log('タイムアウトで終了しました');
+					endproc_order();
+					return;
+				}
+				if(flagExit)
+				{
+					return;
+				}
+				setTimeout(countUp, 1000);
+			}
+		</script>
 		<script src="js/selecter_coordinate.js"></script>
 		<script src="js/connect.js"></script>
 		<script src="js/camera.js"></script>
@@ -446,6 +490,10 @@
 				camera_onloaded();
 
 				jumpto_index();
+				// **********
+		    // タイムアウト開始
+				countStart();
+    		// **********
 			}
 			 
 			// index.htmlがロードされた時の処理
@@ -499,6 +547,10 @@
 			// index.html
 			//------------------------
 			function jumpto_index() {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 				debugConsole_proc('jumpto_index()');
 				// 消し込み
 				hide_camera();
@@ -523,6 +575,10 @@
 			// camera.html
 			//------------------------
 			function jumpto_Camera() {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 				debugConsole_proc('jumpto_Camera()');
 				
 				// Formaに接続できていない場合の処理
@@ -567,6 +623,10 @@
 			// order.html
 			//------------------------
 			function jumpto_Order() {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 				debugConsole_proc('jumpto_Order()');
 				// 選択アイテムのチェック
 				if(!IsSelectItem())return;
@@ -649,6 +709,10 @@
 			//------------------------
 			function getPrintData()
       {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
         // サイズを取得する
         const el_size = document.getElementsByName('size');
 
@@ -669,6 +733,7 @@
         //   alert("サイズをえらんでください");
 		  	// 	return;
         // }
+				input_size = "No Size";
         console.log(input_size);
         call_print(input_size);
       }
@@ -677,6 +742,10 @@
 			// **********************
 			// 終了処理
 			function endproc() {
+				// **********
+				// タイムアウト完了
+				countStop();
+				// **********
 				// 現在のItem・Avatarをクリアする。
 				Set_itemUUid('');
 	      Set_avatarUUid('');

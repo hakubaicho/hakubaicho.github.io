@@ -2186,11 +2186,19 @@
   // console出力[処理名]
   function debugConsole_forma(message)
   {
+    // **********
+    // タイムアウト
+    countReset();
+    // **********
     console.log(`\t\t[forma.js]PROC :${message}`);
   }
   // consolt出力[Formaとの通信]
   function debugConsole_forma_communication(message)
   {
+    // **********
+    // タイムアウト
+    countReset();
+    // **********
     console.log(`\t\t\t :${message}`);
   }
   //======================================================================

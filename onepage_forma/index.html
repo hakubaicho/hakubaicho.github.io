@@ -409,9 +409,10 @@
 			</footer>
 		</div>
 
+		<!-- タイムアウトのスクリプト -->
 		<script>
 			// この時間経過したら終了
-			const COUNT_MAX = 10;
+			const COUNT_MAX = 180;
 
 			let count = 0;
 			let flagExit = false;
@@ -428,6 +429,14 @@
 				console.log('タイムアウトを中止しました');
 				flagExit = true;
 			}
+			//
+			// タイマーを開始します。
+			//
+			function countStart() {
+				console.log('タイムアウト処理を開始しました');
+				flagExit = false;
+				countUp();
+			}
 			const countUp = () => {
 				console.log(count++);
 				// 指定時間経過で終了
@@ -443,8 +452,6 @@
 				}
 				setTimeout(countUp, 1000);
 			}
-			
-			countUp();
 		</script>
 		<script src="js/selecter.js"></script>
 		<script src="js/connect.js"></script>
@@ -465,6 +472,10 @@
 				camera_onloaded();
 
 				jumpto_index();
+				// **********
+		    // タイムアウト開始
+				countStart();
+    		// **********
 			}
 			 
 			// index.htmlがロードされた時の処理
@@ -518,6 +529,10 @@
 			// index.html
 			//------------------------
 			function jumpto_index() {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 				debugConsole_proc('jumpto_index()');
 				// 消し込み
 				hide_camera();
@@ -542,6 +557,10 @@
 			// camera.html
 			//------------------------
 			function jumpto_Camera() {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 				debugConsole_proc('jumpto_Camera()');
 				
 				// Formaに接続できていない場合の処理
@@ -586,6 +605,10 @@
 			// order.html
 			//------------------------
 			function jumpto_Order() {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 				debugConsole_proc('jumpto_Order()');
 				// 選択アイテムのチェック
 				if(!IsSelectItem())return;
@@ -665,6 +688,10 @@
 			//------------------------
 			function getPrintData()
       {
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
         // サイズを取得する
         const el_size = document.getElementsByName('size');
 
@@ -692,7 +719,10 @@
 			// **********************
 			// 終了処理
 			function endproc() {
+				// **********
+				// タイムアウト完了
 				countStop();
+				// **********
 				// 現在のItem・Avatarをクリアする。
 				Set_itemUUid('');
 	      Set_avatarUUid('');

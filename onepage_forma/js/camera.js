@@ -357,10 +357,18 @@
   }
   // [シャッター]ボタン
   function btnimg_click_shutter() {
+    // **********
+    // タイムアウト
+    countReset();
+    // **********
     play_countdown();
   }
   // [保存ボタン]
   function btnimg_click_save() {
+    // **********
+    // タイムアウト
+    countReset();
+    // **********
     Avatar_TryOnProc();
   }
 

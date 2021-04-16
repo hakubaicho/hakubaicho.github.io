@@ -285,6 +285,10 @@
   // [Tree]アイテムリストを生成します。
   //--------------------------------------------
   function setItemListTree(select_tag) {
+    // **********
+    // タイムアウト
+    countReset();
+    // **********
     console.log('setItemListTag');
     //--------------------------------
     // アイテム要素をクリア
@@ -433,6 +437,10 @@
   // アイテムが選択された時の処理
   //--------------------------------------------
   function click_item(index, location) {
+    // **********
+    // タイムアウト
+    countReset();
+    // **********
     // 画像の切り替え
     imgDesign.src = items[index].designsrc;
     imgWeared.src = items[index].wearedImageSrc;
