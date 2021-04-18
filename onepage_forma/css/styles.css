@@ -4,6 +4,11 @@
   --corporate-color-blue: #009FE8;
   --corporate-color-red: #E50013;
 }
+/* ロードが完了したときに非表示にする */
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
 html {
   height: 100%;             /* bodyで100%を使うから */
   width: 100%;
@@ -28,7 +33,7 @@ div {
 header {
   /* border: .5px solid black; */
   /* background-color: lightgray; */
-  background-color:  rgba(255,255,255, 0.5);
+  background-color:  rgba(255,255,255, 0.3);
   padding: 20px;
 }
 /* ヘッダ内の高さを固定する */
@@ -67,7 +72,7 @@ main {
   /* border: .5px solid gray; */
   /* background-color: royalblue; */
   /* background-color: lightgray; */
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(255,255,255, 0.3);
   padding: 1px;
   height: 900px;
   display: flex;
@@ -85,7 +90,7 @@ aside {
 .aside-area-container {
   /* border: .5px solid gray; */
   /* background-color: springgreen; */
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(255,255,255, 0.3);
   padding: 1px;
   width: 280px;
   height: 900px;
@@ -249,10 +254,4 @@ footer {
   left: 0;
   z-index: 0;
   /* background-image : url(../img/background.png); */
-}
-
-/* ロードが完了したときに非表示にする */
-.loaded {
-  opacity: 0;
-  visibility: hidden;
 }

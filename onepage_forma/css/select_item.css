@@ -121,7 +121,7 @@ ul {
 /* スクロールバーの非表示 */
 .item_list_container::-webkit-scrollbar {
   /* display: none; */
-  width: 5px;
+  width: 10px;
   height: 5px;
 }
 /* スクロールの背景の設定 */
@@ -199,7 +199,7 @@ ul {
 /* スクロールバーの非表示 */
 .category_list_container::-webkit-scrollbar {
   /* display: none; */
-  width: 5px;
+  width: 10px;
   height: 10px;
 }
 /* スクロールの背景の設定 */
