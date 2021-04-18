@@ -39,46 +39,46 @@
 					<!-- <p>header</p> -->
 					<!-- 画像の表示　選択されたデザイン -->
 					<div class="header_box">
-						<img id="thumbnail_selected">
+						<img id="thumbnail_selected" class="item-hide">
 					</div>
 					<div class="header_box" hidden>
-						<img id="thumbnail_selected_tryon">
+						<img id="thumbnail_selected_tryon" class="item-hide">
 					</div>
 					<div class="header_box header_box_last item-hide" id="detail-box">
 						<div class="detail-box">
 							<div class="item_detail_container">								
 								<table class="detailtable">
 									<tr class="item-hide">
-										<td class="detail_column_title"><span class="cell_title">大分類:</span></td>
+										<td class="detail_column_title"><span class="cell_title"></span></td>
 										<td class="detail_column_data"><span class="cell_data" id="item_detail_tag1"></span></td>
 									</tr>
 									<tr class="item-hide">
-										<td class="detail_column_title"><span class="cell_title">中分類:</span></td>
+										<td class="detail_column_title"><span class="cell_title"></span></td>
 										<td class="detail_column_data"><span class="cell_data" id="item_detail_tag2"></span></td>
 									</tr>
 									<tr class="item-hide">
-										<td class="detail_column_title"><span class="cell_title">小分類:</span></td>
+										<td class="detail_column_title"><span class="cell_title"></span></td>
 										<td class="detail_column_data"><span class="cell_data" id="item_detail_tag3"></span></td>
 									</tr>
 									<tr>
 										<td class="detail_column_title"><span class="cell_title">品番:</span></td>
-										<td class="detail_column_data"><span class="cell_data" id="item_detail_jancode"></span></td>
+										<td class="detail_column_data"><span class="cell_data weight_large" id="item_detail_jancode"></span></td>
 									</tr>
 									<tr>
 										<td class="detail_column_title"><span class="cell_title">名称:</span></td>
-										<td class="detail_column_data"><span class="cell_data" id="item_detail_name"></span></td>
+										<td class="detail_column_data"><span class="cell_data weight_large" id="item_detail_name"></span></td>
 									</tr>
 									<tr>
 									<td class="detail_column_title"><span class="cell_title">色名:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_color"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_large" id="item_detail_color"></span></td>
 								</tr>
 								<tr>
 									<td class="detail_column_title"><span class="cell_title"></span></td>
-									<td class="detail_column_data"><span class="cell_data">\ </span><span class="cell_data" id="item_detail_price"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_large">￥ </span><span class="cell_data weight_large" id="item_detail_price"></span></td>
 								</tr>
 								<tr class="item-hide">
 									<td class="detail_column_title"><span class="cell_title">No:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_designID"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_large" id="item_detail_designID"></span></td>
 								</tr>
 							</table>
 						</div>
@@ -264,7 +264,7 @@
 						<img src="img/logos/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
 					</div>
 				</div>
-				<div>
+				<div hidden>
 					<p>
 						<span id="camera-status"></span>
 					</p>
@@ -327,9 +327,7 @@
 		<div id="order-page" class="loaded">
 			<!-- HEADER -->
 			<header>
-				<div class="header-container">
-	
-				</div>
+				<div class="header-container"></div>
 			</header>
 			
 			<!-- NAV -->
@@ -349,23 +347,23 @@
 						<!-- 注文確認エリア -->
 						<div class="order_container">
 							<!-- デザイン -->
-							<div class="order_design_container">
-								<img id="order_design_image">
+							<div class="order_design_container_coordinate">
+								<img id="order_design_image_coordinate">
 							</div>
 							<!-- 注文詳細 -->
-							<div class="order_detail_container">
-								<div class="order_detail_data_container">
+							<div class="order_detail_container_coordinate">
+								<div class="order_detail_container_coordinate">
 
 									<!-- 品番 -->
-									<p class="design_id" id="order_detail_jancode"></p>
+									<p class="design_id weight_large" id="order_detail_jancode"></p>
 									<!-- 名称 -->
-									<p class="design_id" id="order_detail_name"></p>
+									<p class="design_id weight_large" id="order_detail_name"></p>
 									<!-- 色名 -->
-									<p class="design_id" id="order_detail_color"></p>
+									<p class="design_id weight_large" id="order_detail_color"></p>
 									<!-- デザイン番号 -->
-									<p class="design_id" id="designID" hidden></p>
+									<p class="design_id weight_large" id="designID" hidden></p>
 									<!-- 価格 -->
-									<p class="design_id"><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+									<p class="design_id weight_large">￥ <span id="ItemPrice">2,189</span></p>
 									<!-- サイズ選択 -->
 									<table hidden>
 										<tr>
@@ -413,13 +411,14 @@
 											<label><input type="radio" name="size" value="Kids) 130"><span class="size-caption">130</span></label>
 										</td>
 									</tr>
-								</table>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
-					</div>
-				</div>
-			</main>
+				</main>
+			</div>
+			<!-- FOOTER -->
 			<footer>
 				<div class="footer-container">
 					<button class="button_command" type=button onclick="jumpto_index()">選びなおす</button>
@@ -636,7 +635,7 @@
 				if(!IsSelectItem())return;
 				
 				// 選択中のアイテムを反映
-				document.getElementById('order_design_image').src = GetSelected_Item().designsrc;
+				document.getElementById('order_design_image_coordinate').src = GetSelected_Item().designsrc;
 				document.getElementById('designID').textContent = GetSelected_Item().designID;
 				// コーディネート特有
 				document.getElementById('order_detail_jancode').textContent = GetSelected_Item().janCode;

@@ -21,6 +21,7 @@
 
 /* Question部分 */
 .accordion-open {
+  border-radius: 10px;
   display: block;
   padding: 10px;
   /* background: #52a261; */
@@ -36,7 +37,7 @@
   content: '';
   width: 20px;
   height: 3px;
-  background: #000;
+  background: #173F5F;
   position: absolute;
   top: 50%;
   right: 5%;
@@ -66,6 +67,7 @@
 }
 
 .accordion-open-none {
+  border-radius: 10px;
   display: block;
   padding: 10px;
   /* background: #52a261; */

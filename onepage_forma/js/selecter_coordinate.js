@@ -189,6 +189,10 @@
   // タグ要素の取得メイン画像の設定
   const imgDesign = document.getElementById('thumbnail_selected');
   const imgWeared = document.getElementById('thumbnail_selected_tryon');
+  const boxDetail = document.getElementById('detail-box');
+  const btnCate_01 = document.getElementById('button_category_tag1');
+  const btnCate_02 = document.getElementById('button_category_tag2');
+  const btnCate_03 = document.getElementById('button_category_tag3');
   
   //--------------------------------------------
   // プロパティ
@@ -310,9 +314,9 @@
     // キーワードを取得
     //--------------------------------
     let keyWord = '';
-    document.getElementById('button_category_tag1').classList.add('item-hide');
-    document.getElementById('button_category_tag2').classList.add('item-hide');
-    document.getElementById('button_category_tag3').classList.add('item-hide');
+    btnCate_01.classList.add('item-hide');
+    btnCate_02.classList.add('item-hide');
+    btnCate_03.classList.add('item-hide');
     if('string' == typeof(select_tag))
     {
       keyWord = select_tag;
@@ -329,30 +333,30 @@
           {
             if(keyWord[0]=='')
             {
-              document.getElementById('button_category_tag1').classList.add('item-hide');
+              btnCate_01.classList.add('item-hide');
             }
             else
             {
-              document.getElementById('button_category_tag1').classList.remove('item-hide');
-              document.getElementById('button_category_tag1').classList.add('item-show');
+              btnCate_01.classList.remove('item-hide');
+              btnCate_01.classList.add('item-show');
             }
             if(keyWord[1]=='')
             {
-              document.getElementById('button_category_tag2').classList.add('item-hide');
+              btnCate_02.classList.add('item-hide');
             }
             else
             {
-              document.getElementById('button_category_tag2').classList.remove('item-hide');
-              document.getElementById('button_category_tag2').classList.add('item-show');
+              btnCate_02.classList.remove('item-hide');
+              btnCate_02.classList.add('item-show');
             }
             if(keyWord[2]=='')
             {
-              document.getElementById('button_category_tag3').classList.add('item-hide');
+              btnCate_03.classList.add('item-hide');
             }
             else
             {
-              document.getElementById('button_category_tag3').classList.remove('item-hide');
-              document.getElementById('button_category_tag3').classList.add('item-show');
+              btnCate_03.classList.remove('item-hide');
+              btnCate_03.classList.add('item-show');
             }
             document.getElementById('category_tag1').textContent=keyWord[0];
             document.getElementById('category_tag2').textContent=keyWord[1];
@@ -370,30 +374,30 @@
         {
           if(keyWord[0]=='')
           {
-            document.getElementById('button_category_tag1').classList.add('item-hide');
+            btnCate_01.classList.add('item-hide');
           }
           else
           {
-            document.getElementById('button_category_tag1').classList.remove('item-hide');
-            document.getElementById('button_category_tag1').classList.add('item-show');
+            btnCate_01.classList.remove('item-hide');
+            btnCate_01.classList.add('item-show');
           }
           if(keyWord[1]=='')
           {
-            document.getElementById('button_category_tag2').classList.add('item-hide');
+            btnCate_02.classList.add('item-hide');
           }
           else
           {
-            document.getElementById('button_category_tag2').classList.remove('item-hide');
-            document.getElementById('button_category_tag2').classList.add('item-show');
+            btnCate_02.classList.remove('item-hide');
+            btnCate_02.classList.add('item-show');
           }
           if(keyWord[2]=='')
           {
-            document.getElementById('button_category_tag3').classList.add('item-hide');
+            btnCate_03.classList.add('item-hide');
           }
           else
           {
-            document.getElementById('button_category_tag3').classList.remove('item-hide');
-            document.getElementById('button_category_tag3').classList.add('item-show');
+            btnCate_03.classList.remove('item-hide');
+            btnCate_03.classList.add('item-show');
           }
           document.getElementById('category_tag1').textContent=keyWord[0];
           document.getElementById('category_tag2').textContent=keyWord[1];
@@ -444,30 +448,30 @@
     // 選択中のボタン表示
     if(items[index].tag1 =='')
     {
-      document.getElementById('button_category_tag1').classList.add('item-hide');
+      btnCate_01.classList.add('item-hide');
     }
     else
     {
-      document.getElementById('button_category_tag1').classList.remove('item-hide');
-      document.getElementById('button_category_tag1').classList.add('item-show');
+      btnCate_01.classList.remove('item-hide');
+      btnCate_01.classList.add('item-show');
     }
     if(items[index].tag2 =='')
     {
-      document.getElementById('button_category_tag2').classList.add('item-hide');
+      btnCate_02.classList.add('item-hide');
     }
     else
     {
-      document.getElementById('button_category_tag2').classList.remove('item-hide');
-      document.getElementById('button_category_tag2').classList.add('item-show');
+      btnCate_02.classList.remove('item-hide');
+      btnCate_02.classList.add('item-show');
     }
     if(items[index].tag3 =='')
     {
-      document.getElementById('button_category_tag3').classList.add('item-hide');
+      btnCate_03.classList.add('item-hide');
     }
     else
     {
-      document.getElementById('button_category_tag3').classList.remove('item-hide');
-      document.getElementById('button_category_tag3').classList.add('item-show');
+      btnCate_03.classList.remove('item-hide');
+      btnCate_03.classList.add('item-show');
     }
     document.getElementById('category_tag1').textContent=items[index].tag1;
     document.getElementById('category_tag2').textContent=items[index].tag2;
@@ -525,8 +529,13 @@
      
     selectedItem.uuid           = items[index].uuid;
 
-    document.getElementById('detail-box').classList.remove('item-hide');
-    document.getElementById('detail-box').classList.add('item-show');
+    // タグ要素の取得メイン画像の設定
+    imgDesign.classList.remove('item-hide');
+    imgDesign.classList.add('item-show');
+    imgWeared.classList.remove('item-hide');
+    imgWeared.classList.add('item-show');
+    boxDetail.classList.remove('item-hide');
+    boxDetail.classList.add('item-show');
     document.getElementById('item_detail_tag1').textContent = items[index].tag1;
     document.getElementById('item_detail_tag2').textContent = items[index].tag2;
     document.getElementById('item_detail_tag3').textContent = items[index].tag3;
@@ -586,10 +595,12 @@
                             selectedItem.tag3
                               );
 
-                              // 画像の切り替え
+    // 画像の切り替え
     imgDesign.src = selectedItem.designsrc;
     imgWeared.src = selectedItem.wearedImageSrc;
-    document.getElementById('detail-box').classList.add('item-hide');
+    imgDesign.classList.add('item-hide');
+    imgWeared.classList.add('item-hide');
+    boxDetail.classList.add('item-hide');
     document.getElementById('item_detail_tag1').textContent = selectedItem.tag1;
     document.getElementById('item_detail_tag2').textContent = selectedItem.tag2;
     document.getElementById('item_detail_tag3').textContent = selectedItem.tag3;

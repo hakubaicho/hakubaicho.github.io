@@ -39,33 +39,33 @@
 					<!-- <p>header</p> -->
 					<!-- 画像の表示　選択されたデザイン -->
 					<div class="header_box">
-						<img id="thumbnail_selected">
+						<img id="thumbnail_selected" class="item-hide">
 					</div>
 					<div class="header_box">
-						<img id="thumbnail_selected_tryon">
+						<img id="thumbnail_selected_tryon" class="item-hide">
 					</div>
 					<div class="header_box header_box_last item-hide" id="detail-box">
 						<div class="item_detail_container">
 							<table class="detailtable">
 								<tr>
-									<td class="detail_column_title"><span class="cell_title">大分類:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_tag1"></span></td>
+									<td class="detail_column_title"><span class="cell_title"></span></td>
+									<td class="detail_column_data"><span class="cell_data  weight_middle" id="item_detail_designID"></span></td>
 								</tr>
 								<tr>
-									<td class="detail_column_title"><span class="cell_title">中分類:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_tag2"></span></td>
+									<td class="detail_column_title"><span class="cell_title"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_small" id="item_detail_tag1"></span></td>
 								</tr>
 								<tr>
-									<td class="detail_column_title"><span class="cell_title">小分類:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_tag3"></span></td>
+									<td class="detail_column_title"><span class="cell_title"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_small" id="item_detail_tag2"></span></td>
 								</tr>
 								<tr>
-									<td class="detail_column_title"><span class="cell_title">名称:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_name"></span></td>
+									<td class="detail_column_title"><span class="cell_title"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_small" id="item_detail_tag3"></span></td>
 								</tr>
 								<tr>
-									<td class="detail_column_title"><span class="cell_title">No:</span></td>
-									<td class="detail_column_data"><span class="cell_data" id="item_detail_designID"></span></td>
+									<td class="detail_column_title"><span class="cell_title"></span></td>
+									<td class="detail_column_data"><span class="cell_data weight_large" id="item_detail_name"></span></td>
 								</tr>
 							</table>
 						</div>
@@ -251,7 +251,7 @@
 						<img src="img/logos/arrow_right.png" id="btn_image_save" onclick="btnimg_click_save()">
 					</div>
 				</div>
-				<div>
+				<div hidden>
 					<p>
 						<span id="camera-status"></span>
 					</p>
@@ -314,9 +314,7 @@
 		<div id="order-page" class="loaded">
 			<!-- HEADER -->
 			<header>
-				<div class="header-container">
-					
-				</div>
+				<div class="header-container"></div>
 			</header>
 			
 			<!-- NAV -->
@@ -344,11 +342,13 @@
 								<div class="order_detail_data_container">
 									
 									<!-- デザイン番号 -->
-									<p class="design_id" id="designID"></p>
+									<p class="design_id weight_small" id="order_DesignID"></p>
+									<!-- デザイン名称 -->
+									<p class="design_id weight_large" id="order_DesignName"></p>
 									<!-- 価格 -->
-									<p p class="design_id"><span class="yen_mark">￥ </span><span class="price" id="ItemPrice">2,189</span></p>
+									<p class="design_id weight_large">￥ <span id="ItemPrice">2,189</span></p>
 									<!-- サイズ選択 -->
-									<table>
+									<table class="design_id">
 										<tr>
 											<td>
 												<span class="size-category">Ledies</span>
@@ -401,6 +401,7 @@
 					</div>
 				</main>
 			</div>
+			<!-- FOOTER -->
 			<footer>
 				<div class="footer-container">
 					<button class="button_command" type=button onclick="jumpto_index()">選びなおす</button>
@@ -411,7 +412,7 @@
 				</div>
 			</footer>
 		</div>
-			
+
 		<!-- タイムアウトのスクリプト -->
 		<script>
 			// この時間経過したら終了
@@ -618,7 +619,8 @@
 				
 				// 選択中のアイテムを反映
 				document.getElementById('order_design_image').src = GetSelected_Item().designsrc;
-				document.getElementById('designID').textContent = GetSelected_Item().designID;
+				document.getElementById('order_DesignID').textContent = GetSelected_Item().designID;
+				document.getElementById('order_DesignName').textContent = GetSelected_Item().itemName;
 
 
 				let num = 0;

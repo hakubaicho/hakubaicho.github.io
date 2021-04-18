@@ -15,7 +15,8 @@ body {
   height: 100%;             /* bodyで100%を使うから */
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
-  background-image : url(../img/logos/background.png);
+  /* background-image : url(../img/logos/background.png); */
+  background-image : url(../img/logos/index-loading.webp);
 }
 div {
   /* border: 1px solid silver; */
@@ -26,7 +27,8 @@ div {
 /* ****************************** */
 header {
   /* border: .5px solid black; */
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color:  rgba(255,255,255, 0.5);
   padding: 20px;
 }
 /* ヘッダ内の高さを固定する */
@@ -64,7 +66,8 @@ main {
 .main-area-container {
   /* border: .5px solid gray; */
   /* background-color: royalblue; */
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color: rgba(255,255,255, 0.5);
   padding: 1px;
   height: 900px;
   display: flex;
@@ -82,7 +85,7 @@ aside {
 .aside-area-container {
   /* border: .5px solid gray; */
   /* background-color: springgreen; */
-  background-color: lightgray;
+  background-color: rgba(255,255,255, 0.5);
   padding: 1px;
   width: 280px;
   height: 900px;
@@ -110,10 +113,10 @@ footer {
   /* border: .5px solid gray; */
   /* background: gold; */
   /* padding: 1px; */
-  height: 100px;
+  height: 80px;
   display: flex;
-  /* justify-content: end; */
-  float: right;
+  /* justify-content: center; */  /* 中央寄せ */
+  float: right;       /* 右寄せ */
   align-items: center;
 }
 /* ****************************** */
@@ -126,7 +129,7 @@ footer {
   margin: 10px;
   border-radius: 10px;
   color: white;
-  background-color: dimgray;
+  background-color: #20639B;
   font-size: 2em;
 
   /* 枠線を消す */
@@ -140,7 +143,7 @@ footer {
   border-radius: 10px;
   color: white;
   background-color: crimson;
-  font-size: 1.5em;
+  font-size: 2em;
 
   /* 枠線を消す */
   outline: none;
@@ -153,7 +156,7 @@ footer {
   border-radius: 10px;
   color: dimgrey;
   background-color: yellow;
-  font-size: 1em;
+  font-size: 2em;
 
   /* 枠線を消す */
   outline: none;
@@ -221,7 +224,8 @@ footer {
   top: 0;
   left: 0;
   z-index: 9998;
-  background-image : url(../img/logos/skyback.png);
+  /* background-image : url(../img/logos/skyback.png); */
+  background-image : url(../img/logos/index-loading.webp);
 }
 #camera-page {
   width: 1080px;
@@ -232,7 +236,8 @@ footer {
   top: 0;
   left: 0;
   z-index: 0;
-  background-image : url(../img/logos/skyback.png);
+  /* background-image : url(../img/logos/skyback.png); */
+  background-image : url(../img/logos/index-loading.webp);
 }
 #order-page {
   width: 1080px;
