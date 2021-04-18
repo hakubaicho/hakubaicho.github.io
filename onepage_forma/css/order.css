@@ -16,9 +16,11 @@ main {
   align-items: center;
 }
 .order_title {
+  color: #20639B;
   width: 100%;
   text-align: center;
   font-size: 2em;
+  font-weight: bolders;
 }
 /* =========================== */
 /* 注文詳細コンテナDIVの囲いをつける */
