@@ -1911,5 +1911,5 @@
   // カテゴリーリストの作成
   setCategoryListTree_checkbox();
   // 対象アイテムの表示
-  setItemListTree(['','','']);
+  // setItemListTree(['','','']);
 }
