@@ -21,7 +21,7 @@ body {
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
   /* background-image : url(../img/logos/background.png); */
-  background-image : url(../img/logos/index-loading.webp);
+  background-image : url(../img/logos/background.webp);
 }
 div {
   /* border: 1px solid silver; */
@@ -191,7 +191,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 9999;
-  background-image : url(../img/logos/index-loading.webp);
+  background-image : url(../img/logos/coordinate-loading.webp);
 }
 #index-page {
   width: 1080px;
@@ -214,7 +214,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 9998;
-  background-image : url(../img/logos/tryon-loading.webp);
+  background-image : url(../img/logos/tryon-loading-coordinate.webp);
 }
 /* 結果のモーダルウィンドウ */
 #camera_result {
@@ -230,7 +230,7 @@ footer {
   left: 0;
   z-index: 9998;
   /* background-image : url(../img/logos/skyback.png); */
-  background-image : url(../img/logos/index-loading.webp);
+  background-image : url(../img/logos/background.webp);
 }
 #camera-page {
   width: 1080px;
@@ -242,7 +242,7 @@ footer {
   left: 0;
   z-index: 0;
   /* background-image : url(../img/logos/skyback.png); */
-  background-image : url(../img/logos/index-loading.webp);
+  background-image : url(../img/logos/background.webp);
 }
 #order-page {
   width: 1080px;
@@ -253,5 +253,5 @@ footer {
   top: 0;
   left: 0;
   z-index: 0;
-  /* background-image : url(../img/background.png); */
+  background-image : url(../img/logos/background.webp);
 }

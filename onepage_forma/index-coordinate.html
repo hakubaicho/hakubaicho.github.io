@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="css/talkstyle.css">
 		<!-- Order.html -->
 		<link rel="stylesheet" href="css/order.css">
-		
+		<script async src="https://cdn.ampproject.org/v0.js"></script>
   </head>
   <body>
 
@@ -48,6 +48,10 @@
 						<div class="detail-box">
 							<div class="item_detail_container">								
 								<table class="detailtable">
+									<tr class="">
+										<td class="detail_column_title"><span class="cell_title"></span></td>
+										<td class="detail_column_data"><span class="cell_data weight_small" id="item_detail_designID"></span></td>
+									</tr>
 									<tr class="item-hide">
 										<td class="detail_column_title"><span class="cell_title"></span></td>
 										<td class="detail_column_data"><span class="cell_data" id="item_detail_tag1"></span></td>
@@ -76,10 +80,6 @@
 									<td class="detail_column_title"><span class="cell_title"></span></td>
 									<td class="detail_column_data"><span class="cell_data weight_large">￥ </span><span class="cell_data weight_large" id="item_detail_price"></span></td>
 								</tr>
-								<tr class="item-hide">
-									<td class="detail_column_title"><span class="cell_title">No:</span></td>
-									<td class="detail_column_data"><span class="cell_data weight_large" id="item_detail_designID"></span></td>
-								</tr>
 							</table>
 						</div>
 					</div>
@@ -90,9 +90,9 @@
 			<!-- NAV -->
 			<nav>
 				<div class="nav-container">
-					<div class="button_category button_tag1" id="button_category_tag1"><span id="category_tag1">大分類</span></div>
-					<div class="button_category button_tag2" id="button_category_tag2"><span id="category_tag2">中分類</span></div>
-					<div class="button_category button_tag3" id="button_category_tag3"><span id="category_tag3">小分類</span></div>
+					<div class="button_category button_tag1 button_colortitle_tag1" id="button_category_tag1"><span id="category_tag1">大分類</span></div>
+					<div class="button_category button_tag2 button_colortitle_tag2" id="button_category_tag2"><span id="category_tag2">中分類</span></div>
+					<div class="button_category button_tag3 button_colortitle_tag3" id="button_category_tag3"><span id="category_tag3">小分類</span></div>
 				</div>
 			</nav>
 			
@@ -176,8 +176,8 @@
 						</div>
 						<div id="phase_2" class="message_conatainer">
 							<img id="message_2">
-							<img id="message_moving_2" class="hidden_image" src="img/logos/message02_start.webp">
-							<img id="message_stop_2" class="hidden_image" src="img/logos/message02_end.webp">
+							<img id="message_moving_2" class="hidden_image" src="img/logos/message02_start_coordinate.webp">
+							<img id="message_stop_2" class="hidden_image" src="img/logos/message02_end_coordinate.webp">
 						</div>
 					</li>
 					<!-- 3番目 -->
@@ -190,8 +190,8 @@
 						</div>
 						<div id="phase_3" class="message_conatainer">
 							<img id="message_3">
-							<img id="message_moving_3" class="hidden_image" src="img/logos/message03_start.webp">
-							<img id="message_stop_3" class="hidden_image" src="img/logos/message03_end.webp">
+							<img id="message_moving_3" class="hidden_image" src="img/logos/message03_start_coordinate.webp">
+							<img id="message_stop_3" class="hidden_image" src="img/logos/message03_end_coordinate.webp">
 						</div>
 					</li>
 					<!-- 4番目 -->
@@ -474,10 +474,10 @@
 				setTimeout(countUp, 1000);
 			}
 		</script>
-		<script src="js/selecter_coordinate.js"></script>
-		<script src="js/connect.js"></script>
-		<script src="js/camera.js"></script>
-		<script src="js/forma.js"></script>
+		<script type="text/javascript" src="js/selecter_coordinate.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/connect.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/camera.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/forma.js" charset="utf-8"></script>
 		<script>
 			// **********************
 			// ページロード時の処理

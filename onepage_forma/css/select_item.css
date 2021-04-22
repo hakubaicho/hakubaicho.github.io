@@ -148,17 +148,33 @@ ul {
   opacity: 0.4;
 } 
 */
-.thumbnails li img {
+.thumbnails li .imgDesign {
   border: 4px solid #90B1CD;
   width: 172px;
   border-radius: 20px;
+}
+
+.remark-container {
+  position: relative;
+  /* width: 172px; */
+}
+.imgremark {
+  background-color: transparent;
+  position: absolute;
+  /* top: 0px;
+  left: 0px; */
+  top: -10px;
+  left: -10px;
+  /* bottom: -10px; */
+  /* right: -10px; */
+  height: 50px;
 }
 
 /* 選択中の画像はhoverと同じ */
 .thumbnails li.current {
   opacity: 1;
 }
-.thumbnails li.current img {
+.thumbnails li.current .imgDesign {
   border: 4px ridge #20639B;
 }
 /* マウスの概念がないから使わない */
@@ -237,25 +253,99 @@ aside button {
     outline: none;
   }
 .button_tag_all {
-  background-color: #20639B;
+  /* background-color: #20639B; */
   /* color: white; */
-  color: white;
+  background-color: white;
+  color: dimgray;
   font-size: 24px;
 }
 .button_tag1 {
   background-color: #20639B;
   color: white;
   font-size: 24px;
+  font-weight: bolder;
 }
 .button_tag2 {
   background-color: #588AB4;
   color: white;
   font-size: 20px;
+  font-weight: bolder;
 }
 .button_tag3 {
   background-color:#90B1CD;
-  color: dimgray;
+  color: white;
   font-size: 20px;
+  font-weight: bolder;
+}
+/* Naviで表示する */
+/* Base #FF9292 */
+.button_colortitle_tag1 {
+  background-color:#FF9292;
+  border: dimgray 1px solid;
+  color: dimgray;
+}
+.button_colortitle_tag2 {
+  background-color: #ffadad;
+  border: dimgray 1px solid;
+  color: dimgray;
+}
+.button_colortitle_tag3 {
+  background-color: #FFC9C9;
+  border: dimgray 1px solid;
+  color: dimgray;
+}
+
+/* Base ff0000 */
+.button_color1_tag1 {
+  background-color: #BE1919;
+  color: white;
+}
+.button_color1_tag2 {
+  background-color: #CE5353;
+  color: white;
+}
+.button_color1_tag3 {
+  background-color:#df8c8c;
+  color: dimgray;
+}
+/* Base #FFA500 */
+.button_color2_tag1 {
+  background-color: #FFA500;
+  color: white;
+}
+.button_color2_tag2 {
+  background-color: #FFBC40;
+  color: dimgray;
+}
+.button_color2_tag3 {
+  background-color:#FFD280;
+  color: dimgray;
+}
+/* Base #008000*/
+.button_color3_tag1 {
+  background-color: #20639B;
+  color: white;
+}
+.button_color3_tag2 {
+  background-color: #588ab4;
+  color: white;
+}
+.button_color3_tag3 {
+  background-color:#90B1CD;
+  color: dimgray;
+}
+/* Base #008000*/
+.button_color4_tag1 {
+  background-color: #008000;
+  color: white;
+}
+.button_color4_tag2 {
+  background-color: #40a040;
+  color: white;
+}
+.button_color4_tag3 {
+  background-color:#80c080;
+  color: dimgray;
 }
 /* .button_tag_all:active, .button_tag1:active, .button_tag2:active, .button_tag3:active{
   background-color: white;
@@ -270,7 +360,8 @@ aside button {
 .imgcategory {
   text-align: center;
   vertical-align: center;
-  display: inline-block;
+  /* display: inline-block; */
+  display: block;
   float: left;
   border-radius: 10px;
   border: 2px solid silver;
@@ -279,10 +370,24 @@ aside button {
 }
 
 .img_categorytag1 {
-  height: 100px ;
+  height: 70px ;
+  margin-right: 10px;
   /* width: 100px ; */
 }
 .img_categorytag2 {
   height: 50px ;
+  margin-right: 10px;
   /* width: 100px ; */
+}
+.img_categorytag3 {
+  height: 30px ;
+  margin-right: 10px;
+  /* width: 100px ; */
+}
+
+.text-category-span1 {
+}
+.text-category-span2 {
+}
+.text-category-span3 {
 }

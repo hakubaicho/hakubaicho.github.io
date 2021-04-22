@@ -97,7 +97,7 @@
     {
       console.log(e.message);
       ret = e.message;
-      ret= ['', 'img/book3-5.png'];
+      ret= ['ipahkg', 'ipahkg123'];
     }
     return ret;
   }
@@ -132,7 +132,7 @@
     {
       console.log(e.message);
       ret = e.message;
-      ret = ['TryOn','ゆかた',''];
+      ret = ['','',''];
     }
     return ret;
   }
@@ -241,7 +241,7 @@
     {
       console.log(e.message);
       ret = e.message;
-      ret= '1c1afadd-ba61-4eb9-937d-a4002aad6714';
+      ret= '';
     }
     return ret;
   }
