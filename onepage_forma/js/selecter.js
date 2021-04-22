@@ -727,7 +727,8 @@
       //----------------------------------
       // imgタグを生成し、イメージを割り当て
       const img = document.createElement('img');
-      img.loading = 'lazy';
+      // img.loading = 'lazy';
+      img.loading = 'auto';
       img.classList.add('imgDesign');
       img.src = item.designsrc;
       div_imgRemark_container.appendChild(img);
