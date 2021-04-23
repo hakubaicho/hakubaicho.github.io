@@ -728,10 +728,9 @@
       // imgタグを生成し、イメージを割り当て
       const img = document.createElement('img');
       // lazy で遅延読み込み
-      img.loading = 'lazy';
+      // img.loading = 'lazy';
       // autoだと遅延取得しない
       // img.loading = 'auto';
-
       img.classList.add('imgDesign');
       img.src = item.designsrc;
       div_imgRemark_container.appendChild(img);

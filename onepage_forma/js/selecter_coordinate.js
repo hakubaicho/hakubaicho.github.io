@@ -1173,7 +1173,7 @@
           break;
       }
       if(imgsrc_overlay != '')
-      {       
+      {
         // imgタグを生成し、イメージを割り当て
         const imgRemark = document.createElement('img');
         imgRemark.classList.add('imgremark');
