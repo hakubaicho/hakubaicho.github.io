@@ -89,7 +89,7 @@
 				<main>
 					<!-- Itemの詳細を表示する -->
 					<div class="main-container">
-						<div class="item_list_container">
+						<div class="item_list_container" id="scroll_selecter">
 							<!-- スクロールリセット要素 -->
 							<div id="topPos"></div>
 							<!-- 画像のリスト -->
@@ -455,6 +455,25 @@
 					return;
 				}
 				setTimeout(countUp, 1000);
+			}
+			// http://alphasis.info/2013/09/javascript-dom-event-onscroll/
+			// セレクタのスクロール検出
+			const elem_scroll_selecter = document.getElementById('scroll_selecter')
+			elem_scroll_selecter.onscroll = function()
+			{
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
+			}
+			// カテゴリのスクロール検出
+			const elem_scroll_category = document.getElementById('accordionbox')
+			elem_scroll_category.onscroll = function()
+			{
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
 			}
 		</script>
 		<script type="text/javascript" src="js/selecter.js" charset="utf-8"></script>
