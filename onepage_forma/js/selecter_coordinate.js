@@ -1157,9 +1157,8 @@
       img.loading = 'lazy';
       // autoだと遅延取得しない
       // img.loading = 'auto';
-      img.src = item.designsrc;
       img.classList.add('imgDesign');
-      // img.src = item.designsrc;
+      img.src = item.designsrc;
       div_imgRemark_container.appendChild(img);
       //----------------------------------
       // 注釈画像の表示
@@ -1168,15 +1167,13 @@
       switch(item.remark09)
       {
         case 'OVL01':
-          // imgsrc_overlay = 'img/remarks/STAR-small.webp';
           imgsrc_overlay = 'img/remarks/OSUSUME.webp';
           break;
         default:
           break;
       }
       if(imgsrc_overlay != '')
-      {
-       
+      {       
         // imgタグを生成し、イメージを割り当て
         const imgRemark = document.createElement('img');
         imgRemark.classList.add('imgremark');
@@ -1911,5 +1908,5 @@
   // カテゴリーリストの作成
   setCategoryListTree_checkbox();
   // 対象アイテムの表示
-  // setItemListTree(['','','']);
+  setItemListTree(['','','']);
 }
