@@ -28,7 +28,19 @@
 		<!-- ******************************************************************************* -->
 		<!-- index-loading画面 -->
     <div id="index-loading">
-	<!-- ローディングの画像のみ -->
+			<!-- ローディングの画像のみ -->
+
+			<div class="footer-container_loading">
+				<!-- 同意してスタート -->
+				<!-- <button class="button_command item-hide" id="accept_privacy_button" type=button onclick="accept_privacy_and_start()">同意してスタート</button> -->
+				<div class="box_command_loading">
+					<img src="img/logos/arrow_left.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+				</div>
+				<!-- 終了 -->
+				<div class="footer-command-area">
+					<button class="button_caution" type=button onclick="endproc_order()">終 了</button>
+				</div>
+			</div>
     </div>
 		
     <!-- indexのメイン部分 -->
@@ -494,9 +506,11 @@
 			// **********************
 			window.onload = function() {
 				debugConsole_proc('window.onload()');
+				
 				// index-Loadingを閉じる
-				const index_loading = document.getElementById('index-loading');
-				index_loading.classList.add('loaded');
+				// 2021/04/26 同意してスタートに変更しました
+				// const index_loading = document.getElementById('index-loading');
+				// index_loading.classList.add('loaded');
 				
 				// 初期処理
 				index_onloaded();
@@ -507,8 +521,25 @@
 		    // タイムアウト開始
 				countStart();
     		// **********
+				// 「同意してスタート」ボタンを表示
+				document.getElementById('accept_privacy_button').classList.remove('item-hide');
 			}
 			 
+			// ======================
+			// 初期処理
+			// ======================
+			// [同意して開始]が押された
+			function accept_privacy_and_start()
+			{
+				debugConsole_proc('accept privacy');
+				// index-Loadingを閉じる
+				const index_loading = document.getElementById('index-loading');
+				index_loading.classList.add('loaded');
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
+			}
 			// index.htmlがロードされた時の処理
 			function index_onloaded() {
 				debugConsole_proc('index_onloaded()');
