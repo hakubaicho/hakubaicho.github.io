@@ -391,3 +391,24 @@ aside button {
 }
 .text-category-span3 {
 }
+
+/* Loading プライバシーのAcceptボタン */
+.footer-container_loading {
+  position: absolute;
+  top: 1600px;
+  height: 150px;
+  width: 1080px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box_command_loading {
+  margin-left: 30px;
+  margin-right: 30px;
+  height: 200px;  /* これで画像のトップ合わせ */
+}
+.box_command_loading img {
+  height: 180px;
+  margin: 0;
+  background-color: transparent;
+}
