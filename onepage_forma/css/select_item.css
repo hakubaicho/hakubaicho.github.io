@@ -412,3 +412,62 @@ aside button {
   margin: 0;
   background-color: transparent;
 }
+
+/* ふわふわ */
+.fluffy {
+  /* background: #000;
+  width: 100px;
+  height: 100px;
+  margin: 100px; */
+  animation: fluffy1 1.5s ease infinite;
+}
+@keyframes fluffy1 {
+  /******************************/
+  /* 上下 */
+  /******************************/
+  /* 0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0px);
+  } */
+
+  /******************************/
+  /* 揺れる */
+  /******************************/
+  /* 0% { transform: rotate(0deg); }
+  10% { transform: rotate(-6deg); }
+  20% { transform: rotate(7deg); }
+  35% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  65% { transform: rotate(-1deg); }
+  80% { transform: rotate(1deg); }
+  95% { transform: rotate(0deg); }
+100% { transform: rotate(0deg); } */
+
+
+  /******************************/
+  /* ぽよんぽよん */
+  /******************************/
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+
+  /******************************/
+  /* バウンス */
+  /******************************/
+  /* 0% { transform:translateY(0) }
+  5% { transform:translateY(0) }
+  10% { transform:translateY(0) }
+  20% { transform:translateY(-15px) }
+  25% { transform:translateY(0) }
+  30% { transform:translateY(-15px) }
+  50% { transform:translateY(0) }
+  100% { transform:translateY(0) } */
+}

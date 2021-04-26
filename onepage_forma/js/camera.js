@@ -298,6 +298,9 @@
 
   // カウントダウン音声
   function play_countdown() {
+    // 次の操作をわかりやすくする。
+    document.getElementById('btn_image_shutter').classList.remove('fluffy');
+    document.getElementById('btn_image_save').classList.remove('fluffy');
     // videoタグの表示
     video.classList.remove("item-hide");
     video.classList.add("item-show");
@@ -334,6 +337,9 @@
     // 撮影処理を行う。
     take_Photo();
     // -----------------------------------
+    // 次の操作をわかりやすくする。
+    document.getElementById('btn_image_shutter').classList.remove('fluffy');
+    document.getElementById('btn_image_save').classList.add('fluffy');
    }, false);
 
   // シャッター音声完了時
@@ -369,6 +375,9 @@
     // タイムアウト
     countReset();
     // **********
+    // 次の操作をわかりやすくする。
+    document.getElementById('btn_image_shutter').classList.add('fluffy');
+    document.getElementById('btn_image_save').classList.remove('fluffy');
     Avatar_TryOnProc();
   }
 

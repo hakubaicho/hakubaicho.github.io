@@ -1,0 +1,57 @@
+ <!-- モーダルウィンドウ プライバシーポリシーの表示 -->
+    <section id="modal" class="hidden">
+      <div>
+        <!-- プライバシーポリシー文章 -->
+        <div id="modal_text_container">
+          <p class="permission_camera">
+            プライバシーポリシー
+            <br>
+            下記を確認して下さい。
+          </p>
+          <p class="permission_message">
+            ◆はじめに<br>
+            株式会社テンプレートグループ（以下、当グループ）は、個人情報の取り扱いにおいて、下記のように定めます。<br>
+            
+            以下のプライバシーポリシーでは、個人情報の取得・利用・管理について記載しております。サービス利用にあたり、個人情報保護方針をお読みになり、ご理解いただけますと幸いです。<br>
+            
+            ◆個人情報の取得<br>
+            当サービスでは、ユーザーの皆様の個人情報（氏名、住所、メールアドレス、電話番号など個人を特定できる情報）を取得させて頂くことがあります。<br>
+            
+            ◆個人情報の利用<br>
+            取得した個人情報は、下記の目的で利用いたします。<br>
+            (1)ユーザーニーズに合わせたサービス提供<br>
+            (2)サービス改善に関するマーケティング<br>
+            (3)資料送付などの際の本人確認<br>
+            
+            ◆個人情報の安全管理<br>
+            当グループでは個人情報の管理について、全従業員・役員に対して第三者機関による教育研修を四半期に1度のペースで実施しています。<br>
+            また社則に個人情報保護規定を設け、現場での管理について厳格にチェックを行っています。<br>
+            
+            ◆第三者への開示・提供の禁止<br>
+            基本的に個人情報は第三者には提供しませんが、個人情報の保護に関する法律第23条第1項各号により、法令に基づいて提供する場合があります。<br>
+            
+            ◆個人情報に関する問い合わせ<br>
+            個人情報に関するお問い合わせは、下記までお願い致します。<br>
+            情報管理部 担当:山下<br>
+            電話番号:0120-000-000<br>
+            メールアドレス:jouhoukanri@xxxxxxx<br>
+            
+            ◆改変と見直しについて<br>
+            個人情報については、法令変更などを受けて随時見直しを行います。<br>
+          </p>
+        </div>
+      </div>
+      <!-- 今回の写真撮影 -->
+      <div class="footer-container">
+        <button id="cancel" onclick="jumpto_index()" class="button_command">やめる</button>
+        <button id="accept" onclick="camera_accept_click()" class="button_command hidden">撮影する</button>
+      </div>
+      <!-- 前回の写真の再利用 -->
+      <div id="after_login" class="item-hide">
+        <div class="footer-container">
+          <!-- <button id="reuseAvatar" class="button_command item-hide">前回の写真から</button> -->
+        </div>
+      </div>
+    </section>
+    <!-- モーダルウィンドウの時のマスク -->
+    <div id="mask" class="hidden"></div>

@@ -32,9 +32,9 @@
 
 			<div class="footer-container_loading">
 				<!-- 同意してスタート -->
-				<!-- <button class="button_command item-hide" id="accept_privacy_button" type=button onclick="accept_privacy_and_start()">同意してスタート</button> -->
 				<div class="box_command_loading">
-					<img src="img/logos/arrow_left.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+					<!-- <img class="fluffy" src="img/logos/arrow_left.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()"> -->
+					<button class="button_command item-hide fluffy" id="accept_privacy_button" type=button onclick="accept_privacy_and_start()">同意してスタート</button>
 				</div>
 				<!-- 終了 -->
 				<div class="footer-command-area">
@@ -224,7 +224,7 @@
 			<div  id="camera_result_footer">
 				<div class="footer-container">
 					<button class="button_command" onclick="jumpto_index()">選びなおす</button>
-					<button class="button_command" onclick="jumpto_Order()">購入</button>
+					<button class="button_command fluffy" onclick="jumpto_Order()">購入</button>
 				</div>
 			</div>
 		</div>
@@ -257,7 +257,7 @@
 						<img src="img/logos/arrow_left.webp" id="btn_image_back" onclick="jumpto_index()">
 					</div>
 					<div class="box_command">
-						<img src="img/logos/shutter.webp" id="btn_image_shutter" onclick="btnimg_click_shutter()">
+						<img class="fluffy" src="img/logos/shutter.webp" id="btn_image_shutter" onclick="btnimg_click_shutter()">
 					</div>
 					<div class="box_command">
 						<img src="img/logos/arrow_right.webp" id="btn_image_save" onclick="btnimg_click_save()">
@@ -418,7 +418,7 @@
 			<footer>
 				<div class="footer-container">
 					<button class="button_command" type=button onclick="jumpto_index()">選びなおす</button>
-					<button class="button_command" type=button onclick="getPrintData()">印刷</button>
+					<button class="button_command fluffy" type=button onclick="getPrintData()">印刷</button>
 				</div>
 				<div class="footer-command-area">
 					<button class="button_caution" type=button onclick="endproc_order()">終 了</button>
@@ -836,6 +836,8 @@
 				// 対象ページを開く
 				// document.getElementById('modal').classList.remove('hidden');
 				// document.getElementById('mask').classList.remove('hidden');
+				document.getElementById('btn_image_shutter').classList.add('fluffy');
+				document.getElementById('btn_image_save').classList.remove('fluffy');
 			}
 			// camera.indexの非表示
 			function hide_camera() {
