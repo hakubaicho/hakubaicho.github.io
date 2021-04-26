@@ -3,16 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>TSV</title>
+		<style>
+			.textarea-large {
+				font-size: 0.5em;
+				width: 100%;
+				height: 10em;
+			}
+		</style>
   </head>
   <body>
     <form name="myform">
         <input name="myfile" type="file" />
-        <textarea name="output"></textarea>
-				<button onclick="getCSV()">CSVread</button>
-				<textarea name="output-tsv"></textarea>
+				<br>
+        <textarea name="output" class="textarea-large"></textarea>
     </form>
-
-		<script src="js/tsv.js"></script>
     <script>
 			//Form要素を取得する
     	var form = document.forms.myform;
@@ -50,53 +54,60 @@
 					{
 						const columns = lines[i].split('\t');
 
-						if(columns.length==18)
+						if(columns.length >= 18)
 						{
-							let oneline = '';
-							oneline += 'new ClothItem(';
-							oneline += `\'${columns[0]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[1]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[2]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[3]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[4]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[5]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[6]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[7]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[8]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[9]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[10]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[11]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[12]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[13]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[14]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[15]}\'`;
-							oneline += ',';
-							oneline += `\'${columns[16]}\'`;
-							oneline += ',';
-							for(let j=0;j<columns[17].length;j++)
+							let isOK = true;
+							if(columns[10] != '1'){ isOK = false;}	// 備考7
+							if(columns[11] != '1'){ isOK = false;}	// 備考8
+
+							if(isOK)
 							{
-								console.log(columns[17][j]);
+								let oneline = '';
+								oneline += 'new ClothItem(';
+								oneline += `\'${columns[0]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[1]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[2]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[3]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[4]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[5]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[6]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[7]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[8]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[9]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[10]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[11]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[12]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[13]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[14]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[15]}\'`;
+								oneline += ',';
+								oneline += `\'${columns[16]}\'`;
+								oneline += ',';
+								for(let j=0;j<columns[17].length;j++)
+								{
+									console.log(columns[17][j]);
+								}
+								oneline += `\'${columns[17]}\'`;
+								oneline += '),';
+								
+								value += oneline + '\n';
+								console.log(columns);
 							}
-							oneline += `\'${columns[17]}\'`;
-							oneline += '),';
-							
-							value += oneline + '\n';
-							console.log(columns);
 						}
 					}
 					form.output.textContent = value; 

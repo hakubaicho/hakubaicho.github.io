@@ -376,7 +376,7 @@
     countReset();
     // **********
     // 次の操作をわかりやすくする。
-    document.getElementById('btn_image_shutter').classList.add('fluffy');
+    document.getElementById('btn_image_shutter').classList.remove('fluffy');
     document.getElementById('btn_image_save').classList.remove('fluffy');
     Avatar_TryOnProc();
   }

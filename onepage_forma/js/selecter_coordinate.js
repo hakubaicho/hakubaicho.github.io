@@ -1177,7 +1177,7 @@
         // imgタグを生成し、イメージを割り当て
         const imgRemark = document.createElement('img');
         imgRemark.classList.add('imgremark');
-        imgRemark.classList.add('fluffy');
+        imgRemark.classList.add('fluffy_slime');
         imgRemark.src = imgsrc_overlay;
         div_imgRemark_container.appendChild(imgRemark);
       }
