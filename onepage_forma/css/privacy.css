@@ -7,14 +7,14 @@
 	top: 0;
 	left: 0;
 	z-index: 9999;
-	background-image : url(../img/logos/background.webp);
+	background-image : url(../img/logos/skyback.webp);
 }
 .privacy-container {
 	position: absolute;
 	background-color: white;
 	top:100px;
 	left: 40px;
-	height: 880px;
+	height: 1060px;
 	width:  1000px;
 	padding: 5px;
 	margin: 3px;
