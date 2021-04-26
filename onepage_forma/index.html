@@ -28,7 +28,7 @@
 		<!-- index.html -->
 		<!-- ******************************************************************************* -->
 		<!-- index-loading画面 -->
-    <div id="index-loading" class="loaded">
+    <div id="index-loading">
 			<!-- カメラ -->
 			<div class="footer-container_loading_camera">
 				<img class="fluffy_slime" src="img/logos/button_loading_camera.webp">
@@ -226,7 +226,7 @@
 					<!-- <button class="button_command" onclick="jumpto_Camera()">撮影して試着</button> -->
 
 					<img class="cmd_button_reselect fluffy" src="img/logos/cmd_button_print.webp" onclick="jumpto_Order()">
-					<button class="button_command" id="btn_index_goto_order" onclick="jumpto_Order()" hidden>印刷</button>
+					<button class="button_command" id="btn_index_goto_order" onclick="jumpto_Order()" hidden>撮影せずに購入</button>
 				</div>
 				<div class="footer-command-area">
 					<button hidden class="button_warning" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
@@ -315,8 +315,7 @@
    
     
 		<!-- カメラ撮影結果表示 -->
-		<div id="camera_result">
-		<!-- <div id="camera_result" class="loaded"> -->
+		<div id="camera_result" class="loaded">
 			<!-- 画像の表示エリア -->
 			<div id="camera_result_header">
 				<!-- TryOnの結果画像 -->
@@ -619,7 +618,7 @@
 				// 2021/04/26 同意してスタートに変更しました
 				// const index_loading = document.getElementById('index-loading');
 				// index_loading.classList.add('loaded');
-				return;
+				
 				// 初期処理
 				index_onloaded();
 				camera_onloaded();
