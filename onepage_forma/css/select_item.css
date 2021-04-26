@@ -407,6 +407,18 @@ aside button {
   margin: 0;
   background-color: transparent;
 }
+.footer-container_loading_privacy {
+  position: absolute;
+  top: 1500px;
+  left: 190px;
+  height: 150px;
+  width: 700px;
+}
+.footer-container_loading_privacy img {
+  width: 700px;
+  margin: 0;
+  background-color: transparent;
+}
 /* Loading プライバシーのCancelボタン */
 .footer-container_loading_cancel {
   position: absolute;
@@ -445,6 +457,27 @@ aside button {
   height: 160px;
   margin: 0;
   background-color: transparent;
+}
+
+.cmd_button_reselect {
+  margin: 20px;
+  background-color: transparent;
+  width: 300px;
+}
+.cmd_button_print {
+  margin: 20px;
+  background-color: transparent;
+  width: 300px;
+}
+.cmd_button_takepicture {
+  margin: 20px;
+  background-color: transparent;
+  width: 300px;
+}
+.cmd_button_end {
+  margin: 10px;
+  background-color: transparent;
+  width: 200px;
 }
 
 

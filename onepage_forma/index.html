@@ -19,7 +19,8 @@
 		<link rel="stylesheet" href="css/talkstyle.css">
 		<!-- Order.html -->
 		<link rel="stylesheet" href="css/order.css">
-		
+		<!-- Privacy -->
+		<link rel="stylesheet" href="css/privacy.css">
   </head>
   <body>
 
@@ -30,22 +31,115 @@
     <div id="index-loading">
 			<!-- カメラ -->
 			<div class="footer-container_loading_camera">
-				<img class="fluffy" src="img/logos/button_loading_camera.webp">
+				<img class="fluffy_slime" src="img/logos/button_loading_camera.webp">
 			</div>
 			<!-- レシート -->
 			<div class="footer-container_loading_receipt">
-				<img class="fluffy" src="img/logos/button_loading_receipt.webp">
+				<img class="fluffy_slime" src="img/logos/button_loading_receipt.webp">
 			</div>
 			<!-- 同意してスタート -->
 			<div class="footer-container_loading_start">
 				<img class="fluffy item-hide" src="img/logos/button_loading_start.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- プライバシー遷移 -->
+			<div class="footer-container_loading_privacy">
+				<img src="img/logos/button_loading_privacy.webp" id="accept_privacy_button" onclick="jumpto_privacy()">
 			</div>
 			<!-- 終了 -->
 			<div class="footer-container_loading_cancel">
 				<img class="fluffy" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button" onclick="endproc_order()">
 			</div>
 		</div>
+		<!-- プライバシーポリシー -->
+		<div id="privacypolicy_page" class="loaded">
+			<div class="privacy-container">
+				<!-- <p>【原文】https://about.formatech.com/privacy-policy.html</p> -->
+				<p class="privacy_header">Formaプライバシーポリシー</p>
+				<p class="privacy_header_date">発効日：2018年7月30日</p>
+				
+				<p class="privacy_p">Forma（「当社）はあなたのプライバシーを尊重します。このプライバシーポリシー（「ポリシー」）では、当社のWebサイトwww.formatech.com（「サイト」）への訪問者および当社のサイトを通じて利用可能なサービス、または当社のパートナーのサイトにおける当社Shopifyアプリ（「当社Shopifyアプリ」）、およびForma iOSアプリ（「我々のアプリ」）（総称して、「サービス」）を通じて取得した情報を、どの様に当社が収集、使用、および開示するのかを説明します。 </p>
+				
+				<p class="privacy_p">サイトにアクセスするか、当社のいずれかのサービスを使用することは、お客様の個人情報がこのポリシーに記載されているとおりに処理されることに同意するものとします。当社のサイトまたはサービスの使用、およびプライバシーに関する紛争は、損害賠償および紛争の解決に適用される制限を含む本ポリシーおよび利用規約の対象となります。</p>
+				
+				<p class="privacy_h1">当社が収集する情報</p>
+				<p class="privacy_p">当社は、お客様および第三者から直接、またはお客様が当社のサイトまたはサービスを使用することにより自動的に、お客様に関する情報を収集します。</p>
+				
+				<p class="privacy_h1">当社がお客様から直接収集する情報</p>
+				<p class="privacy_p">お客様は、当社へのユーザー登録または個人情報の提供をせずとも、サイトの特定の領域を閲覧することができます。当社のサービスにユーザー登録する場合は、お名前と電子メールアドレスを提供する必要があります。さらに当社のサービス利用に関連して、第三者に個人情報を提供する場合、お客様はそれらのサービスを使用する為の個人情報を当社に提供するため、及び当社がその個人情報を利用することに対して、必要とされるすべての許可と同意を自ら有する事に責任を持ち、また本サービスを提供の為に当社が個人情報を使用する事は、適用される法律、規則、規制、または命令に違反しないことも明確にする責任があります。</p>
+				
+				<p class="privacy_h1">自動的に収集する情報</p>
+				<p class="privacy_p">当社は、Cookieおよびその他のテクノロジーを通じて、お客様による当社のサイトまたはサービスの使用に関する以下の情報を自動的に収集する場合があります。
+				「ブラウザの種類とオペレーティングシステム、表示するWebページ、クリックしたリンク、あなたのIPアドレス、 お客様が当社のサイトにアクセスしたり、当社のサービスを使用したりする時間の長さ、および参照URL、または当社のサイトにアクセスする前に閲覧したWebページ」
+				この情報を、ユーザー名、名前、その他の個人情報など、収集したその他の情報と組み合わせる場合があります。詳細については、以下の「Cookieおよびその他の追跡メカニズム」のセクションを参照してください。</p>
 			
+				<p class="privacy_h1">当社がお客様の情報を使用する方法</p>
+				<p class="privacy_p">当社は、以下の目的で、お客様の個人情報を含むお客様の情報を使用します。</p>
+				<ul class="privacy_list">
+					<li>当社のサイトおよびサービスをお客様に提供するため、当社のサイトおよびサービスの使用についてお客様と情報交換するため、お客様の問い合わせに対応するため、注文を履行するため、およびその他のカスタマーサービス目的のため。</li>
+					<li>当社がお客様に送信または表示する可能性のあるコンテンツおよび情報を調整し、サイトのカスタマイズ、およびパーソナライズされたヘルプとご案内を提供し、その他の方法でサイトまたは当社のサービスを使用する際のお客様のユーザー体験をパーソナライズするため。</li>
+					<li>マーケティングおよび販促目的。たとえば、メールアドレスなどの情報を使用して、ニュースやニュースレター、特別オファー、プロモーションを送信したり、興味があると思われる製品や情報について連絡したりする場合があります。また、お客様について学習した情報を使用して、第三者のWebサイトで、サービスの宣伝広告をサポートする場合があります。</li>
+					<li>当社のサイトおよびサービスを改善し、ユーザーの要望や好みに対応する事、およびその他の調査および分析の目的で、ユーザーが当社のサイトおよびサービスにアクセスして使用する方法を、特定のグループに集約された形、および個別の形の両方で、よりよく理解するため。</li>
+				</ul>
+				<p class="privacy_h1">当社がお客様の情報を共有するケース</p>
+				<p class="privacy_p">個人情報を含むお客様の情報を次のように共有する場合があります。</p>
+				<ul class="privacy_list">
+					<li>系列企業　当社は、お客様にサービスを提供する目的でのみ、お客様から収集した情報を当社の系列会社または子会社に開示する場合があります。ただし、その場合、お客様の個人情報の使用および開示は、このポリシーに従って、そのような系列会社および子会社によって維持されます。</li>
+					<li>サービスプロバイダー　当社は、お客様から収集した情報を、当社に代わって役割を実行するサードパーティベンダー、サービスプロバイダー、請負業者、またはエージェントに開示する場合があります。</li>
+					<li>事業譲渡　当社が他社に買収または合併された場合、当社の資産の実質的にすべてが他社に譲渡された場合、または破産手続きの一環として、当社はお客様から収集した情報を他社に譲渡する場合があります。</li>
+					<li>法的手続きに応じて　また、法律、司法手続き、裁判所命令、または召喚状への対応などの他の法的手続きを遵守するために、お客様から収集した情報を開示する場合があります。</li>
+					<li>当社と他社を保護するために　また、違法行為、詐欺の疑い、人の安全を脅かす可能性のある状況、利用規約の違反、またはこれに関して調査、防止、または措置を講じる必要があると当社が考える場合、お客様から収集した情報を開示する場合があります。このポリシーと利用規約違反のエビデンスとして、または当社が関与している訴訟の証拠として。</li>
+					<li>集約および匿名化された情報。当社は、マーケティング、広告、調査、または同様の目的で、ユーザーに関する集約情報または匿名化された情報を第三者と共有する場合があります。</li>
+				</ul>
+				<p class="privacy_p">上記の場合を除き、お客様の同意なしに、ダイレクトマーケティングの目的でお客様の個人情報を第三者に販売または共有することはありませんのでご注意ください。</p>
+			
+				<p class="privacy_h1">Cookieおよびその他の追跡メカニズムの使用</p>
+				<p class="privacy_p">当社およびサードパーティのサービスプロバイダーは、Cookieおよびその他の追跡メカニズムを使用して、お客様による当社のサイトおよびサービスの使用に関する情報を追跡します。当社は、この情報をお客様から収集した他の個人情報と組み合わせる場合があります（また、サードパーティのサービスプロバイダーが当社に代わってこれを行う場合があります）。</p>
+				
+				<p class="privacy_p">現在、当社のシステムはブラウザの「追跡禁止」リクエストを認識していません。ただし、このセクションで説明されているように（たとえば、Cookieを無効にすることにより）特定の追跡を無効にすることはできますが、そのような無効化はサイトおよびサービスの使用に影響を与えます。</p>
+				
+				<p class="privacy_p">Cookie  Cookieは、記録を保持する目的でWebブラウザを介してコンピュータのハードドライブに転送される英数字の識別子です。一部のCookieを使用すると、サイトやサービスを簡単にナビゲートできますが、その他のCookieは、ログインプロセスを高速化したり、サイトやサービスでのアクティビティを追跡したりするために使用されます。Cookieには、セッションCookieと永続Cookieの2種類があります。</p>
+				<ul class="privacy_list">
+					<li>セッションCookie 　セッションCookieは、オンラインセッション中にのみ存在します。ブラウザを閉じるか、コンピュータの電源を切ると、コンピュータから消えます。当社はセッションCookieを使用して、セッション中またはサイトへのログイン中にシステムがお客様を個別に識別できるようにします。これにより、ログイン後、サイト内を移動する際に、オンライントランザクションとリクエストを処理し、本人確認を行うことができます。</li>
+					<li>永続Cookie 　ブラウザを閉じるか、コンピュータの電源を切った後も、永続Cookieがコンピュータに残ります。永続　Cookieを使用して、ユーザーアクティビティに関する集計された情報と統計的な情報を追跡します。</li>
+				</ul>
+				<p class="privacy_h1">Cookieの無効化</p>
+				<p class="privacy_p">ほとんどのWebブラウザは自動的にCookieを受け入れますが、必要に応じて、ブラウザオプションを編集して、その後Cookieをブロックすることができます。ほとんどのブラウザのツールバーのヘルプ部分には、コンピュータが新しいCookieを受け入れないようにする方法、新しいCookieを受信したときにブラウザに通知する方法、またはCookieを完全に無効にする方法が記載されています。Cookieを無効にすると当サイトの訪問者は、サイトの特定の領域を閲覧したり、サービスを使用したりすることができなくなります。</p>
+				
+				<p class="privacy_h1">サードパーティ分析</p>
+				<p class="privacy_p">当社はGoogle Analyticsなどの自動化されたデバイスとアプリケーションを使用して、サイトとサービスの使用状況を評価します。また、他の分析手段を使用してサービスを評価する場合があります。これらのツールを使用して、サービス、パフォーマンス、およびユーザーエクスペリエンスを向上させます。これらのエンティティは、Cookieやその他の追跡技術を使用してサービスを実行する場合があります。これらの第三者とお客様の個人情報を共有することはありません。</p>
+				
+				<p class="privacy_h1">サードパーティのリンク</p>
+				<p class="privacy_p">当社のサイトおよびサービスには、サードパーティのWebサイトへのリンクが含まれている場合があります。このようなリンクされたWebサイトへのアクセスおよび使用は、このポリシーには準拠していません。代わりに、これらのサードパーティWebサイトのプライバシーポリシーに準拠しています。当社は、そのような第三者のウェブサイトでの情報セキュリティ施策については責任を負いません。</p>
+				
+				<p class="privacy_h1">私の個人情報に対してのセキュリティ</p>
+				<p class="privacy_p">当社は、収集した情報を紛失、誤用、不正アクセス、開示、改ざん、破壊から保護するために、商業上合理的な予防措置を講じています。当社はこの様に努めますが、100％を保証できるデータセキュリティ対策はありませんのでご注意ください。</p>
+				
+				<p class="privacy_p">パスワード、電話、コンピューターへの不正アクセスから保護するための措置を講じる必要があります。特に、共有コンピューターの使用後にはログアウト（サインオフ）し、他の誰も知らない、または簡単に推測できない強固なパスワードを選択し、ログイン状態とパスワード秘密性を維持する必要があります。当社は、パスワードの紛失、盗難、または侵害、または不正なパスワードの利用によるアカウント内での動作について責任を負いません。</p>
+				
+				<p class="privacy_h1">私の個人情報へのアクセス</p>
+				<p class="privacy_p">送信した個人情報を更新する場合は、contact @ formatech.comまでご連絡ください。更新、変更、または削除した情報のコピーは、一定期間、サイトのキャッシュおよびアーカイブされたページに表示されたままになる場合があることに注意してください。</p>
+				
+				<p class="privacy_h1">個人情報の使用に関してどのような選択肢がありますか？</p>
+				<p class="privacy_p">定期的にプロモーションメールや情報メールを送信する場合があります。電子メールに含まれている受取拒否の指示に従うことにより、そのような送信を拒否することができます。受取拒否リクエストの処理には最大10営業日かかる場合がありますのでご注意ください。推奨事項や興味があると思われるその他の情報に関する電子メールの受信を受け取り拒否した場合でも、お客様のアカウントに関する情報や、お客様が要求したサービス、又は当社からお受け取りになったサービスに関する情報を電子メールでお送りする場合があります。</p>
+				
+				<p class="privacy_h1">13歳未満のお子様</p>
+				<p class="privacy_p">当サイトおよびサービスは13歳未満のお子様向けには設計されていません。13歳未満のお子様から個人情報が提供されたことが判明した場合、そのような情報をシステムから削除します。</p>
+				
+				<p class="privacy_h1">お問い合わせ</p>
+				<p class="privacy_p">当社のサイトまたはサービスのプライバシーの内容ついてご質問、ご意見等がある場合は、contact @ formatech.comまでご連絡ください。</p>
+				
+				<p class="privacy_h1">このポリシーの変更</p>
+				<p class="privacy_p">このポリシーは、上記の発効日現在のものです。このポリシーは随時変更される可能性がありますので、定期的に確認してください。このポリシーへの変更はサイトに掲載します。お客様から収集済の個人情報に関する当社の実施事項に重大な影響を与える様な変更をする場合、当社のサイトで変更を強調することにより、またはあなたのアカウントのメールアドレスに通知することで、事前通知をするよう努めます。（このため、アカウント情報が変更された場合は、すみやかに更新すして頂く必要があります。）</p>
+			</div>
+			<!-- 同意してスタート -->
+			<div class="footer-container_loading_start">
+				<img class="fluffy" src="img/logos/button_loading_start.webp" id="accept_privacy_button_b" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- 終了 -->
+			<div class="footer-container_loading_cancel">
+				<img class="fluffy" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button_b" onclick="endproc_order()">
+			</div>
+		</div>
     <!-- indexのメイン部分 -->
     <div id="index-page" class="loaded">
 			<!-- HEADER -->
@@ -128,13 +222,17 @@
 				<div class="footer-container">
 					<!-- <button class="button_command" onclick="gotoCamera()">撮影して試着</button> -->
 					<button id="reuseAvatar" class="button_command item-hide" onclick="click_noPictureTryOn()">前回の写真から</button>
-					<button class="button_command" onclick="jumpto_Camera()">撮影して試着</button>
-					<button class="button_command" id="btn_index_goto_order" onclick="jumpto_Order()">撮影せずに購入</button>
+					<img class="cmd_button_takepicture fluffy" src="img/logos/cmd_button_takepicture.webp" onclick="jumpto_Camera()">
+					<!-- <button class="button_command" onclick="jumpto_Camera()">撮影して試着</button> -->
+
+					<img class="cmd_button_reselect fluffy" src="img/logos/cmd_button_print.webp" onclick="jumpto_Order()">
+					<button class="button_command" id="btn_index_goto_order" onclick="jumpto_Order()" hidden>印刷</button>
 				</div>
 				<div class="footer-command-area">
 					<button hidden class="button_warning" onclick="setCategoryListTree_checkbox()">チェックボックス</button>
 					<button hidden class="button_warning" onclick="setCategoryListTree_radiobutton()">ラジオ</button>
-					<button class="button_caution" onclick="endproc()">終 了</button>
+					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
+					<!-- <button class="button_caution" onclick="endproc()">終 了</button> -->
 				</div>
 			</footer>
 		</div>
@@ -226,8 +324,10 @@
 			<!-- ボタンエリア -->
 			<div  id="camera_result_footer">
 				<div class="footer-container">
-					<button class="button_command" onclick="jumpto_index()">選びなおす</button>
-					<button class="button_command fluffy" onclick="jumpto_Order()">購入</button>
+					<img class="cmd_button_reselect" src="img/logos/cmd_button_reselect.webp" onclick="jumpto_index()">
+					<!-- <button class="button_command" onclick="jumpto_index()">選びなおす</button> -->
+					<img class="cmd_button_print fluffy" src="img/logos/cmd_button_print_T.webp" onclick="jumpto_Order()">
+					<!-- <button class="button_command fluffy" onclick="jumpto_Order()">購入</button> -->
 				</div>
 			</div>
 		</div>
@@ -336,7 +436,7 @@
 			<nav>
 				<div class="nav-container">
 					<div class="order_title">
-						<span>購入画面</span>
+						<span>購入用レシート印刷</span>
 					</div>
 				</div>
 			</nav>
@@ -420,11 +520,14 @@
 			<!-- FOOTER -->
 			<footer>
 				<div class="footer-container">
-					<button class="button_command" type=button onclick="jumpto_index()">選びなおす</button>
-					<button class="button_command fluffy" type=button onclick="getPrintData()">印刷</button>
+					<img class="cmd_button_reselect" src="img/logos/cmd_button_reselect.webp" onclick="jumpto_index()">
+					<!-- <button class="button_command" type=button onclick="jumpto_index()">選びなおす</button> -->
+					<img class="cmd_button_print fluffy" src="img/logos/cmd_button_print_T.webp" onclick="getPrintData()">
+					<!-- <button class="button_command fluffy" type=button onclick="getPrintData()">印刷</button> -->
 				</div>
 				<div class="footer-command-area">
-					<button class="button_caution" type=button onclick="endproc_order()">終 了</button>
+					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc_order()">
+					<!-- <button class="button_caution" type=button onclick="endproc_order()">終 了</button> -->
 				</div>
 			</footer>
 		</div>
@@ -479,8 +582,10 @@
 				}
 				setTimeout(countUp, 1000);
 			}
-			// http://alphasis.info/2013/09/javascript-dom-event-onscroll/
+			//------------------------------
 			// セレクタのスクロール検出
+			// http://alphasis.info/2013/09/javascript-dom-event-onscroll/
+			//------------------------------
 			const elem_scroll_selecter = document.getElementById('scroll_selecter')
 			elem_scroll_selecter.onscroll = function()
 			{
@@ -509,7 +614,6 @@
 			// **********************
 			window.onload = function() {
 				debugConsole_proc('window.onload()');
-				
 				// index-Loadingを閉じる
 				// 2021/04/26 同意してスタートに変更しました
 				// const index_loading = document.getElementById('index-loading');
@@ -526,8 +630,8 @@
     		// **********
 				// 「同意してスタート」ボタンを表示
 				document.getElementById('accept_privacy_button').classList.remove('item-hide');
+				document.getElementById('accept_privacy_button_b').classList.remove('item-hide');
 			}
-			 
 			// ======================
 			// 初期処理
 			// ======================
@@ -536,8 +640,9 @@
 			{
 				debugConsole_proc('accept privacy');
 				// index-Loadingを閉じる
-				const index_loading = document.getElementById('index-loading');
-				index_loading.classList.add('loaded');
+				document.getElementById('index-loading').classList.add('loaded');
+				// プライバシーポリシーを閉じる
+				document.getElementById('privacypolicy_page').classList.add('loaded');
 				// **********
 				// タイムアウト
 				countReset();
@@ -589,6 +694,17 @@
 			// **********************
 			// ページ間の移動
 			// **********************
+			function jumpto_privacy() {
+				debugConsole_proc('reading privacy');
+				// index-Loadingを閉じる
+				document.getElementById('index-loading').classList.add('loaded');
+				// privacypageを開く
+				document.getElementById('privacypolicy_page').classList.remove('loaded');
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
+			}
 			//------------------------
 			// メインページ(セレクタ)に遷移する。
 			// index.html
@@ -847,7 +963,7 @@
 				// 要素の消し込み
 		    document.getElementById('camera_result').classList.add('loaded');
 				document.getElementById('camera-page').classList.add('loaded');
-
+				// カメラのアニメーションを止める
 				document.getElementById('btn_image_shutter').classList.remove('fluffy');
 				document.getElementById('btn_image_save').classList.remove('fluffy');
 			}

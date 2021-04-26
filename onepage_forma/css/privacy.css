@@ -1,0 +1,57 @@
+#privacypolicy_page {
+	width: 1080px;
+	height: 1920px;
+
+	/* 以下のコードを追加 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	background-image : url(../img/logos/background.webp);
+}
+.privacy-container {
+	position: absolute;
+	background-color: white;
+	top:100px;
+	left: 40px;
+	height: 880px;
+	width:  1000px;
+	padding: 5px;
+	margin: 3px;
+	
+	overflow-y: scroll;
+}
+.privacy_header {
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+.privacy_header_date {
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+.privacy_h1 {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+.privacy_p {
+	font-size: 1.0em;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.privacy_list li ul {
+	list-style-type: disc;
+	margin-left: 10px;
+	margin-right: 10px;
+}
