@@ -148,8 +148,6 @@
 }
 /* 結果のフッタエリア */
 #camera_result_footer {
-  position: absolute;
-  left: 20px;
 }
 #tryon_result_picture {
   border: 1px solid dimgray;

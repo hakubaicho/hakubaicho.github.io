@@ -28,7 +28,7 @@
 		<!-- index.html -->
 		<!-- ******************************************************************************* -->
 		<!-- index-loading画面 -->
-    <div id="index-loading">
+    <div id="index-loading" class="loaded">
 			<!-- カメラ -->
 			<div class="footer-container_loading_camera">
 				<img class="fluffy_slime" src="img/logos/button_loading_camera.webp">
@@ -315,7 +315,8 @@
    
     
 		<!-- カメラ撮影結果表示 -->
-		<div id="camera_result" class="loaded">
+		<div id="camera_result">
+		<!-- <div id="camera_result" class="loaded"> -->
 			<!-- 画像の表示エリア -->
 			<div id="camera_result_header">
 				<!-- TryOnの結果画像 -->
@@ -618,7 +619,7 @@
 				// 2021/04/26 同意してスタートに変更しました
 				// const index_loading = document.getElementById('index-loading');
 				// index_loading.classList.add('loaded');
-				
+				return;
 				// 初期処理
 				index_onloaded();
 				camera_onloaded();
