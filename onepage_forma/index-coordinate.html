@@ -857,12 +857,17 @@
 				// 対象ページを開く
 				// document.getElementById('modal').classList.remove('hidden');
 				// document.getElementById('mask').classList.remove('hidden');
+				document.getElementById('btn_image_shutter').classList.add('fluffy');
+				document.getElementById('btn_image_save').classList.remove('fluffy');
 			}
 			// camera.indexの非表示
 			function hide_camera() {
 				// 要素の消し込み
 		    document.getElementById('camera_result').classList.add('loaded');
 				document.getElementById('camera-page').classList.add('loaded');
+				
+				document.getElementById('btn_image_shutter').classList.remove('fluffy');
+				document.getElementById('btn_image_save').classList.remove('fluffy');
 			}
 			// order.htmlの表示
 			function show_order() {
