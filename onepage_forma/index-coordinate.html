@@ -30,14 +30,14 @@
     <div id="index-loading">
 			<!-- カメラ -->
 			<div class="footer-container_loading_camera">
-				<img class="fluffy_slime" src="img/logos/button_loading_camera.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+				<img class="fluffy" src="img/logos/button_loading_camera.webp">
 			</div>
 			<!-- レシート -->
 			<div class="footer-container_loading_receipt">
-				<img class="fluffy_slime" src="img/logos/button_loading_receipt.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+				<img class="fluffy" src="img/logos/button_loading_receipt.webp">
 			</div>
 			<!-- 同意してスタート -->
-			<div class="footer-container_loading_start">
+			<div id="accept_privacy_button" class="footer-container_loading_start item-hide">
 				<img class="fluffy_slime" src="img/logos/button_loading_start.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
 			</div>
 			<!-- 終了 -->
@@ -538,6 +538,8 @@
 		    // タイムアウト開始
 				countStart();
     		// **********
+				// 「同意してスタート」ボタンを表示
+				document.getElementById('accept_privacy_button').classList.remove('item-hide');
 			}
 			
 			// ======================
