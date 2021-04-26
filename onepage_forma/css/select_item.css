@@ -393,15 +393,62 @@ aside button {
 }
 
 /* Loading プライバシーのAcceptボタン */
-.footer-container_loading {
+.footer-container_loading_start {
   position: absolute;
-  top: 1600px;
+  top: 1260px;
   height: 150px;
   width: 1080px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.footer-container_loading_start img {
+  height: 180px;
+  margin: 0;
+  background-color: transparent;
+}
+/* Loading プライバシーのCancelボタン */
+.footer-container_loading_cancel {
+  position: absolute;
+  top: 1730px;
+  left: 800px;
+  height: 150px;
+  width: 1080px;
+}
+.footer-container_loading_cancel img {
+  height: 150px;
+  margin: 0;
+  background-color: transparent;
+}
+/* Loading プライバシーのcameraボタン */
+.footer-container_loading_camera {
+  position: absolute;
+  top: 550px;
+  left: 700px;
+  height: 150px;
+  width: 1080px;
+}
+.footer-container_loading_camera img {
+  height: 110px;
+  margin: 0;
+  background-color: transparent;
+}
+/* Loading プライバシーのレシートボタン */
+.footer-container_loading_receipt {
+  position: absolute;
+  top: 980px;
+  left: 760px;
+  height: 150px;
+  width: 1080px;
+}
+.footer-container_loading_receipt img {
+  height: 160px;
+  margin: 0;
+  background-color: transparent;
+}
+
+
+
 .box_command_loading {
   margin-left: 30px;
   margin-right: 30px;
@@ -413,6 +460,14 @@ aside button {
   background-color: transparent;
 }
 
+
+/* ***************************************** */
+/*                                           */
+/* 要素をアニメーションさせる                  */
+/* https://ics.media/entry/11336/            */
+/*                                           */
+/* ***************************************** */
+
 /* ふわふわ */
 .fluffy {
   /* background: #000;
@@ -420,56 +475,6 @@ aside button {
   height: 100px;
   margin: 100px; */
   animation: fluffy_simple 1.8s ease infinite;
-}
-@keyframes fluffy1 {
-  /******************************/
-  /* 上下 */
-  /******************************/
-  /* 0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-30px);
-  }
-  100% {
-    transform: translateY(0px);
-  } */
-
-  /******************************/
-  /* 揺れる */
-  /******************************/
-  /* 0% { transform: rotate(0deg); }
-  10% { transform: rotate(-6deg); }
-  20% { transform: rotate(7deg); }
-  35% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
-  65% { transform: rotate(-1deg); }
-  80% { transform: rotate(1deg); }
-  95% { transform: rotate(0deg); }
-100% { transform: rotate(0deg); } */
-
-
-  /******************************/
-  /* ぽよんぽよん */
-  /******************************/
-  /* 0%  { transform: scale(1.0, 1.0) translate(0, 0);}
-  15% { transform: scale(0.98, 0.9) translate(0, 5px);}
-  30% { transform: scale(1.02, 1.0) translate(0, 8px);}
-  50% { transform: scale(0.98, 1.05) translate(0, -8px);}
-  70% { transform: scale(1.0, 0.9) translate(0, 5px);}
-  100% { transform: scale(1.0, 1.0) translate(0, 0);} */
-  
-  /******************************/
-  /* バウンス */
-  /******************************/
-  /* 0% { transform:translateY(0) }
-  5% { transform:translateY(0) }
-  10% { transform:translateY(0) }
-  20% { transform:translateY(-15px) }
-  25% { transform:translateY(0) }
-  30% { transform:translateY(-15px) }
-  50% { transform:translateY(0) }
-  100% { transform:translateY(0) } */
 }
 
 /* スライムみたいに */

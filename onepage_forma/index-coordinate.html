@@ -28,7 +28,22 @@
 		<!-- ******************************************************************************* -->
 		<!-- index-loading画面 -->
     <div id="index-loading">
-	<!-- ローディングの画像のみ -->
+			<!-- カメラ -->
+			<div class="footer-container_loading_camera">
+				<img class="fluffy" src="img/logos/button_loading_camera.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- レシート -->
+			<div class="footer-container_loading_receipt">
+				<img class="fluffy" src="img/logos/button_loading_receipt.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- 同意してスタート -->
+			<div class="footer-container_loading_start">
+				<img class="fluffy" src="img/logos/button_loading_start.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- 終了 -->
+			<div class="footer-container_loading_cancel">
+				<img class="fluffy" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button" onclick="endproc_order()">
+			</div>
     </div>
 		
     <!-- indexのメイン部分 -->
@@ -510,8 +525,9 @@
 			window.onload = function() {
 				debugConsole_proc('window.onload()');
 				// index-Loadingを閉じる
-				const index_loading = document.getElementById('index-loading');
-				index_loading.classList.add('loaded');
+				// 2021/04/26 同意してスタートに変更しました
+				// const index_loading = document.getElementById('index-loading');
+				// index_loading.classList.add('loaded');
 				
 				// 初期処理
 				index_onloaded();
@@ -523,7 +539,22 @@
 				countStart();
     		// **********
 			}
-			 
+			
+			// ======================
+			// 初期処理
+			// ======================
+			// [同意して開始]が押された
+			function accept_privacy_and_start()
+			{
+				debugConsole_proc('accept privacy');
+				// index-Loadingを閉じる
+				const index_loading = document.getElementById('index-loading');
+				index_loading.classList.add('loaded');
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
+			}
 			// index.htmlがロードされた時の処理
 			function index_onloaded() {
 				debugConsole_proc('index_onloaded()');

@@ -28,21 +28,24 @@
 		<!-- ******************************************************************************* -->
 		<!-- index-loading画面 -->
     <div id="index-loading">
-			<!-- ローディングの画像のみ -->
-
-			<div class="footer-container_loading">
-				<!-- 同意してスタート -->
-				<div class="box_command_loading">
-					<!-- <img class="fluffy" src="img/logos/arrow_left.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()"> -->
-					<button class="button_command item-hide fluffy" id="accept_privacy_button" type=button onclick="accept_privacy_and_start()">同意してスタート</button>
-				</div>
-				<!-- 終了 -->
-				<div class="footer-command-area">
-					<button class="button_caution" type=button onclick="endproc_order()">終 了</button>
-				</div>
+			<!-- カメラ -->
+			<div class="footer-container_loading_camera">
+				<img class="fluffy_slime" src="img/logos/button_loading_camera.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
 			</div>
-    </div>
-		
+			<!-- レシート -->
+			<div class="footer-container_loading_receipt">
+				<img class="fluffy_slime" src="img/logos/button_loading_receipt.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- 同意してスタート -->
+			<div class="footer-container_loading_start">
+				<img class="fluffy_slime" src="img/logos/button_loading_start.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+			</div>
+			<!-- 終了 -->
+			<div class="footer-container_loading_cancel">
+				<img class="fluffy_slime" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button" onclick="endproc_order()">
+			</div>
+		</div>
+			
     <!-- indexのメイン部分 -->
     <div id="index-page" class="loaded">
 			<!-- HEADER -->
