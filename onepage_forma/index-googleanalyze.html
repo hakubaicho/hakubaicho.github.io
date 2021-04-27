@@ -17,7 +17,7 @@
 
             gtag('config', 'G-LZY8EZF1JB');
         </script>
-        
+
 		<!-- Index.html -->
 		<link rel="stylesheet" href="css/styles_coordinate.css">
 		<link rel="stylesheet" href="css/select_item.css">
@@ -941,6 +941,8 @@
 				input_size = "No Size";
         console.log(input_size);
         call_print(input_size);
+				// Googleにイベント送信
+				gtag('event', 'click', {'event_category': 'print','event_label': 'Coodinate','value': '1'});
       }
 			// **********************
 			// 各ページ共通の処理
