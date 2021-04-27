@@ -741,7 +741,7 @@
       switch(item.remark09)
       {
         case 'OVL01':
-          imgsrc_overlay = 'img/remarks/STAR-small.webp';
+          imgsrc_overlay = 'img/remarks/OSUSUME.webp';
           break;
         default:
           break;
@@ -751,6 +751,7 @@
         // imgタグを生成し、イメージを割り当て
         const imgRemark = document.createElement('img');
         imgRemark.classList.add('imgremark');
+        imgRemark.classList.add('fluffy_slime');
         imgRemark.src = imgsrc_overlay;
         div_imgRemark_container.appendChild(imgRemark);
       }

@@ -202,7 +202,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 0;
-  /* background-image : url(../img/background.png); */
+  background-image : url(../img/logos/background.webp);
 }
 #camera-tryon {
   width: 1080px;
