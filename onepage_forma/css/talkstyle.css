@@ -45,7 +45,8 @@ li.right_side {
 /* 画像のスタイル「アイコンキャラクター」 */
 .pic img{
   /* 幅だけ指定 */
-  width: 180px;
+  /* width: 180px; */
+  height: 220px;
   /* 透過する */
   background-color: transparent;
   
