@@ -31,11 +31,11 @@
     <div id="index-loading">
 			<!-- カメラ -->
 			<div class="footer-container_loading_camera">
-				<img class="fluffy_slime" src="img/logos/button_loading_camera.webp">
+				<img class="fluffy_slime item-hide" id="accept_privacy_camera" src="img/logos/button_loading_camera.webp">
 			</div>
 			<!-- レシート -->
 			<div class="footer-container_loading_receipt">
-				<img class="fluffy_slime" src="img/logos/button_loading_receipt.webp">
+				<img class="fluffy_slime item-hide" id="accept_privacy_receipt" src="img/logos/button_loading_receipt.webp">
 			</div>
 			<!-- 同意してスタート -->
 			<div class="footer-container_loading_start">
@@ -631,6 +631,8 @@
 				// 「同意してスタート」ボタンを表示
 				document.getElementById('accept_privacy_button').classList.remove('item-hide');
 				document.getElementById('accept_privacy_button_b').classList.remove('item-hide');
+				document.getElementById('accept_privacy_camera').classList.remove('item-hide');
+				document.getElementById('accept_privacy_receipt').classList.remove('item-hide');
 			}
 			// ======================
 			// 初期処理
