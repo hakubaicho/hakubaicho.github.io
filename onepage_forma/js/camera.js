@@ -299,8 +299,8 @@
   // カウントダウン音声
   function play_countdown() {
     // 次の操作をわかりやすくする。
-    document.getElementById('btn_image_shutter').classList.remove('fluffy');
-    document.getElementById('btn_image_save').classList.remove('fluffy');
+    document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
+    document.getElementById('btn_image_save').classList.remove('fluffy_slime');
     // videoタグの表示
     video.classList.remove("item-hide");
     video.classList.add("item-show");
@@ -338,8 +338,8 @@
     take_Photo();
     // -----------------------------------
     // 次の操作をわかりやすくする。
-    document.getElementById('btn_image_shutter').classList.remove('fluffy');
-    document.getElementById('btn_image_save').classList.add('fluffy');
+    document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
+    document.getElementById('btn_image_save').classList.add('fluffy_slime');
    }, false);
 
   // シャッター音声完了時
@@ -376,8 +376,8 @@
     countReset();
     // **********
     // 次の操作をわかりやすくする。
-    document.getElementById('btn_image_shutter').classList.remove('fluffy');
-    document.getElementById('btn_image_save').classList.remove('fluffy');
+    document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
+    document.getElementById('btn_image_save').classList.remove('fluffy_slime');
     Avatar_TryOnProc();
   }
 

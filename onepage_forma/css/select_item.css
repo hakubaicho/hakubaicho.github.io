@@ -458,7 +458,9 @@ aside button {
   margin: 0;
   background-color: transparent;
 }
-
+/* ***************** */
+/* コマンドボタン画像 */
+/* ***************** */
 .cmd_button_reselect {
   margin: 20px;
   background-color: transparent;
@@ -468,6 +470,12 @@ aside button {
   margin: 20px;
   background-color: transparent;
   width: 300px;
+}
+.cmd_button_reusepicture {
+  margin: 20px;
+  background-color: transparent;
+  width: 229px;
+  height: 
 }
 .cmd_button_takepicture {
   margin: 20px;
