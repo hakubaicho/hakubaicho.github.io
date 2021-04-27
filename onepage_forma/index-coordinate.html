@@ -52,7 +52,7 @@
     </div>
 		<!-- プライバシーポリシー -->
 		<div id="privacypolicy_page" class="loaded">
-			<div class="privacy-container">
+			<div class="privacy-container" id="privacy_scroll_area">
 				<!-- <p>【原文】https://about.formatech.com/privacy-policy.html</p> -->
 				<p class="privacy_header">Formaプライバシーポリシー</p>
 				<p class="privacy_header_date">発効日：2018年7月30日</p>
@@ -614,6 +614,15 @@
 			// カテゴリのスクロール検出
 			const elem_scroll_category = document.getElementById('accordionbox')
 			elem_scroll_category.onscroll = function()
+			{
+				// **********
+				// タイムアウト
+				countReset();
+				// **********
+			}
+			// プライバシーポリシーのスクロール検出
+			const elem_scroll_privacy = document.getElementById('privacy_scroll_area')
+			elem_scroll_privacy.onscroll = function()
 			{
 				// **********
 				// タイムアウト
