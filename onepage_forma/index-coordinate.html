@@ -41,7 +41,7 @@
 			</div>
 			<!-- 同意してスタート -->
 			<div class="footer-container_loading_start">
-				<img class="fluffy item-hide" src="img/logos/button_loading_start.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
+				<img class="" src="img/logos/button_loading_start.webp" id="accept_privacy_button" onclick="accept_privacy_and_start()">
 			</div>
 			<!-- プライバシー遷移 -->
 			<div class="footer-container_loading_privacy">
@@ -661,6 +661,9 @@
 				document.getElementById('accept_privacy_button_b').classList.remove('item-hide');
 				document.getElementById('accept_privacy_camera').classList.remove('item-hide');
 				document.getElementById('accept_privacy_receipt').classList.remove('item-hide');
+				// 動かす
+				document.getElementById('accept_privacy_button').classList.add('fluffy');
+				document.getElementById('accept_privacy_button_b').classList.add('fluffy');
 			}
 			// ======================
 			// 初期処理
