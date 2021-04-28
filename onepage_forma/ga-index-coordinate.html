@@ -897,7 +897,7 @@
 
 				// Googleにイベント送信
 				const item_no = GetSelected_Item().designID;
-				gtag('event', 'retryon_coordinate', {'event_category': item_no,'event_label': '','value': '1'});
+				gtag('event', 'retryon_coordinate', {'event_category': item_no,'event_label': 'label_1','value': '1'});
 				// すぐにTryOn
 				Reuse_Avatar_TryOnProc();
 			}
@@ -905,7 +905,7 @@
 			function click_PictureTryOn() {
 				// Googleにイベント送信
 				const item_no = GetSelected_Item().designID;
-				gtag('event', 'tryon_coordinate', {'event_category': item_no,'event_label': '','value': '1'});
+				gtag('event', 'tryon_coordinate', {'event_category': item_no,'event_label': 'label_2','value': '1'});
 				// TryOn
 				btnimg_click_save();
 			}
