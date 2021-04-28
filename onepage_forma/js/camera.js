@@ -50,6 +50,20 @@
   // 現在のStream
   let curSTREAM = null;
 
+  
+  //---------------------------------------------
+  // プロパティ
+  //---------------------------------------------
+  let isTakePicture = false;      // 撮影済みか(T:済み/F:未撮影)
+  function get_isTakePicture()
+  {
+    return isTakePicture;
+  }
+  function clear_isTakePicture()
+  {
+    isTakePicture = false;
+  }
+
   // ===============================================================
   //
   // カメラの処理
@@ -170,6 +184,9 @@
     // canvasタグの表示
     $canvas_Photo.classList.remove("item-hide");
     $canvas_Photo.classList.add("item-show");
+
+    // 撮影済みにする
+    isTakePicture = true;
   }
   //--------------------------------------------
   // メディアデバイスを取得する
@@ -301,6 +318,7 @@
     // 次の操作をわかりやすくする。
     document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
     document.getElementById('btn_image_save').classList.remove('fluffy_slime');
+    
     // videoタグの表示
     video.classList.remove("item-hide");
     video.classList.add("item-show");
@@ -340,6 +358,7 @@
     // 次の操作をわかりやすくする。
     document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
     document.getElementById('btn_image_save').classList.add('fluffy_slime');
+
    }, false);
 
   // シャッター音声完了時
@@ -375,6 +394,15 @@
     // タイムアウト
     countReset();
     // **********
+
+    // 未撮影時は終わる
+    if(!isTakePicture)
+    {
+      alert(
+        "[撮影]ボタンをおしてください。"
+        );
+      return;
+    }
     // 次の操作をわかりやすくする。
     document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
     document.getElementById('btn_image_save').classList.remove('fluffy_slime');
