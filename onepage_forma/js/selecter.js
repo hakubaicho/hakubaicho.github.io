@@ -876,10 +876,12 @@
     // 現在の付加されているcurrentを外す
     thumbnails.forEach((thumbnail) => {
       thumbnail.classList.remove('current');
+      thumbnail.classList.remove('fluffy');
     });
     // currentの更新
     currentIndex = items[index].location;
     thumbnails[currentIndex].classList.add('current');
+    thumbnails[currentIndex].classList.add('fluffy');
 
     // カメラの開始
     const video = document.querySelector("#camera");
@@ -928,6 +930,7 @@
     // 現在の付加されているcurrentを外す
     thumbnails.forEach((thumbnail) => {
       thumbnail.classList.remove('current');
+      thumbnail.classList.remove('fluffy');
     });
     // currentの更新
     currentIndex = -1;
