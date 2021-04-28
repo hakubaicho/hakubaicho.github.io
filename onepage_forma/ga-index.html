@@ -145,11 +145,11 @@
 			</div>
 			<!-- 同意してスタート -->
 			<div class="footer-container_loading_start">
-				<img class="fluffy" src="img/logos/button_loading_start.webp" id="accept_privacy_button_b" onclick="accept_privacy_and_start()">
+				<img class="" src="img/logos/button_loading_start.webp" id="accept_privacy_button_b" onclick="accept_privacy_and_start()">
 			</div>
 			<!-- 終了 -->
 			<div class="footer-container_loading_cancel">
-				<img class="fluffy" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button_b" onclick="endproc_order()">
+				<img class="" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button_b" onclick="endproc_order()">
 			</div>
 		</div>
     <!-- indexのメイン部分 -->
@@ -376,7 +376,7 @@
 						<img class="fluffy_slime" src="img/logos/cmd_camera_shutter.webp" id="btn_image_shutter" onclick="btnimg_click_shutter()">
 					</div>
 					<div class="box_command">
-						<img src="img/logos/cmd_camera_right.webp" id="btn_image_save" onclick="btnimg_click_save()">
+						<img src="img/logos/cmd_camera_right.webp" id="btn_image_save" onclick="click_PictureTryOn()">
 					</div>
 				</div>
 				<div hidden>
@@ -661,7 +661,6 @@
 				document.getElementById('cancel_privacy_button').classList.add('fluffy');
 				document.getElementById('accept_privacy_camera').classList.add('fluffy_slime');
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
-				
 			}
 			// ======================
 			// 初期処理
@@ -852,7 +851,7 @@
 			// **********************
 			// ページ内遷移
 			// **********************
-			// アバターの再利用
+			// アバターの再利用のTryOn
 			function click_noPictureTryOn() {
 			 
 				// Formaに接続できていない場合の処理
@@ -877,8 +876,17 @@
 				Set_itemUUid(GetSelected_Item().uuid);
 				console.log(`uuid_try_item = ${GetSelected_Item().uuid}`);
 
+				// Googleにイベント送信
+				gtag('event', 'retryon_tshirt', {'event_category': '','event_label': '','value': '1'});
 				// すぐにTryOn
 				Reuse_Avatar_TryOnProc();
+			}
+			// 写真撮影のTryOn
+			function click_PictureTryOn() {
+				// Googleにイベント送信
+				gtag('event', 'tryon_tshirt', {'event_category': '','event_label': '','value': '1'});
+				// TryOn
+				btnimg_click_save();
 			}
 			//------------------------
 			// カメラページのプライバシーポリシー
