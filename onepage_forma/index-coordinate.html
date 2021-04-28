@@ -7,7 +7,7 @@
 			ほかにいいアイデアったらお願いします。
 		-->
 		<meta name="viewport" content="width=1080,initial-scale=1">
-		<title>アイテム選択画面</title>
+		<title>coodinate</title>
 		
 		<!-- Index.html -->
 		<link rel="stylesheet" href="css/styles_coordinate.css">
@@ -379,7 +379,7 @@
 						<img class="fluffy_slime" src="img/logos/cmd_camera_shutter.webp" id="btn_image_shutter" onclick="btnimg_click_shutter()">
 					</div>
 					<div class="box_command">
-						<img src="img/logos/cmd_camera_right.webp" id="btn_image_save" onclick="btnimg_click_save()">
+						<img src="img/logos/cmd_camera_right.webp" id="btn_image_save" onclick="click_PictureTryOn()">
 					</div>
 				</div>
 				<div hidden>
@@ -486,7 +486,7 @@
 									<table hidden>
 										<tr>
 											<td>
-												<span class="size-category">Ledies</span>
+												<span class="size-category">Ladies</span>
 											</td>
 											<td>
 												<label><input type="radio" name="size" value="Ladies) M"><span class="size-caption">M</span></label>
@@ -667,6 +667,8 @@
 				document.getElementById('cancel_privacy_button').classList.add('fluffy');
 				document.getElementById('accept_privacy_camera').classList.add('fluffy_slime');
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
+				// 写真撮影フラグをクリア
+				clear_isTakePicture();
 			}
 			// ======================
 			// 初期処理
@@ -859,7 +861,7 @@
 			// **********************
 			// ページ内遷移
 			// **********************
-			// アバターの再利用
+			// アバターの再利用のTryOn
 			function click_noPictureTryOn() {
 			 
 				// Formaに接続できていない場合の処理
@@ -886,6 +888,19 @@
 
 				// すぐにTryOn
 				Reuse_Avatar_TryOnProc();
+			}
+			// 写真撮影のTryOn
+			function click_PictureTryOn() {
+				// 未撮影時は終わる
+				if(!get_isTakePicture())
+				{
+					alert(
+						"[撮影]ボタンをおしてください。"
+						);
+					return;
+				}
+				// TryOn
+				btnimg_click_save();
 			}
 			//------------------------
 			// カメラページのプライバシーポリシー
@@ -954,6 +969,8 @@
 				// setCategoryListTree_radiobutton();
 				setCategoryListTree_checkbox();
 				setItemListTree(['','','']);
+				// 写真撮影フラグをクリア
+				clear_isTakePicture();
 
 				// Avatarが存在すれば、前回の写真からを有効にする
 				document.getElementById('avataruuid').textContent = Get_avatarUUid();

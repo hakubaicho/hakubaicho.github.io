@@ -678,6 +678,8 @@
 				document.getElementById('cancel_privacy_button').classList.add('fluffy');
 				document.getElementById('accept_privacy_camera').classList.add('fluffy_slime');
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
+				// 写真撮影フラグをクリア
+				clear_isTakePicture();
 			}
 			// ======================
 			// 初期処理
@@ -903,6 +905,14 @@
 			}
 			// 写真撮影のTryOn
 			function click_PictureTryOn() {
+				// 未撮影時は終わる
+				if(!get_isTakePicture())
+				{
+					alert(
+						"[撮影]ボタンをおしてください。"
+						);
+					return;
+				}
 				// Googleにイベント送信
 				const item_no = GetSelected_Item().designID;
 				gtag('event', 'tryon_coordinate', {'event_category': item_no,'event_label': 'label_2','value': '1'});
@@ -980,6 +990,8 @@
 				// setCategoryListTree_radiobutton();
 				setCategoryListTree_checkbox();
 				setItemListTree(['','','']);
+				// 写真撮影フラグをクリア
+				clear_isTakePicture();
 
 				// Avatarが存在すれば、前回の写真からを有効にする
 				document.getElementById('avataruuid').textContent = Get_avatarUUid();
