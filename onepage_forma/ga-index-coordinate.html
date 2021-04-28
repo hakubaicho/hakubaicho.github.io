@@ -895,14 +895,16 @@
 				console.log(`uuid_try_item = ${GetSelected_Item().uuid}`);
 
 				// Googleにイベント送信
-				gtag('event', 'retryon_coordinate', {'event_category': '','event_label': '','value': '1'});
+				const item_no = GetSelected_Item().designID;
+				gtag('event', 'retryon_coordinate', {'event_category': item_no,'event_label': '','value': '1'});
 				// すぐにTryOn
 				Reuse_Avatar_TryOnProc();
 			}
 			// 写真撮影のTryOn
 			function click_PictureTryOn() {
 				// Googleにイベント送信
-				gtag('event', 'tryon_coordinate', {'event_category': '','event_label': '','value': '1'});
+				const item_no = GetSelected_Item().designID;
+				gtag('event', 'tryon_coordinate', {'event_category': item_no,'event_label': '','value': '1'});
 				// TryOn
 				btnimg_click_save();
 			}
@@ -956,7 +958,8 @@
         call_print(input_size);
 
 				// Googleにイベント送信
-				gtag('event', 'print_coordinate', {'event_category': '','event_label': '','value': '1'});
+				const item_no = GetSelected_Item().designID;
+				gtag('event', 'print_coordinate', {'event_category': item_no,'event_label': '','value': '1'});
       }
 			// **********************
 			// 各ページ共通の処理
