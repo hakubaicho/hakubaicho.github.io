@@ -549,6 +549,21 @@ aside button {
   margin: 0;
   background-color: transparent;
 }
+/* カメラ画面でのふわふわ注意３ */
+.camera_caution_container_4 {
+  position: absolute;
+  top: 850px;
+  left: 30px;
+  height: 150px;
+  width: 1080px;
+  z-index: 100;
+}
+.camera_caution_container_4 img {
+  /* height: 250px; */
+  width: 350px;
+  margin: 0;
+  background-color: transparent;
+}
 
 
 /* ***************************************** */
