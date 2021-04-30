@@ -66,6 +66,14 @@ button.cmd-button:hover {
 #list_of_avaters li.current img {
   border: 1px solid tomato;
 }
+
+/* 選択中の画像はhoverと同じ */
+#list_of_avaters li.failed {
+  opacity: 1;
+}
+#list_of_avaters li.failed img {
+  border: 5px solid red;
+}
 /* ************** */
 /* Item選択 */
 /* ************** */

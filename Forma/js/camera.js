@@ -46,6 +46,19 @@
     };
     // 現在のStream
     let curSTREAM = null;
+
+    let isTakePicture = false;
+    //---------------------------------------------
+    // プロパティ
+    //---------------------------------------------
+    function get_isTakePicture()
+    {
+      return isTakePicture;
+    }
+    function clear_isTakePicture()
+    {
+      isTakePicture = false;
+    }
     //---------------------------------------------
     // [event] ページ読み込み完了
     //---------------------------------------------

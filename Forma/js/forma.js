@@ -189,7 +189,7 @@
     }
 
     // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/avatars/?page=1&page_size=100" ;
+    const requestUrl = "https://social.isabq.com/api/v1/avatars/?page=1&page_size=600" ;
     //Ajax通信用のオブジェクトを作成
     const xhr =new XMLHttpRequest();
     
@@ -264,7 +264,8 @@
         //      status_message: "Unable to process image."
         if(result.status !== 'processed'){
           // 非表示
-          li.style.display = 'none';
+          // li.style.display = 'none';
+          li.classList.add('failed');
         }
         
         // 現在の選択中
@@ -313,7 +314,7 @@
     }
 
     // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/items/?page=1&page_size=100" ;
+    const requestUrl = "https://social.isabq.com/api/v1/items/?page=2&page_size=100" ;
     //Ajax通信用のオブジェクトを作成
     const xhr =new XMLHttpRequest();
     
