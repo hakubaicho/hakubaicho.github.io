@@ -501,6 +501,55 @@ aside button {
   background-color: transparent;
 }
 
+/* **************************************** */
+/* カメラ画面でのふわふわ注意喚起 */
+/* **************************************** */
+/* カメラ画面でのふわふわ注意１ */
+.camera_caution_container_1 {
+  position: absolute;
+  top: 750px;
+  left: 730px;
+  height: 150px;
+  width: 1080px;
+  z-index: 100;
+}
+.camera_caution_container_1 img {
+  /* height: 250px; */
+  width: 350px;
+  margin: 0;
+  background-color: transparent;
+}
+/* カメラ画面でのふわふわ注意２ */
+.camera_caution_container_2 {
+  position: absolute;
+  top: 300px;
+  left: 730px;
+  height: 150px;
+  width: 1080px;
+  z-index: 100;
+}
+.camera_caution_container_2 img {
+  /* height: 250px; */
+  width: 350px;
+  margin: 0;
+  background-color: transparent;
+}
+/* カメラ画面でのふわふわ注意３ */
+.camera_caution_container_3 {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  height: 150px;
+  width: 1080px;
+  z-index: 100;
+}
+.camera_caution_container_3 img {
+  /* height: 250px; */
+  width: 350px;
+  margin: 0;
+  background-color: transparent;
+}
+
 
 /* ***************************************** */
 /*                                           */
@@ -551,4 +600,22 @@ aside button {
   50%, 70% {
     transform: scale(1.1);
   }
+}
+.fluffy_cloud {
+  animation: fluffy_cloud 3s ease infinite;
+}
+
+@keyframes fluffy_cloud {
+  /* 0% { transform:translateY(0) }
+  5% { transform:translateY(0) }
+  10% { transform:translateY(0) }
+  20% { transform:translateY(-15px) }
+  25% { transform:translateY(0) }
+  30% { transform:translateY(-15px) }
+  50% { transform:translateY(0) }
+  100% { transform:translateY(0) } */
+  0% { transform: translateY(0) scaleY(1.0)}
+  33.33333% { transform: translateY(-10px) scaleY(1.1)}
+  66.66667% { transform: translateY(0) scaleY(1.2)}
+  100% { transform: translateY(0) scaleY(1.0)}
 }
