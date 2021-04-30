@@ -57,14 +57,14 @@ button.cmd-button:hover {
   opacity: 1;
 }
 #list_of_avaters li:hover img {
-  border: 1px solid yellow;
+  border: 3px dotted blue;
 }
 /* 選択中の画像はhoverと同じ */
 #list_of_avaters li.current {
   opacity: 1;
 }
 #list_of_avaters li.current img {
-  border: 1px solid tomato;
+  border: 3px solid blue;
 }
 
 /* 選択中の画像はhoverと同じ */
@@ -95,7 +95,7 @@ button.cmd-button:hover {
   opacity: 1;
 }
 #list_of_items li.current img {
-  border: 1px solid tomato;
+  border: 3px solid blue;
 }
 
 /* アバターリスト */
