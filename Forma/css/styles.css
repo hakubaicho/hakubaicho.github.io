@@ -101,11 +101,11 @@ button.cmd-button:hover {
 /* アバターリスト */
 #list_of_avaters {
   display: grid;
-  grid-template-columns: repeat(5, 150px);
+  grid-template-columns: repeat(3, 300px);
   gap: 5px;
 }
 #list_of_avaters img {
-  width: 150px;
+  width: 300px;
 }
 
 /* アイテムリスト */

@@ -248,6 +248,10 @@
       results.forEach((result, index) => {
         // 分解
         const img = document.createElement('img');
+        // lazy で遅延読み込み
+        img.loading = 'lazy';
+        // autoだと遅延取得しない
+        // img.loading = 'auto';
         const media = result.media;
         
         // 画像のプロパティにアバターデータを追加
