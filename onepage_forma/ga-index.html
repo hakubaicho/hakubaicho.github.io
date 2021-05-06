@@ -916,6 +916,8 @@
 						);
 					return;
 				}
+				// ライトOff
+				fromHTML_Light_Off();
 				// Googleにイベント送信
 				const item_no = GetSelected_Item().designID;
 				gtag('event', 'tryon_tshirt', {'event_category': item_no,'label_2': '','value': '1'});

@@ -361,9 +361,6 @@
     // 次の操作をわかりやすくする。
     document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
     document.getElementById('btn_image_save').classList.add('fluffy_slime');
-
-    // ライトOff
-    fromHTML_Light_Off();
    }, false);
 
   // シャッター音声完了時
