@@ -796,7 +796,6 @@
 				countReset();
 				// **********
 				debugConsole_proc('jumpto_Camera()');
-				
 				// Formaに接続できていない場合の処理
 				if(!Get_logInStatus())
 				{
@@ -982,6 +981,8 @@
 				// タイムアウト完了
 				countStop();
 				// **********
+				// ライトOFF
+				fromHTML_Light_Off();
 				// 現在のItem・Avatarをクリアする。
 				Set_itemUUid('');
 	      Set_avatarUUid('');
@@ -1021,6 +1022,8 @@
 			// **********************
 			// index.htmlの表示
 			function show_index() {
+				// ライトOff
+				fromHTML_Light_Off();
 				// 対象ページを開く
 				document.getElementById('index-page').classList.remove('loaded');
 			}
@@ -1031,11 +1034,14 @@
 			}
 			// camera.indexの表示
 			function show_camera() {
+				// ライトOn
+				fromHTML_Light_On();
 				// 対象ページを開く
 				// document.getElementById('modal').classList.remove('hidden');
 				// document.getElementById('mask').classList.remove('hidden');
 				document.getElementById('btn_image_shutter').classList.add('fluffy_slime');
 				document.getElementById('btn_image_save').classList.remove('fluffy_slime');
+
 			}
 			// camera.indexの非表示
 			function hide_camera() {

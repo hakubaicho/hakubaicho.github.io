@@ -245,6 +245,36 @@
     }
     return ret;
   }
+  //
+  // ライトONを要求します。
+  //
+  function fromHTML_Light_On()
+  {
+    console.log("light on");
+    try
+    {
+      android.fromHTML_Light_On();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
+  //
+  // ライトOFFを要求します。
+  //
+  function fromHTML_Light_Off()
+  {
+    console.log("light off");
+    try
+    {
+      android.fromHTML_Light_Off();
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+  }
   //----------------------------------------------------
   // KEYTOKENを取得します。
   //----------------------------------------------------
