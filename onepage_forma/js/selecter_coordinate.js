@@ -1247,10 +1247,10 @@
     // **********
 
     // クリック対象でなければ終了
-    if(items[index].remark06 != '')
-    {
-      return;
-    }
+    // if(items[index].remark06 != '')
+    // {
+    //   return;
+    // }
     // 選択中のボタン表示
     if(items[index].tag1 =='')
     {
