@@ -174,6 +174,36 @@
   //********************************** */
   const items = [
     // *******************************************************
+    // ComingSoon
+    // *******************************************************
+    new ClothItem('婦人おすすめ','カットソー','','C','L0011','IY3Dｵｰｶﾞﾆｯｸ半袖ﾊﾟﾈﾙﾎﾞｰ','1419','60587633','DK青','2021/5/8','1','1','OVL01','2','CL0011.webp','','I-CL0011.jpg','cda6eafe-ed0e-48aa-b2d4-41d4412ac7d8'),
+    new ClothItem('婦人おすすめ','カットソー','','C','L0021','IYBC冷感ﾌﾚﾝﾁT','1639','60587641','DK青','2021/5/9','1','1','OVL01','2','CL0021.webp','','I-CL0021.jpg','c909030c-be24-4edc-99b1-112a8ebd784c'),
+    new ClothItem('婦人おすすめ','ニット','','C','L0024','IYUVｸﾙｰﾈｯｸｶｰﾃﾞｨｶﾞﾝ','3289','62485002','黒','2021/5/10','1','1','OVL01','2','CL0024.webp','','I-CL0024.jpg','3671dfc7-a32b-48b8-be18-3f5ea0d06318'),
+    new ClothItem('婦人おすすめ','ニット','','C','L0025','IYUVｸﾙｰﾈｯｸｶｰﾃﾞｨｶﾞﾝ','3289','62485002','LT灰','2021/5/11','1','1','OVL01','2','CL0025.webp','','I-CL0025.jpg','105ee9f6-fa36-4830-b82e-f3b69613f220'),
+
+    new ClothItem('婦人ｶｼﾞｭｱﾙ','カットソー','','C','L0001','IY3Dｵｰｶﾞﾆｯｸ7分袖T','1089','60587624','DK青','2021/5/9','1','1','','1','CL0001.webp','','I-CL0001.jpg','c400efa9-6cb2-4e1a-8f50-5890a847c0a6'),
+    new ClothItem('婦人ｶｼﾞｭｱﾙ','カットソー','','C','L0002','IY3Dｵｰｶﾞﾆｯｸ7分袖ﾎﾞｰﾄT','1089','60587625','黒','2021/5/10','1','1','','1','CL0002.webp','','I-CL0002.jpg','c5a00e2f-79d6-4fb7-aaf3-75d9dc9d0dad'),
+    new ClothItem('婦人ｶｼﾞｭｱﾙ','カットソー','','C','L0003','IY3Dｵｰｶﾞﾆｯｸﾀﾝｸﾄｯﾌﾟ','869','60587636','黒','2021/5/11','1','1','','1','CL0003.webp','','I-CL0003.jpg','cfd9d094-a798-4e43-b033-3ffa95ac051d'),
+    new ClothItem('婦人ｶｼﾞｭｱﾙ','カットソー','','C','L0004','IY3Dｵｰｶﾞﾆｯｸﾀﾝｸﾄｯﾌﾟ','869','60587636','DK青','2021/5/12','1','1','','1','CL0004.webp','','I-CL0004.jpg','5033b4c1-4db5-47dd-bb2a-72de5c69b0f7'),
+
+    new ClothItem('婦人ｷﾞｬﾛｰﾘｱ','シャツ','','C','L1001','ｳｴｽﾄﾘﾎﾞﾝｼｬﾂ','4389','60426266','LT赤','2021/5/9','1','1','','1','CL1001.webp','','I-CL1001.jpg','ad38d7d7-9cb5-4be8-977e-56dcf29ae816'),
+    new ClothItem('婦人ｷﾞｬﾛｰﾘｱ','シャツ','','C','L1002','ｳｴｽﾄﾘﾎﾞﾝｼｬﾂ','4389','60426266','LT緑','2021/5/10','1','1','','1','CL1002.webp','','I-CL1002.jpg','bea50b99-1c81-463c-a2ee-0b88b7c43b02'),
+    new ClothItem('婦人ｷﾞｬﾛｰﾘｱ','シャツ','','C','L1003','ｳｴｽﾄﾘﾎﾞﾝｼｬﾂ','4389','60426266','DK青','2021/5/11','1','1','','1','CL1003.webp','','I-CL1003.jpg','33e2c4c3-4686-4688-886f-8fd8028750e9'),
+    new ClothItem('婦人ｷﾞｬﾛｰﾘｱ','シャツ','','C','L1004','ｳｴｽﾄﾘﾎﾞﾝｼｬﾂ','4389','60426266','V青','2021/5/12','1','1','','1','CL1004.webp','','I-CL1004.jpg','87cbfa6f-2090-4e35-b9d6-04b226a15e42'),
+
+
+    new ClothItem('紳士ｶｼﾞｭｱﾙ','カットソー','','C','M0001','IYおうちﾄﾞﾗｲｽﾀﾝﾄﾞJK','3289','75085841','黒','2021/5/9','1','1','','3','CM0001.webp','','I-CM0001.jpg','b625f639-812d-4748-abb0-a69f260a232f'),
+    new ClothItem('紳士ｶｼﾞｭｱﾙ','カットソー','','C','M0002','IYおうちﾄﾞﾗｲｽﾀﾝﾄﾞJK','3289','75085841','DP灰','2021/5/10','1','1','','3','CM0002.webp','','I-CM0002.jpg','1056f502-4e26-431c-925b-29f14a26fd7f'),
+    new ClothItem('紳士ｶｼﾞｭｱﾙ','カットソー','','C','M0003','IYおうちﾄﾞﾗｲｽﾀﾝﾄﾞJK','3289','75085841','V灰','2021/5/11','1','1','','3','CM0003.webp','','I-CM0003.jpg','b0462139-aeb6-47bc-b724-49cb5729c62c'),
+    new ClothItem('紳士ｶｼﾞｭｱﾙ','カットソー','','C','M0005','IYおうちﾄﾞﾗｲﾌﾙｼﾞｯﾌﾟﾊﾟｰｶｰ','3289','75085842','黒','2021/5/12','1','1','','3','CM0005.webp','','I-CM0005.jpg','bc68c8ad-cc1c-43a9-9a2b-0c5cbf45ecf8'),
+
+    new ClothItem('紳士ﾋﾞｼﾞﾈｽ','シャツ','','C','M1001','7PL超形安ﾚｷﾞｭﾗｰ 白BD','3289','73035155','白','2021/5/9','1','1','','3','CM1001.webp','','I-CM1001.jpg','1f601716-0e2c-4654-9b7b-d46c310d2e2f'),
+    new ClothItem('紳士ﾋﾞｼﾞﾈｽ','シャツ','','C','M1002','BE抗ｳｲﾙｽ21S BD','2189','73035176','LT灰','2021/5/10','1','1','','3','CM1002.webp','','I-CM1002.jpg','957004c3-2d14-491e-91ae-9f630374247c'),
+    new ClothItem('紳士ﾋﾞｼﾞﾈｽ','シャツ','','C','M1003','BE抗ｳｲﾙｽ21S BD','2189','73035176','白','2021/5/11','1','1','','3','CM1003.webp','','I-CM1003.jpg','47dbaa90-c019-478d-97c9-7d37803e45b7'),
+    new ClothItem('紳士ﾋﾞｼﾞﾈｽ','シャツ','','C','M1004','BE抗ｳｲﾙｽ21S BD','2189','73035176','DP青','2021/5/12','1','1','','3','CM1004.webp','','I-CM1004.jpg','2d9fc525-aeb5-4698-9531-4c6cb4c0453f'),
+
+
+    // *******************************************************
     // おすすめ 婦人服
     // *******************************************************
     new ClothItem('婦人おすすめ','カットソー','','C','L0011','IY3Dｵｰｶﾞﾆｯｸ半袖ﾊﾟﾈﾙﾎﾞｰ','1419','60587633','DK青','','1','1','OVL01','2','CL0011.webp','','I-CL0011.jpg','cda6eafe-ed0e-48aa-b2d4-41d4412ac7d8'),
@@ -1003,6 +1033,7 @@
   // [Tree]アイテムリストを生成します。
   //--------------------------------------------
   function setItemListTree(select_tag) {
+    const startTime = performance.now(); // 開始時間
     // **********
     // タイムアウト
     countReset();
@@ -1172,6 +1203,12 @@
         default:
           break;
       }
+      // 販売日付チェック
+      if(!checkPublishDate(item.remark06))
+      {
+        imgsrc_overlay = 'img/remarks/pop_nyuuka_machi.png';
+      }
+
       if(imgsrc_overlay != '')
       {
         // imgタグを生成し、イメージを割り当て
@@ -1181,9 +1218,24 @@
         imgRemark.src = imgsrc_overlay;
         div_imgRemark_container.appendChild(imgRemark);
       }
+      //----------------------------------
+      // 在庫注意画像の表示
+      //----------------------------------    
+      if(!checkItemStocks(item.janCode,item.colorCode))
+      {
+        // imgタグを生成し、イメージを割り当て
+        const imgStockCaution = document.createElement('img');
+        imgStockCaution.classList.add('imgstockcaution');
+        // imgStockCaution.classList.add('fluffy_slime');
+        imgStockCaution.src = 'img/remarks/pop_sold_out.png';
+        div_imgRemark_container.appendChild(imgStockCaution);
+      }
+      
       // 次！
       location++;
     });
+    const endTime = performance.now(); // 終了時間
+    console.log("checkStocks : " + (endTime - startTime) + "ms !!"); // 何ミリ秒かかったかを表示する
   }
   //--------------------------------------------
   // アイテムが選択された時の処理
@@ -1896,6 +1948,55 @@
     location.href='order.html'
   }
 
+  // 日付をYYYY-MM-DDの書式で返すメソッド
+  function checkPublishDate(stringDate) {
+
+    let checkOK = true;
+    // 本日の日付作成
+    dt = new Date();
+    const y = dt.getFullYear();
+    const m = ('00' + (dt.getMonth()+1)).slice(-2);
+    const d = ('00' + dt.getDate()).slice(-2);
+
+    // パラメータ日付
+    const params = stringDate.split('/');
+    if(params.length == 3)
+    {
+      let paramY = 0;
+      let paramM = 0;
+      let paramD = 0;
+      try {
+        paramY = Number(params[0]);
+        paramM = Number(params[1]);
+        paramD = Number(params[2]);
+        // 日付が有効なら
+        checkOK = false;
+        if(y >= paramY){
+          if(m >= paramM){
+            if(d >= paramD){
+              checkOK = true;
+            }
+          }
+        }
+      }
+      catch {
+      }
+    }
+    return checkOK;
+  }
+  function initItems()
+  {
+    items.forEach((item, index) => {
+
+      // 発売日以前をチェックする
+      if(!checkPublishDate(item.remark06))
+      {
+        item.tag3 = item.tag2;
+        item.tag2 = item.tag1;
+        item.tag1 = "Coming Soon";
+      }
+    });
+  }
   //--------------------------------------------
   // 初期処理
   //--------------------------------------------
@@ -1909,8 +2010,13 @@
   );
   selectedItem.clear_img_src();
   currentIndex = -1;
+
+  // アイテムの初期処理
+  initItems();
   // カテゴリーリストの作成
   setCategoryListTree_checkbox();
   // 対象アイテムの表示
   setItemListTree(['','','']);
+
+  checkPublishDate('2021/5/3');
 }
