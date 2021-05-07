@@ -684,10 +684,19 @@
 				// **********
 			}
 		</script>
-		<script type="text/javascript" src="js/selecter_coordinate.js?ver=1.2" charset="utf-8"></script>
-		<script type="text/javascript" src="js/connect.js?ver=1.1" charset="utf-8"></script>
-		<script type="text/javascript" src="js/camera.js?ver=1.1" charset="utf-8"></script>
-		<script type="text/javascript" src="js/forma.js?ver=1.1" charset="utf-8"></script>
+		<!-- キャッシュさせないよ。 -->
+		<script>
+			document.write(
+				'<script type="text/javascript" src="js/selecter_coordinate.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/connect.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/camera.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/forma.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n"					
+			);
+		</script>
+		<!-- <script type="text/javascript" src="js/selecter_coordinate.js?ver=1.2" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/connect.js?ver=1.1" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/camera.js?ver=1.1" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/forma.js?ver=1.1" charset="utf-8"></script> -->
 		<script>
 			// **********************
 			// ページロード時の処理
