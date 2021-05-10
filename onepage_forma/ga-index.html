@@ -19,18 +19,38 @@
 				gtag('config', 'G-LZY8EZF1JB');
 		</script>
 
+		<!-- ********************************* -->
+		<!-- CSS をキャッシュが効く読み込み方。 -->
 		<!-- Index.html -->
-		<link rel="stylesheet" href="css/styles.css">
-		<link rel="stylesheet" href="css/select_item.css">
-		<link rel="stylesheet" href="css/accordion_check.css">
-		<link rel="stylesheet" href="css/accordion_radio.css">
+		<!-- <link rel="stylesheet" href="css/styles.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/select_item.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/accordion_check.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/accordion_radio.css?ver=1.1" type="text/css"> -->
 		<!-- Camera.html -->
-		<link rel="stylesheet" href="css/camara.css">
-		<link rel="stylesheet" href="css/talkstyle.css">
+		<!-- <link rel="stylesheet" href="css/camara.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/talkstyle.css?ver=1.1" type="text/css"> -->
 		<!-- Order.html -->
-		<link rel="stylesheet" href="css/order.css">
+		<!-- <link rel="stylesheet" href="css/order.css?ver=1.1" type="text/css"> -->
 		<!-- Privacy -->
-		<link rel="stylesheet" href="css/privacy.css">
+		<!-- <link rel="stylesheet" href="css/privacy.css?ver=1.1" type="text/css"> -->
+				
+		<!-- CSS をキャッシュさせない読み込み方。 -->
+		<script>
+			document.write(
+				// <!-- Index.html -->
+				'<link rel="stylesheet" href="css/styles.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/select_item.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/accordion_check.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/accordion_radio.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				// <!-- Camera.html -->
+				'<link rel="stylesheet" href="css/camara.css?' + new Date().getTime() + '" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/talkstyle.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				// <!-- Order.html -->
+				'<link rel="stylesheet" href="css/order.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				// <!-- Privacy -->
+				'<link rel="stylesheet" href="css/privacy.css?' + new Date().getTime() +'" type="text/css">' + "\n"
+			);
+		</script>
   </head>
   <body>
 
@@ -326,8 +346,6 @@
 				</ul>
 			</div>
 		</div>
-   
-    
 		<!-- カメラ撮影結果表示 -->
 		<div id="camera_result" class="loaded">
 			<!-- 画像の表示エリア -->
@@ -380,8 +398,6 @@
 					</div>
 				</div>
 			</main>
-			
-			
 			<!-- FOOTER -->
 			<footer>
 				<!-- コントロールボタン -->
@@ -644,10 +660,23 @@
 				// **********
 			}
 		</script>
-		<script type="text/javascript" src="js/selecter.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/connect.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/camera.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/forma.js" charset="utf-8"></script>
+		<!-- ********************************* -->
+		<!-- JS をキャッシュする読み方 -->
+		<!-- <script type="text/javascript" src="js/selecter.js?ver=1.2" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/connect.js?ver=1.1" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/camera.js?ver=1.1" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/forma.js?ver=1.1" charset="utf-8"></script> -->
+
+		<!-- JS をキャッシュさせない読み込み方。 -->
+		<script>
+			document.write(
+				'<script type="text/javascript" src="js/selecter.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/connect.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/camera.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/forma.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n"					
+			);
+		</script>
+		<!-- ********************************* -->
 		<script>
 			// **********************
 			// ページロード時の処理
@@ -677,6 +706,7 @@
 				document.getElementById('accept_privacy_button').classList.add('fluffy');
 				document.getElementById('accept_privacy_button_b').classList.add('fluffy');
 				document.getElementById('cancel_privacy_button').classList.add('fluffy');
+				document.getElementById('cancel_privacy_button_b').classList.add('fluffy');
 				document.getElementById('accept_privacy_camera').classList.add('fluffy_slime');
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
 				// 写真撮影フラグをクリア
@@ -732,7 +762,7 @@
 				//------------------------------
         try
         {
-         // let obj = fromHTML_call_Loaded_pagecamera();
+					// let obj = fromHTML_call_Loaded_pagecamera();
 					// LogIn(obj[0], obj[1]);
 					const id = 'sanwa.signage.server@gmail.com';
 					const pass = 'sswss2021'
@@ -1043,7 +1073,6 @@
 				// document.getElementById('mask').classList.remove('hidden');
 				document.getElementById('btn_image_shutter').classList.add('fluffy_slime');
 				document.getElementById('btn_image_save').classList.remove('fluffy_slime');
-
 			}
 			// camera.indexの非表示
 			function hide_camera() {

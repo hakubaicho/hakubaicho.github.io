@@ -9,20 +9,54 @@
 		<meta name="viewport" content="width=1080,initial-scale=1">
 		<title>coodinate</title>
 		
+		<!-- ********************************* -->
+		<!-- CSS をキャッシュが効く読み込み方。 -->
 		<!-- Index.html -->
-		<link rel="stylesheet" href="css/styles_coordinate.css">
-		<link rel="stylesheet" href="css/select_item.css">
-		<link rel="stylesheet" href="css/accordion_check.css">
-		<link rel="stylesheet" href="css/accordion_radio.css">
+		<!-- <link rel="stylesheet" href="css/styles_coordinate.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/select_item.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/accordion_check.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/accordion_radio.css?ver=1.1" type="text/css"> -->
 		<!-- Camera.html -->
-		<link rel="stylesheet" href="css/camara.css">
-		<link rel="stylesheet" href="css/talkstyle.css">
+		<!-- <link rel="stylesheet" href="css/camara.css?ver=1.1" type="text/css">
+		<link rel="stylesheet" href="css/talkstyle.css?ver=1.1" type="text/css"> -->
 		<!-- Order.html -->
-		<link rel="stylesheet" href="css/order.css">
+		<!-- <link rel="stylesheet" href="css/order.css?ver=1.1" type="text/css"> -->
 		<!-- Privacy -->
-		<link rel="stylesheet" href="css/privacy.css">
-  </head>
-  <body>
+		<!-- <link rel="stylesheet" href="css/privacy.css?ver=1.1" type="text/css"> -->
+				
+		<!-- CSS をキャッシュさせない読み込み方。 -->
+		<script>
+			document.write(
+				// <!-- Index.html -->
+				'<link rel="stylesheet" href="css/styles_coordinate.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/select_item.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/accordion_check.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/accordion_radio.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				// <!-- Camera.html -->
+				'<link rel="stylesheet" href="css/camara.css?' + new Date().getTime() + '" type="text/css">' + "\n" +
+				'<link rel="stylesheet" href="css/talkstyle.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				// <!-- Order.html -->
+				'<link rel="stylesheet" href="css/order.css?' + new Date().getTime() +'" type="text/css">' + "\n" +
+				// <!-- Privacy -->
+				'<link rel="stylesheet" href="css/privacy.css?' + new Date().getTime() +'" type="text/css">' + "\n"
+			);
+		</script>
+		<!-- ********************************* -->
+		<!-- JS をキャッシュする読み込み方。 -->
+		<!-- アイテム在庫数を読み込み -->
+		<!-- <script type="text/javascript" src="js/itemStocks.js?ver=1.1" charset="utf-8"></script> -->
+
+		<!-- JS をキャッシュさせない読み込み方。 -->
+		<script>
+			document.write(
+				// <!-- アイテム在庫数を読み込み -->
+				'<script type="text/javascript" src="js/itemStocks.js?' + new Date().getTime() + '" charset="utf-8"><\/script>'
+			);
+		</script>
+		<!-- ********************************* -->
+
+	</head>
+	<body>
 
 		<!-- ******************************************************************************* -->
 		<!-- index.html -->
@@ -135,11 +169,11 @@
 			</div>
 			<!-- 同意してスタート -->
 			<div class="footer-container_loading_start">
-				<img class="fluffy" src="img/logos/button_loading_start.webp" id="accept_privacy_button_b" onclick="accept_privacy_and_start()">
+				<img class="" src="img/logos/button_loading_start.webp" id="accept_privacy_button_b" onclick="accept_privacy_and_start()">
 			</div>
 			<!-- 終了 -->
 			<div class="footer-container_loading_cancel">
-				<img class="fluffy" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button_b" onclick="endproc_order()">
+				<img class="" src="img/logos/button_loading_cancel.webp" id="cancel_privacy_button_b" onclick="endproc_order()">
 			</div>
 		</div>
     <!-- indexのメイン部分 -->
@@ -328,8 +362,6 @@
 				</ul>
 			</div>
 		</div>
-   
-    
 		<!-- カメラ撮影結果表示 -->
 		<div id="camera_result" class="loaded">
 			<!-- 画像の表示エリア -->
@@ -349,6 +381,23 @@
 		</div>
 		<!-- cameraのメイン部分 -->
 		<div id="camera-page" class="loaded">
+			<!-- ふわふわの注意 -->
+			<!-- 注意1 -->
+			<div class="camera_caution_container_1">
+				<img class="fluffy_cloud" src="img/logos/caution_1.webp">
+			</div>
+			<!-- 注意2 -->
+			<div class="camera_caution_container_2">
+				<img class="fluffy_cloud" src="img/logos/caution_2.webp">
+			</div>
+			<!-- 注意3 -->
+			<div class="camera_caution_container_3">
+				<img class="fluffy_cloud" src="img/logos/caution_3.webp">
+			</div>
+			<!-- 注意4 -->
+			<div class="camera_caution_container_4">
+				<img class="fluffy_cloud" src="img/logos/caution_4.webp">
+			</div>
 			<!-- HEADER -->
 			<!-- NAV -->
 			<!-- MAIN -->
@@ -365,8 +414,6 @@
 					</div>
 				</div>
 			</main>
-			
-			
 			<!-- FOOTER -->
 			<footer>
 				<!-- コントロールボタン -->
@@ -632,10 +679,23 @@
 				// **********
 			}
 		</script>
-		<script type="text/javascript" src="js/selecter_coordinate.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/connect.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/camera.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/forma.js" charset="utf-8"></script>
+		<!-- ********************************* -->
+		<!-- JS をキャッシュする読み方 -->
+		<!-- <script type="text/javascript" src="js/selecter_coordinate.js?ver=1.2" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/connect.js?ver=1.1" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/camera.js?ver=1.1" charset="utf-8"></script> -->
+		<!-- <script type="text/javascript" src="js/forma.js?ver=1.1" charset="utf-8"></script> -->
+
+		<!-- JS をキャッシュさせない読み込み方。 -->
+		<script>
+			document.write(
+				'<script type="text/javascript" src="js/selecter_coordinate.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/connect.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/camera.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n" +
+				'<script type="text/javascript" src="js/forma.js?' + new Date().getTime() + '" charset="utf-8"><\/script>' + "\n"					
+			);
+		</script>
+		<!-- ********************************* -->
 		<script>
 			// **********************
 			// ページロード時の処理
@@ -665,6 +725,7 @@
 				document.getElementById('accept_privacy_button').classList.add('fluffy');
 				document.getElementById('accept_privacy_button_b').classList.add('fluffy');
 				document.getElementById('cancel_privacy_button').classList.add('fluffy');
+				document.getElementById('cancel_privacy_button_b').classList.add('fluffy');
 				document.getElementById('accept_privacy_camera').classList.add('fluffy_slime');
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
 				// 写真撮影フラグをクリア
@@ -781,7 +842,6 @@
 				countReset();
 				// **********
 				debugConsole_proc('jumpto_Camera()');
-				
 				// Formaに接続できていない場合の処理
 				if(!Get_logInStatus())
 				{
@@ -901,6 +961,8 @@
 						);
 					return;
 				}
+				// ライトOff
+				fromHTML_Light_Off();
 				// TryOn
 				btnimg_click_save();
 			}
@@ -962,6 +1024,8 @@
 				// タイムアウト完了
 				countStop();
 				// **********
+				// ライトOFF
+				fromHTML_Light_Off();
 				// 現在のItem・Avatarをクリアする。
 				Set_itemUUid('');
 	      Set_avatarUUid('');
@@ -1001,6 +1065,8 @@
 			// **********************
 			// index.htmlの表示
 			function show_index() {
+				// ライトOff
+				fromHTML_Light_Off();
 				// 対象ページを開く
 				document.getElementById('index-page').classList.remove('loaded');
 			}
@@ -1011,6 +1077,8 @@
 			}
 			// camera.indexの表示
 			function show_camera() {
+				// ライトOn
+				fromHTML_Light_On();
 				// 対象ページを開く
 				// document.getElementById('modal').classList.remove('hidden');
 				// document.getElementById('mask').classList.remove('hidden');
