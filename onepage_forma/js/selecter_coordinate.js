@@ -27,6 +27,8 @@
     // formaSrc         : フォルマへの登録画像
     // uuid             : FormaのItem登録uuid
     // location         : 配置場所(ItemListの置き場所index)
+
+    // SoldOut          : 売り切れ
     constructor(tag1, tag2, tag3, 
                 kind, 
                 remark01, remark02, remark03, remark04, remark05, remark06, remark07,remark08,remark09,remark10,
@@ -71,6 +73,7 @@
       this.uuid           = uuid;
 
       this.location       = 0;
+      this.soldout = false;
     }
     //----------------------------------
     // メソッド
@@ -1033,7 +1036,7 @@
   // [Tree]アイテムリストを生成します。
   //--------------------------------------------
   function setItemListTree(select_tag) {
-    const startTime = performance.now(); // 開始時間
+    
     // **********
     // タイムアウト
     countReset();
@@ -1221,7 +1224,7 @@
       //----------------------------------
       // 在庫注意画像の表示
       //----------------------------------    
-      if(!checkItemStocks(item.janCode,item.colorCode))
+      if(item.soldout)
       {
         // imgタグを生成し、イメージを割り当て
         const imgStockCaution = document.createElement('img');
@@ -1234,8 +1237,6 @@
       // 次！
       location++;
     });
-    const endTime = performance.now(); // 終了時間
-    console.log("checkStocks : " + (endTime - startTime) + "ms !!"); // 何ミリ秒かかったかを表示する
   }
   //--------------------------------------------
   // アイテムが選択された時の処理
@@ -1984,10 +1985,11 @@
     }
     return checkOK;
   }
+  // アイテムの初期化
   function initItems()
   {
+    const startTime = performance.now(); // 開始時間
     items.forEach((item, index) => {
-
       // 発売日以前をチェックする
       if(!checkPublishDate(item.remark06))
       {
@@ -1995,7 +1997,14 @@
         item.tag2 = item.tag1;
         item.tag1 = "Coming Soon";
       }
+      // 売り切れのチェック
+      if(!checkItemStocks(item.janCode,item.colorCode))
+      {
+        item.soldout = true;
+      }
     });
+    const endTime = performance.now(); // 終了時間
+    console.log("initItems : " + (endTime - startTime) + "ms !!"); // 何ミリ秒かかったかを表示する
   }
   //--------------------------------------------
   // 初期処理
