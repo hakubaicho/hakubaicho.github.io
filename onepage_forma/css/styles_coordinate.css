@@ -241,8 +241,9 @@ footer {
   top: 0;
   left: 0;
   z-index: 0;
-  /* background-image : url(../img/logos/skyback.png); */
-  background-image : url(../img/logos/background.webp);
+  background-image : url(../img/logos/imageSky.webp);
+  /* background-image : url(../img/logos/background.webp); */
+  /* background-image : url(../img/logos/camera_background.webp); */
 }
 #order-page {
   width: 1080px;

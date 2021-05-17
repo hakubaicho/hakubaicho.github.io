@@ -521,38 +521,38 @@ aside button {
 /* カメラ画面でのふわふわ注意１ */
 .camera_caution_container_1 {
   position: absolute;
-  top: 750px;
-  left: 730px;
+  top: 90px;
+  left: 0px;
   height: 150px;
   width: 1080px;
   z-index: 100;
 }
 .camera_caution_container_1 img {
   /* height: 250px; */
-  width: 350px;
+  width: 363px;
   margin: 0;
   background-color: transparent;
 }
 /* カメラ画面でのふわふわ注意２ */
 .camera_caution_container_2 {
   position: absolute;
-  top: 300px;
-  left: 730px;
+  top: 415px;
+  left: 752px;
   height: 150px;
   width: 1080px;
   z-index: 100;
 }
 .camera_caution_container_2 img {
   /* height: 250px; */
-  width: 350px;
+  width: 328px;
   margin: 0;
   background-color: transparent;
 }
 /* カメラ画面でのふわふわ注意３ */
 .camera_caution_container_3 {
   position: absolute;
-  top: 100px;
-  left: 0px;
+  top: 850px;
+  left: 35px;
   height: 150px;
   width: 1080px;
   z-index: 100;
