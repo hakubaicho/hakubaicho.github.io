@@ -1,0 +1,22 @@
+canvas{
+  border: 1px solid gray;
+  margin: 0px 10px 0px 10px;
+}
+button{
+  width: 50px;
+  height: 40px;
+}
+#contents{
+  width: 750px;
+  text-align: center;
+}
+#eraser{
+  text-align: right;
+  margin-right: 10px;
+}
+.flex-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
