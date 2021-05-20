@@ -318,7 +318,7 @@
     }
 
     // 送信先URL 
-    const requestUrl = "https://social.isabq.com/api/v1/items/?page=2&page_size=100" ;
+    const requestUrl = "https://social.isabq.com/api/v1/items/?page=1&page_size=100" ;
     //Ajax通信用のオブジェクトを作成
     const xhr =new XMLHttpRequest();
     
