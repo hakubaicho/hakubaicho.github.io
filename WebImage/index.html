@@ -12,6 +12,7 @@
     <title>写真の加工</title>
 
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <script src="js/forma.js"></script>
     <style>
       /* video 要素の上に canvas 要素をオーバーレイするための CSS */
       #container {              /* コンテナ用の div について */
@@ -46,13 +47,14 @@
 
         <!-- 「非表示」合成するcanvas「アイコン画像」 -->
         <canvas hidden id="image-icon" width="300" height="300"></canvas>
-        <!-- <p><button type="button" id="btn-concat"><img src="icon/equals-solid.svg" width="32" height="32"></button></p> -->
+        <p><button hidden type="button" id="btn-concat"><img src="icon/equals-solid.svg" width="32" height="32"></button></p>
 
         <!-- 合成結果用のcanvas「アイテム画像」 -->
-        <canvas id="concat" width="200" height="170"></canvas>
+        <canvas id="image-item" width="200" height="170"></canvas>
+        <button type="button" onclick="RegisterItem_Proc()">Forma送信</button>
       </div>
       <!-- 消しゴム -->
-      <!-- <p id="eraser"><button type="button" id="btn-eraser"><img src="icon/eraser-solid.svg" width="32" height="32"></button></p> -->
+      <p id="eraser"><button hidden type="button" id="btn-eraser"><img src="icon/eraser-solid.svg" width="32" height="32"></button></p>
     </section>
     <ul>
       <li>「＝」ボタンをクリックすると2つのcanvasを合成します</li>
@@ -150,7 +152,6 @@
         document.querySelector("#btn-eraser").addEventListener("click", ()=>{
           eraseCanvas("#concat");
         });
-
       };
 
       /**
@@ -166,9 +167,9 @@
           const ctx = canvas.getContext("2d");
           ctx.drawImage(tshirts, 0, 0, canvas.width, canvas.height);
 
-          const canvas_concat = document.querySelector("#concat");
-          canvas_concat.height= tshirts.height;
-          canvas_concat.width = tshirts.width;
+          const image_item = document.querySelector("#image-item");
+          image_item.height= tshirts.height;
+          image_item.width = tshirts.width;
         }
       }
 
@@ -288,10 +289,15 @@
         getCameraDevices();
         // カメラ接続
         // 前後カメラの設定
+        
+        useFront = false;
         CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
         syncCamera(video);
         useFront = !useFront;         // boolean値を反転
         initImages();
+
+        // Formaにログイン
+        LogIn("serv1se2010-a@yahoo.co.jp", "lets@2021");
       };
       // カメラ解像度の変更
       function videoSize(height, width) {
@@ -375,7 +381,7 @@
         // アイコンの切り出し
         cutIcon(video);
         // Tシャツとアイコンの合成
-        concatCanvas("#concat", ["#image-base", "#image-icon"]);
+        concatCanvas("#image-item", ["#image-base", "#image-icon"]);
       }
       // アイコンエリアを切り出して表示
       function cutIcon(asset){

@@ -2,10 +2,12 @@ canvas{
   border: 1px solid gray;
   margin: 0px 10px 0px 10px;
 }
+/*
 button{
   width: 50px;
   height: 40px;
 }
+*/
 #contents{
   width: 750px;
   text-align: center;
