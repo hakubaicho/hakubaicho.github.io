@@ -259,8 +259,8 @@
           //--------------------------
           // PCでやるときの設定
           //--------------------------
-          width: 640,
-          height: 480,
+          width: VIDEO_WIDTH,
+          height: VIDEO_HEIGHT,
           //--------------------------
           // スマホでやるときの設定
           //--------------------------
@@ -288,9 +288,11 @@
         // カメラデバイス情報の取得
         getCameraDevices();
         // カメラ接続
-        // 前後カメラの設定
-        
-        useFront = false;
+        //------------------------------
+        // 前後カメラの設定 背面カメラ
+        useFront = true;
+        //------------------------------
+
         CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
         syncCamera(video);
         useFront = !useFront;         // boolean値を反転
@@ -395,9 +397,10 @@
                         asset,
                         //------------------------
                         // 切り出しエリア
+                        // 中央部を切り出すため
                         //------------------------
-                        (VIDEO_WIDTH - ICON_WIDTH) / 2,   // x
-                        (VIDEO_HEIGHT - ICON_HEIGHT) / 2, // y
+                        (video.videoWidth - ICON_WIDTH) / 2,   // x
+                        (video.videoHeight - ICON_HEIGHT) / 2, // y
                         ICON_WIDTH,                       // width
                         ICON_HEIGHT,                      // height
                         //------------------------
