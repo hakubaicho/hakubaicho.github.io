@@ -119,7 +119,7 @@
 
     <!-- 画像加工スクリプト -->
     <script>
-      function initImages() {
+      function itemCreate_initImages() {
         // #image1に画像を描画
         drawImageBase();
 
@@ -296,7 +296,7 @@
         CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
         syncCamera(video);
         useFront = !useFront;         // boolean値を反転
-        initImages();
+        itemCreate_initImages();
 
         // Formaにログイン
         LogIn("serv1se2010-a@yahoo.co.jp", "lets@2021");

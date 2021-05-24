@@ -1,0 +1,122 @@
+@charset "utf-8";
+/* ============================== */
+/* 全体の構造 */
+/* ============================== */
+main {
+  width: 100%;
+}
+.main-area-container {
+  display: flex;
+}
+.main-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order_title {
+  color: #20639B;
+  width: 100%;
+  text-align: center;
+  font-size: 3em;
+  font-weight: bolder;
+}
+/* =========================== */
+/* 注文詳細コンテナDIVの囲いをつける */
+/* =========================== */
+.order_container {
+  /* width: 100%; */
+  margin: auto;
+  /* border: 4px ridge #20639B; */
+  background-color:white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* デザイン詳細コンテナ */
+.order_design_container {
+  height: 300px;
+  /* width: 300px; */
+  /* border-radius: 5%; */
+  margin: 20px;
+  /* border: 1px solid white; */
+}
+/* デザイン詳細コンテナ */
+.order_design_container_coordinate {
+  height: 700px;
+  /* width: 300px; */
+  /* border-radius: 5%; */
+  margin: 20px;
+  /* border: 1px solid white; */
+}
+
+#order_design_image {
+  height: 300px;
+  /* width: 300px; */
+  border-radius: 20px;
+  margin: 0;
+  border: 4px ridge #90B1CD;
+}
+#order_design_image_coordinate {
+  height: 700px;
+  /* width: 300px; */
+  border-radius: 20px;
+  margin: 0;
+  border: 4px ridge #90B1CD;
+}
+/* 注文詳細 */
+.order_detail_container {
+  height: 300px;
+  width: 600px;
+  border-radius: 5px;
+  margin: 20px;
+  border: 1px solid white;
+
+  flex: 1;
+  /* 子要素を中央 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 注文詳細 */
+.order_detail_container_coordinate {
+  height: 300px;
+  width: 600px;
+  border-radius: 5px;
+  margin: 20px;
+  border: 1px solid white;
+
+  flex: 1;
+  /* 子要素を中央 */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.order_detail_data_container {
+  /* 子要素を中央 */
+  display: block;
+}
+
+/* 注文詳細 */
+.design_id {
+  font-size: 24px;
+  margin: 10px;
+  color: dimgray;
+}
+input[type=radio] {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  color: dimgray;
+}
+
+.size-category {
+  font-size: 24px;
+}
+.size-caption {
+  font-size: 24px;
+  height: 100px;
+  text-align:center;
+}

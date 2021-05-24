@@ -1,0 +1,46 @@
+/* アイテム画像撮影部分のCSS */
+
+/* *********************************************** */
+/*                                                 */
+/* Loading ページ                                   */
+/* https://www.webcreatorbox.com/tech/loading-animation */
+/* https://projects.lukehaas.me/css-loaders/       */
+/* *********************************************** */
+#item-create-page {
+  width: 1080px;
+  height: 1920px;
+  transition: all 1s;
+ 
+  /* 以下のコードを追加 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-image : url(../img/logos/index-loading.webp);
+}
+
+/* =========================== */
+/* カメラエリア */
+/* =========================== */
+#area-capture-item-create {
+  height: 1200px;
+  width: 1080px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#video-container-item-create {
+  border:1px solid black;
+  background-color: dimgrey;
+  height: 1024px;
+  width: 576px;
+}
+#video-container-item-create video {
+  height: 1024px;
+  width: 576px;
+  transform: scaleX(-1);  /* 左右反転させる */
+}
+#canvas-item-create {
+  /* height: 1024px;
+  width: 576px; */
+}
