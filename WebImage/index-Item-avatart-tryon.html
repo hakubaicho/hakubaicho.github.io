@@ -183,6 +183,9 @@
     <!-- Item Createのメイン部分 -->
 		<div id="item-create-page" class="loaded">
       <!-- HEADER -->
+			<header>
+				Tシャツを作ろう
+			</header>
 			<!-- NAV -->
 			<!-- MAIN -->
       <section id="contents">
@@ -192,7 +195,7 @@
           <!-- 「非表示」合成するcanvas「アイコン画像」 -->
           <canvas hidden id="image-icon" width="300" height="300"></canvas>
           <!-- 合成結果用のcanvas「アイテム画像」 -->
-          <button type="button" onclick="RegisterItem_Proc()">Forma送信</button>
+          <button hidden type="button" onclick="RegisterItem_Proc()">Forma送信</button>
         </div>
         <!-- 消しゴム -->
         <p id="eraser"><button hidden type="button" id="btn-eraser"><img src="icon/eraser-solid.svg" width="32" height="32"></button></p>
@@ -231,6 +234,7 @@
 					</div>
 				</div>
 				<div class="footer-command-area">
+					<button type=button onclick="cameraPositionChange()">カメラ変更</button>
 					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
 				</div>
 				<div>
@@ -388,6 +392,9 @@
 		</div>
 		<!-- cameraのメイン部分 -->
 		<div id="camera-page" class="">
+			<header>
+				人物を撮ろう
+			</header>
 			<!-- ふわふわの注意 -->
 			<!-- 注意1 -->
 			<div class="camera_caution_container_1">
@@ -768,7 +775,7 @@
       //------------------------------------------
       // 変数領域
       //------------------------------------------
-      let useFront = true;                        // フロントカメラ:true, バックカメラ:false
+      let useFrontItemCreate = false;                        // フロントカメラ:true, バックカメラ:false
       //------------------------------------------
       // グローバル変数
       //------------------------------------------
@@ -811,11 +818,11 @@
         // カメラ接続
         //------------------------------
         // 前後カメラの設定 背面カメラ
-        // useFront = false;
+        useFrontItemCreate = false;
         //------------------------------
-        CONSTRAINTS_ItemCreate.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+        CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
         syncCamera_ItemCreate(video_ItemCreate);
-        useFront = !useFront;         // boolean値を反転
+        useFrontItemCreate = !useFrontItemCreate;         // boolean値を反転
 
 				// 初期画像の表示
 				drawImageBase();				// #image1に画像を描画
@@ -827,12 +834,12 @@
         // カメラ接続
         //------------------------------
         // 前後カメラの設定 背面カメラ
-        useFront = false;
+        useFrontItemCreate = false;
         //------------------------------
 
-        CONSTRAINTS_ItemCreate.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+        CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
         syncCamera_ItemCreate(video_ItemCreate);
-        useFront = !useFront;         // boolean値を反転
+        useFrontItemCreate = !useFrontItemCreate;         // boolean値を反転
         itemCreate_initImages();
 
         // Formaにログイン
@@ -856,7 +863,7 @@
         var id = cameraList.options[cameraList.selectedIndex].value;
         return id;
       }
-      //
+			//
       // カメラを<video>と同期
       //
       // @param {object} video
@@ -906,9 +913,9 @@
       function cameraPositionChange()
       {
         CONSTRAINTS_ItemCreate.video.deviceId = null;
-        CONSTRAINTS_ItemCreate.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+        CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
         syncCamera_ItemCreate(video);
-        useFront = !useFront;      // boolean値を反転
+        useFrontItemCreate = !useFrontItemCreate;      // boolean値を反転
       };
 
 
