@@ -15,8 +15,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  background-image : url(../img/logos/index-loading.webp);
+  z-index: 0;
+  background-image : url(../img/logos/background.webp);
 }
 
 /* =========================== */
@@ -34,13 +34,23 @@
   background-color: dimgrey;
   height: 1024px;
   width: 576px;
+  /* overlay-Target枠線を浮かせるため */
+  position: relative; 
 }
 #video-container-item-create video {
   height: 1024px;
   width: 576px;
-  transform: scaleX(-1);  /* 左右反転させる */
+  /* 左右反転させる */
+  /* transform: scaleX(-1); */
 }
 #canvas-item-create {
   /* height: 1024px;
   width: 576px; */
+}
+
+#overlay-Target {                 /* 描画用の canvas について */
+  position: absolute;     /* 座標指定を絶対値指定にして */
+  left: 138px;                /* 中央に配置 */
+  top: 362px;                 /* 中央に配置 */
+  border:10px dashed red;
 }

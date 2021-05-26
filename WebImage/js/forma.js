@@ -1748,7 +1748,7 @@
     try
     {
       // CanvasをBlobの値に変換する
-      const canvas = document.getElementById("image-item");
+      const canvas = document.getElementById("resultItemPict");
       imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
     }
     catch(e)

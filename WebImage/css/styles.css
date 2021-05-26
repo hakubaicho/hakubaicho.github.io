@@ -239,7 +239,7 @@ footer {
   /* 以下のコードを追加 */
   position: fixed;
   top: 0;
-  left: 1080px;
+  left: 0;
   z-index: 0;
   background-image : url(../img/logos/imageSky.webp);
   /* background-image : url(../img/logos/background.webp); */
