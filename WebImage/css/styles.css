@@ -17,7 +17,8 @@ html {
 body {
   user-select: none;         /* 文字列を選択させない */
   margin: 0;
-  height: 100%;             /* bodyで100%を使うから */
+  /* bodyで100%を使うから */
+  /* height: 100%;              */
   display: flex;            /* 縦幅いっぱいにするため */
   flex-direction: column;   /* 縦方向に並べる */
   /* background-image : url(../img/logos/background.png); */
