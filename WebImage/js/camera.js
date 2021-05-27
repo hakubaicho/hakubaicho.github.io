@@ -448,7 +448,10 @@
     // 次の操作をわかりやすくする。
     document.getElementById('btn_image_shutter').classList.remove('fluffy_slime');
     document.getElementById('btn_image_save').classList.remove('fluffy_slime');
-    Avatar_TryOnProc();
+
+    // TryOn処理
+    // Avatar_TryOnProc();
+    Item_Avatar_TryOn_Proc();
   }
 
   // ===============================================================
@@ -525,7 +528,7 @@
     }
 
     // カメラ接続
-    let mode_SmartPhone = true;
+    let mode_SmartPhone = false;
     if(mode_SmartPhone)
     {
       // *******************************************

@@ -53,6 +53,7 @@
   //----------------------------------
   // Item登録
   //----------------------------------
+  let imageItemBlob;
   let register_item_url               = '';
   let register_item_root_uuid         = '';
   let register_item_awsAccessKeyId    = '';
@@ -590,6 +591,394 @@
     // countSet(-60);
   }
  
+  //
+  // Item登録 
+  // Avatar登録
+  // TryOn処理
+  //
+  function Item_Avatar_TryOn_Proc() {
+    debugConsole_forma("Item_Avatar_TryOn_Proc: Start");
+    i_and_a_tryon();
+    debugConsole_forma("Item_Avatar_TryOn_Proc: End");
+  }
+  //
+  // [同期処理で非同期]
+  //
+  async function i_and_a_tryon() {
+    //----------------------------------------
+    // 入力チェック
+    //----------------------------------------
+    // トークンのチェック
+    if(true !== check_token())
+    {
+      alert('ログインできていません');
+      return;
+    }
+    // 画像の選択チェック
+    try
+    {
+      // CanvasをBlobの値に変換する
+      const canvas = document.getElementById("canvas-photo");
+      imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+    }
+    catch(e)
+    {
+      display_status_toElement(e.message);
+      return;
+    }
+    try
+    {
+      const canvasItem = document.getElementById("resultItemPict");
+      imageItemBlob = await new Promise(resolve => canvasItem.toBlob(resolve, 'image/jpeg'));
+    }
+    catch(e)
+    {
+      display_status_toElement(e.message);
+      return;
+    }
+
+    //----------------------------------------
+    // 確認画面
+    //----------------------------------------
+    // // 確認はしない
+    var res = confirm("Item / Avatar登録しますか？");
+    if( res === true ) {
+      // OKならなにもしない
+    }
+    else {
+      // キャンセルならアラートボックスを表示
+      alert("中止します。");
+      return;
+    }
+    // ローディング画面を表示
+    phase_init();
+    tryonShutter.classList.remove('loaded');
+
+    /*************************************/
+    // ここはテスト
+    /*************************************/
+    // await ping_wait();
+    // phase_change(0);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(1);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(2);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(3);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // phase_change(4);
+    // await ping_wait();
+    // await ping_wait();
+    // await ping_wait();
+    // tryonShutter.classList.add('loaded');
+    // tryonResult.classList.remove('loaded');
+    // return;
+    /*************************************/
+    //***************************************************************************** */
+    // Avatar登録
+    //***************************************************************************** */
+    phase_change(0);
+    let doNext = true;
+    //----------------------------------------
+    // Presign
+    //----------------------------------------
+    display_status_toElement('[Start]RegisterAvatar-PreSign');
+    await register_Avatar_PreSign()
+    .then(
+      function( response ) {
+        // 正常結果
+        display_status_toElement(`[OK]RegisterAvatar-PreSign : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        display_status_toElement(`[NG]RegisterAvatar-PreSign : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // データ送信
+    //----------------------------------------
+    if(doNext)
+    {
+      display_status_toElement('[Start]RegisterAvatar-Data');
+      await register_Avatar_Data()
+      .then(
+        function( response ) {
+          // 正常結果
+          display_status_toElement(`[OK]RegisterAvatar-Data : ${response}`);
+        },
+        function( error ) {
+          //エラー処理を記述する
+          display_status_toElement(`[NG]RegisterAvatar-Data : ${error}`);
+          doNext = false;
+        }
+      )
+    }
+    //----------------------------------------
+    // Pingで処理待ち
+    //----------------------------------------
+    if(doNext)
+    {
+      display_status_toElement('[Start]RegisterAvatar-Ping');
+      let isNext = true;
+      const RETRY_MAX = 100;
+      for(let i = 0 ; i < RETRY_MAX; i++)
+      {
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        display_status_toElement(`[Start]RegisterAvatar-Ping(${i})`);
+        await register_Avatar_Ping()
+        .then(
+          function( response  ) {
+            // 正常結果
+            switch(response)
+            {
+              case 0: //正常終了
+                isNext = false;
+                display_status_toElement(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
+                break;
+              case 1: // 処理中
+                display_status_toElement(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
+                break;
+              case 2: // 処理失敗
+                isNext = false;
+                doNext = false;
+                display_status_toElement(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            display_status_toElement(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
+        }
+      }
+    }
+    if(!doNext)
+    {
+      alert('Avatar写真の転送に失敗しました。');
+      tryonShutter.classList.add('loaded');
+      return;
+    }
+    uuid_tryon_avatar = avatar_from_camera_register;
+    fromHTML_call_Set_AvatarUUID(uuid_tryon_avatar);
+
+
+
+
+
+    //***************************************************************************** */
+    // Item登録
+    //***************************************************************************** */
+    phase_change(1);
+    //----------------------------------------
+    // Presign
+    //----------------------------------------
+    display_status_toElement('[Start]RegisterItem-PreSign');
+    await register_Item_PreSign()
+    .then(
+      function( response ) {
+        // 正常結果
+        display_status_toElement(`[OK]RegisterItem-PreSign : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        display_status_toElement(`[NG]RegisterItem-PreSign : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // データ送信
+    //----------------------------------------
+    if(doNext)
+    {
+      display_status_toElement('[Start]RegisterItem-Data');
+      await register_Item_Data()
+      .then(
+        function( response ) {
+          // 正常結果
+          display_status_toElement(`[OK]RegisterItem-Data : ${response}`);
+        },
+        function( error ) {
+          //エラー処理を記述する
+          display_status_toElement(`[NG]RegisterItem-Data : ${error}`);
+          doNext = false;
+        }
+      )
+    }
+    //----------------------------------------
+    // Pingで処理待ち
+    //----------------------------------------
+    if(doNext)
+    {
+      display_status_toElement('[Start]RegisterItem-Ping');
+      let isNext = true;
+      const RETRY_MAX = 100;
+      for(let i = 0 ; i < RETRY_MAX; i++)
+      {
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        display_status_toElement(`[Start]RegisterItem-Ping(${i})`);
+        await register_Item_Ping()
+        .then(
+          function( response  ) {
+            // 正常結果
+            switch(response)
+            {
+              case 0: //正常終了
+                isNext = false;
+                display_status_toElement(`[OK]RegisterItem-Ping(${i}) = ${response}`);
+                break;
+              case 1: // 処理中
+                display_status_toElement(`[WAIT]RegisterItem-Ping(${i}) = ${response}`);
+                break;
+              case 2: // 処理失敗
+                isNext = false;
+                doNext = false;
+                display_status_toElement(`[FAILD]RegisterItem-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            display_status_toElement(`[NG]RegisterItem-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
+        }
+      }
+    }
+    if(!doNext)
+    {
+      alert('Item写真の転送に失敗しました。');
+      tryonShutter.classList.add('loaded');
+      return;
+    }
+    uuid_tryon_item = item_from_camera_register;
+    // fromHTML_call_Set_AvatarUUID(uuid_tryon_avatar);
+
+
+    //***************************************************************************** */
+    // TryOn
+    //***************************************************************************** */
+    //----------------------------------------
+    // 必要項目を試しに代入
+    //----------------------------------------
+    // uuid_tryon_item     = '77db863c-b288-4f25-83ee-165f563a2e68';
+    //----------------------------------------
+    // 入力チェック
+    //----------------------------------------
+    // // トークンのチェック
+    // if(true !== check_token())
+    // {
+    //   return false;
+    // }
+    // Avatar / Item が選択されているか
+    if(("" === uuid_tryon_avatar) || ("" === uuid_tryon_item))
+    {
+      const msg = "Avater / Item を選択してください";
+      // document.getElementById("canTryOn").textContent = msg;
+      alert(msg);
+      return false;
+    }
+
+    doNext = true;
+    //----------------------------------------
+    // TryOnに送信する
+    //----------------------------------------
+    display_status_toElement('[Start]TryOn-Request');
+    await TryOn()
+    .then(
+      function( response  ) {
+        // 正常結果
+        display_status_toElement(`[OK]TryOn-Request : ${response}`);
+      },
+      function( error ) {
+        //エラー処理を記述する
+        display_status_toElement(`[NG]TryOn-Request : ${error}`);
+        doNext = false;
+      }
+    )
+    //----------------------------------------
+    // 送信後のPing
+    //----------------------------------------
+    phase_change(2);
+    if(doNext)
+    {
+      let isNext = true;
+      const RETRY_MAX = 100;
+      for(let i = 0 ; i < RETRY_MAX; i++)
+      {
+        // 待ち時間処理
+        await ping_wait();
+        // 処理結果を取得する。
+        display_status_toElement(`[Start]TryOn-Ping(${i})`);
+        await TryOnPing()
+        .then(
+          function( response  ) {
+            switch(response)
+            {
+              case 0: //正常
+                isNext = false;
+                display_status_toElement(`[OK]TryOn-Ping(${i}) = ${response}`);
+                document.getElementById('tryon_result_picture').src = tryon_media_source;
+                break;
+              case 1:
+                display_status_toElement(`[WAIT]TryOn-Ping(${i}) = ${response}`);
+                break;
+              case 2:
+                isNext = false;
+                doNext = false;
+                display_status_toElement(`[FAILD]TryOn-Ping(${i}) = ${response}`);
+                break;
+            }
+          },
+          function( error ) {
+            //エラー
+            display_status_toElement(`[NG]TryOn-Ping(${i}) = ${error}`);
+            isNext = false;
+          }
+        )
+        if(isNext !== true)
+        {
+          break;
+        }
+      }
+    }
+    //***************************************************************************** */
+    phase_change(3);
+    // ローディング画面を非表示
+    // tryonShutter = document.getElementById('loading');
+    phase_change(4);
+    await display_wait();
+    tryonShutter.classList.add('loaded');
+    tryonResult.classList.remove('loaded');
+    if(!doNext)
+    {
+      alert('写真の合成に失敗しました。')
+      return;
+    }
+    // プレビュー画面を長く表示する
+    // countSet(-60);
+  }
   //********************************************
   // ログインします。
   //********************************************
@@ -1749,7 +2138,7 @@
     {
       // CanvasをBlobの値に変換する
       const canvas = document.getElementById("resultItemPict");
-      imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+      imageItemBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
     }
     catch(e)
     {
@@ -1992,7 +2381,7 @@
         formData.append("AWSAccessKeyId",   register_item_awsAccessKeyId);   
         formData.append("policy",           register_item_policy);
         formData.append("signature",        register_item_signature);
-        formData.append("file",             imageBlob, "item.jpeg");
+        formData.append("file",             imageItemBlob, "item.jpeg");
   
         
         var xhr = new XMLHttpRequest();

@@ -209,7 +209,7 @@
 							<p>動画の再生に対応していません</p>
 						</video>
 						<canvas id="overlay-Target" width="300" height="300"></canvas>        <!-- 重ねて描画する canvas -->
-						<!-- チャプチャーした画像 -->
+						<!-- Tシャツ加工したアイテム画像 -->
 						<canvas id="resultItemPict" class="item-hide"></canvas>
 					</div>
 				</div>
@@ -234,7 +234,6 @@
 					</div>
 				</div>
 				<div class="footer-command-area">
-					<button type=button onclick="cameraPositionChange()">カメラ変更</button>
 					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
 				</div>
 				<!-- カメラコントロール -->
@@ -897,8 +896,7 @@
 				// ライトOff
 				fromHTML_Light_Off();
 				// Googleにイベント送信
-				const item_no = GetSelected_Item().designID;
-				gtag('event', 'tryon_tshirt', {'event_category': item_no,'label_2': '','value': '1'});
+				gtag('event', 'MyTtryon', {'event_category': '0','label_2': '','value': '1'});
 				// TryOn
 				btnimg_click_save();
 			}
@@ -944,7 +942,7 @@
         if(!isOK)
         {
           alert("サイズをえらんでください");
-		  return;
+		  		return;
         }
         console.log(input_size);
         call_print(input_size);
@@ -1016,6 +1014,9 @@
 			// **********************
 			// index.htmlの表示
 			function show_index() {
+
+				// 戻ってきたときにはクリアする。
+				clear_isTakeItemPicture();
 				itemPict_Start();
 				// ライトOff
 				fromHTML_Light_Off();
