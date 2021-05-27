@@ -1,14 +1,38 @@
 // 'use strict';
 {
   //------------------------------------------
+  // 定数定義
+  //------------------------------------------
+  const VIDEO_WIDTH = 1024;          // ビデオ画像の幅
+  const VIDEO_HEIGHT = 576;         // ビデオ画像の高さ
+
+  const ICON_WIDTH = 300;           // 切り出し画像の幅
+  const ICON_HEIGHT = 300;          // 切り出し画像の高さ
+
+  const ICON_LOC_X = 333;           // アイコン貼り付け位置X
+  const ICON_LOC_Y = 300;           // アイコン貼り付け位置Y
+  //------------------------------------------
   // 定数領域にidで指定した要素を代入する
   //------------------------------------------
   const $divListCameraDevices = document.getElementById("list-camera-devices");   // カメラデバイス列挙エリア
   const $label_h =document.getElementById("resolution-height");
   const $label_w =document.getElementById("resolution-width");
+  const cameraList = document.getElementById("camera_list");
+
+  //------------------------------------------
+  // 定数領域にidで指定した要素を代入する
+  // Avatar作成
+  //------------------------------------------
   const $canvas_Photo =document.getElementById("canvas-photo");
   const video = document.querySelector("#camera");
-  const cameraList = document.getElementById("camera_list");
+  //------------------------------------------
+  // 定数領域にidで指定した要素を代入する
+  // Item作成
+  //------------------------------------------
+  const $canvasCapture =document.getElementById("canvas-capture");
+  const video_item = document.querySelector("#camera-itemcreate");
+
+
   //------------------------------------------
   // 変数領域
   //------------------------------------------
@@ -25,8 +49,8 @@
       //--------------------------
       // PCでやるときの設定
       //--------------------------
-      // width: 1024,
-      // height: 576,
+      width: 1024,
+      height: 576,
       //--------------------------
       // スマホでやるときの設定
       //--------------------------
@@ -62,6 +86,15 @@
   function clear_isTakePicture()
   {
     isTakePicture = false;
+  }
+  let isTakeItemPicture = false;      // 撮影済みか(T:済み/F:未撮影)
+  function get_isTakeItemPicture()
+  {
+    return isTakeItemPicture;
+  }
+  function clear_isTakeItemPicture()
+  {
+    isTakeItemPicture = false;
   }
 
   // ===============================================================
@@ -124,6 +157,12 @@
           // 解像度を画面表示
           $label_h.innerText =`${video.videoHeight}`;
           $label_w.innerText =`${video.videoWidth}`;
+        };
+        // アイテム用の<video>とStreamを接続
+        video_item.srcObject = stream;
+        video_item.onloadedmetadata = (e) => {
+          
+          video_item.play();
         };
       })
       .catch( (err) => {
@@ -510,6 +549,13 @@
     return;
   };
 
+  // アイテム用の初期画像
+  function init_items() {
+    // 初期画像の表示
+    drawImageBase();				// #image1に画像を描画
+    drawImageIcon();				// #image2にテキストを描画
+  }
+
   // ===============================================================
   //
   // 終了時処理
@@ -522,4 +568,150 @@
     stopCamera();
     history.back();
   }
+
+
+
+  // ===============================================================
+  //
+  // アイテム画像の要素処理
+  //
+  // ===============================================================
+  /**
+    * [onload] Tシャツの画像を描画
+    */
+  function drawImageBase(){
+    const tshirts = new Image();
+    tshirts.src = "img/t-org-small.jpg";
+    tshirts.onload = () =>{
+      const canvas = document.querySelector("#image-base");
+      canvas.height = tshirts.height;
+      canvas.width = tshirts.width;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(tshirts, 0, 0, canvas.width, canvas.height);
+
+      const image_item = document.querySelector("#resultItemPict");
+      image_item.height= tshirts.height;
+      image_item.width = tshirts.width;
+    }
+  }
+
+  /**
+  * [onload] アイコンの画像を描画
+  */
+  function drawImageIcon(){
+    const Unaju = new Image();
+    Unaju.src = "img/OSUSUME.webp";
+    Unaju.onload = () =>{
+      const canvas = document.querySelector("#image-icon");
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(Unaju, 0, 0, canvas.width, canvas.height);
+    }
+    // const canvas = document.querySelector("#image2");
+    // const ctx = canvas.getContext("2d");
+    // ctx.font = "32px serif";
+    // ctx.fillStyle = "Red";
+    // ctx.fillText("うな重", 45, 150);
+  }
+
+  /**
+  * Canvasをすべて削除する
+  *
+  * @param {string} target 対象canvasのid
+  * @return {void}
+  */
+  function eraseCanvas(target){
+    const canvas = document.querySelector(target);
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  /**
+  * Canvasを画像として取得
+  *
+  * @param {string} id  対象canvasのid
+  * @return {object}
+  */
+  function getImagefromCanvas(id){
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      const ctx = document.querySelector(id).getContext("2d");
+      image.onload = () => resolve(image);
+      image.onerror = (e) => reject(e);
+      image.src = ctx.canvas.toDataURL();
+    });
+  }
+  // ===============================================================
+  //
+  // アイテム画像の作成処理
+  //
+  // ===============================================================
+  // キャプチャー処理
+  function itemIconCreate()
+  {
+    debugConsole_proc('itemIconCreate button');
+    $canvasCapture.width  = video_item.videoWidth;
+    $canvasCapture.height = video_item.videoHeight;
+    $canvasCapture.getContext('2d').drawImage(video_item, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+    // アイコンの切り出し
+    cutIcon(video_item);
+    // Tシャツとアイコンの合成
+    concatCanvas("#resultItemPict", ["#image-base", "#image-icon"]);
+    // 後処理
+    itemPict_Result();
+
+    isTakeItemPicture = true;
+  }
+  // アイコンエリアを切り出して表示
+  function cutIcon(asset){
+    const canvas = document.querySelector("#image-icon");
+    const ctx = canvas.getContext("2d");
+
+    // 元画像はそのまま表示する。
+    // ctx.drawImage(asset, 0, 0, canvas.width, canvas.height);
+    // 画像を切り出して表示
+    ctx.drawImage(
+                    asset,
+                    //------------------------
+                    // 切り出しエリア
+                    // 中央部を切り出すため
+                    //------------------------
+                    (video_item.videoWidth - ICON_WIDTH) / 2,   // x
+                    (video_item.videoHeight - ICON_HEIGHT) / 2, // y
+                    ICON_WIDTH,                       // width
+                    ICON_HEIGHT,                      // height
+                    //------------------------
+                    // 貼り付け位置
+                    //------------------------
+                    0, 0, ICON_WIDTH, ICON_HEIGHT     // 貼り付け位置(x, y, width, height)
+                  );
+  }
+  /**
+  * Canvas合成
+  *
+  * @param {string} base 合成結果を描画するcanvas(id)
+  * @param {array} asset 合成する素材canvas(id)
+  * @return {void}
+  */
+  async function concatCanvas(base, asset){
+    const canvas = document.querySelector(base);
+    const ctx = canvas.getContext("2d");
+
+    for(let i=0; i<asset.length; i++){
+      const image1 = await getImagefromCanvas(asset[i]);
+      if(i == 0)
+      {
+        // 元画像はそのまま表示する。
+        ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
+      }
+      else
+      {
+        // 上に合成する画像は、表示位置の始点を指定する。
+        // 位置を指定して画像を出力
+        ctx.drawImage(image1, ICON_LOC_X, ICON_LOC_Y, ICON_WIDTH, ICON_HEIGHT);
+      }
+
+    }
+  }
+
+
 }

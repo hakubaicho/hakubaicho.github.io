@@ -234,7 +234,7 @@
 					</div>
 				</div>
 				<div class="footer-command-area">
-					<button type=button onclick="cameraPositionChange_ItemCreate()">カメラ変更</button>
+					<button type=button onclick="cameraPositionChange()">カメラ変更</button>
 					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
 				</div>
 				<div>
@@ -667,390 +667,6 @@
 				// **********
 			}
 		</script>
-
-    <!-- アイテム画像作成のスクリプト -->
-    <script>
-      /**
-      * [onload] Tシャツの画像を描画
-      */
-      function drawImageBase(){
-        const tshirts = new Image();
-        tshirts.src = "img/t-org-small.jpg";
-        tshirts.onload = () =>{
-          const canvas = document.querySelector("#image-base");
-          canvas.height = tshirts.height;
-          canvas.width = tshirts.width;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(tshirts, 0, 0, canvas.width, canvas.height);
-
-          const image_item = document.querySelector("#resultItemPict");
-          image_item.height= tshirts.height;
-          image_item.width = tshirts.width;
-        }
-      }
-
-      /**
-      * [onload] アイコンの画像を描画
-      */
-      function drawImageIcon(){
-        const Unaju = new Image();
-        Unaju.src = "img/OSUSUME.webp";
-        Unaju.onload = () =>{
-          const canvas = document.querySelector("#image-icon");
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(Unaju, 0, 0, canvas.width, canvas.height);
-        }
-        // const canvas = document.querySelector("#image2");
-        // const ctx = canvas.getContext("2d");
-        // ctx.font = "32px serif";
-        // ctx.fillStyle = "Red";
-        // ctx.fillText("うな重", 45, 150);
-      }
-
-      /**
-      * Canvasをすべて削除する
-      *
-      * @param {string} target 対象canvasのid
-      * @return {void}
-      */
-      function eraseCanvas(target){
-        const canvas = document.querySelector(target);
-        const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-
-      /**
-      * Canvasを画像として取得
-      *
-      * @param {string} id  対象canvasのid
-      * @return {object}
-      */
-      function getImagefromCanvas(id){
-        return new Promise((resolve, reject) => {
-          const image = new Image();
-          const ctx = document.querySelector(id).getContext("2d");
-          image.onload = () => resolve(image);
-          image.onerror = (e) => reject(e);
-          image.src = ctx.canvas.toDataURL();
-        });
-      }
-    </script>
-    <!-- カメラ処理スクリプト -->
-    <script type="text/javascript">
-      'use strict';
-
-			//---------------------------------------------
-			// プロパティ
-			//---------------------------------------------
-			let isTakeItemPicture = false;      // 撮影済みか(T:済み/F:未撮影)
-			function get_isTakeItemPicture()
-			{
-				return isTakeItemPicture;
-			}
-			function clear_isTakeItemPicture()
-			{
-				isTakeItemPicture = false;
-			}
-      //------------------------------------------
-      // 定数定義
-      //------------------------------------------
-      const VIDEO_WIDTH = 1024;          // ビデオ画像の幅
-      const VIDEO_HEIGHT = 576;         // ビデオ画像の高さ
-
-      const ICON_WIDTH = 300;           // 切り出し画像の幅
-      const ICON_HEIGHT = 300;          // 切り出し画像の高さ
-
-      const ICON_LOC_X = 333;           // アイコン貼り付け位置X
-      const ICON_LOC_Y = 300;           // アイコン貼り付け位置Y
-      
-      //------------------------------------------
-      // 定数領域にidで指定した要素を代入する
-      //------------------------------------------
-      const $divListCameraDevices = document.getElementById("list-camera-devices");   // カメラデバイス列挙エリア
-      const $label_h =document.getElementById("resolution-height");
-      const $label_w =document.getElementById("resolution-width");
-      const $canvasCapture =document.getElementById("canvas-capture");
-      const video_ItemCreate = document.querySelector("#camera-itemcreate");
-      const cameraList = document.getElementById("camera_list");
-      //------------------------------------------
-      // 変数領域
-      //------------------------------------------
-      let useFrontItemCreate = false;                        // フロントカメラ:true, バックカメラ:false
-      //------------------------------------------
-      // グローバル変数
-      //------------------------------------------
-      // カメラのデフォルト設定
-      const CONSTRAINTS_ItemCreate = {
-        audio: false,
-        video: {
-          
-          //--------------------------
-          // PCでやるときの設定
-          //--------------------------
-          width: VIDEO_WIDTH,
-          height: VIDEO_HEIGHT,
-          //--------------------------
-          // スマホでやるときの設定
-          //--------------------------
-          // min    :最小値
-          // max    :最大値
-          // ideal  :理想的な値
-					// width: { min: 320, ideal: 1024, max: 1024 },
-		      // height: { min: 180, ideal: 576, max:576},
-          aspectRatio: 1.777777778,
-          frameRate: { max: 30 },
-          
-          facingMode: null,  // どのカメラを利用するか
-          // facingModeには最終的に以下のいずれかの値を入れる
-          //   facingMode: "user"                    // フロントカメラを利用する
-          //   facingMode: { exact: "environment" }  // リアカメラを利用する
-          deviceId: null
-        }
-      };
-      // 現在のStream
-      let curSTREAM_ItemCreate = null;
-      //---------------------------------------------
-      // [event] ページ読み込み完了
-      //---------------------------------------------
-      function itemcreate_onload() {
-        // カメラデバイス情報の取得
-        getCameraDevices();
-        // カメラ接続
-        //------------------------------
-        // 前後カメラの設定 背面カメラ
-        useFrontItemCreate = false;
-				useFront = false;
-        //------------------------------
-        CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
-        syncCamera_ItemCreate(video_ItemCreate);
-        useFrontItemCreate = !useFrontItemCreate;         // boolean値を反転
-
-				// 初期画像の表示
-				drawImageBase();				// #image1に画像を描画
-				drawImageIcon();				// #image2にテキストを描画
-      }
-      window.onload = () => {
-        // カメラデバイス情報の取得
-        getCameraDevices();
-        // カメラ接続
-        //------------------------------
-        // 前後カメラの設定 背面カメラ
-        // useFrontItemCreate = false;
-        //------------------------------
-
-        CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
-        syncCamera_ItemCreate(video_ItemCreate);
-        useFrontItemCreate = !useFrontItemCreate;         // boolean値を反転
-        itemCreate_initImages();
-
-        // Formaにログイン
-        LogIn("serv1se2010-a@yahoo.co.jp", "lets@2021");
-      };
-      // カメラ解像度の変更
-      function videoSize(height, width) {
-        CONSTRAINTS_ItemCreate.video.height = height;
-        CONSTRAINTS_ItemCreate.video.width = width;
-        syncCamera_ItemCreate(video_ItemCreate);
-      }
-      // カメラデバイスの変更
-      function startSelectedVideo() {
-        var deviceId = getSelectedVideo();
-        console.log('selected video device id=' + deviceId);
-        CONSTRAINTS_ItemCreate.video.facingMode = null;
-        CONSTRAINTS_ItemCreate.video.deviceId = deviceId;
-        syncCamera_ItemCreate(video_ItemCreate);
-      }
-      function getSelectedVideo() {
-        var id = cameraList.options[cameraList.selectedIndex].value;
-        return id;
-      }
-			//
-      // カメラを<video>と同期
-      //
-      // @param {object} video
-      // @param {boolean} [is_front=true]
-      //
-      function syncCamera_ItemCreate(video){
-        // // 前後カメラの設定
-        // CONSTRAINTS_ItemCreate.video.facingMode = (is_front)?  "user":{ exact: "environment" };
-        
-        // すでにカメラと接続していたら停止
-        stopCamera_ItemCreate();
-        // カメラと接続する
-        navigator.mediaDevices.getUserMedia(CONSTRAINTS_ItemCreate)
-          .then( (stream) => {
-            curSTREAM_ItemCreate = stream;   // 前後の切り替え用に保持
-
-            // <video>とStremaを接続
-            video.srcObject = stream;
-            video.onloadedmetadata = (e) => {
-              
-              video.play();
-              // 解像度を画面表示
-              $label_h.innerText =`H:${video.videoHeight}`;
-              $label_w.innerText =`W:${video.videoWidth}`;
-            };
-          })
-          .catch( (err) => {
-            console.log(`${err.name}: ${err.message}`);
-            alert(
-              "カメラとの接続時にエラーが発生しました" + "\n"
-              + err.name + "\n"
-              + err.message
-              );
-          });
-      }
-
-      function stopCamera_ItemCreate()
-      {
-        // すでにカメラと接続していたら停止
-        if( curSTREAM_ItemCreate !== null ){
-          curSTREAM_ItemCreate.getVideoTracks().forEach( (camera) => {
-            camera.stop();
-          });
-        }
-      }
-      // 前後カメラの切り替え
-      function cameraPositionChange_ItemCreate()
-      {
-        CONSTRAINTS_ItemCreate.video.deviceId = null;
-        CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
-        syncCamera_ItemCreate(video_ItemCreate);
-        useFrontItemCreate = !useFrontItemCreate;      // boolean値を反転
-      };
-
-
-      // キャプチャー処理
-      function itemIconCreate()
-      {
-				debugConsole_proc('itemIconCreate button');
-        $canvasCapture.width  = video_ItemCreate.videoWidth;
-        $canvasCapture.height = video_ItemCreate.videoHeight;
-        $canvasCapture.getContext('2d').drawImage(video_ItemCreate, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
-        // アイコンの切り出し
-        cutIcon(video_ItemCreate);
-        // Tシャツとアイコンの合成
-        concatCanvas("#resultItemPict", ["#image-base", "#image-icon"]);
-				// 後処理
-				itemPict_Result();
-
-				isTakeItemPicture = true;
-      }
-      // アイコンエリアを切り出して表示
-      function cutIcon(asset){
-        const canvas = document.querySelector("#image-icon");
-        const ctx = canvas.getContext("2d");
-
-        // 元画像はそのまま表示する。
-        // ctx.drawImage(asset, 0, 0, canvas.width, canvas.height);
-        // 画像を切り出して表示
-        ctx.drawImage(
-                        asset,
-                        //------------------------
-                        // 切り出しエリア
-                        // 中央部を切り出すため
-                        //------------------------
-                        (video_ItemCreate.videoWidth - ICON_WIDTH) / 2,   // x
-                        (video_ItemCreate.videoHeight - ICON_HEIGHT) / 2, // y
-                        ICON_WIDTH,                       // width
-                        ICON_HEIGHT,                      // height
-                        //------------------------
-                        // 貼り付け位置
-                        //------------------------
-                        0, 0, ICON_WIDTH, ICON_HEIGHT     // 貼り付け位置(x, y, width, height)
-                      );
-      }
-      /**
-      * Canvas合成
-      *
-      * @param {string} base 合成結果を描画するcanvas(id)
-      * @param {array} asset 合成する素材canvas(id)
-      * @return {void}
-      */
-      async function concatCanvas(base, asset){
-        const canvas = document.querySelector(base);
-        const ctx = canvas.getContext("2d");
-
-        for(let i=0; i<asset.length; i++){
-          const image1 = await getImagefromCanvas(asset[i]);
-          if(i == 0)
-          {
-            // 元画像はそのまま表示する。
-            ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
-          }
-          else
-          {
-            // 上に合成する画像は、表示位置の始点を指定する。
-            // 位置を指定して画像を出力
-            ctx.drawImage(image1, ICON_LOC_X, ICON_LOC_Y, ICON_WIDTH, ICON_HEIGHT);
-          }
-
-        }
-      }
-      //--------------------------------------------
-      // メディアデバイスを取得する
-      // https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/enumerateDevices
-      // https://qiita.com/massie_g/items/b9863e4366cfed339528
-      // https://mganeko.github.io/webrtcexpjp/tool/devicelist.html
-      //--------------------------------------------
-      function getCameraDevices() 
-      {
-        $divListCameraDevices.innerHTML="";
-        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-          console.log("enumerateDevices() not supported.");
-          return;
-        }
-        // カメラリストのクリア
-        while(cameraList.lastChild) {
-          cameraList.removeChild(cameraList.lastChild);
-        }
-        
-        // List cameras and microphones.
-        // kindは   "videoinput"
-        //          "audioinput"
-        //          "audiooutput"
-        navigator.mediaDevices.enumerateDevices()
-        .then(function(devices) {
-          // デバイス情報 MediaDeviceInfo の内容
-          // deviceId       ：（デバイスID)
-          // kind           ：（種類：　audioinput, videoinput, audiooutput ）
-          //                  ※ audiooutput は Chromeのみ
-          // label （名称） ：取得できる場合と、できない場合がある
-          // groupId        ：同一ハード機器内のデバイスでは同じになる仕様（けど、まだ？）
-          // 成功時
-          devices.forEach(function(device, index) {
-            console.log(device.kind + ": " + device.label +
-                        " id = " + device.deviceId);
-            if(device.kind === 'videoinput')
-            {
-              // セレクトボックスの追加
-              var id = device.deviceId;
-              var label = device.label || 'camera'; // label is available for https 
-              const option = document.createElement('option');
-              option.setAttribute('value', id);
-              option.innerHTML = label + '(' + id + ')';
-              cameraList.appendChild(option);
-            }
-            // 指定要素にデバイス情報を要素で追加
-            const p = document.createElement('p');
-            p.innerHTML = `*** [${index}] ***` 
-                          + "<br>"
-                          + `Kind: ${device.kind}` 
-                          + "<br>" 
-                          + `Label: ${device.label}`
-                          + "<br>" 
-                          + `Id: ${device.deviceId}`
-            $divListCameraDevices.appendChild(p);
-          });
-        })
-        // エラー発生時
-        .catch(function(err) {
-          console.log(err.name + ": " + err.message);
-        });
-      }
-    </script>
-
-
 		<!-- ********************************* -->
 		<!-- JS をキャッシュする読み方 -->
 		<!-- <script type="text/javascript" src="js/selecter.js?" charset="utf-8"></script> -->
@@ -1082,9 +698,7 @@
 				// 初期処理
 				index_onloaded();
 				camera_onloaded();
-
 				jumpto_index();
-        itemcreate_onload();
 				// **********
 		    // タイムアウト開始
 				countStart();
@@ -1101,8 +715,14 @@
 				document.getElementById('cancel_privacy_button_b').classList.add('fluffy');
 				document.getElementById('accept_privacy_camera').classList.add('fluffy_slime');
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
+				
+				
 				// 写真撮影フラグをクリア
 				clear_isTakePicture();
+
+				// カメラの開始
+				const video = document.querySelector("#camera");
+				syncCamera(video);
 			}
 			// ======================
 			// 初期処理
@@ -1223,11 +843,6 @@
 				if(!Get_logInStatus())
 				{
 					let msg = '試着サーバーに接続できません。\n';
-					msg += 'お手数ですが\n';
-					msg += '['
-					msg += document.getElementById('btn_index_goto_order').textContent; 
-					msg += ']\n';
-					msg += 'におすすみください。';
 					alert(msg);
 					return;
 				}
