@@ -234,7 +234,7 @@
 					</div>
 				</div>
 				<div class="footer-command-area">
-					<button type=button onclick="cameraPositionChange()">カメラ変更</button>
+					<button type=button onclick="cameraPositionChange_ItemCreate()">カメラ変更</button>
 					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
 				</div>
 				<div>
@@ -795,8 +795,8 @@
           // min    :最小値
           // max    :最大値
           // ideal  :理想的な値
-					width: { min: 320, ideal: 1024, max: 1024 },
-		      height: { min: 180, ideal: 576, max:576},
+					// width: { min: 320, ideal: 1024, max: 1024 },
+		      // height: { min: 180, ideal: 576, max:576},
           aspectRatio: 1.777777778,
           frameRate: { max: 30 },
           
@@ -910,11 +910,11 @@
         }
       }
       // 前後カメラの切り替え
-      function cameraPositionChange()
+      function cameraPositionChange_ItemCreate()
       {
         CONSTRAINTS_ItemCreate.video.deviceId = null;
         CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
-        syncCamera_ItemCreate(video);
+        syncCamera_ItemCreate(video_ItemCreate);
         useFrontItemCreate = !useFrontItemCreate;      // boolean値を反転
       };
 
