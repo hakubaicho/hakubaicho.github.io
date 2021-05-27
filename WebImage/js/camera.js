@@ -528,7 +528,7 @@
     }
 
     // カメラ接続
-    let mode_SmartPhone = false;
+    let mode_SmartPhone = true;
     if(mode_SmartPhone)
     {
       // *******************************************
