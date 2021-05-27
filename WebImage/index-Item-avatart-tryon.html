@@ -666,12 +666,12 @@
 				document.getElementById('accept_privacy_receipt').classList.add('fluffy_slime');
 				
 				
-				// 写真撮影フラグをクリア
-				clear_isTakePicture();
+				// // 写真撮影フラグをクリア
+				// clear_isTakePicture();
 
-				// カメラの開始
-				const video = document.querySelector("#camera");
-				syncCamera(video);
+				// // カメラの開始
+				// const video = document.querySelector("#camera");
+				// syncCamera(video);
 			}
 			// ======================
 			// 初期処理
@@ -688,6 +688,15 @@
 				// タイムアウト
 				countReset();
 				// **********
+
+				//----------------------------------
+				// カメラの開始
+				//----------------------------------
+				// 写真撮影フラグをクリア
+				clear_isTakePicture();
+				// カメラの開始
+				const video = document.querySelector("#camera");
+				syncCamera(video);
 			}
 			// index.htmlがロードされた時の処理
 			function index_onloaded() {

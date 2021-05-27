@@ -524,10 +524,6 @@
     }
 
     // カメラ接続
-    // 前後カメラの設定
-    CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
-    useFront = !useFront;         // boolean値を反転
-
     let mode_SmartPhone = true;
     if(mode_SmartPhone)
     {
