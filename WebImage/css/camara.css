@@ -28,7 +28,8 @@
 #video_container video {
   height: 1024px;
   width: 576px;
-  transform: scaleX(-1);  /* 左右反転させる */
+  /* 左右反転させる */
+  /* transform: scaleX(-1);   */
 }
 #canvas-photo {
   /* height: 1024px;

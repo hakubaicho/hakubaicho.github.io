@@ -41,7 +41,8 @@
   height: 1024px;
   width: 576px;
   /* 左右反転させる */
-  transform: scaleX(-1);
+  
+  /* transform: scaleX(-1); */
 }
 #canvas-item-create {
   /* height: 1024px;
