@@ -213,7 +213,8 @@
     //ここで反転しないとね
     // http://honttoni.blog74.fc2.com/blog-entry-197.html
     const ctx = $canvas_Photo.getContext("2d");
-    ctx.transform(-1,0,0,1,video.videoWidth,0);
+    // 背面カメラでの撮影の場合にはいらない。
+    // ctx.transform(-1,0,0,1,video.videoWidth,0);
     // canvasに『「静止画取得」ボタン』押下時点の画像を描画
     $canvas_Photo.getContext('2d').drawImage(video, 0, 0);
 
