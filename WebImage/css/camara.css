@@ -38,7 +38,7 @@
 /* コマンドボタンエリア */
 /* =========================== */
 #area-button {
-  height: 200px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@
 .box_command {
   margin-left: 20px;
   margin-right: 20px;
-  height: 200px;  /* これで画像のトップ合わせ */
+  height: 100px;  /* これで画像のトップ合わせ */
 }
 .box_command img {
   /* height: 180px; */

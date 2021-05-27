@@ -23,7 +23,7 @@
 /* カメラエリア */
 /* =========================== */
 #area-capture-item-create {
-  height: 1200px;
+  height: 1100px;
   width: 1080px;
   display: flex;
   justify-content: center;
