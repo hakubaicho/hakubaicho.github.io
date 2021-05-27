@@ -127,13 +127,13 @@
   // @param {boolean} [is_front=true]
   //
   function syncCamera(video){
-    // // 前後カメラの設定
-    // CONSTRAINTS.video.facingMode = (is_front)?  "user":{ exact: "environment" };
+    // 前後カメラの設定
+    CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
     
-    // 既にカメラ開始なら処理しない。
-    if( curSTREAM !== null ){
-        return;
-    }
+    // // 既にカメラ開始なら処理しない。
+    // if( curSTREAM !== null ){
+    //     return;
+    // }
     // すでにカメラと接続していたら停止
     // stopCamera();
 
@@ -528,16 +528,29 @@
     CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
     useFront = !useFront;         // boolean値を反転
 
+    let mode_SmartPhone = true;
+    if(mode_SmartPhone)
+    {
+      // *******************************************
+      // スマホ版
+      // 背面カメラを使う
+      // *******************************************
+      useFront = false;
+      CONSTRAINTS.video.facingMode = (useFront)?  "user":{ exact: "environment" };
+    }
+    else
+    {
     // *******************************************
     // いつも2番目で開始する。
     // このやり方が正しいかわかりません。
     // でも、DeviceID, GroupIDが毎回違うため
     // どうしたらいいか？？？？？？？
     // *******************************************
-    CONSTRAINTS.video.facingMode = null;
-    if(camera_device_ids.length == 2)
-    {
-      CONSTRAINTS.video.deviceId = camera_device_ids[1];
+      CONSTRAINTS.video.facingMode = null;
+      if(camera_device_ids.length == 2)
+      {
+        CONSTRAINTS.video.deviceId = camera_device_ids[1];
+      }
     }
     // モーダルの「もどる」「すすむ」を表示
     // cancel.classList.remove('hidden');
