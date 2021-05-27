@@ -498,6 +498,7 @@
     // カメラの開始
     //--------------------------------------------------
     //syncCamera(video);
+    init_items();
   }
   async function init_camera() {
     // カメラデバイス情報の取得

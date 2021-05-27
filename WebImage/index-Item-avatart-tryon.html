@@ -237,63 +237,12 @@
 					<button type=button onclick="cameraPositionChange()">カメラ変更</button>
 					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
 				</div>
-				<div>
-					<p>
-						<span id="camera-status"></span>
-					</p>
-					<p>
-						<span id="Forma_status"></span>
-					</p>
-					<p>
-						<span id="forma_login"></span>
-					</p>
-					<p>itemUUID: 
-						<span id="itemuuid"></span>
-					</p>
-					<p>avatarUUID: 
-						<span id="avataruuid"></span>
-					</p>
-				</div>
-				<!-- 音声 -->
-				<div id="area-sound" class="area-container" hidden>
-					<p>
-						<button type=button onclick="play_countdown()">テスト再生</button>
-						<span>再生状態:<span id="soundStatus"></span></span>
-					</p>
-					<!-- 
-						audioタグで先読みしておいたほうがいいです。
-						じゃないとエラーが出ました。
-						controlsでコントロールGUIの表示をします。
-					-->
-					<audio id="sound-countdown" controls src="sound/countdown5to1.mp3"></audio>
-					<audio id="sound-shutter" controls src="sound/shutter.mp3"></audio>
-				</div>
 				<!-- カメラコントロール -->
 				<div id="area-camera-ctrl" class="area-container">
-					<!-- 解像度の設定ボタン -->
-					<div>
-						<button type="button" class="button_command" onclick="videoSize(1024, 576)">H:1024 * W:576</button>
-						<button type="button" class="button_command" onclick="videoSize(576, 1024)">H:576 * W:1024</button>
-					</div>
-					<!-- VIDEO選択画面 -->
-					<div>
-						<select id="camera_list" size="1" style="width:160pt;">
-							<option>(video)</option>
-						</select>
-						<button id="start_video_button" class="button_command" onclick="startSelectedVideo()">Start Video</button>
-					</div>
-					<p>H:<span id="resolution-height"></span></p>
-					<p>W:<span id="resolution-width"></span></p>
           <!-- キャプチャ画面 -->
           <div>
             <canvas id="canvas-capture"></canvas>
           </div>
-					<div id="camera-devices">
-						<p>mediaDevicesを列挙します。</p>
-						<button type="button" onclick="getCameraDevices()">取得</button>
-						<div id="list-camera-devices">
-						</div>
-					</div>
 				</div>
 			</footer>
 		</div>
