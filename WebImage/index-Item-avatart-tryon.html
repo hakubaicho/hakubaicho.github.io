@@ -808,7 +808,7 @@
         }
       };
       // 現在のStream
-      let curSTREAM = null;
+      let curSTREAM_ItemCreate = null;
       //---------------------------------------------
       // [event] ページ読み込み完了
       //---------------------------------------------
@@ -819,6 +819,7 @@
         //------------------------------
         // 前後カメラの設定 背面カメラ
         useFrontItemCreate = false;
+				useFront = false;
         //------------------------------
         CONSTRAINTS_ItemCreate.video.facingMode = (useFrontItemCreate)?  "user":{ exact: "environment" };
         syncCamera_ItemCreate(video_ItemCreate);
@@ -878,7 +879,7 @@
         // カメラと接続する
         navigator.mediaDevices.getUserMedia(CONSTRAINTS_ItemCreate)
           .then( (stream) => {
-            curSTREAM = stream;   // 前後の切り替え用に保持
+            curSTREAM_ItemCreate = stream;   // 前後の切り替え用に保持
 
             // <video>とStremaを接続
             video.srcObject = stream;
@@ -903,8 +904,8 @@
       function stopCamera_ItemCreate()
       {
         // すでにカメラと接続していたら停止
-        if( curSTREAM !== null ){
-          curSTREAM.getVideoTracks().forEach( (camera) => {
+        if( curSTREAM_ItemCreate !== null ){
+          curSTREAM_ItemCreate.getVideoTracks().forEach( (camera) => {
             camera.stop();
           });
         }
