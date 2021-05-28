@@ -184,21 +184,27 @@
 		<div id="item-create-page" class="loaded">
       <!-- HEADER -->
 			<header>
-				Tシャツを作ろう
+				<p><span class="header-title">デザインを写真に撮って</span></p>
 			</header>
 			<!-- NAV -->
 			<!-- MAIN -->
-      <section id="contents">
+      <section hidden id="contents">
         <div class="flex-container">
           <!-- 「非表示」合成するcanvas「Tシャツ」 -->
           <canvas hidden id="image-base" width="200" height="170"></canvas>
           <!-- 「非表示」合成するcanvas「アイコン画像」 -->
           <canvas hidden id="image-icon" width="300" height="300"></canvas>
           <!-- 合成結果用のcanvas「アイテム画像」 -->
+					<canvas id="resultItemPict" class=""></canvas>
+					<!-- Formaへのアイテム登録 -->
           <button hidden type="button" onclick="RegisterItem_Proc()">Forma送信</button>
         </div>
         <!-- 消しゴム -->
         <p id="eraser"><button hidden type="button" id="btn-eraser"><img src="icon/eraser-solid.svg" width="32" height="32"></button></p>
+				<!-- キャプチャ画面 -->
+				<div>
+					<canvas id="canvas-capture"></canvas>
+				</div>
       </section>
 			<main>
 				<!-- カメラ -->
@@ -210,7 +216,7 @@
 						</video>
 						<canvas id="overlay-Target" width="300" height="300"></canvas>        <!-- 重ねて描画する canvas -->
 						<!-- Tシャツ加工したアイテム画像 -->
-						<canvas id="resultItemPict" class="item-hide"></canvas>
+						<canvas id="resultItemPreview" class="item-hide"></canvas>
 					</div>
 				</div>
 			</main>
@@ -220,28 +226,23 @@
 				<div id="area-button" class="area-container">
 					<!-- 「撮り直し」アイテム用の画像の撮影と合成 -->
 					<div class="box_command">
-						<!-- <img src="img/arrow_left.png" id="btn_image_back" onclick="btnimg_click_back()"> -->
-						<img src="img/logos/cmd_camera_left.webp" id="btn_reItemCreate" onclick="itemPict_Start()">
+						<button id="btn_reItemCreate" class="button_command" onclick="itemPict_Start()">撮り直し</button>
+						<!-- <img src="img/logos/cmd_camera_left.webp" id="btn_reItemCreate" onclick="itemPict_Start()"> -->
 					</div>
 					<!-- アイテム用の画像の撮影と合成 -->
 					<div class="box_command">
-						<img class="" src="img/logos/cmd_camera_shutter.webp" id="btn_ItemCreate" 
-                    onclick="itemIconCreate()">
+						<!-- <button id="btn_ItemCreate" class="button_command" onclick="itemIconCreate()">撮影</button> -->
+						<img class="" src="img/logos/cmd_camera_shutter.webp" id="btn_ItemCreate" onclick="itemIconCreate()">
 					</div>
 					<!-- 次に遷移 -->
 					<div class="box_command">
+						<!-- <button id="btn_ItemCreate_toCamera" class="button_command" onclick="jumpto_Camera()">試着する</button> -->
 						<img src="img/logos/cmd_camera_right.webp" id="btn_ItemCreate_toCamera" onclick="jumpto_Camera()">
 					</div>
 				</div>
 				<div class="footer-command-area">
+					<!-- <button class="button_caution" onclick="jumpto_Camera()">終了</button> -->
 					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()">
-				</div>
-				<!-- カメラコントロール -->
-				<div id="area-camera-ctrl" class="area-container">
-          <!-- キャプチャ画面 -->
-          <div>
-            <canvas id="canvas-capture"></canvas>
-          </div>
 				</div>
 			</footer>
 		</div>
@@ -341,7 +342,7 @@
 		<!-- cameraのメイン部分 -->
 		<div id="camera-page" class="">
 			<header>
-				人物を撮ろう
+				<p><span class="header-title">着る人を撮ろう</span></p>
 			</header>
 			<!-- ふわふわの注意 -->
 			<!-- 注意1 -->
@@ -990,7 +991,7 @@
 				document.getElementById("camera-itemcreate").classList.remove("item-hide");
 				document.getElementById("overlay-Target").classList.remove("item-hide");
 				// アイテム画像結果の表示
-				document.getElementById("resultItemPict").classList.add("item-hide");
+				document.getElementById("resultItemPreview").classList.add("item-hide");
 
 				// ボタンの演出
 				document.getElementById("btn_ItemCreate").classList.add("fluffy_slime");
@@ -1002,12 +1003,11 @@
 				document.getElementById("camera-itemcreate").classList.add("item-hide");
 				document.getElementById("overlay-Target").classList.add("item-hide");
 				// アイテム画像結果の表示
-				document.getElementById("resultItemPict").classList.remove("item-hide");
+				document.getElementById("resultItemPreview").classList.remove("item-hide");
 
 				// ボタンの演出
 				document.getElementById("btn_ItemCreate").classList.remove("fluffy_slime");
 				document.getElementById("btn_ItemCreate_toCamera").classList.add("fluffy_slime");
-				
 			}
 			// **********************
 			// 各ページ要素の表示非表示
