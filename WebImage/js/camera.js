@@ -528,7 +528,7 @@
     }
 
     // カメラ接続
-    let mode_SmartPhone = true;
+    let mode_SmartPhone = false;
     if(mode_SmartPhone)
     {
       // *******************************************
@@ -659,7 +659,7 @@
   // アイテム画像の作成処理
   //
   // ===============================================================
-  // キャプチャー処理
+  // [Tシャツのロゴを作成]キャプチャー処理
   function itemIconCreate()
   {
     debugConsole_proc('itemIconCreate button');
@@ -670,6 +670,19 @@
     cutIcon(video_item);
     // Tシャツとアイコンの合成
     concatCanvas("#resultItemPict", ["#image-base", "#image-icon"]);
+    // 後処理
+    itemPict_Result();
+
+    isTakeItemPicture = true;
+  }
+  // そのままをアイテム
+  function itemNormalPicutreCreate() {
+    debugConsole_proc('itemIconCreate button');
+    $canvasCapture.width  = video_item.videoWidth;
+    $canvasCapture.height = video_item.videoHeight;
+    $canvasCapture.getContext('2d').drawImage(video_item, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+    // 画像を表示
+    pictCanvas("#resultItemPict", ["#canvas-capture"]);
     // 後処理
     itemPict_Result();
 
@@ -710,6 +723,62 @@
     const canvas = document.querySelector(base);
     const ctx = canvas.getContext("2d");
 
+    // 画面のサイズを変更
+    canvas.height= document.querySelector("#image-base").height;
+    canvas.width = document.querySelector("#image-base").width;
+    
+    for(let i=0; i<asset.length; i++){
+      const image1 = await getImagefromCanvas(asset[i]);
+      if(i == 0)
+      {
+        // 元画像はそのまま表示する。
+        ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
+      }
+      else
+      {
+        // 上に合成する画像は、表示位置の始点を指定する。
+        // 位置を指定して画像を出力
+        ctx.drawImage(image1, ICON_LOC_X, ICON_LOC_Y, ICON_WIDTH, ICON_HEIGHT);
+      }
+    }
+    // プレビュー画像の貼り付け
+    const result = document.getElementById("resultItemPict");
+    const preview = document.getElementById("resultItemPreview");
+    const area = document.getElementById('video-container-item-create');
+    // サイズをビデオのエリアサイズと同じに
+    // https://blanktar.jp/blog/2015/04/html-canvas-copy
+    preview.width  = area.clientWidth;
+    preview.height = area.clientHeight;
+    let image = result.getContext('2d').getImageData(0, 0, result.width, result.height);
+    // 左上が起点で描画
+    // preview.getContext('2d').putImageData(image, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+    // 中央に表示
+    let top = 0;
+    let left = 0;
+    if((0 < (result.height - preview.height)) || (0 < (result.width - preview.width)))
+    {
+      top = (result.height - preview.height) / 2;
+      left = (result.width - preview.width) / 2;
+      top = top * -1;
+      left = left * -1;      
+    }
+    preview.getContext('2d').putImageData(image, left, top);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画
+  }
+  /**
+  * Canvas合成
+  *
+  * @param {string} base 合成結果を描画するcanvas(id)
+  * @param {array} asset 合成する素材canvas(id)
+  * @return {void}
+  */
+   async function pictCanvas(base, asset){
+    const canvas = document.querySelector(base);
+    const ctx = canvas.getContext("2d");
+
+    // 画面のサイズを変更
+    canvas.height= document.querySelector(asset[0]).height;
+    canvas.width = document.querySelector(asset[0]).width;
+    
     for(let i=0; i<asset.length; i++){
       const image1 = await getImagefromCanvas(asset[i]);
       if(i == 0)
