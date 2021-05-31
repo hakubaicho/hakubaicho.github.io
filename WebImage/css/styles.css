@@ -142,8 +142,8 @@ footer {
   outline: none;
 }
 .button_caution {
-  height:80px;
-  width: 200px;
+  height:90px;
+  width: 230px;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 10px;
@@ -155,8 +155,8 @@ footer {
   outline: none;
 }
 .button_warning {
-  height:60px;
-  width: 200px;
+  height:90px;
+  width: 230px;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 10px;
