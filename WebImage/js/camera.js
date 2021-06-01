@@ -528,7 +528,7 @@
     }
 
     // カメラ接続
-    let mode_SmartPhone = true;
+    let mode_SmartPhone = false;
     if(mode_SmartPhone)
     {
       // *******************************************
@@ -660,7 +660,7 @@
   //
   // ===============================================================
   // [Tシャツのロゴを作成]キャプチャー処理
-  function itemIconCreate()
+  function createItem_For_TShirts()
   {
     debugConsole_proc('itemIconCreate button');
     $canvasCapture.width  = video_item.videoWidth;
@@ -675,9 +675,9 @@
 
     isTakeItemPicture = true;
   }
-  // そのままをアイテム
-  function itemNormalPicutreCreate() {
-    debugConsole_proc('itemIconCreate button');
+  // 撮影写真をそのままをアイテムにする。
+  function createItem_For_Style() {
+    debugConsole_proc('createItem_For_Style button');
     $canvasCapture.width  = video_item.videoWidth;
     $canvasCapture.height = video_item.videoHeight;
     $canvasCapture.getContext('2d').drawImage(video_item, 0, 0);  // canvasに『「静止画取得」ボタン』押下時点の画像を描画

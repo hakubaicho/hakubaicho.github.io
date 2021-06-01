@@ -687,99 +687,98 @@
     //***************************************************************************** */
     phase_change(0);
     let doNext = true;
-    //----------------------------------------
-    // Presign
-    //----------------------------------------
-    display_status_toElement('[Start]RegisterAvatar-PreSign');
-    await register_Avatar_PreSign()
-    .then(
-      function( response ) {
-        // 正常結果
-        display_status_toElement(`[OK]RegisterAvatar-PreSign : ${response}`);
-      },
-      function( error ) {
-        //エラー処理を記述する
-        display_status_toElement(`[NG]RegisterAvatar-PreSign : ${error}`);
-        doNext = false;
-      }
-    )
-    //----------------------------------------
-    // データ送信
-    //----------------------------------------
-    if(doNext)
+    if(uuid_tryon_avatar == '')
     {
-      display_status_toElement('[Start]RegisterAvatar-Data');
-      await register_Avatar_Data()
-      .then(
+      //----------------------------------------
+      // Presign
+      //----------------------------------------
+      display_status_toElement('[Start]RegisterAvatar-PreSign');
+      await register_Avatar_PreSign()
+        .then(
         function( response ) {
           // 正常結果
-          display_status_toElement(`[OK]RegisterAvatar-Data : ${response}`);
+          display_status_toElement(`[OK]RegisterAvatar-PreSign : ${response}`);
         },
         function( error ) {
           //エラー処理を記述する
-          display_status_toElement(`[NG]RegisterAvatar-Data : ${error}`);
+          display_status_toElement(`[NG]RegisterAvatar-PreSign : ${error}`);
           doNext = false;
         }
       )
-    }
-    //----------------------------------------
-    // Pingで処理待ち
-    //----------------------------------------
-    if(doNext)
-    {
-      display_status_toElement('[Start]RegisterAvatar-Ping');
-      let isNext = true;
-      const RETRY_MAX = 100;
-      for(let i = 0 ; i < RETRY_MAX; i++)
+      //----------------------------------------
+      // データ送信
+      //----------------------------------------
+      if(doNext)
       {
-        // 待ち時間処理
-        await ping_wait();
-        // 処理結果を取得する。
-        display_status_toElement(`[Start]RegisterAvatar-Ping(${i})`);
-        await register_Avatar_Ping()
-        .then(
-          function( response  ) {
+        display_status_toElement('[Start]RegisterAvatar-Data');
+        await register_Avatar_Data()
+          .then(
+          function( response ) {
             // 正常結果
-            switch(response)
-            {
-              case 0: //正常終了
+            display_status_toElement(`[OK]RegisterAvatar-Data : ${response}`);
+          },
+          function( error ) {
+            //エラー処理を記述する
+            display_status_toElement(`[NG]RegisterAvatar-Data : ${error}`);
+            doNext = false;
+          }
+        )
+      }
+      //----------------------------------------
+      // Pingで処理待ち
+      //----------------------------------------
+      if(doNext)
+      {
+        display_status_toElement('[Start]RegisterAvatar-Ping');
+        let isNext = true;
+        const RETRY_MAX = 100;
+        for(let i = 0 ; i < RETRY_MAX; i++)
+        {
+          // 待ち時間処理
+          await ping_wait();
+          // 処理結果を取得する。
+          display_status_toElement(`[Start]RegisterAvatar-Ping(${i})`);
+          await register_Avatar_Ping()
+            .then(
+            function( response  ) {
+              // 正常結果
+              switch(response)
+              {
+                case 0: //正常終了
                 isNext = false;
                 display_status_toElement(`[OK]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
-              case 1: // 処理中
+                case 1: // 処理中
                 display_status_toElement(`[WAIT]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
-              case 2: // 処理失敗
+                case 2: // 処理失敗
                 isNext = false;
                 doNext = false;
                 display_status_toElement(`[FAILD]RegisterAvatar-Ping(${i}) = ${response}`);
                 break;
+              }
+            },
+            function( error ) {
+              //エラー
+              display_status_toElement(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
+              isNext = false;
             }
-          },
-          function( error ) {
-            //エラー
-            display_status_toElement(`[NG]RegisterAvatar-Ping(${i}) = ${error}`);
-            isNext = false;
+          )
+          if(isNext !== true)
+          {
+            break;
           }
-        )
-        if(isNext !== true)
-        {
-          break;
         }
       }
+      if(!doNext)
+      {
+        alert('Avatar写真の転送に失敗しました。');
+        tryonShutter.classList.add('loaded');
+        return;
+      }
+      uuid_tryon_avatar = avatar_from_camera_register;
     }
-    if(!doNext)
-    {
-      alert('Avatar写真の転送に失敗しました。');
-      tryonShutter.classList.add('loaded');
-      return;
-    }
-    uuid_tryon_avatar = avatar_from_camera_register;
     fromHTML_call_Set_AvatarUUID(uuid_tryon_avatar);
-
-
-
-
 
     //***************************************************************************** */
     // Item登録

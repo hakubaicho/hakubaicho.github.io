@@ -184,7 +184,7 @@
 		<div id="item-create-page" class="loaded">
       <!-- HEADER -->
 			<header>
-				<p><span class="header-title">デザインを写真に撮って</span></p>
+				<p><span class="header-title">デザインを写真に撮って</span><span>ITEM:</span><span> / AVATAR:</span></p>
 			</header>
 			<!-- NAV -->
 			<!-- MAIN -->
@@ -226,36 +226,33 @@
 				<div id="area-button" class="area-container">
 					<!-- 「撮り直し」アイテム用の画像の撮影と合成 -->
 					<div class="box_command">
-						<button id="btn_reItemCreate" class="button_command" onclick="itemPict_Start()">撮り直し</button>
-						<!-- <img src="img/logos/cmd_camera_left.webp" id="btn_reItemCreate" onclick="itemPict_Start()"> -->
+						<button id="btn_reItemCreate" class="button_command" onclick="itemPicture_Init()">撮り直し</button>
 					</div>
 					<!-- アイテム用の画像の撮影と合成 -->
 					<div class="box_command">
-						<button id="btn_ItemCreate" class="button_caution" onclick="itemIconCreate()">Tｼｬﾂ撮影</button>
-						<!-- <img id="btn_ItemCreate" class="" src="img/logos/cmd_camera_shutter.webp" onclick="itemIconCreate()"> -->
+						<button id="btn_ItemCreate" class="button_warning" onclick="createItem_For_TShirts()">Tｼｬﾂ撮影</button>
 					</div>
 					<!-- 写真をスタイルとして撮影 -->
 					<div class="box_command">
-						<button id="btn_StyleCreate" class="button_caution" onclick="itemNormalPicutreCreate()">Style撮影</button>
+						<button id="btn_StyleCreate" class="button_warning" onclick="createItem_For_Style()">Style撮影</button>
 					</div>
 				</div>
 				<!-- コントロールボタン -->
 				<div id="area-button" class="area-container">
 					<!-- 人物撮影に遷移 -->
 					<div class="box_command">
-						<button id="btn_ItemCreate_toCamera" class="button_command" onclick="jumpto_Camera()">前回の人で</button>
-						<!-- <img src="img/logos/cmd_camera_right.webp" id="btn_ItemCreate_toCamera" onclick="jumpto_Camera()"> -->
+						<button id="btn_AvatarReuse" class="button_command" onclick="jumpto_AvatarReuse_Tryon()">前回の人で</button>
+						<!-- <img id="btn_AvatarReuse" src="img/logos/cmd_button_reusepicture.webp" onclick="jumpto_AvatarReuse_Tryon()"> -->
 					</div>
 					<!-- 人物撮影に遷移 -->
 					<div class="box_command">
-						<button id="btn_ItemCreate_toCamera" class="button_command" onclick="jumpto_Camera()">人の撮影</button>
-						<!-- <img src="img/logos/cmd_camera_right.webp" id="btn_ItemCreate_toCamera" onclick="jumpto_Camera()"> -->
+						<button id="btn_AvatarTakePhoto" class="button_command" onclick="jumpto_Camera()">人の撮影</button>
+						<!-- <img id="btn_AvatarTakePhoto" src="img/logos/cmd_camera_right.webp" onclick="jumpto_Camera()"> -->
 					</div>
 				</div>
 				<div class="footer-command-area">
-					
-					<!-- <button class="button_caution" onclick="jumpto_Camera()">終了</button> -->
-					<img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="jumpto_index()">
+					<button class="button_caution" onclick="endproc()">終了</button>
+					<!-- <img class="cmd_button_end" src="img/logos/cmd_button_end.webp" onclick="endproc()"> -->
 				</div>
 			</footer>
 		</div>
@@ -347,12 +344,9 @@
 				<div class="footer-container">
 					<!-- Indexへの画面遷移 -->
 					<!-- <img class="cmd_button_reselect" src="img/logos/cmd_button_reselect.webp" onclick="jumpto_index()"> -->
-					<!-- <button class="button_command" onclick="jumpto_index()">選びなおす</button> -->
-					<!-- レシート印刷 -->
-					<!-- <img class="cmd_button_print fluffy" src="img/logos/cmd_button_print_T.webp" onclick="jumpto_Order()"> -->
-					<!-- <button class="button_command fluffy" onclick="jumpto_Order()">購入</button> -->
-
-					<img class="cmd_button_end fluffy" src="img/logos/cmd_button_end.webp" onclick="jumpto_index()">
+					<button class="button_command" onclick="jumpto_index()">選びなおす</button>
+					<!-- 終了 -->
+					<img class="cmd_button_end fluffy" src="img/logos/cmd_button_end.webp" onclick="endproc()">
 				</div>
 			</div>
 		</div>
@@ -607,6 +601,7 @@
 				countUp();
 			}
 			const countUp = () => {
+				// タイムアウトさせない。
         return;
 				console.log(count++);
 				// 指定時間経過で終了
@@ -792,6 +787,16 @@
 				hide_order();
 				// カメラの停止
 				// stopCamera();
+				// Avatarが存在すれば、前回の写真からを有効にする
+				document.getElementById('avataruuid').textContent = Get_avatarUUid();
+				if(Get_avatarUUid() != '')
+				{
+					document.getElementById('btn_AvatarReuse').classList.remove('item-hide');
+				}
+				else
+				{
+					document.getElementById('btn_AvatarReuse').classList.add('item-hide');
+				}
 				// 表示
 				show_index();
 			}
@@ -827,6 +832,31 @@
 				hide_index();
 				show_camera();
 				camera_accept_click();
+			}
+			//------------------------
+			// 
+			// Avatarは前回の登録を使う。
+			// 
+			//------------------------
+			function jumpto_AvatarReuse_Tryon()
+			{
+				// Formaに接続できていない場合の処理
+				if(!Get_logInStatus())
+				{
+					let msg = '試着サーバーに接続できません。\n';
+					msg += 'お手数ですが\n';
+					msg += '['
+					msg += document.getElementById('btn_index_goto_order').textContent; 
+					msg += ']\n';
+					msg += 'におすすみください。';
+					alert(msg);
+					return;
+				}
+
+				// Googleにイベント送信
+				gtag('event', 'MyTtryon', {'event_category': '0','label_2': '','value': '1'});
+				// すぐにTryOn
+				Item_Avatar_TryOn_Proc();
 			}
 			//------------------------
 			// 注文ページに遷移する。
@@ -988,7 +1018,7 @@
 				clear_isTakeItemPicture();
 				
 				// カメラの停止
-				stopCamera_ItemCreate();
+				// stopCamera_ItemCreate();
 				// androidに送信
 				call_exit();
 			}
@@ -1003,7 +1033,7 @@
 			// アイテム画像撮影の遷移
 			// **********************
 			// アイテム画像の撮影を開始します。
-			function itemPict_Start() {
+			function itemPicture_Init() {
 				// カメラ映像の非表示
 				document.getElementById("camera-itemcreate").classList.remove("item-hide");
 				document.getElementById("overlay-Target").classList.remove("item-hide");
@@ -1013,7 +1043,9 @@
 				// ボタンの演出
 				document.getElementById("btn_ItemCreate").classList.add("fluffy_slime");
 				document.getElementById("btn_StyleCreate").classList.add("fluffy_slime");
-				document.getElementById("btn_ItemCreate_toCamera").classList.remove("fluffy_slime");
+				document.getElementById("btn_AvatarReuse").classList.remove("fluffy_slime");
+				document.getElementById("btn_AvatarTakePhoto").classList.remove("fluffy_slime");
+				
 			}
 			// アイテム画像の撮影結果を表示します。
 			function itemPict_Result() {
@@ -1026,7 +1058,8 @@
 				// ボタンの演出
 				document.getElementById("btn_ItemCreate").classList.remove("fluffy_slime");
 				document.getElementById("btn_StyleCreate").classList.remove("fluffy_slime");
-				document.getElementById("btn_ItemCreate_toCamera").classList.add("fluffy_slime");
+				document.getElementById("btn_AvatarReuse").classList.add("fluffy_slime");
+				document.getElementById("btn_AvatarTakePhoto").classList.add("fluffy_slime");
 			}
 			// **********************
 			// 各ページ要素の表示非表示
@@ -1036,7 +1069,7 @@
 
 				// 戻ってきたときにはクリアする。
 				clear_isTakeItemPicture();
-				itemPict_Start();
+				itemPicture_Init();
 				// ライトOff
 				fromHTML_Light_Off();
 				// 対象ページを開く
