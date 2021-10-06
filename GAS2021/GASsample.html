@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>GAS Client Example</title>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    <div>
+        <input id="inputText" type="text">
+        <button type="button" onclick="inputToGoogleAPI()">APIへ送信</button>
+    </div>
+    <div>
+        <label id="api-result"></label>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-<script>
-    const endpoint = "https://script.google.com/macros/s/AKfycbyqTt4bRNmiNNJEo1RzJdVVrx5OoRqXS1xB0F3dMn9D3BOWFRbAje48KwZswi3rG6_7jA/exec";
-    $.ajax({
-        type: 'GET',
-        url: endpoint,
-        dataType: 'jsonp',
-        data: {
-            text: 'Hi,There!'
-        },
-        success: out => {
-            alert(out.message);
+    <script>
+        const endpoint = "https://script.google.com/macros/s/AKfycbzdq61ve4lpZy7cvJd0XZ-JfuRVJuLm0U8PDU8ivX38UQgNamfxwmyCgtxz_Bl9avVN/exec"
+        // const endpoint = "https://script.google.com/macros/s/AKfycbyqTt4bRNmiNNJEo1RzJdVVrx5OoRqXS1xB0F3dMn9D3BOWFRbAje48KwZswi3rG6_7jA/exec";
+        function inputToGoogleAPI() {
+            const inputvalue = document.getElementById('inputText').value;
+            // alert(inputvalue);
+            // return;
+            $.ajax({
+                type: 'GET',
+                url: endpoint,
+                dataType: 'jsonp',
+                data: {
+                    // text: 'Hi,There!'
+                    text: inputvalue
+                },
+                success: out => {
+                    // alert(out.message);
+                    document.getElementById('api-result').textContent = out.message;
+                }
+            });
         }
-    });
-</script>
+    </script>
 </body>
 </html>
