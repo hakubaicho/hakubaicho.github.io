@@ -11,8 +11,21 @@
     </div>
     <div>
         <p><label id="api-result"></label></p>
-        <p><label id="api-result-startday"></label></p>
-        <p><label id="api-result-pastday"></label></p>
+        <p><a href="https://forms.gle/QenBP4LpJimToSoq9">第1工場</a></p>
+        <p><label id="api-result-startday_1"></label></p>
+        <p><label id="api-result-pastday_1"></label></p>
+        <p><a href="https://forms.gle/SNdw6mf9UP6Ert9PA">第2工場</a></p>
+        <p><label id="api-result-startday_2"></label></p>
+        <p><label id="api-result-pastday_2"></label></p>
+        <p><a href="https://forms.gle/5f5hvWBVXQ9LkpvY8">第3工場</a></p>
+        <p><label id="api-result-startday_3"></label></p>
+        <p><label id="api-result-pastday_3"></label></p>
+        <p><a href="https://forms.gle/va6rXmYcHbcN6DcT6">第4工場</a></p>
+        <p><label id="api-result-startday_4"></label></p>
+        <p><label id="api-result-pastday_4"></label></p>
+        <p><a href="https://forms.gle/tQ2pRSt1ZKYdWeTY6">第5工場</a></p>
+        <p><label id="api-result-startday_5"></label></p>
+        <p><label id="api-result-pastday_5"></label></p>
     </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -36,8 +49,16 @@
                 success: out => {
                     // alert(out.message);
                     document.getElementById('api-result').textContent = out.message;
-                    document.getElementById('api-result-startday').textContent = out.startDate;
-                    document.getElementById('api-result-pastday').textContent = out.pastDay;
+                    document.getElementById('api-result-startday_1').textContent = out.startDate_1;
+                    document.getElementById('api-result-pastday_1').textContent = out.pastDay_1;
+                    document.getElementById('api-result-startday_2').textContent = out.startDate_2;
+                    document.getElementById('api-result-pastday_2').textContent = out.pastDay_2;
+                    document.getElementById('api-result-startday_3').textContent = out.startDate_3;
+                    document.getElementById('api-result-pastday_3').textContent = out.pastDay_3;
+                    document.getElementById('api-result-startday_4').textContent = out.startDate_4;
+                    document.getElementById('api-result-pastday_4').textContent = out.pastDay_4;
+                    document.getElementById('api-result-startday_5').textContent = out.startDate_5;
+                    document.getElementById('api-result-pastday_5').textContent = out.pastDay_5;
                 }
             });
         }
