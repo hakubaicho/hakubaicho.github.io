@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GAS Client Example</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+    const endpoint = "https://script.google.com/macros/s/AKfycbyqTt4bRNmiNNJEo1RzJdVVrx5OoRqXS1xB0F3dMn9D3BOWFRbAje48KwZswi3rG6_7jA/exec";
+    $.ajax({
+        type: 'GET',
+        url: endpoint,
+        dataType: 'jsonp',
+        data: {
+            text: 'Hi,There!'
+        },
+        success: out => {
+            alert(out.message);
+        }
+    });
+</script>
+</body>
+</html>
