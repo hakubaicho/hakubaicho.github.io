@@ -6,12 +6,80 @@
 </head>
 <body>
     <div>
-        <input id="inputText" type="text">
-        <button type="button" onclick="inputToGoogleAPI()">APIへ送信</button>
+        <!-- <input id="inputText" type="text"> -->
+        <button type="button" onclick="inputToGoogleAPI()">データの取得</button>
     </div>
     <div>
         <p><label id="api-result"></label></p>
-        <p><a href="https://forms.gle/QenBP4LpJimToSoq9">第1工場</a></p>
+        <table border="1">
+            <tr>
+                <th>工場名</th>
+                <th>開始日付</th>
+                <th>経過日数</th>
+                <th>日付設定</th>
+            </tr>
+            <tr>
+                <td>第1工場</td>
+                <td><label id="api-result-startday_1"></label></td>
+                <td><label id="api-result-pastday_1"></label></td>
+                <td><a href="https://forms.gle/QenBP4LpJimToSoq9">第1工場</a></td>
+            </tr>
+            <tr>
+                <td>第2工場</td>
+                <td><label id="api-result-startday_2"></label></td>
+                <td><label id="api-result-pastday_2"></label></td>
+                <td><a href="https://forms.gle/SNdw6mf9UP6Ert9PA">第2工場</a></td>
+            </tr>
+            <tr>
+                <td>第3工場</td>
+                <td><label id="api-result-startday_3"></label></td>
+                <td><label id="api-result-pastday_3"></label></td>
+                <td><a href="https://forms.gle/5f5hvWBVXQ9LkpvY8">第3工場</a></td>
+            </tr>
+            <tr>
+                <td>第4工場</td>
+                <td><label id="api-result-startday_4"></label></td>
+                <td><label id="api-result-pastday_4"></label></td>
+                <td><a href="https://forms.gle/va6rXmYcHbcN6DcT6">第4工場</a></td>
+            </tr>
+            <tr>
+                <td>第5工場</td>
+                <td><label id="api-result-startday_5"></label></td>
+                <td><label id="api-result-pastday_5"></label></td>
+                <td><a href="https://forms.gle/tQ2pRSt1ZKYdWeTY6">第5工場</a></td>
+            </tr>
+            <tr>
+                <td>第6工場</td>
+                <td><label id="api-result-startday_6"></label></td>
+                <td><label id="api-result-pastday_6"></label></td>
+                <td><a href="https://forms.gle/NnejkzPYGGmWCsgJ9">第6工場</a></td>
+            </tr>
+            <tr>
+                <td>第7工場</td>
+                <td><label id="api-result-startday_7"></label></td>
+                <td><label id="api-result-pastday_7"></label></td>
+                <td><a href="https://forms.gle/6NXT4R2QXwNuGDYT9">第7工場</a></td>
+            </tr>
+            <tr>
+                <td>第8工場</td>
+                <td><label id="api-result-startday_8"></label></td>
+                <td><label id="api-result-pastday_8"></label></td>
+                <td><a href="https://forms.gle/BEPi531dMaNFCmzn6">第8工場</a></td>
+            </tr>
+            <tr>
+                <td>第9工場</td>
+                <td><label id="api-result-startday_9"></label></td>
+                <td><label id="api-result-pastday_9"></label></td>
+                <td><a href="https://forms.gle/nrdApSCkbRfffT74A">第9工場</a></td>
+            </tr>
+            <tr>
+                <td>第10工場</td>
+                <td><label id="api-result-startday_10"></label></td>
+                <td><label id="api-result-pastday_10"></label></td>
+                <td><a href="https://forms.gle/Kh2nrya81L7TQPvj6">第10工場</a></td>
+            </tr>
+        </table>
+        <!-- <p><a href="https://forms.gle/QenBP4LpJimToSoq9">第1工場</a></p>
         <p><label id="api-result-startday_1"></label></p>
         <p><label id="api-result-pastday_1"></label></p>
         <p><a href="https://forms.gle/SNdw6mf9UP6Ert9PA">第2工場</a></p>
@@ -26,6 +94,22 @@
         <p><a href="https://forms.gle/tQ2pRSt1ZKYdWeTY6">第5工場</a></p>
         <p><label id="api-result-startday_5"></label></p>
         <p><label id="api-result-pastday_5"></label></p>
+
+        <p><a href="https://forms.gle/NnejkzPYGGmWCsgJ9">第6工場</a></p>
+        <p><label id="api-result-startday_6"></label></p>
+        <p><label id="api-result-pastday_6"></label></p>
+        <p><a href="https://forms.gle/6NXT4R2QXwNuGDYT9">第7工場</a></p>
+        <p><label id="api-result-startday_7"></label></p>
+        <p><label id="api-result-pastday_7"></label></p>
+        <p><a href="https://forms.gle/BEPi531dMaNFCmzn6">第8工場</a></p>
+        <p><label id="api-result-startday_8"></label></p>
+        <p><label id="api-result-pastday_8"></label></p>
+        <p><a href="https://forms.gle/nrdApSCkbRfffT74A">第9工場</a></p>
+        <p><label id="api-result-startday_9"></label></p>
+        <p><label id="api-result-pastday_9"></label></p>
+        <p><a href="https://forms.gle/Kh2nrya81L7TQPvj6">第10工場</a></p>
+        <p><label id="api-result-startday_10"></label></p>
+        <p><label id="api-result-pastday_10"></label></p> -->
     </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -35,7 +119,7 @@
         const endpoint = "https://script.google.com/macros/s/AKfycbzdq61ve4lpZy7cvJd0XZ-JfuRVJuLm0U8PDU8ivX38UQgNamfxwmyCgtxz_Bl9avVN/exec"
         // const endpoint = "https://script.google.com/macros/s/AKfycbyqTt4bRNmiNNJEo1RzJdVVrx5OoRqXS1xB0F3dMn9D3BOWFRbAje48KwZswi3rG6_7jA/exec";
         function inputToGoogleAPI() {
-            const inputvalue = document.getElementById('inputText').value;
+            // const inputvalue = document.getElementById('inputText').value;
             // alert(inputvalue);
             // return;
             $.ajax({
@@ -43,12 +127,12 @@
                 url: endpoint,
                 dataType: 'jsonp',
                 data: {
-                    // text: 'Hi,There!'
-                    text: inputvalue
+                    text: 'Hi,There!'
+                    // text: inputvalue
                 },
                 success: out => {
                     // alert(out.message);
-                    document.getElementById('api-result').textContent = out.message;
+                    // document.getElementById('api-result').textContent = out.message;
                     document.getElementById('api-result-startday_1').textContent = out.startDate_1;
                     document.getElementById('api-result-pastday_1').textContent = out.pastDay_1;
                     document.getElementById('api-result-startday_2').textContent = out.startDate_2;
@@ -59,6 +143,17 @@
                     document.getElementById('api-result-pastday_4').textContent = out.pastDay_4;
                     document.getElementById('api-result-startday_5').textContent = out.startDate_5;
                     document.getElementById('api-result-pastday_5').textContent = out.pastDay_5;
+
+                    document.getElementById('api-result-startday_6').textContent = out.startDate_6;
+                    document.getElementById('api-result-pastday_6').textContent = out.pastDay_6;
+                    document.getElementById('api-result-startday_7').textContent = out.startDate_7;
+                    document.getElementById('api-result-pastday_7').textContent = out.pastDay_7;
+                    document.getElementById('api-result-startday_8').textContent = out.startDate_8;
+                    document.getElementById('api-result-pastday_8').textContent = out.pastDay_8;
+                    document.getElementById('api-result-startday_9').textContent = out.startDate_9;
+                    document.getElementById('api-result-pastday_9').textContent = out.pastDay_9;
+                    document.getElementById('api-result-startday_10').textContent = out.startDate_10;
+                    document.getElementById('api-result-pastday_10').textContent = out.pastDay_10;
                 }
             });
         }
