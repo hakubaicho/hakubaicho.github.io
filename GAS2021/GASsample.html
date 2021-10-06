@@ -10,7 +10,9 @@
         <button type="button" onclick="inputToGoogleAPI()">APIへ送信</button>
     </div>
     <div>
-        <label id="api-result"></label>
+        <p><label id="api-result"></label></p>
+        <p><label id="api-result-startday"></label></p>
+        <p><label id="api-result-pastday"></label></p>
     </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -34,6 +36,8 @@
                 success: out => {
                     // alert(out.message);
                     document.getElementById('api-result').textContent = out.message;
+                    document.getElementById('api-result-startday').textContent = out.startDate;
+                    document.getElementById('api-result-pastday').textContent = out.pastDay;
                 }
             });
         }
