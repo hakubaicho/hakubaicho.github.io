@@ -19,7 +19,7 @@
 <body>
 
     <div class="font-large">
-        <p id="status-of-counter">-</p>
+        <p hidden id="status-of-counter">-</p>
         <p id="status-of-api">未取得</p>
         <button class="font-large" type="button" onclick="inputToGoogleAPI()">データの取得</button>
     </div>
@@ -158,12 +158,12 @@
                 }
             });
         }
-        let count = 0;
-        const countUp = () => {
-            console.log(count++);
-            document.getElementById('status-of-counter').textContent = count;
-        }
-        setInterval(countUp, 1000);
+        // let count = 0;
+        // const countUp = () => {
+        //     console.log(count++);
+        //     document.getElementById('status-of-counter').textContent = count;
+        // }
+        // setInterval(countUp, 1000);
     </script>
 </body>
 
