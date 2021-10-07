@@ -28,9 +28,12 @@
     <script type="text/javascript" src="js/googleapi.js" charset="utf-8"></script>
     
     <script>
+        let count = 0;
         window.onload=  ()=>{
           inputToGoogleAPI(1);
+          setInterval(inputToGoogleAPI(1), 300000);
         };
+
     </script>
 </body>
 </html>
