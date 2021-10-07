@@ -8,6 +8,7 @@
 <body>
     <div>
         <!-- <input id="inputText" type="text"> -->
+        <p id="status-of-api">未取得</p>
         <button type="button" onclick="inputToGoogleAPI()">データの取得</button>
     </div>
     <div>
@@ -23,61 +24,61 @@
                 <td>第1工場</td>
                 <td><label id="api-result-startday_1"></label></td>
                 <td><label id="api-result-pastday_1"></label></td>
-                <td><a href="https://forms.gle/QenBP4LpJimToSoq9">第1工場</a></td>
+                <td><a href="https://forms.gle/QenBP4LpJimToSoq9" target="blank">第1工場</a></td>
             </tr>
             <tr>
                 <td>第2工場</td>
                 <td><label id="api-result-startday_2"></label></td>
                 <td><label id="api-result-pastday_2"></label></td>
-                <td><a href="https://forms.gle/SNdw6mf9UP6Ert9PA">第2工場</a></td>
+                <td><a href="https://forms.gle/SNdw6mf9UP6Ert9PA" target="blank">第2工場</a></td>
             </tr>
             <tr>
                 <td>第3工場</td>
                 <td><label id="api-result-startday_3"></label></td>
                 <td><label id="api-result-pastday_3"></label></td>
-                <td><a href="https://forms.gle/5f5hvWBVXQ9LkpvY8">第3工場</a></td>
+                <td><a href="https://forms.gle/5f5hvWBVXQ9LkpvY8" target="blank">第3工場</a></td>
             </tr>
             <tr>
                 <td>第4工場</td>
                 <td><label id="api-result-startday_4"></label></td>
                 <td><label id="api-result-pastday_4"></label></td>
-                <td><a href="https://forms.gle/va6rXmYcHbcN6DcT6">第4工場</a></td>
+                <td><a href="https://forms.gle/va6rXmYcHbcN6DcT6" target="blank">第4工場</a></td>
             </tr>
             <tr>
                 <td>第5工場</td>
                 <td><label id="api-result-startday_5"></label></td>
                 <td><label id="api-result-pastday_5"></label></td>
-                <td><a href="https://forms.gle/tQ2pRSt1ZKYdWeTY6">第5工場</a></td>
+                <td><a href="https://forms.gle/tQ2pRSt1ZKYdWeTY6" target="blank">第5工場</a></td>
             </tr>
             <tr>
                 <td>第6工場</td>
                 <td><label id="api-result-startday_6"></label></td>
                 <td><label id="api-result-pastday_6"></label></td>
-                <td><a href="https://forms.gle/NnejkzPYGGmWCsgJ9">第6工場</a></td>
+                <td><a href="https://forms.gle/NnejkzPYGGmWCsgJ9" target="blank">第6工場</a></td>
             </tr>
             <tr>
                 <td>第7工場</td>
                 <td><label id="api-result-startday_7"></label></td>
                 <td><label id="api-result-pastday_7"></label></td>
-                <td><a href="https://forms.gle/6NXT4R2QXwNuGDYT9">第7工場</a></td>
+                <td><a href="https://forms.gle/6NXT4R2QXwNuGDYT9" target="blank">第7工場</a></td>
             </tr>
             <tr>
                 <td>第8工場</td>
                 <td><label id="api-result-startday_8"></label></td>
                 <td><label id="api-result-pastday_8"></label></td>
-                <td><a href="https://forms.gle/BEPi531dMaNFCmzn6">第8工場</a></td>
+                <td><a href="https://forms.gle/BEPi531dMaNFCmzn6" target="blank">第8工場</a></td>
             </tr>
             <tr>
                 <td>第9工場</td>
                 <td><label id="api-result-startday_9"></label></td>
                 <td><label id="api-result-pastday_9"></label></td>
-                <td><a href="https://forms.gle/nrdApSCkbRfffT74A">第9工場</a></td>
+                <td><a href="https://forms.gle/nrdApSCkbRfffT74A" target="blank">第9工場</a></td>
             </tr>
             <tr>
                 <td>第10工場</td>
                 <td><label id="api-result-startday_10"></label></td>
                 <td><label id="api-result-pastday_10"></label></td>
-                <td><a href="https://forms.gle/Kh2nrya81L7TQPvj6">第10工場</a></td>
+                <td><a href="https://forms.gle/Kh2nrya81L7TQPvj6" target="blank">第10工場</a></td>
             </tr>
         </table>
         <!-- <p><a href="https://forms.gle/QenBP4LpJimToSoq9">第1工場</a></p>
@@ -123,6 +124,7 @@
             // const inputvalue = document.getElementById('inputText').value;
             // alert(inputvalue);
             // return;
+            document.getElementById('status-of-api').textContent = "データ取得中";
             $.ajax({
                 type: 'GET',
                 url: endpoint,
@@ -155,6 +157,14 @@
                     document.getElementById('api-result-pastday_9').textContent = out.pastDay_9;
                     document.getElementById('api-result-startday_10').textContent = out.startDate_10;
                     document.getElementById('api-result-pastday_10').textContent = out.pastDay_10;
+
+                    // データ取得の結果
+                    let todayDate = new Date();
+                    let strDate = "";
+                    strDate +=`${todayDate.getFullYear()}/${todayDate.getMonth()+1}/${todayDate.getDay()}`;
+                    strDate +=" ";
+                    strDate +=`${todayDate.getHours()}:${todayDate.getMinutes()}/${todayDate.getMinutes()}`;
+                    document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
                 }
             });
         }
