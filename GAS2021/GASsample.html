@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <title>A社の無事故日数</title>
+    <style>
+        table {
+            font-size: 2vw;
+        }
+
+        .font-large {
+            font-size: 3vw;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
-        <!-- <input id="inputText" type="text"> -->
+
+    <div class="font-large">
         <p id="status-of-api">未取得</p>
-        <button type="button" onclick="inputToGoogleAPI()">データの取得</button>
+        <button class="font-large" type="button" onclick="inputToGoogleAPI()">データの取得</button>
     </div>
     <div>
-        <p><label id="api-result"></label></p>
         <table border="1" style="width:100%">
             <tr>
                 <th>工場名</th>
@@ -93,10 +103,9 @@
             </tr>
         </table>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
         const endpoint = "https://script.google.com/macros/s/AKfycbzdq61ve4lpZy7cvJd0XZ-JfuRVJuLm0U8PDU8ivX38UQgNamfxwmyCgtxz_Bl9avVN/exec"
         // const endpoint = "https://script.google.com/macros/s/AKfycbyqTt4bRNmiNNJEo1RzJdVVrx5OoRqXS1xB0F3dMn9D3BOWFRbAje48KwZswi3rG6_7jA/exec";
@@ -141,13 +150,14 @@
                     // データ取得の結果
                     let todayDate = new Date();
                     let strDate = "";
-                    strDate +=`${todayDate.getFullYear()}/${todayDate.getMonth()+1}/${todayDate.getDay()}`;
-                    strDate +=" ";
-                    strDate +=`${todayDate.getHours()}:${todayDate.getMinutes()}/${todayDate.getMinutes()}`;
+                    strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+                    strDate += " ";
+                    strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}/${todayDate.getMinutes()}`;
                     document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
                 }
             });
         }
     </script>
 </body>
+
 </html>
