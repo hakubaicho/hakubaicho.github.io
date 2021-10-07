@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>工場名称</title>
+    <style>
+      p {
+        border: 1px solid black;
+      }
+      main{
+        border: 1px solid red;
+        margin-left:auto;
+        margin-right: auto;
+      }
+      .layout-center {
+        border: 1px solid yellow;
+        background-color: black;
+      }
+      #date-count {
+        text-align: center;
+        color: yellow;
+      }
+    </style>
+</head>
+<body>
+    <main>
+      <div hidden>
+        <button type="button" onclick="inputToGoogleAPI()">データの取得</button>
+      </div>
+      <div hidden>
+        <p id="status-of-api"></p>
+      </div>
+      <div hidden>
+        <p id="date-start"></p>
+      </div>
+      <div class="layout-center">
+        <p id="date-count">----日</p>
+      </div>
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+        const endpoint = "https://script.google.com/macros/s/AKfycbzdq61ve4lpZy7cvJd0XZ-JfuRVJuLm0U8PDU8ivX38UQgNamfxwmyCgtxz_Bl9avVN/exec"
+        function inputToGoogleAPI() {
+            document.getElementById('status-of-api').textContent = "データ取得中";
+            $.ajax({
+                type: 'GET',
+                url: endpoint,
+                dataType: 'jsonp',
+                data: {
+                    text: 'Hi,There!'
+                },
+                success: out => {
+                    document.getElementById('date-start').textContent = out.startDate_1;
+                    document.getElementById('date-count').textContent = out.pastDay_1 + "日";
+                    // データ取得の結果
+                    let todayDate = new Date();
+                    let strDate = "";
+                    strDate +=`${todayDate.getFullYear()}/${todayDate.getMonth()+1}/${todayDate.getDay()}`;
+                    strDate +=" ";
+                    strDate +=`${todayDate.getHours()}:${todayDate.getMinutes()}/${todayDate.getMinutes()}`;
+                    document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+                }
+            });
+        }
+        window.onload=  ()=>{
+          inputToGoogleAPI();
+        };
+    </script>
+</body>
+</html>
