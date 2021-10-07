@@ -1,6 +1,7 @@
 const endpoint = "https://script.google.com/macros/s/AKfycbzdq61ve4lpZy7cvJd0XZ-JfuRVJuLm0U8PDU8ivX38UQgNamfxwmyCgtxz_Bl9avVN/exec"
 function inputToGoogleAPI(factoryCode) {
     document.getElementById('status-of-api').textContent = "データ取得中";
+    console.log("inputToGoogleAPI()");
     $.ajax({
         type: 'GET',
         url: endpoint,

@@ -28,9 +28,16 @@
     <script type="text/javascript" src="js/googleapi.js" charset="utf-8"></script>
     
     <script>
+        let count = 0;
         window.onload=  ()=>{
           inputToGoogleAPI(4);
         };
+        const countUp = () => {
+            inputToGoogleAPI(4);
+            // console.log(count++);
+            // document.getElementById('status-of-counter').textContent = count;
+        }
+        setInterval(countUp, 300000);
     </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <title>A社の無事故日数</title>
     <style>
         table {
-            font-size: 2vw;
+            font-size: 3vw;
         }
 
         .font-large {
@@ -19,6 +19,7 @@
 <body>
 
     <div class="font-large">
+        <p id="status-of-counter">-</p>
         <p id="status-of-api">未取得</p>
         <button class="font-large" type="button" onclick="inputToGoogleAPI()">データの取得</button>
     </div>
@@ -29,7 +30,7 @@
                 <th>開始日付</th>
                 <th>経過日数</th>
                 <th>日付設定</th>
-                <th>サインURL</th>
+                <th><a href="factory-moniter.html" target="blank">表示URL</a></th>
             </tr>
             <tr>
                 <td>第1工場</td>
@@ -157,6 +158,12 @@
                 }
             });
         }
+        let count = 0;
+        const countUp = () => {
+            console.log(count++);
+            document.getElementById('status-of-counter').textContent = count;
+        }
+        setInterval(countUp, 1000);
     </script>
 </body>
 
