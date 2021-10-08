@@ -158,12 +158,15 @@
                 }
             });
         }
-        // let count = 0;
-        // const countUp = () => {
-        //     console.log(count++);
-        //     document.getElementById('status-of-counter').textContent = count;
-        // }
-        // setInterval(countUp, 1000);
+        window.onload=  ()=>{
+          inputToGoogleAPI();
+        };
+        const countUp = () => {
+            inputToGoogleAPI();
+            // console.log(count++);
+            // document.getElementById('status-of-counter').textContent = count;
+        }
+        setInterval(countUp, 300000);
     </script>
 </body>
 
