@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>単体表示</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+      <div hidden>
+        <button type="button" onclick="inputToGoogleAPI(10)">データの取得</button>
+      </div>
+      <div hidden>
+        <p id="status-of-result"></p>
+      </div>
+      <div hidden>
+        <p id="factoryName"></p>
+      </div>
+      <div hidden>
+        <p id="factoryDate"></p>
+      </div>
+      <div class="layout-center" id="factoryCount">
+        -----日
+      </div>
+    </main>
+    <script type="text/javascript" src="js/gas.js" charset="utf-8"></script>
+    
+    <script>
+        let count = 0;
+        window.onload=  ()=>{
+          getFactoryDataForSingle(1);
+        };
+        const countUp = () => {
+          getFactoryDataForSingle(1);
+            // console.log(count++);
+            // document.getElementById('status-of-counter').textContent = count;
+        }
+        setInterval(countUp, 300000);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>工場名称</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div>
+    UserName:<input id="username" type="text">
+    Password:<input id="password" type="text">
+    <button class="font-large" type="button" onclick="getFactoryData(1)">取得</button>
+  </div>
+  <div class="font-large">
+    <table border="1" style="width:100%">
+      <tr>
+        <th>工場名</th>
+        <th>開始日付</th>
+        <th>経過日数</th>
+        <th>表示URL</th>
+        <th>登録</th>
+      </tr>
+      <tr>
+        <td><input id="factoryName-01" type="text"></td>
+        <td><input id="factoryDate-01" type="date" required="required"></td>
+        <td id="factoryCount-01"></td>
+        <th><a href="factoryDisp-01.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(1)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-02" type="text"></td>
+        <td><input id="factoryDate-02" type="date"></td>
+        <td id="factoryCount-02"></td>
+        <th><a href="factoryDisp-02.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(2)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-03" type="text"></td>
+        <td><input id="factoryDate-03" type="date"></td>
+        <td id="factoryCount-03"></td>
+        <th><a href="factoryDisp-03.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(3)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-04" type="text"></td>
+        <td><input id="factoryDate-04" type="date"></td>
+        <td id="factoryCount-04"></td>
+        <th><a href="factoryDisp-04.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(4)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-05" type="text"></td>
+        <td><input id="factoryDate-05" type="date"></td>
+        <td id="factoryCount-05"></td>
+        <th><a href="factoryDisp-05.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(5)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-06" type="text"></td>
+        <td><input id="factoryDate-06" type="date"></td>
+        <td id="factoryCount-06"></td>
+        <th><a href="factoryDisp-06.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(6)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-07" type="text"></td>
+        <td><input id="factoryDate-07" type="date"></td>
+        <td id="factoryCount-07"></td>
+        <th><a href="factoryDisp-07.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(7)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-08" type="text"></td>
+        <td><input id="factoryDate-08" type="date"></td>
+        <td id="factoryCount-08"></td>
+        <th><a href="factoryDisp-08.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(8)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-09" type="text"></td>
+        <td><input id="factoryDate-09" type="date"></td>
+        <td id="factoryCount-09"></td>
+        <th><a href="factoryDisp-09.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(9)">登録</button></td>
+      </tr>
+      <tr>
+        <td><input id="factoryName-10" type="text"></td>
+        <td><input id="factoryDate-10" type="date"></td>
+        <td id="factoryCount-10"></td>
+        <th><a href="factoryDisp-10.html" target="blank">URL</a></th>
+        <td><button class="font-large" type="button" onclick="setFactoryData(10)">登録</button></td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <p hidden id="status-of-counter">-</p>
+    <p id="status-of-result"></p>
+  </div>
+  <script type="text/javascript" src="js/gas.js" charset="utf-8"></script>
+</body>
+
+</html>
