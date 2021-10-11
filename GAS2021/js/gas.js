@@ -169,14 +169,8 @@ function getFactoryData(paramKind) {
             if (String(i + 1) === String(out.factoryData[j].factoryCode)) {
               console.log(out[i]);
               // 所在地
-              if(paramKind ==="allsign")
-              {
-                textBoxfactoryName.textContent = out.factoryData[j].factoryName;
-              }
-              else
-              {
-                textBoxfactoryName.value = out.factoryData[j].factoryName;
-              }
+              textBoxfactoryName.textContent = out.factoryData[j].factoryName;  // 文字表示
+              textBoxfactoryName.value = out.factoryData[j].factoryName;        // テキストボックスの場合
               // 開始日付
               try {
                 // invalid dateを判定
@@ -200,14 +194,8 @@ function getFactoryData(paramKind) {
                   var mm = toTwoDigits(month, 2);
                   var dd = toTwoDigits(day, 2);
                   var ymd = yyyy + "-" + mm + "-" + dd;
-                  if(paramKind ==="allsign")
-                  {
-                    dateFactoryDate.textContent = ymd;
-                  }
-                  else
-                  {
-                    dateFactoryDate.value = ymd;
-                  }
+                  dateFactoryDate.textContent = ymd;  // テキスト表示
+                  dateFactoryDate.value = ymd;        // 入力コントロール
                 }
               }
               catch (exception) {

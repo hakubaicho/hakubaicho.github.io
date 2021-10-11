@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>無災害日数表示（すべて）</title>
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  
+  
+  <style>
+    table {
+      font-size: 3vw;
+      text-align: right;
+    }
+
+    .font-large {
+      font-size: 3vw;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ログインエリア -->
+  <div hidden>
+    <table class="font-normal" hidden>
+      <tr>
+        <td align="right">UserName:</td>
+        <td><input id="username" type="text"></td>
+      </tr>
+      <tr>
+        <td align="right">Password:</td>
+        <td><input id="password" type="text"></td>
+      </tr>
+    </table>
+    <button class="font-normal" type="button" onclick='getFactoryData("allsign")'>データ取得</button>
+  </div>
+  <!-- 各工場データ -->
+  <div>
+    <table border="1" style="width:100%">
+      <tr>
+        <th>工場名</th>
+        <th>開始日付</th>
+        <th>経過日数</th>
+      </tr>
+      <tr>
+        <td id="factoryName-01"></td>
+        <td><label id="factoryDate-01"></label></td>
+        <td><label id="factoryCount-01"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-02"></td>
+        <td><label id="factoryDate-02"></label></td>
+        <td><label id="factoryCount-02"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-03"></td>
+        <td><label id="factoryDate-03"></label></td>
+        <td><label id="factoryCount-03"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-04"></td>
+        <td><label id="factoryDate-04"></label></td>
+        <td><label id="factoryCount-04"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-05"></td>
+        <td><label id="factoryDate-05"></label></td>
+        <td><label id="factoryCount-05"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-06"></td>
+        <td><label id="factoryDate-06"></label></td>
+        <td><label id="factoryCount-06"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-07"></td>
+        <td><label id="factoryDate-07"></label></td>
+        <td><label id="factoryCount-07"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-08"></td>
+        <td><label id="factoryDate-08"></label></td>
+        <td><label id="factoryCount-08"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-09"></td>
+        <td><label id="factoryDate-09"></label></td>
+        <td><label id="factoryCount-09"></label></td>
+      </tr>
+      <tr>
+        <td id="factoryName-10"></td>
+        <td><label id="factoryDate-10"></label></td>
+        <td><label id="factoryCount-10"></label></td>
+      </tr>
+    </table>
+  </div>
+  <!-- データ取得結果エリア -->
+  <div>
+    <p id="status-of-result"></p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/gas.js" charset="utf-8"></script>
+  <script>
+    window.onload = () => {
+      getFactoryData("allsign");
+    };
+    const countUp = () => {
+      getFactoryData("allsign");
+    }
+    setInterval(countUp, 300000);
+  </script>
+</body>
+
+</html>
