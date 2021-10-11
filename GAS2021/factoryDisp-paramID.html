@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>単体表示</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <link rel="stylesheet" href="css/signage.css" type="text/css">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+      <div hidden>
+        <button type="button" onclick="inputToGoogleAPI(10)">データの取得</button>
+      </div>
+      <div hidden>
+        <p id="status-of-result"></p>
+      </div>
+      <div hidden>
+        <p id="factoryName"></p>
+      </div>
+      <div hidden>
+        <p id="factoryDate"></p>
+      </div>
+      <div class="layout-center" id="factoryCount">
+        -----日
+      </div>
+    </main>
+    <script type="text/javascript" src="js/gas.js" charset="utf-8"></script>
+    
+    <script>
+        let id = 0;
+        window.onload=  ()=>{
+          let isOK = false;
+          try{
+
+            const urlParam = location.search.substring(1);
+            console.log("location.search :" + urlParam);
+            if(urlParam){
+              const param = urlParam.split('&');
+              
+              let paramArray = [];
+              for(let i=0;i<param.length;i++)
+              {
+                var paramItem = param[i].split('=');
+                paramArray[paramItem[0]] = paramItem[1];
+              }
+              console.log(paramArray);
+              id= Number(paramArray.id);
+              isOK = true;
+            }
+          }
+          catch(exception)
+          {
+            console.log(exception.message);
+          }
+          if(isOK)
+          {
+            getFactoryDataForSingle(id);
+          }
+          else
+          {
+            // 経過日数
+            let factoryCount = document.getElementById("factoryCount");
+            factoryCount.textContent = "XXXXX" + "日";
+          }
+        };
+        const countUp = () => {
+          getFactoryDataForSingle(id);
+            // console.log(count++);
+            // document.getElementById('status-of-counter').textContent = count;
+        }
+        setInterval(countUp, 300000);
+
+    </script>
+</body>
+</html>
