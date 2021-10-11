@@ -5,23 +5,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width-device-width, initial-scale=1.0">
   <title>工場名称</title>
+  <style>
+    .font-normal {
+        font-size: 1.5vw;
+    }
+    .font-large {
+        font-size: 2vw;
+    }
+    input {
+      font-size: 2vw;
+    }
+</style>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
+  <!-- ログインエリア -->
   <div>
-    UserName:<input id="username" type="text">
-    Password:<input id="password" type="text">
-    <button class="font-large" type="button" onclick="getFactoryData(1)">取得</button>
+    <table class="font-normal">
+      <tr>
+        <td align="right">UserName:</td>
+        <td><input id="username" type="text"></td>
+      </tr>
+      <tr>
+        <td align="right">Password:</td>
+        <td><input id="password" type="text"></td>
+      </tr>
+    </table>
+    <button class="font-normal" type="button" onclick="getFactoryData(1)">データ取得</button>
   </div>
+  <!-- データ取得結果エリア -->
+  <div>
+    <p id="status-of-result"></p>
+  </div>
+  <!-- データ詳細 -->
   <div class="font-large">
     <table border="1" style="width:100%">
       <tr>
         <th>工場名</th>
         <th>開始日付</th>
         <th>経過日数</th>
-        <th>表示URL</th>
+        <th><a href="factoryDisp-iframe.html" target="blank">サイン</a></th>
         <th>登録</th>
       </tr>
       <tr>
@@ -96,10 +121,8 @@
       </tr>
     </table>
   </div>
-  <div>
-    <p hidden id="status-of-counter">-</p>
-    <p id="status-of-result"></p>
-  </div>
+  
+
   <script type="text/javascript" src="js/gas.js" charset="utf-8"></script>
 </body>
 

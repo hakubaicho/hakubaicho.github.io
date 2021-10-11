@@ -1,5 +1,8 @@
 
-
+/**
+ * 定数定義
+ * 送受信先
+ */
 const endpoint = "https://script.google.com/macros/s/AKfycbxxCMfBibzO5IYg5ieiNRGA98CGyZRsYQZL82Ah9VSX3IyHUQC6gIOp0bsSNUDZsPE9WQ/exec"
 function setFactoryData(param_factoryCode) {
   document.getElementById('status-of-result').textContent = "更新中";
@@ -85,7 +88,11 @@ function setFactoryData(param_factoryCode) {
   });
 }
 
-function getFactoryData() {
+/**
+ * データを取得します
+ * @param {string}} paramKind 実行する種別
+ */
+function getFactoryData(paramKind) {
   document.getElementById('status-of-result').textContent = "取得中";
   console.log("getFactoryData()");
   let result = false;
@@ -98,7 +105,7 @@ function getFactoryData() {
     url: endpoint,
     dataType: 'jsonp',
     data: {
-      kind: "get",
+      kind: paramKind,
       username: inputusername,
       password: inputpassword,
     },
@@ -162,7 +169,14 @@ function getFactoryData() {
             if (String(i + 1) === String(out.factoryData[j].factoryCode)) {
               console.log(out[i]);
               // 所在地
-              textBoxfactoryName.value = out.factoryData[j].factoryName;
+              if(paramKind ==="allsign")
+              {
+                textBoxfactoryName.textContent = out.factoryData[j].factoryName;
+              }
+              else
+              {
+                textBoxfactoryName.value = out.factoryData[j].factoryName;
+              }
               // 開始日付
               try {
                 // invalid dateを判定
@@ -186,14 +200,21 @@ function getFactoryData() {
                   var mm = toTwoDigits(month, 2);
                   var dd = toTwoDigits(day, 2);
                   var ymd = yyyy + "-" + mm + "-" + dd;
-                  dateFactoryDate.value = ymd;
+                  if(paramKind ==="allsign")
+                  {
+                    dateFactoryDate.textContent = ymd;
+                  }
+                  else
+                  {
+                    dateFactoryDate.value = ymd;
+                  }
                 }
               }
               catch (exception) {
                 console.log(exception.message);
               }
               // 経過日数
-              pFactoryCount.textContent = out.factoryData[j].pastDay;
+              pFactoryCount.textContent = out.factoryData[j].pastDay + "日";
             }
           }
         }
