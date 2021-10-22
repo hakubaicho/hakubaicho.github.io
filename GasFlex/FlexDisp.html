@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>単体表示</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <link rel="stylesheet" href="css/signage.css" type="text/css">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/flexgas.js" charset="utf-8"></script>
+</head>
+<body>
+    <main>
+      <!-- [非表示]データ取得 -->
+      <div class="hiddenItem">
+        <button type="button" onclick="dispData(10)">データの取得</button>
+      </div>
+      <!-- [非表示]処理結果 -->
+      <div class="hiddenItem">
+        <p id="status-of-result"></p>
+      </div>
+      <!-- [非表示]工場名 -->
+      <div class="hiddenItem">
+        <p id="factoryName"></p>
+      </div>
+      <!-- [非表示]開始日付 -->
+      <div class="hiddenItem">
+        <p id="factoryDate"></p>
+      </div>
+      <!-- 経過日数表示 -->
+      <div class="layout-center" id="factoryCount">
+        -----日
+      </div>
+    </main>
+
+    
+    <script>
+        // データ取得のID
+        let id = 0;
+        /*
+         * ロード時の処理
+         */
+        window.onload=  ()=>{
+          let isOK = false;
+          // パラメータの取得
+          try{
+            const urlParam = location.search.substring(1);
+            console.log("location.search :" + urlParam);
+            if(urlParam){
+              const param = urlParam.split('&');
+              let paramArray = [];
+              for(let i=0;i<param.length;i++)
+              {
+                var paramItem = param[i].split('=');
+                paramArray[paramItem[0]] = paramItem[1];
+              }
+              console.log(paramArray);
+              id= Number(paramArray.id);
+              isOK = true;
+            }
+          }
+          catch(exception)
+          {
+            console.log(exception.message);
+          }
+          // パラメータが正常ならデータを取得。
+          if(isOK)
+          {
+            dispData(id);
+          }
+          else
+          {
+            // 経過日数
+            let factoryCount = document.getElementById("factoryCount");
+            factoryCount.textContent = "XXXXX" + "日";
+          }
+        };
+        /*
+         * タイマー処理
+         */
+        const countUp = () => {
+          dispData(id);
+        }
+        // タイマーをセット
+        // 5分間隔で実行する。
+        setInterval(countUp, 300000);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>無災害日数表示（各表示イメージ）</title>
+  <script type="text/javascript" src="js/flexgas.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <div id="iframe-area"></div>
+
+  <script>
+    window.onload=  ()=>{
+      for(let i=0;i<CONTROL_MAX;i++)
+      {
+        const div = document.getElementById("iframe-area");
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = `FlexDisp.html?id=${FACTORY_IDS[i]}`;
+        iframe.width = 200;
+        iframe.height = 200;
+        div.appendChild(iframe);     
+      }
+    };
+  </script>
+
+</body>
+
+</html>

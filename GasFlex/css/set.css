@@ -1,0 +1,21 @@
+/* テーブルの枠線 */
+table, td, th {
+  border: 1px solid black;
+}
+/* テーブル全体 */
+table {
+  font-size: 2vw;
+  text-align: right;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+table, td, th {
+  border: 1px solid black;
+}
+input {
+  font-size: 2vw;
+}
+.font-normal {
+  font-size: 1.5vw;
+}

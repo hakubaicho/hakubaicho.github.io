@@ -1,0 +1,35 @@
+/*
+ * 単体表示のCSS
+ *
+ *
+ */
+
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin:0;
+  height: 100%;
+  font-size: 1.4em;
+}
+main{
+  height: 100%; /* ここで全体の高さを決める */
+}
+.layout-center {
+  border: 3px solid yellow;
+  background-color: black;
+  height: 100%;
+  color: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 20vw;
+}
+/* 非表示要素 */
+.hiddenItem {
+  display: none;
+}

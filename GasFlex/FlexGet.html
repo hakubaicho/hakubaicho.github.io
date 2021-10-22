@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>全体表示画面</title>
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="css/get.css" type="text/css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/flexgas.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <!-- ログインエリア -->
+  <div hidden>
+    <table class="font-normal" hidden>
+      <tr>
+        <td align="right">UserName:</td>
+        <td><input id="username" type="text"></td>
+      </tr>
+      <tr>
+        <td align="right">Password:</td>
+        <td><input id="password" type="text"></td>
+      </tr>
+    </table>
+    <button class="font-normal" type="button" onclick='getData_ForGet("allsign")'>データ取得</button>
+  </div>
+  <!-- 各工場データ -->
+  <div id="table-area"></div>
+  <!-- データ取得結果エリア -->
+  <div>
+    <p id="status-of-result"></p>
+  </div>
+
+  <script>
+    /*
+     * ロード時の処理
+     */
+    window.onload = () => {
+      createTableElement_ForGet();
+      getData_ForGet("allsign");
+    };
+    /*
+     * タイマー処理
+     */
+    const countUp = () => {
+      getData_ForGet("allsign");
+    }
+    // タイマーをセット
+    // 5分間隔で実行する。
+    setInterval(countUp, 300000);
+  </script>
+</body>
+
+</html>

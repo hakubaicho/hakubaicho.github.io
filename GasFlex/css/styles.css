@@ -1,0 +1,12 @@
+/*
+ * 全体の設定
+ *
+ *
+ */
+html {
+  font-family: "Font Awesome 5 Free";
+  font-size: 62.5%;
+}
+body {
+  user-select: none;         /* 文字列を選択させない */
+}
