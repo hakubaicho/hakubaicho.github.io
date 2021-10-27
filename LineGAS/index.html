@@ -4,12 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <title>A社の無事故日数</title>
+    <title>Lineに投稿すると反映する</title>
     <style>
-        table {
-            font-size: 3vw;
-        }
-
         .font-large {
             font-size: 3vw;
         }
@@ -18,12 +14,13 @@
 
 <body>
 
-    <div class="font-large">
-        <p hidden id="status-of-counter">-</p>
-        <p id="status-of-api">未取得</p>
-        <button class="font-large" type="button" onclick="inputToGoogleAPI()">データの取得</button>
-    </div>
     <div>
+        <p>Lineに投稿すると反映する</p>
+        <p hidden id="status-of-counter">-</p>
+        <button onclick="inputToGoogleAPI()">データの取得</button>
+    </div>
+    <div class="font-large">
+        <p id="status-of-api">未取得</p>
         <p id="linebotMessage">
         </p>
     </div>
@@ -45,17 +42,49 @@
                 data: {
                     text: 'Hi,There!'
                     // text: inputvalue
+                }
+            })
+                .done(function (out) {
+                    //  alert(out.message);
+                    let message = out.message;
+                    message = message.replace('\r\n','<br>');
+                    message = message.replace('\n','<br>');
+                    document.getElementById('linebotMessage').innerHTML = message;
+
+                    // データ取得の結果
+                    let todayDate = new Date();
+                    let strDate = "";
+                    strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+                    strDate += " ";
+                    strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
+                    document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+                })
+                .fail(function (err) {
+                    document.getElementById('status-of-api').textContent = `エラーが起きました:${err}`;
+                    // alert("エラーが起きました");
+                })
+                .always(function () {
+                    console.log("Ajax処理終了");
+                });
+        }
+
+        function inputToGoogleAPI_Old() {
+            // const inputvalue = document.getElementById('inputText').value;
+            // alert(inputvalue);
+            // return;
+            document.getElementById('status-of-api').textContent = "データ取得中";
+            $.ajax({
+                type: 'GET',
+                url: endpoint,
+                dataType: 'jsonp',
+                // dataType: 'json',
+                data: {
+                    text: 'Hi,There!'
+                    // text: inputvalue
                 },
                 success: out => {
                     //  alert(out.message);
                     let message = out.message;
-                    console.log(message);
-                    message = message.replace("\r\n", "<br>");
-                    console.log(message);
-                    message = message.replace("\n", "<br>");
-                    console.log(message);
-                    message = message.replace("\n", "<br>");
-                    console.log(message);
                     document.getElementById('linebotMessage').textContent = message;
                     linebotMessage
                     // データ取得の結果
@@ -68,6 +97,7 @@
                 }
             });
         }
+
         window.onload = () => {
             inputToGoogleAPI();
         };
