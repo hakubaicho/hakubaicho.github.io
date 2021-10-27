@@ -20,8 +20,9 @@
         <button onclick="inputToGoogleAPI()">データの取得</button>
     </div>
     <div class="font-large">
-        <p id="status-of-api">未取得</p>
+        <img width="25%" id="linebotImage"><img>
         <p id="linebotMessage">
+            <p id="status-of-api">未取得</p>
         </p>
     </div>
 
@@ -55,6 +56,9 @@
                     message = message.replace(/\n/g, '<br>');
                     document.getElementById('linebotMessage').innerHTML = message;
 
+
+                    var img = document.getElementById("linebotImage");
+                    img.src = 'data:image/png;base64,' + out.image;
                     // データ取得の結果
                     let todayDate = new Date();
                     let strDate = "";
