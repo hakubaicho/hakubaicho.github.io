@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>A社の無事故日数</title>
+    <style>
+        table {
+            font-size: 3vw;
+        }
+
+        .font-large {
+            font-size: 3vw;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="font-large">
+        <p hidden id="status-of-counter">-</p>
+        <p id="status-of-api">未取得</p>
+        <button class="font-large" type="button" onclick="inputToGoogleAPI()">データの取得</button>
+    </div>
+    <div>
+        <p id="linebotMessage">
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous">
+        const endpoint = "https://script.google.com/macros/s/AKfycbzGyAW2WozUCj5fT1V2KImUFXAoK3LbS1IaxFv-BITterRYzT7oygY2AkKJ6aZYKQMq/exec"
+        function inputToGoogleAPI() {
+            // const inputvalue = document.getElementById('inputText').value;
+            // alert(inputvalue);
+            // return;
+            document.getElementById('status-of-api').textContent = "データ取得中";
+            $.ajax({
+                type: 'GET',
+                url: endpoint,
+                dataType: 'jsonp',
+                // dataType: 'json',
+                data: {
+                    text: 'Hi,There!'
+                    // text: inputvalue
+                },
+                success: out => {
+                    //  alert(out.message);
+                    let message = out.message;
+                    console.log(message);
+                    message = message.replace("\r\n", "<br>");
+                    console.log(message);
+                    message = message.replace("\n", "<br>");
+                    console.log(message);
+                    message = message.replace("\n", "<br>");
+                    console.log(message);
+                    document.getElementById('linebotMessage').textContent = message;
+                    linebotMessage
+                    // データ取得の結果
+                    let todayDate = new Date();
+                    let strDate = "";
+                    strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+                    strDate += " ";
+                    strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
+                    document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+                }
+            });
+        }
+        window.onload = () => {
+            inputToGoogleAPI();
+        };
+        const countUp = () => {
+            inputToGoogleAPI();
+            // console.log(count++);
+            // document.getElementById('status-of-counter').textContent = count;
+        }
+        setInterval(countUp, 300000);
+    </script>
+</body>
+
+</html>
