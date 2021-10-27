@@ -47,8 +47,12 @@
                 .done(function (out) {
                     //  alert(out.message);
                     let message = out.message;
-                    message = message.replace('\r\n','<br>');
-                    message = message.replace('\n','<br>');
+                    // これだと先頭のみ置き換え
+                    // message = message.replace('\r\n','<br>');
+                    // message = message.replace('\n','<br>');
+                    // 正規表現ですべて置き換え
+                    message = message.replace(/\r\n/g,'<br>');
+                    message = message.replace(/\n/g,'<br>');
                     document.getElementById('linebotMessage').innerHTML = message;
 
                     // データ取得の結果
