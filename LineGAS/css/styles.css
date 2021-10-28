@@ -25,23 +25,26 @@ img {
 }
 /* // #def092 : #1f0c6e */
 .image-area {
-  border: 1px solid #def092;
-  background-color: #1f0c6e;
+  border: 1px solid deepskyblue;
+  background-color: yellow;
   height:50vh;
   width: 100%;
 }
 .text-area {
-  border: 1px solid #1f0c6e;
-  background-color: #def092;
-  color: #1f0c6e;
+  border: 1px solid yellow;
+  background-color: deepskyblue;
+  color: white;
   height:50vh;
   width: 100%;
 }
+p {
+  font-weight:600;
+}
 p#vw {
-  font-size: 3vw;
+  font-size: 5vw;
 }
 p#vh {
-  font-size: 3vh;
+  font-size: 5vh;
 }
 #linebotMessage {
   table-layout: fixed;
