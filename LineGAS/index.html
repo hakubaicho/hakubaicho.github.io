@@ -5,25 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <title>Lineに投稿すると反映する</title>
-    <style>
-        .font-large {
-            font-size: 3vw;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 
 <body>
-
-    <div>
-        <p>Lineに投稿すると反映する</p>
-        <p hidden id="status-of-counter">-</p>
-        <button onclick="inputToGoogleAPI()">データの取得</button>
+    <!-- サイネージエリア -->
+    <div class="signage-area">
+        <!-- 画像表示エリア -->
+        <div class=" image-area">
+            <!-- <img src="img/Image.jpg"><img> -->
+            <img id="linebotImage"><img>
+        </div>
+        <!-- テキスト表示エリア -->
+        <div class="text-area">
+            <p id="linebotMessage">コンテンツ取得中</p>
+            <!-- <p id="linebotMessage">
+                コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>
+                コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>
+                コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>
+                コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>
+                コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>
+                コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>コンテンツ取得中<br>
+            </p> -->
+        </div>
     </div>
-    <div class="font-large">
-        <img width="25%" id="linebotImage"><img>
-        <p id="linebotMessage">
-            <p id="status-of-api">未取得</p>
-        </p>
+    <!-- データ取得 -->
+    <div>
+        <button id="status-of-api" onclick="inputToGoogleAPI()">データの取得</button>
+        <p id="status-of-api">未取得</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -31,6 +40,7 @@
     <script crossorigin="anonymous">
         const endpoint = "https://script.google.com/macros/s/AKfycbzGyAW2WozUCj5fT1V2KImUFXAoK3LbS1IaxFv-BITterRYzT7oygY2AkKJ6aZYKQMq/exec"
         function inputToGoogleAPI() {
+            // return;
             // const inputvalue = document.getElementById('inputText').value;
             // alert(inputvalue);
             // return;
