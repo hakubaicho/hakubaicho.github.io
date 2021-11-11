@@ -53,3 +53,18 @@ p#vh {
   table-layout: fixed;
   word-wrap: break-word;
 }
+
+.marquee p {
+  margin:0;
+  padding-left:724px; /*アニメーションの範囲*/
+  display:inline-block; 
+  white-space:nowrap;
+  animation-name:marquee; /*アニメーションのクラス名*/
+  animation-timing-function:linear;/*アニメーションのタイミング・進行割合の指定*/
+  animation-duration:10s; /*アニメーションの速度*/
+  animation-iteration-count:infinite;/*アニメーションの動作回数*/
+  }
+  @keyframes marquee {/*動作範囲(上級者向けの設定)*/
+    from   { transform: translate(0%);} 
+    99%,to { transform: translate(-100%);}
+  }
