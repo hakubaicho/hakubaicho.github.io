@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>Lineに投稿すると反映する</title>
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+</head>
+
+<body>
+  <!-- サイネージエリア -->
+  <div id="api-datas" class="signage-area">
+
+  </div>
+  <!-- データ取得 -->
+  <div>
+    <button id="status-of-api" onclick="inputToGoogleAPI()">データの取得</button>
+    <p id="status-of-api">未取得</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script crossorigin="anonymous">
+    const endpoint = "https://script.google.com/macros/s/AKfycbyarYp4dlnCKKilnOJ1wLwCE6XuftXD9M89fvMxAdQ3QdFqoz7P5G8HiZJr1Yfb4eJFeA/exec"
+    function inputToGoogleAPI() {
+      // return;
+      // const inputvalue = document.getElementById('inputText').value;
+      // alert(inputvalue);
+      // return;
+      document.getElementById('status-of-api').textContent = "データ取得中";
+      $.ajax({
+        type: 'GET',
+        url: endpoint,
+        dataType: 'jsonp',
+        // dataType: 'json',
+        data: {
+          text: 'Hi,There!'
+          // text: inputvalue
+        }
+      })
+        .done(function (out) {
+          const terops = out.terop;
+          const images = out.image;
+
+          // テロップの作成
+          const divTerops = document.createElement('div');
+          for (let i = 0; i < terops.length; i++) {
+            const p = document.createElement('p');
+            p.innerText = terops[i].terop;
+            divTerops.append(p);
+          }
+          document.getElementById('api-datas').append(divTerops);
+          // Imageの作成
+          const divImages = document.createElement('div');
+          for (let i = 0; i < images.length; i++) {
+            const img = document.createElement('img');
+            img.src = images[i].url;
+            divImages.append(img);
+          }
+          document.getElementById('api-datas').append(divImages);
+          return;
+
+          var img = document.getElementById("linebotImage");
+          img.src = 'data:image/png;base64,' + out.image;
+          // データ取得の結果
+          let todayDate = new Date();
+          let strDate = "";
+          strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+          strDate += " ";
+          strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
+          document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+        })
+        .fail(function (err) {
+          document.getElementById('status-of-api').textContent = `エラーが起きました:${err}`;
+          // alert("エラーが起きました");
+        })
+        .always(function () {
+          console.log("Ajax処理終了");
+        });
+    }
+
+    function inputToGoogleAPI_Old() {
+      // const inputvalue = document.getElementById('inputText').value;
+      // alert(inputvalue);
+      // return;
+      document.getElementById('status-of-api').textContent = "データ取得中";
+      $.ajax({
+        type: 'GET',
+        url: endpoint,
+        dataType: 'jsonp',
+        // dataType: 'json',
+        data: {
+          text: 'Hi,There!'
+          // text: inputvalue
+        },
+        success: out => {
+          //  alert(out.message);
+          let message = out.message;
+          document.getElementById('linebotMessage').textContent = message;
+          linebotMessage
+          // データ取得の結果
+          let todayDate = new Date();
+          let strDate = "";
+          strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+          strDate += " ";
+          strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
+          document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+        }
+      });
+    }
+
+    window.onload = () => {
+      inputToGoogleAPI();
+    };
+    const countUp = () => {
+      inputToGoogleAPI();
+      // console.log(count++);
+      // document.getElementById('status-of-counter').textContent = count;
+    }
+    setInterval(countUp, 300000);
+  </script>
+</body>
+
+</html>

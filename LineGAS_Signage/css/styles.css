@@ -1,0 +1,55 @@
+html {
+  height:100%;
+  width:100%;
+}
+body {
+  width:100%;
+  margin:0;
+}
+.signage-area {
+  width:100%;
+  height:100%;
+  border: solid 1px black;
+  display:flex;
+  flex-flow: column;
+}
+img {
+  /* https://webdesignday.jp/inspiration/technique/css/7976/ */
+  display: block;
+  height: 10%;
+  object-fit: contain;
+  /* width: 100%; */
+}
+.font-large {
+  font-size: 3vw;
+}
+/* // #def092 : #1f0c6e */
+.image-area {
+  border: 1px solid deepskyblue;
+  background-color: yellow;
+  height:50vh;
+  width: 100%;
+}
+.text-area {
+  border: 1px solid yellow;
+  background-color: deepskyblue;
+  color: white;
+  height:50vh;
+  width: 100%;
+}
+p {
+  font-weight:1000;
+  font-size: xx-large;
+}
+/* p#vw {
+  font-size: 5vw;
+  font:900;
+}
+p#vh {
+  font-size: 5vh;
+  font:900;
+} */
+#linebotMessage {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
