@@ -13,6 +13,7 @@
       color: #333;
       background-color: antiquewhite;
     }
+
     #terop-array p {
       font-size: xx-small;
     }
@@ -22,8 +23,11 @@
 <body>
   <!-- テロップの表示エリア -->
   <p>非推奨タグ[marquee]</p>
+  <input type="button" value="低速" onclick="marquee_speed_set(5)" />
+  <input type="button" value="中速" onclick="marquee_speed_set(10)" />
+  <input type="button" value="高速" onclick="marquee_speed_set(15)" />
   <div class="marquee m-marquee">
-    <marquee id="html-tag-marquee" class="m-marquee-content" scrollamount="16"></marquee>
+    <marquee id="html-tag-marquee" class="m-marquee-content" scrollamount="10"></marquee>
   </div>
   <div id="terop-array"></div>
   <!-- サイネージエリア -->
@@ -54,6 +58,11 @@
     // 画像のイメージ
     let imageurls = [];
 
+    function marquee_speed_set(param) {
+      const marquee = document.getElementById("html-tag-marquee");
+      marquee.getAttribute("scrollamount") = param;
+      console.log(`${param} => ${marquee.scrollamount}`);
+    }
     function inputToGoogleAPI() {
       document.getElementById('status-of-api').textContent = "データ取得中";
       $.ajax({
@@ -71,6 +80,9 @@
           const images = out.image;
 
           const divTeropArray = document.getElementById('terop-array');
+          while (divTeropArray.firstChild) {
+            divTeropArray.removeChild(divTeropArray.firstChild);
+          }
           for (let i = 0; i < terops.length; i++) {
             const p = document.createElement('p');
             p.textContent = `[${terops[i].id}]:${terops[i].terop}`;
