@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>Lineに投稿すると反映する</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/infiniteslidev2.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    $(function(){
+      $('.infiniteslide').infiniteslide({
+        'speed': 100, //速さ　単位はpx/秒です。
+        'direction': 'left', //up/down/left/rightから選択
+        'pauseonhover': true, //マウスオーバーでストップ
+        'responsive': false, //子要素の幅を%で指定しているとき
+        'clone': 1 //子要素の複製回数
+      });
+    });
+  </script>
+  
+  <!-- 途中略 -->
+  
+  <div class="infiniteslide">
+    <p>あいうえお</p>
+    <p>かきくけこ</p>
+    <p>さしすせそ</p>
+    <p>たちつてと</p>
+    <p>なにぬねの</p>
+    <p>はひふへほ</p>
+    <p>まみむめも</p>
+    <p>やゆよ</p>
+    <p>らりるれろ</p>
+    <p>ん</p>
+  </div>
+  <div>
+    <p class="marquee-anim">
+      <span class="marquee-span">テロップがランニングします</span>
+    </p>
+  </div>
+  
+  
+</body>
+
+</html>

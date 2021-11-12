@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <title>Lineに投稿すると反映する</title>
+  <link rel="stylesheet" href="css/slideshow.css" type="text/css">
+  <style>
+    .marquee {
+      width: 90%;
+      margin: 20px 50px 50px 50px;
+      color: #333;
+      background-color: antiquewhite;
+    }
+
+    @media screen and (max-width: 599px) {
+      .marquee {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    .m-marquee .m-marquee-content {
+      font-size: 64px;
+      line-height: 70px;
+    }
+
+    .m-marquee.m-marquee-left .m-marquee-left-item:before,
+    .m-marquee.m-marquee-right .m-marquee-right-item:before {
+      width: 14px !important;
+      height: 13px !important;
+      background-size: 14px 13px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- テロップの表示エリア -->
+  <h3>非推奨タグ[marquee]</h3>
+  <div class="marquee m-marquee">
+    <marquee id="html-tag-marquee" class="m-marquee-content" scrollamount="16"></marquee>
+  </div>
+  <!-- テロップの表示エリア -->
+  <h3>jQuery + hMarquee</h3>
+  <div class="terop-marquee"></div>
+
+  <!-- サイネージエリア -->
+  <main>
+    <img id="main">
+
+    <nav>
+      <ul>
+        <li id="play">Play</li>
+        <li id="prev">&lt;</li>
+        <li id="next">&gt;</li>
+      </ul>
+    </nav>
+    <ul class="thumbnails"></ul>
+  </main>
+  <!-- データ取得 -->
+  <div>
+    <button id="status-of-api" onclick="inputToGoogleAPI()">データの取得</button>
+    <p id="status-of-api">未取得</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="js/hMarquee.js"></script>
+  <script crossorigin="anonymous">
+    // APIのURL
+    const endpoint = "https://script.google.com/macros/s/AKfycbyarYp4dlnCKKilnOJ1wLwCE6XuftXD9M89fvMxAdQ3QdFqoz7P5G8HiZJr1Yfb4eJFeA/exec"
+    // 画像のイメージ
+    let imageurls = [];
+
+    function inputToGoogleAPI() {
+      document.getElementById('status-of-api').textContent = "データ取得中";
+      $.ajax({
+        type: 'GET',
+        url: endpoint,
+        dataType: 'jsonp',
+        // dataType: 'json',
+        data: {
+          text: 'Hi,There!'
+          // text: inputvalue
+        }
+      })
+        .done(function (out) {
+          const terops = out.terop;
+          const images = out.image;
+
+          // hMarqueeでのテロップ
+          var listStr = [];
+          for (let i = 0; i < terops.length; i++) {
+            listStr.push(terops[i].terop);
+          }
+          $.hMarquee.marquee({
+            el: $('.terop-marquee'),
+            externalClass: 'marquee',
+            list: listStr,
+            speedPeerSec: 280,
+          });
+          // 推奨されないテロップ作成
+          var htmlTerop = "";
+          for (let i = 0; i < terops.length; i++) {
+            htmlTerop += `  ${terops[i].terop}  `;
+          }
+          document.getElementById('html-tag-marquee').textContent = htmlTerop;
+          document.getElementById('html-tag-marquee').textContent = htmlTerop;
+
+          // スライドショーイメージ
+          imageurls = [];
+          for (let i = 0; i < images.length; i++) {
+            imageurls.push(images[i].url);
+          }
+          slideshow(imageurls);
+
+          // データ取得の結果
+          let todayDate = new Date();
+          let strDate = "";
+          strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+          strDate += " ";
+          strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
+          document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+        })
+        .fail(function (err) {
+          document.getElementById('status-of-api').textContent = `エラーが起きました:${err}`;
+          // alert("エラーが起きました");
+        })
+        .always(function () {
+          console.log("Ajax処理終了");
+        });
+    }
+
+    window.onload = () => {
+      inputToGoogleAPI();
+    };
+    const countUp = () => {
+      inputToGoogleAPI();
+      // console.log(count++);
+      // document.getElementById('status-of-counter').textContent = count;
+    }
+    setInterval(countUp, 60000);
+
+    function slideshow(images) {
+      let items = new Array();
+      // 現在選択中の画像
+      let currentIndex = 0;
+
+      // メイン画像の設定
+      const mainImage = document.getElementById('main');
+      mainImage.src = images[currentIndex];
+      //------------------------------------
+      // thumbnailsの処理
+      //------------------------------------
+      const targetTag = document.querySelector('.thumbnails');
+      while (targetTag.firstChild) {
+        targetTag.removeChild(targetTag.firstChild);
+      }
+      images.forEach((image, index) => {
+        items.push(image);
+        const img = document.createElement('img');
+
+        //----------------------------------
+        // 画像の表示
+        //----------------------------------
+        // 画像ファイルで表示
+        img.src = image;
+        const li = document.createElement('li');
+
+        // 現在の選択中
+        if (index === currentIndex) {
+          li.classList.add('current');
+        }
+        // クリックされた時の処理
+        li.addEventListener('click', () => {
+          // 画像の切り替え
+          mainImage.src = image;
+          // thumbnailsのすべての要素を取得
+          const thumbnails = document.querySelectorAll('.thumbnails > li');
+          // 現在の付加されているcurrentを外す
+          thumbnails[currentIndex].classList.remove('current');
+          // currentの更新
+          currentIndex = index;
+          thumbnails[currentIndex].classList.add('current');
+          console.log('');
+        });
+
+        li.appendChild(img);
+        document.querySelector('.thumbnails').appendChild(li);
+      });
+
+      //------------------------------------
+      // nextの処理
+      //------------------------------------
+      const next = document.getElementById('next');
+      next.addEventListener('click', () => {
+        let target = currentIndex + 1;
+        // loop
+        if (target >= images.length) {
+          target = 0;
+        }
+        const thumbnails = document.querySelectorAll('.thumbnails > li')[target].click();
+      });
+      //------------------------------------
+      // prevの処理
+      //------------------------------------
+      const prev = document.getElementById('prev');
+      prev.addEventListener('click', () => {
+        let target = currentIndex - 1;
+        // loop
+        if (target < 0) {
+          target = images.length - 1;
+        }
+        const thumnails = document.querySelectorAll('.thumbnails > li')[target].click();
+      });
+      //------------------------------------
+      // playの処理
+      //------------------------------------
+      let isPlaying = true;
+      let timeoutID;
+      const play = document.getElementById('play');
+      play.addEventListener('click', () => {
+        if (isPlaying === false) {
+          playSlideShow();
+          play.textContent = 'Pause';
+        }
+        else {
+          clearTimeout(timeoutID);
+          play.textContent = 'Play';
+        }
+        isPlaying = !isPlaying;
+
+      });
+
+      function playSlideShow() {
+        // 一定時間ごとに処置
+        timeoutID = setTimeout(() => {
+          next.click();
+          playSlideShow();
+        }, 1000);
+      }
+    }
+  </script>
+
+  <!-- スライドショーを作る -->
+  <!-- <script src="js/slifeshow.js"></script> -->
+  <script>
+
+  </script>
+</body>
+
+</html>

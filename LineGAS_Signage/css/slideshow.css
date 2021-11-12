@@ -1,0 +1,86 @@
+body {
+  /* cursor: none; */
+}
+main {
+  width: 300px;
+  margin: 0 auto;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#main {
+  width: 300px;
+  height: 200px;
+  margin-bottom: 8px;
+}
+
+nav {
+  margin-bottom: 8px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+nav li:hover {
+  background: #f8f8f8;
+}
+
+#play {
+  width: 140px;
+}
+
+#next,
+#prev {
+  width: 60px;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(5, 56px);
+  gap: 5px;
+}
+
+.thumbnails li{
+  cursor: pointer;
+  opacity: 0.4;
+}
+.thumbnails li img {
+  border: 1px solid white;
+}
+.thumbnails li:hover {
+  opacity: 1;
+}
+.thumbnails li:hover img {
+  border: 1px solid yellow;
+}
+/* 選択中の画像はhoverと同じ */
+.thumbnails li.current {
+  opacity: 1;
+}
+.thumbnails li.current img {
+  border: 1px solid yellow;
+}
+
+.thumbnails img {
+  width: 56px;
+}
