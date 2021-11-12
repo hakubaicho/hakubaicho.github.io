@@ -60,8 +60,10 @@
 
     function marquee_speed_set(param) {
       const marquee = document.getElementById("html-tag-marquee");
-      marquee.getAttribute("scrollamount") = param;
+      marquee.scrollamount = param;
       console.log(`${param} => ${marquee.scrollamount}`);
+
+      marquee.get.scrollamount = param;
     }
     function inputToGoogleAPI() {
       document.getElementById('status-of-api').textContent = "データ取得中";
