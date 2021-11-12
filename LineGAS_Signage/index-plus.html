@@ -9,7 +9,7 @@
   <style>
     .marquee {
       width: 90%;
-      margin: 20px 50px 50px 50px;
+      margin: 10px 10px 10px 10px;
       color: #333;
       background-color: antiquewhite;
     }
@@ -22,8 +22,8 @@
     }
 
     .m-marquee .m-marquee-content {
-      font-size: 64px;
-      line-height: 70px;
+      font-size: 1em;
+      line-height: 1.2em;
     }
 
     .m-marquee.m-marquee-left .m-marquee-left-item:before,
@@ -37,12 +37,12 @@
 
 <body>
   <!-- テロップの表示エリア -->
-  <h3>非推奨タグ[marquee]</h3>
+  <p>非推奨タグ[marquee]</p>
   <div class="marquee m-marquee">
     <marquee id="html-tag-marquee" class="m-marquee-content" scrollamount="16"></marquee>
   </div>
   <!-- テロップの表示エリア -->
-  <h3>jQuery + hMarquee</h3>
+  <p>jQuery + hMarquee</p>
   <div class="terop-marquee"></div>
 
   <!-- サイネージエリア -->
@@ -105,7 +105,6 @@
           for (let i = 0; i < terops.length; i++) {
             htmlTerop += `  ${terops[i].terop}  `;
           }
-          document.getElementById('html-tag-marquee').textContent = htmlTerop;
           document.getElementById('html-tag-marquee').textContent = htmlTerop;
 
           // スライドショーイメージ

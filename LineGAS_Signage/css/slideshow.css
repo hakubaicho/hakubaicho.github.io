@@ -17,8 +17,8 @@ ul {
 }
 
 #main {
-  width: 300px;
-  height: 200px;
+  width: 30%;
+  /* height: 20%; */
   margin-bottom: 8px;
 }
 
@@ -62,7 +62,7 @@ nav li:hover {
 
 .thumbnails li{
   cursor: pointer;
-  opacity: 0.4;
+  /* opacity: 0.4; */
 }
 .thumbnails li img {
   border: 1px solid white;
