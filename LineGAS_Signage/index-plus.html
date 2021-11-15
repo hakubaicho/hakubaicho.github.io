@@ -23,11 +23,11 @@
 <body>
   <!-- テロップの表示エリア -->
   <p>非推奨タグ[marquee]</p>
-  <input type="button" value="低速" onclick="marquee_speed_set(5)" />
-  <input type="button" value="中速" onclick="marquee_speed_set(10)" />
-  <input type="button" value="高速" onclick="marquee_speed_set(15)" />
+  <input type="button" value="低速" onclick="marquee_speed_set(10)" />
+  <input type="button" value="中速" onclick="marquee_speed_set(20)" />
+  <input type="button" value="高速" onclick="marquee_speed_set(40)" />
   <div class="marquee m-marquee">
-    <marquee id="html-tag-marquee" class="m-marquee-content" scrollamount="10"></marquee>
+    <marquee id="html-tag-marquee" class="m-marquee-content" scrollamount="20"></marquee>
   </div>
   <div id="terop-array"></div>
   <!-- サイネージエリア -->
@@ -60,10 +60,8 @@
 
     function marquee_speed_set(param) {
       const marquee = document.getElementById("html-tag-marquee");
-      marquee.scrollamount = param;
-      console.log(`${param} => ${marquee.scrollamount}`);
-
-      marquee.get.scrollamount = param;
+      marquee.scrollAmount = param;
+      console.log(`${param} => ${marquee.scrollAmount}`);
     }
     function inputToGoogleAPI() {
       document.getElementById('status-of-api').textContent = "データ取得中";
