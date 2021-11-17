@@ -46,6 +46,19 @@ body {
   justify-content: center;    /*左右中央揃え*/
   align-items: center;        /*上下中央揃え*/
 }
+.terop-container-top p {
+  height: 100%;
+  width: 100%;
+  font-size: 2.5em;
+}
+.terop-container-bottom p {
+  
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  color:navy;
+  font-size: 0.5em;
+}
 @media (orientation: portrait) {
 	/* 縦向き */
   
@@ -96,19 +109,7 @@ body {
   justify-content:center;    /*左右中央揃え*/
   align-items:center;        /*上下中央揃え*/
 }
-.terop-container-top p {
-  height: 100%;
-  width: 100%;
-  font-size: 2vw;
-}
-.terop-container-bottom p {
-  
-  height: 100%;
-  width: 100%;
-  text-align: right;
-  color:navy;
-  font-size: 1vw;
-}
+
 
 
 button {
