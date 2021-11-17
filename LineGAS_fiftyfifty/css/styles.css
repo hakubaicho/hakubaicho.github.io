@@ -8,71 +8,60 @@ body {
   width:100%;
   margin:0;
 }
-
+/*
+  **************************************************
+  縦向き
+  **************************************************
+ */
+.signage-container {
+  /* border:3px solid greenyellow; */
+  background-color: greenyellow;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin: auto;
+  flex-wrap: wrap;
+  flex-direction: column;  
+  display: flex;              /*上下左右を中央にしたい*/
+  justify-content: center;    /*左右中央揃え*/
+  align-items: center;        /*上下中央揃え*/          
+}
+.signage-slideshow-area {
+  /* border:2px solid red; */
+  background-color: yellow;
+  /* margin: 10px auto 10px auto; */
+  width: 98%;
+  height: 49%;
+  display: flex;              /*上下左右を中央にしたい*/
+  justify-content: center;    /*左右中央揃え*/
+  align-items: center;        /*上下中央揃え*/
+}
+.signage-terop-area {
+  /* border:2px solid red; */
+  background-color: deepskyblue;
+  /* margin: 10px auto 10px auto; */
+  width: 98%;
+  height: 49%;
+  display: flex;              /*上下左右を中央にしたい*/
+  justify-content: center;    /*左右中央揃え*/
+  align-items: center;        /*上下中央揃え*/
+}
 @media (orientation: portrait) {
 	/* 縦向き */
-  .signage-container {
-    border:3px solid greenyellow;
-    width: 98vw;
-    height: 98vh;
-    display: flex;
-    margin: auto;
-    flex-wrap: wrap;
-    flex-direction: column;  
-    display: flex;              /*上下左右を中央にしたい*/
-    justify-content: center;    /*左右中央揃え*/
-    align-items: center;        /*上下中央揃え*/          
-  }
-  .signage-slideshow-area {
-    border:2px solid red;
-    /* margin: 10px auto 10px auto; */
-    width: 98%;
-    height: 49%;
-    display: flex;              /*上下左右を中央にしたい*/
-    justify-content: center;    /*左右中央揃え*/
-    align-items: center;        /*上下中央揃え*/
-  }
-  .signage-terop-area {
-    border:2px solid red;
-    /* margin: 10px auto 10px auto; */
-    width: 98%;
-    height: 49%;
-    display: flex;              /*上下左右を中央にしたい*/
-    justify-content: center;    /*左右中央揃え*/
-    align-items: center;        /*上下中央揃え*/
-  }
+  
 }
 @media (orientation: landscape) {
 	/* 横向き */
   .signage-container {
-    border:3px solid greenyellow;
-    width: 98vw;
-    height: 98vh;
-    display: flex;
-    margin: auto;
-    flex-wrap: wrap;
-    flex-direction: row;  
-    display: flex;              /*上下左右を中央にしたい*/
-    justify-content: center;    /*左右中央揃え*/
-    align-items: center;        /*上下中央揃え*/          
+    flex-direction: row;
   }
   .signage-slideshow-area {
-    border:2px solid red;
-    /* margin: 10px auto 10px auto; */
     width: 49%;
     height: 98%;
-    display: flex;              /*上下左右を中央にしたい*/
-    justify-content: center;    /*左右中央揃え*/
-    align-items: center;        /*上下中央揃え*/
   }
   .signage-terop-area {
-    border:2px solid red;
-    /* margin: 10px auto 10px auto; */
     width: 49%;
     height: 98%;
-    display: flex;              /*上下左右を中央にしたい*/
-    justify-content: center;    /*左右中央揃え*/
-    align-items: center;        /*上下中央揃え*/
   }
 }
 
@@ -81,6 +70,8 @@ body {
   margin: 0 auto;
   height: 98%;
   width: 98%;
+  display: block;
+  object-fit: contain;
 }
 .terop-container {
   border: 2px dotted blue;
@@ -108,12 +99,15 @@ body {
 .terop-container-top p {
   height: 100%;
   width: 100%;
+  font-size: 2vw;
 }
 .terop-container-bottom p {
+  
   height: 100%;
   width: 100%;
   text-align: right;
   color:navy;
+  font-size: 1vw;
 }
 
 
