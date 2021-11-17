@@ -1,37 +1,121 @@
-h1, h2 {
-  text-align: center;
-  font-family:  serif;
-  letter-spacing: 0.2rem;
+html {
+  height:100%;
+  width:100%;
+  font-family: "Font Awesome 5 Free";
+}
+body {
+  user-select: none;         /* 文字列を選択させない */
+  width:100%;
+  margin:0;
 }
 
-img {
-  height: 90%;
-  width: 90%;
-  border:3px solid blue;
-  margin: 10px;
+@media (orientation: portrait) {
+	/* 縦向き */
+  .signage-container {
+    border:3px solid greenyellow;
+    width: 98vw;
+    height: 98vh;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    flex-direction: column;  
+    display: flex;              /*上下左右を中央にしたい*/
+    justify-content: center;    /*左右中央揃え*/
+    align-items: center;        /*上下中央揃え*/          
+  }
+  .signage-slideshow-area {
+    border:2px solid red;
+    /* margin: 10px auto 10px auto; */
+    width: 98%;
+    height: 49%;
+    display: flex;              /*上下左右を中央にしたい*/
+    justify-content: center;    /*左右中央揃え*/
+    align-items: center;        /*上下中央揃え*/
+  }
+  .signage-terop-area {
+    border:2px solid red;
+    /* margin: 10px auto 10px auto; */
+    width: 98%;
+    height: 49%;
+    display: flex;              /*上下左右を中央にしたい*/
+    justify-content: center;    /*左右中央揃え*/
+    align-items: center;        /*上下中央揃え*/
+  }
+}
+@media (orientation: landscape) {
+	/* 横向き */
+  .signage-container {
+    border:3px solid greenyellow;
+    width: 98vw;
+    height: 98vh;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    flex-direction: row;  
+    display: flex;              /*上下左右を中央にしたい*/
+    justify-content: center;    /*左右中央揃え*/
+    align-items: center;        /*上下中央揃え*/          
+  }
+  .signage-slideshow-area {
+    border:2px solid red;
+    /* margin: 10px auto 10px auto; */
+    width: 49%;
+    height: 98%;
+    display: flex;              /*上下左右を中央にしたい*/
+    justify-content: center;    /*左右中央揃え*/
+    align-items: center;        /*上下中央揃え*/
+  }
+  .signage-terop-area {
+    border:2px solid red;
+    /* margin: 10px auto 10px auto; */
+    width: 49%;
+    height: 98%;
+    display: flex;              /*上下左右を中央にしたい*/
+    justify-content: center;    /*左右中央揃え*/
+    align-items: center;        /*上下中央揃え*/
+  }
 }
 
-.signage-container {
-  width: 90vw;
-  height: 60vh;
-  display: flex;
-  margin: auto;
-  flex-wrap: wrap;
-  border:5px solid greenyellow;
-  flex-direction: row;            /*横並び・左から右（デフォルト）*/
-}
-.slideshow-container {
-  /* margin: 10px auto 10px auto; */
-  width: 49%;
-  height: 90%;
-  border:1px solid red;
+.signage-slideshow-area img {
+  border:2px dotted blue;
+  margin: 0 auto;
+  height: 98%;
+  width: 98%;
 }
 .terop-container {
-  /* margin: 10px auto 10px auto; */
-  width: 49%;
-  height: 90%;
-  border:1px solid green;
+  border: 2px dotted blue;
+  margin: auto;
+  width: 98%;
+  height: 98%;
+  display: flex;
+  margin: auto;
+  flex-direction:column;
 }
+.terop-container-top {
+  border:2px dotted lawngreen;
+  flex:19;
+  display: flex;              /*上下左右を中央にしたい*/
+  justify-content: center;    /*左右中央揃え*/
+  align-items: center;        /*上下中央揃え*/
+}
+.terop-container-bottom {
+  border:2px dotted lawngreen;
+  flex:1;
+  display: flex;              /*上下左右を中央にしたい*/
+  justify-content:center;    /*左右中央揃え*/
+  align-items:center;        /*上下中央揃え*/
+}
+.terop-container-top p {
+  height: 100%;
+  width: 100%;
+}
+.terop-container-bottom p {
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  color:navy;
+}
+
 
 button {
   margin: auto;

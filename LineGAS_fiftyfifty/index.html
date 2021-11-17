@@ -9,34 +9,46 @@
   -->
   <meta charset="utf-8">
   <title>スライドショー</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" href="css/styles.css" />
   <!--自作のJS-->
-  <script src="js/main.js"></script>
+  <script src="js/images.js"></script>
+  <script src="js/terops.js"></script>
 </head>
 
 <body>
-  <p id="status-of-api">未取得</p>
-  <input type="button" value="低速" onclick="reload_image()" />
+
   <!-- サイネージコンテナ -->
   <div class="signage-container">
     <!-- 画像スライドショーコンテナ -->
-    <div class="slideshow-container">
+    <div class="signage-slideshow-area">
       <img src="img/halloween_card00.jpg" id="pics">
-      <button id="playButton" onclick="playSlidedeshow();">PLAY</button>
     </div>
     <!-- テロップコンテナ -->
-    <div class="terop-container">
-      <p>ごちゃごちゃっと</p>
+    <div class="signage-terop-area">
+      <div class="terop-container">
+        <div class="terop-container-top">
+          <p id="terops">
+            実業家の堀江貴文氏（48）らが福岡県北九州市に設立し、来季から独立リーグ「ヤマエ久野九州アジアリーグ」へ参入する新球団「福岡北九州フェニックス」は17日、ロッテ、ツインズ、阪神で活躍した西岡剛氏（37）が選手兼任監督に、ジョニー・セリス氏（34）がヘッドコーチに就任することを発表した。
+            【写真】ロッテ時代、コーンロウの髪形の 西岡剛氏
+            西岡氏は球団を通じて「この度、福岡北九州フェニックスの監督に就任することになりました。九州に身を置いて野球に携われることをうれしく思います。野球というスポーツを通じてたくさんの方と出会い野球の楽しさをお届けできるように頑張ります。よろしくお願い申し上げます」とコメントした。将来的には世界進出も視野に入れる新球団の初代監督として、選手兼任で九州の地を盛り上げる。
+          </p>
+        </div>
+        <div class="terop-container-bottom">
+          <p id="status-of-api">未取得</p>
+        </div>
+      </div>
     </div>
   </div>
+  <!-- <button id="playButton" onclick="playSlidedeshow();">PLAY</button> -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script>
-      // APIのURL
+    // APIのURL
     const endpoint = "https://script.google.com/macros/s/AKfycbyarYp4dlnCKKilnOJ1wLwCE6XuftXD9M89fvMxAdQ3QdFqoz7P5G8HiZJr1Yfb4eJFeA/exec";
-    function inputToGoogleAPI() {
+    function inputToGoogleAPI(isStart) {
       document.getElementById('status-of-api').textContent = "データ取得中";
       $.ajax({
         type: 'GET',
@@ -53,6 +65,7 @@
           const images = out.image;
 
           reloadPicture(images);
+          reloadTerop(terops);
           // データ取得の結果
           let todayDate = new Date();
           let strDate = "";
@@ -68,15 +81,18 @@
         .always(function () {
           console.log("Ajax処理終了");
         });
+
+      if (isStart) {
+        playSlidedeshow();
+        playTerop();
+      };
     }
 
     window.onload = () => {
-      inputToGoogleAPI();
+      inputToGoogleAPI(true);
     };
     const countUp = () => {
-      inputToGoogleAPI();
-      // console.log(count++);
-      // document.getElementById('status-of-counter').textContent = count;
+      inputToGoogleAPI(false);
     }
     setInterval(countUp, 60000);
   </script>
