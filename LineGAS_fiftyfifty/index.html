@@ -13,72 +13,6 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    .fade_contents {
-      position: relative;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    #news_ticker {
-      position: absolute;
-      bottom: 0;
-      /* width: 100% だとスクロールしないといけなくなるかも*/
-      width: 99%;
-      height: 150px;
-      background: rgba(255, 255, 255, 0.8);
-      font-size: 30px;
-      line-height: 50px;
-      overflow: hidden;
-      border: 1px solid greenyellow;
-    }
-
-    .news_ticker_list_item {
-      position: absolute;
-      /* max-width: 100%; */
-      padding: 0 20px;
-      white-space: nowrap;
-      /* divのサイズの固定化のため */
-      /* overflow: hidden; */
-      /* text-overflow: ellipsis; */
-      opacity: 0;
-      transition-duration: 1s;
-      transition-property: opacity;
-      transition-timing-function: ease;
-      z-index: -1;
-      border: 1px solid red;
-    }
-
-    .news_ticker_list_item.is-active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    .news_ticker_list_item time {
-      margin-right: 16px;
-      color: #6b9ed3;
-    }
-
-    .news_ticker_list_item a {
-      color: #000;
-    }
-
-    .news_ticker_list_item a:hover {
-      color: #6b9ed3;
-    }
-
-    @media screen and (max-width: 600px) {
-      #news_ticker {
-        height: 80px;
-        line-height: 1.3;
-      }
-
-      .news_ticker_list_item time {
-        display: block;
-        margin: 15px 0 8px;
-      }
-    }
-  </style>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -111,20 +45,21 @@
         </div>
       </div>
     </div>
+    <!-- NewsTicker部分 -->
+    <div id="news_ticker">
+      <ul id="news_ticker_list">
+        <li class="news_ticker_list_item lastTerop">
+          <p>ダミーテキスト</p>
+        </li>
+    </div>
   </div>
-  <!-- NewsTicker部分 -->
-  <div id="news_ticker">
-    <ul id="news_ticker_list">
-      <li class="news_ticker_list_item lastTerop">
-        <p>ダミーテキスト</p>
-      </li>
-  </div>
+
   <!-- <button id="playButton" onclick="playSlidedeshow();">PLAY</button> -->
 
   <script>
     // APIのURL
     const endpoint = "https://script.google.com/macros/s/AKfycbyarYp4dlnCKKilnOJ1wLwCE6XuftXD9M89fvMxAdQ3QdFqoz7P5G8HiZJr1Yfb4eJFeA/exec";
-    let news_terops =[];
+    let news_terops = [];
     function inputToGoogleAPI(isStart) {
       document.getElementById('status-of-api').textContent = "データ取得中";
       $.ajax({
@@ -142,8 +77,7 @@
           const images = out.image;
 
           news_terops = [];
-          for(let i=0;i<terops.length;i++)
-          {
+          for (let i = 0; i < terops.length; i++) {
             news_terops.push(terops[i].terop);
           }
           reloadPicture(images);

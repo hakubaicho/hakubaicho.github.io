@@ -31,25 +31,27 @@ body {
   background-color: yellow;
   /* margin: 10px auto 10px auto; */
   width: 98%;
-  height: 49%;
+  height: 44%;
   display: flex;              /*上下左右を中央にしたい*/
   justify-content: center;    /*左右中央揃え*/
   align-items: center;        /*上下中央揃え*/
+  border-radius:10px;
 }
 .signage-terop-area {
   /* border:2px solid red; */
   background-color: deepskyblue;
   /* margin: 10px auto 10px auto; */
   width: 98%;
-  height: 49%;
+  height: 44%;
   display: flex;              /*上下左右を中央にしたい*/
   justify-content: center;    /*左右中央揃え*/
   align-items: center;        /*上下中央揃え*/
+  border-radius:10px;
 }
 .terop-container-top p {
   height: 100%;
   width: 100%;
-  font-size: 2.5em;
+  font-size: 1.5em;
 }
 .terop-container-bottom p {
   
@@ -59,27 +61,10 @@ body {
   color:navy;
   font-size: 0.5em;
 }
-@media (orientation: portrait) {
-	/* 縦向き */
-  
-}
-@media (orientation: landscape) {
-	/* 横向き */
-  .signage-container {
-    flex-direction: row;
-  }
-  .signage-slideshow-area {
-    width: 49%;
-    height: 98%;
-  }
-  .signage-terop-area {
-    width: 49%;
-    height: 98%;
-  }
-}
+
 
 .signage-slideshow-area img {
-  border:2px dotted blue;
+  /* border:2px dotted blue; */
   margin: 0 auto;
   height: 98%;
   width: 98%;
@@ -87,7 +72,7 @@ body {
   object-fit: contain;
 }
 .terop-container {
-  border: 2px dotted blue;
+  /* border: 2px dotted blue; */
   margin: auto;
   width: 98%;
   height: 98%;
@@ -96,14 +81,14 @@ body {
   flex-direction:column;
 }
 .terop-container-top {
-  border:2px dotted lawngreen;
+  /* border:2px dotted lawngreen; */
   flex:19;
   display: flex;              /*上下左右を中央にしたい*/
   justify-content: center;    /*左右中央揃え*/
   align-items: center;        /*上下中央揃え*/
 }
 .terop-container-bottom {
-  border:2px dotted lawngreen;
+  /* border:2px dotted lawngreen; */
   flex:1;
   display: flex;              /*上下左右を中央にしたい*/
   justify-content:center;    /*左右中央揃え*/
@@ -118,4 +103,95 @@ button {
   font-size: 20px;
   background-color: white;
   font-family:  serif;
+}
+
+/* テロップエリア */
+#news_ticker {
+  position: relative;
+  background-color:navy;
+  /* border:2px solid red; */
+  display: flex;              /*上下左右を中央にしたい*/
+  overflow: hidden;           /* はみ出し要素は消す */
+  width: 98%;
+  height: 9%;
+  border-radius:10px;
+}
+#news_ticker_b {
+  position: absolute;
+  bottom: 0;
+  /* width: 100% だとスクロールしないといけなくなるかも*/
+  width: 99%;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.8);
+  line-height: 50px;
+  overflow: hidden;
+  border: 1px solid greenyellow;
+}
+
+ /* newsTickerの文章を管理するList */
+ #news_ticker_list {
+  /* Listのdotを非表示 */
+  list-style-type: none;
+}
+
+/* Listのアイテム */
+.news_ticker_list_item {
+  /* 動かすには必要 */
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  z-index: -1;
+  /* border: 1px solid red; */
+}
+
+/* Listのアイテム - 対象になったとき*/
+.news_ticker_list_item.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Listのアイテム - pタグ */
+.news_ticker_list_item p {
+  color: white;
+  font-size: 2rem;
+  /* border: 1px solid #6b9ed3; */
+  margin: 0;
+}
+
+
+@media (orientation: portrait) {
+	/* 縦向き */
+  .signage-container {
+    flex-direction: row;
+  }
+  .signage-slideshow-area {
+    width: 98%;
+    height: 45%;
+  }
+  .signage-terop-area {
+    width: 98%;
+    height: 45%;
+  }
+  #news_ticker {
+    width: 98%;
+    height: 4%;
+  }
+}
+@media (orientation: landscape) {
+	/* 横向き */
+  .signage-container {
+    flex-direction: row;
+  }
+  .signage-slideshow-area {
+    width: 49%;
+    height: 90%;
+  }
+  .signage-terop-area {
+    width: 49%;
+    height: 90%;
+  }
+  #news_ticker {
+    width: 98%;
+    height: 8%;
+  }
 }
