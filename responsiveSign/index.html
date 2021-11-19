@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <!-- 
+    参考URL
+    https://min-web.com/responsive-css/
+    https://qiita.com/kura07/items/e633b35e33e43240d363
+   -->
+  <title>レスポンシブデザインを制作するためのCSSサンプルコード集</title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style>
+    .box {
+      max-width: 1200px;
+      height: 120px;
+      border: 1px solid red;
+      background-color: lightpink;
+    }
+
+    .box2 {
+      max-width: 1200px;
+      height: 120px;
+      border: 1px solid blue;
+      background-color: aqua;
+    }
+
+    @media screen and (max-width:520px) {
+      .box {
+        max-width: 100%;
+      }
+
+      .box2 {
+        min-width: 300px;
+      }
+    }
+
+    header {
+      width: 100%;
+      background: blue;
+    }
+
+    ul {
+      list-style: none;
+      /* FlexBoxを適用する */
+      display: flex;
+      /* header全体に均一にli要素を配置する */
+      justify-content: space-around;
+    }
+
+    li {
+      width: 100px;
+      color: black;
+      text-align: center;
+      border: 1px solid cyan;
+      background-color: azure;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .container {
+      display: grid;
+      /* 子要素間の余白を指定する */
+      gap: 15px;
+      /* 横に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-columns: 1.5fr 1fr 1fr 3fr;
+      /* 縦に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-rows: 180px 180px 180px 120px auto;
+    }
+
+    .griditem {
+      background: #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      border: 3px solid #ccc;
+    }
+
+    .gridbox-1 {
+      /* 横幅を1アイテム分に指定する */
+      grid-column: 1;
+      /* 縦幅の範囲を 開始位置/終了位置で指定する */
+      grid-row: 1/4;
+      background: #fc2;
+      border-color: #fa0;
+    }
+
+    .gridbox-2 {
+      grid-column: 3/5;
+      background: #0bd;
+      border-color: #09c;
+    }
+
+    .gridbox-3 {
+      grid-column: 2/5;
+      grid-row: 4/5;
+      background: #c6c;
+      border-color: #a4a;
+    }
+    @media(max-width:520px){
+      .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .gridbox-1,
+      .gridbox-2,
+      .gridbox-3 {
+        grid-column: 1;
+        grid-row: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- メディアクエリ -->
+  <div class="box"></div>
+  <div class="box2"></div>
+
+  <!-- FlexBox -->
+  <header>
+    <nav>
+      <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+        <li>E</li>
+        <li>F</li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Grid -->
+  <div class="container">
+    <div class="griditem gridbox-1">A</div>
+    <div class="griditem">B</div>
+    <div class="griditem">C</div>
+    <div class="griditem">D</div>
+    <div class="griditem">E</div>
+    <div class="griditem gridbox-2">F</div>
+    <div class="griditem gridbox-3">G</div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <!-- 
+    参考URL
+    https://min-web.com/responsive-css/
+   -->
+  <title>レスポンシブデザインを制作するためのCSSサンプルコード集</title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/images.js"></script>
+  <script src="js/terops.js"></script>
+
+  <!-- HTML全体 -->
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+      font-family: "Font Awesome 5 Free";
+      background: #E26B00;
+    }
+
+    body {
+      user-select: none;
+      /* 文字列を選択させない */
+      width: 100%;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+  </style>
+
+  <!-- GridLayoutのCSS -->
+  <style>
+    /* 全体のコンテナ */
+    .container {
+      height: 100vh;
+      width: 100%;
+      display: grid;
+      margin: 0 auto;
+      /* 子要素間の余白を指定する */
+      gap: 5px;
+      /* 横に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-columns: 2fr 1fr;
+      /* 縦に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-rows: 9fr 1fr;
+    }
+
+    /* コンテナ内のアイテムすべてに適用 */
+    .griditem {
+      background: #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      border: 3px solid #ccc;
+    }
+
+    /* [GridItem]画像のエリア */
+    .gridbox-image {
+      /* 横幅を1アイテム分に指定する */
+      grid-column: 1;
+      /* 縦幅の範囲を 開始位置/終了位置で指定する */
+      grid-row: 1;
+      /* background: #fc2;
+      border-color: #fa0; */
+      background: #0C163D;
+      border-color: #E26B00;
+      /*上下左右を中央にしたい*/
+      display: flex;
+      /*左右中央揃え*/
+      justify-content: center;
+      /*上下中央揃え*/
+      align-items: center;
+      /* これを入れて内部に収める */
+      overflow: hidden;
+    }
+
+    /* [GridItem]テキスト */
+    .gridbox-text {
+      grid-column: 2;
+      grid-row: 1;
+      background: #0C163D;
+      border-color: #E26B00;
+      /* あふれた要素は表示しない */
+      overflow: hidden;
+    }
+
+    /* [GridItem]ランニングテロップ */
+    .gridbox-terop {
+      grid-column: 1/3;
+      grid-row: 2;
+      background: #0C163D;
+      border-color: #E26B00;
+
+      /*上下左右を中央にしたい*/
+      display: flex;
+      /*左右中央揃え*/
+      justify-content: center;
+      /*上下中央揃え*/
+      align-items: center;
+      /* これを入れて内部に収める */
+      overflow: hidden;
+    }
+
+    /* テキストエリアのコンテナ */
+    .container-text {
+      height: 100%;
+      width: 100%;
+      display: grid;
+      margin: auto;
+      /* 子要素間の余白を指定する */
+      /* gap: 5px; */
+      /* 横に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-columns: 1fr;
+      /* 縦に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-rows: 9fr 1fr;
+    }
+
+    /* テキストエリアコンテナ内のアイテムすべてに適用 */
+    .griditem-text {
+      background: #0C163D;
+      padding: 10px;
+      border-radius: 8px;
+      /* border: 3px solid lightsteelblue; */
+    }
+
+    /* テキストエリア上部 */
+    .gridbox-text-upper {
+      grid-column: 1;
+      grid-row: 1;
+      /* あふれた要素は表示しない */
+      overflow: hidden;
+    }
+
+    /* テキストエリア下部 */
+    .gridbox-text-lower {
+      grid-column: 1;
+      grid-row: 2;
+      /* あふれた要素は表示しない */
+      overflow: hidden;
+    }
+
+    /* 画面のサイズによってレイアウトを変更する */
+    @media(max-width:1080px) {
+      .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 7fr 7fr 1fr;
+      }
+
+      .gridbox-image,
+      .gridbox-text,
+      .gridbox-terop {
+        grid-column: 1;
+        grid-row: auto;
+      }
+    }
+  </style>
+
+  <!-- 画像のエリア -->
+  <style>
+    .gridbox-image img {
+      /* 
+      コンテナ内に比率を合わせて収まるように
+      ここから
+      */
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      /* ここまで */
+    }
+  </style>
+
+  <!-- テキストエリア -->
+  <style>
+    .gridbox-text-upper p {
+      font-size: 2em;
+      color: #F4C500;
+    }
+
+    .gridbox-text-lower p {
+      font-size: 1em;
+      color: #F4C500;
+    }
+  </style>
+
+  <!-- ランニングテロップ -->
+  <style>
+    /* ランニングテロップのコンテナ */
+    #news_ticker {
+      margin: 0 0 0 0;
+      position: relative;
+      width: 98%;
+      height: 100%;
+      display: flex;
+      /*上下中央揃え*/
+      /* align-items: center; */
+      /* これを入れて内部に収める */
+      overflow: hidden;
+    }
+
+    /* newsTickerの文章を管理するList */
+    #news_ticker_list {
+      /* Listのdotを非表示 */
+      list-style-type: none;
+    }
+
+    /* Listのアイテム */
+    .news_ticker_list_item {
+      height: 100%;
+      /* 動かすには必要 */
+      position: absolute;
+      white-space: nowrap;
+      opacity: 0;
+      z-index: -1;
+      /* border: 1px solid red; */
+    }
+
+    /* Listのアイテム - 対象になったとき*/
+    .news_ticker_list_item.is-active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .news_ticker_list_item li {
+      margin-top: 0;
+    }
+    /* Listのアイテム - pタグ */
+    .news_ticker_list_item p {
+      line-height: 100%;
+      color: #F4C500;
+      font-size: 3rem;
+      margin: 0 0 0 0;
+      padding: 0 0 0 0;
+      /* border: 1px solid #6b9ed3; */
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <!-- GridLayout -->
+    <div class="container">
+      <!-- 画像エリア -->
+      <div class="griditem gridbox-image">
+        <img src="img/no_image_square.jpg" id="pics">
+      </div>
+
+      <!-- テキストエリア -->
+      <div class="griditem gridbox-text">
+        <div class="container-text">
+          <div class="griditem-text gridbox-text-upper">
+            <p id="terops">
+              　データ取得中
+            </p>
+          </div>
+          <div class="griditem-text gridbox-text-lower">
+            <p id="status-of-api">
+              　データ取得中
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NewsTickerエリア -->
+      <div class="griditem gridbox-terop">
+        <div id="news_ticker">
+          <ul id="news_ticker_list">
+            <li class="news_ticker_list_item lastTerop">
+              <p>データ取得中</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- APIデータ取得 -->
+  <script>
+    // APIのURL
+    const endpoint = "https://script.google.com/macros/s/AKfycbyarYp4dlnCKKilnOJ1wLwCE6XuftXD9M89fvMxAdQ3QdFqoz7P5G8HiZJr1Yfb4eJFeA/exec";
+    let news_terops = [];
+    function inputToGoogleAPI(isStart) {
+      document.getElementById('status-of-api').textContent = "データ取得中";
+      $.ajax({
+        type: 'GET',
+        url: endpoint,
+        dataType: 'jsonp',
+        // dataType: 'json',
+        data: {
+          text: 'Hi,There!'
+          // text: inputvalue
+        }
+      })
+        .done(function (out) {
+          const terops = out.terop;
+          const images = out.image;
+
+          news_terops = [];
+          for (let i = 0; i < terops.length; i++) {
+            news_terops.push(terops[i].terop);
+          }
+          reloadPicture(images);
+          reloadTerop(terops);
+          // データ取得の結果
+          let todayDate = new Date();
+          let strDate = "";
+          strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+          strDate += " ";
+          strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
+          document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
+        })
+        .fail(function (err) {
+          document.getElementById('status-of-api').textContent = `エラーが起きました:${err}`;
+          // alert("エラーが起きました");
+        })
+        .always(function () {
+          console.log("Ajax処理終了");
+        });
+
+      if (isStart) {
+        playSlidedeshow();
+        playTerop();
+      };
+    }
+
+    window.onload = () => {
+      inputToGoogleAPI(true);
+      terop_init();
+    };
+    const countUp = () => {
+      inputToGoogleAPI(false);
+    }
+    setInterval(countUp, 60000);
+  </script>
+  <!-- ランニングテロップ -->
+  <script>
+    /**
+     * 速度
+     */
+    let speed_const = 5;
+
+    /**
+     * ***************************************************
+     * テロップ速度の変更
+     * ***************************************************
+     */
+    function set_terop_speed(speed) {
+      speed_const = speed;
+    }
+    /**
+     * ***************************************************
+     * テロップの再セット
+     * ***************************************************
+     */
+    function reload_terop() {
+      const container = document.getElementById("news_ticker_list");
+      // 全要素削除
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+      // 要素の追加
+      for (let i = 0; i < news_terops.length; i++) {
+        const li = document.createElement('li');
+        li.classList.add("news_ticker_list_item");
+        var p = document.createElement('p');
+        p.innerText = news_terops[i];
+        li.append(p);
+        container.append(li)
+      }
+      // 終端を入れる
+      const li = document.createElement('li');
+      li.classList.add("news_ticker_list_item");
+      li.classList.add("lastTerop");
+
+      var p = document.createElement('p');
+      p.innerText = "最後のテロップ　リロードの合図";
+      li.append(p);
+      li.append(p);
+      container.append(li)
+    }
+
+    /**
+     * ***************************************************
+     * NewsTickerの動き方
+     * ***************************************************
+     */
+    function terop_init() {
+      $(function () {
+
+        function tickerTxt() {
+          if ($("#news_ticker").length) {
+            var a = $("#news_ticker_list");
+            var r = $(".news_ticker_list_item:first-child", a);
+            //--------------------------------
+            // 最後のテロップなら
+            //--------------------------------
+            if (r.hasClass('lastTerop')) {
+              reload_terop();
+            }
+            //--------------------------------
+            // 右端に寄せた状態から始めたい
+            //--------------------------------
+            var container = $("#news_ticker");
+            var windowWidth = container.width();
+            //--------------------------------
+            var a = $("#news_ticker_list");
+            var r = $(".news_ticker_list_item:first-child", a);
+            var width = r.width();
+            //--------------------------------
+            // 速度の設定
+            //--------------------------------
+            var speed = (width + windowWidth) * speed_const;
+            console.log(`幅:${windowWidth} / speed:${speed}`);
+            r.addClass("is-active");
+            //--------------------------------
+            // テロップのアニメーション効果。
+            //--------------------------------
+            $(".is-active", a).css({ left: windowWidth }).delay(1000).animate({ left: -width - 20 }, speed, "linear", function () {
+              $(".is-active", a).next().addClass("is-active").end().removeClass("is-active").appendTo(a);
+              tickerTxt();
+            });
+          }
+        }
+        tickerTxt();
+      });
+    }
+    // window.onload = () => {
+    //   terop_init();
+    // };
+  </script>
+</body>
+
+</html>
