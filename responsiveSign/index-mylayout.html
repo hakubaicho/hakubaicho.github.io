@@ -149,16 +149,30 @@
   </style>
 
   <!-- 画像のエリア -->
+  <!-- 画像の変化効果 -->
   <style>
-    .gridbox-image img {
+    #slider {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    #slider img {
       /* 
       コンテナ内に比率を合わせて収まるように
       ここから
       */
+      position: absolute;
       height: 100%;
       width: 100%;
       object-fit: contain;
       /* ここまで */
+      opacity: 0;
+      transition: 1s;
+    }
+
+    #slider img.show {
+      opacity: 1;
     }
   </style>
 
@@ -260,7 +274,14 @@
     <div class="container">
       <!-- 画像エリア -->
       <div class="griditem gridbox-image">
-        <img src="img/no_image_square.jpg" id="pics">
+        <!-- <img src="img/no_image_square.jpg" id="pics"> -->
+        <div id="slider">
+          <img src="img/000.jpg">
+          <img src="img/001.jpg">
+          <img src="img/002.jpg">
+          <img src="img/003.jpg">
+          <img src="img/004.jpg">
+        </div>
       </div>
 
       <!-- テキストエリア -->
@@ -297,6 +318,7 @@
     // APIのURL
     const endpoint = "https://script.google.com/macros/s/AKfycbyarYp4dlnCKKilnOJ1wLwCE6XuftXD9M89fvMxAdQ3QdFqoz7P5G8HiZJr1Yfb4eJFeA/exec";
     let news_terops = [];
+    let news_images = [];
     function inputToGoogleAPI(isStart) {
       document.getElementById('status-of-api').textContent = "データ取得中";
       $.ajax({
@@ -314,10 +336,13 @@
           const images = out.image;
 
           news_terops = [];
+          news_images = [];
           for (let i = 0; i < terops.length; i++) {
             news_terops.push(terops[i].terop);
           }
-          reloadPicture(images);
+          for (let i = 0; i < images.length; i++) {
+            news_images.push(images[i].url);
+          }
           reloadTerop(terops);
           // データ取得の結果
           let todayDate = new Date();
@@ -336,7 +361,8 @@
         });
 
       if (isStart) {
-        playSlidedeshow();
+        // playSlidedeshow();
+        showImgTimer();
         playTerop();
       };
     }
@@ -348,7 +374,7 @@
     const countUp = () => {
       inputToGoogleAPI(false);
     }
-    setInterval(countUp, 60000);
+    setInterval(countUp, 120000);
   </script>
   <!-- ランニングテロップ -->
   <script>
@@ -445,6 +471,47 @@
     // window.onload = () => {
     //   terop_init();
     // };
+  </script>
+  <!-- 画面のフェードイン -->
+  <script>
+    // 参考URL
+    // https://mukuchi.work/simple-fifo-slider/
+    // 時間の指定
+    var timer = 5000;
+    // 画像の番号
+    var imgNum = 0;
+    var counter_reload = 10;
+    var imgs = document.querySelectorAll('#slider img');
+    function showImg() {
+      // スライドする要素を取得
+
+      for (var i = 0; i < imgs.length; i++) {
+        imgs[i].classList.remove('show');
+      }
+
+      if (imgs.length <= imgNum + 1) {
+        imgNum = 0;
+      }
+      else {
+        imgNum++;
+      }
+      if (imgNum === 0) {
+        counter_reload++;
+        if (10<=counter_reload) {
+          counter_reload=0;
+          reloadPicture(news_images);
+          imgs = document.querySelectorAll('#slider img');
+          imgNum = 0;
+        }
+      }
+
+      imgs[imgNum].classList.add('show');
+      showImgTimer();
+    }
+
+    function showImgTimer() {
+      setTimeout(showImg, timer);
+    }
   </script>
 </body>
 
