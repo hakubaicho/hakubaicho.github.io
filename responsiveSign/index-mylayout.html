@@ -310,6 +310,8 @@
           </ul>
         </div>
       </div>
+      <!-- 速度 -->
+      <input id="teropspeed" type="range" min="1" max="15" value="5">
     </div>
   </main>
 
@@ -347,7 +349,7 @@
           // データ取得の結果
           let todayDate = new Date();
           let strDate = "";
-          strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDay()}`;
+          strDate += `${todayDate.getFullYear()}/${todayDate.getMonth() + 1}/${todayDate.getDate()}`;
           strDate += " ";
           strDate += `${todayDate.getHours()}:${todayDate.getMinutes()}:${todayDate.getMinutes()}`;
           document.getElementById('status-of-api').textContent = `データ取得完了:${strDate}`;
@@ -368,6 +370,15 @@
     }
 
     window.onload = () => {
+      const inputElem = document.getElementById('teropspeed'); // input要素
+      inputElem.addEventListener('input', rangeOnChange);
+      function rangeOnChange() {
+        const inputElem = document.getElementById('teropspeed');
+        const value = inputElem.value;
+        // イベントが発生した時の処理
+        set_terop_speed(Number(value));
+      }
+
       inputToGoogleAPI(true);
       terop_init();
     };
@@ -497,8 +508,8 @@
       }
       if (imgNum === 0) {
         counter_reload++;
-        if (10<=counter_reload) {
-          counter_reload=0;
+        if (10 <= counter_reload) {
+          counter_reload = 0;
           reloadPicture(news_images);
           imgs = document.querySelectorAll('#slider img');
           imgNum = 0;
