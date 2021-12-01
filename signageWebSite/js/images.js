@@ -35,17 +35,7 @@
 // 		playingID = 0;
 // 	}
 // }
-
-function reloadPicture(paramImage) {
-	const container = document.getElementById("slider");
-	// 全要素削除
-	while (container.firstChild) {
-		container.removeChild(container.firstChild);
-	}
-	// 要素の追加
-	for (let i = 0; i < news_images.length; i++) {
-		const img = document.createElement('img');
-		img.src = paramImage[i];
-		container.append(img)
-	}
-}
+/**
+ * 
+ * @param {構造体} paramImage　画像の構造体配列 
+ */

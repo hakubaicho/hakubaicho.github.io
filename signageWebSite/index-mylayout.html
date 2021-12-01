@@ -276,11 +276,11 @@
       <div class="griditem gridbox-image">
         <!-- <img src="img/no_image_square.jpg" id="pics"> -->
         <div id="slider">
-          <img src="img/000.jpg">
-          <img src="img/001.jpg">
-          <img src="img/002.jpg">
-          <img src="img/003.jpg">
-          <img src="img/004.jpg">
+          <img src="img/no_image_square.jpg">
+          <img src="img/no_image_square.jpg">
+          <img src="img/no_image_square.jpg">
+          <img src="img/no_image_square.jpg">
+          <img src="img/no_image_square.jpg">
         </div>
       </div>
 
@@ -321,6 +321,10 @@
     const endpoint = "https://script.google.com/macros/s/AKfycby97sHvAmW_EPzyYxOomUKmxayMdC3-8rRIEJ-Fx-RKHxfJDD_QTS2fuu14LNY_Z5qv4w/exec";
     let news_terops = [];
     let news_images = [];
+    /**
+     * GoogleAppsScriptからデータを取得します。
+     * 
+     */
     function inputToGoogleAPI(isStart) {
       document.getElementById('status-of-api').textContent = "データ取得中";
       $.ajax({
@@ -340,10 +344,10 @@
           news_terops = [];
           news_images = [];
           for (let i = 0; i < terops.length; i++) {
-            news_terops.push(terops[i].terop);
+            news_terops.push(terops[i]);
           }
           for (let i = 0; i < images.length; i++) {
-            news_images.push(images[i].url);
+            news_images.push(images[i]);
           }
           reloadTerop(terops);
           // データ取得の結果
@@ -417,10 +421,11 @@
       for (let i = 0; i < news_terops.length; i++) {
         const li = document.createElement('li');
         li.classList.add("news_ticker_list_item");
+        // テロップテキスト
         var p = document.createElement('p');
-        p.innerText = news_terops[i];
+        p.innerText = news_terops[i].terop;
         li.append(p);
-        container.append(li)
+        container.append(li);
       }
       // 終端を入れる
       const li = document.createElement('li');
@@ -431,7 +436,10 @@
       p.innerText = "最後のテロップ　リロードの合図";
       li.append(p);
       li.append(p);
-      container.append(li)
+      container.append(li);
+      if (0 < news_terops.length) {
+        set_terop_speed(news_terops[0].speed);
+      }
     }
 
     /**
@@ -470,7 +478,7 @@
             //--------------------------------
             // テロップのアニメーション効果。
             //--------------------------------
-            $(".is-active", a).css({ left: windowWidth }).delay(1000).animate({ left: -width - 20 }, speed, "linear", function () {
+            $(".is-active", a).css({ left: windowWidth }).delay(500).animate({ left: -width - 20 }, speed, "linear", function () {
               $(".is-active", a).next().addClass("is-active").end().removeClass("is-active").appendTo(a);
               tickerTxt();
             });
@@ -488,14 +496,14 @@
     // 参考URL
     // https://mukuchi.work/simple-fifo-slider/
     // 時間の指定
-    var timer = 5000;
+    var timer = 3000;
     // 画像の番号
     var imgNum = 0;
     var counter_reload = 10;
     var imgs = document.querySelectorAll('#slider img');
     function showImg() {
-      // スライドする要素を取得
 
+      // 全ての画像を非表示にする。
       for (var i = 0; i < imgs.length; i++) {
         imgs[i].classList.remove('show');
       }
@@ -506,6 +514,7 @@
       else {
         imgNum++;
       }
+
       if (imgNum === 0) {
         counter_reload++;
         if (10 <= counter_reload) {
@@ -516,13 +525,43 @@
         }
       }
 
-      imgs[imgNum].classList.add('show');
-      showImgTimer();
+      if (0 < imgs.length) {
+        // 次の画像を表示する。
+        imgs[imgNum].classList.add('show');
+        // ここで表示秒数を決めたい
+        if (0 < news_images.length) {
+          timer = news_images[imgNum].displaysecond * 1000;
+          console.log(`${timer}sec : ${news_images[imgNum].url}`);
+        }
+        else {
+          timer = 3000;
+          console.log(`${timer}sec : DEF`);
+        }
+      }
+
+      showImgTimer(timer);
       changeTerop();
     }
 
-    function showImgTimer() {
-      setTimeout(showImg, timer);
+    function showImgTimer(displaysecond) {
+      setTimeout(showImg, displaysecond);
+    }
+    /**
+     * 画像を更新します。
+     */
+    function reloadPicture(paramImage) {
+      // 画像の表示エリアから全要素削除
+      const container = document.getElementById("slider");
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+      // 画像要素の追加
+      for (let i = 0; i < paramImage.length; i++) {
+        const img = document.createElement('img');
+        img.src = paramImage[i].url;
+        container.append(img)
+      }
+      console.log(`reloadPicture : count = ${paramImage.length} `)
     }
   </script>
 </body>
