@@ -1,0 +1,16 @@
+body {
+    background: #000;
+    color: #fff;
+    user-select: none;
+}
+
+div {
+    border: 1px dotted yellowgreen;
+}
+
+.container {
+    background-color: grey;
+    width: 960px;
+    /* 左右中央寄せ */
+    margin: 0 auto;
+}

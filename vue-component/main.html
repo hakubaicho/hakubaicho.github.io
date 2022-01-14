@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vue.jsの商品一覧</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="component/main/main.css">
+  <link rel="stylesheet" href="component/product-header/product-header.css">
+  <link rel="stylesheet" href="component/product/product.css">
+  <link rel="stylesheet" href="component/product-list/product-list.css">
+</head>
+
+<body>
+  <div id="app">
+    <div v-if="isError" class="error">{{message}}</div>
+    <product-list v-bind:products="products"></product-list>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://jp.vuejs.org/js/vue.js"></script>
+  <script src="common/filter.js"></script>
+  <script src="component/product-header/product-header.js"></script>
+  <script src="component/product/product.js"></script>
+  <script src="component/product-list/product-list.js"></script>
+  <script src="component/main/main.js"></script>
+
+</body>
+
+</html>

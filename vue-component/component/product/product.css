@@ -1,0 +1,52 @@
+.item {
+  flex: 0.1 250px;
+  margin-bottom: 30px;
+}
+
+.item .image {
+  position: relative;
+  text-align: center;
+}
+
+.item .image img {
+  width: 100%;
+  height: auto;
+}
+
+.item .status {
+  position: absolute;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  font-size: 12px;
+  display: flex;
+  /* 左右中央 */
+  align-items: center;
+  /* 上下中央 */
+  justify-content: center;
+  background: #bf0000;
+  color:#FFFFFF;
+}
+
+.item .detail {
+  text-align: center;
+}
+
+.item .price {
+  display: inline-block;
+}
+
+.item .price span {
+  font-size: 180%;
+}
+
+.item .shipping-fee {
+  display: inline-block;
+  background: #f7cd12;
+  color: #000;
+}
+
+.item .shipping-fee.none {
+  background: #bf0000;
+  color: #FFF;
+}

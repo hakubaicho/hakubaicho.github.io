@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  /* 折り返して複数行 */
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list::after {
+  content: "";
+  display: block;
+  width: 250px;
+}
