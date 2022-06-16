@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>複数画像をレイアウトしたページ</title>
+
+  <!-- https://qiita.com/kura07/items/e633b35e33e43240d363 -->
+  <!-- htmlのスタイル -->
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+      font-family: "Font Awesome 5 Free";
+      background: whitesmoke;
+    }
+
+    body {
+      user-select: none;
+      /* 文字列を選択させない */
+      width: 100%;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    div {
+      border: solid 1px gray;
+    }
+
+    .img-responsive {
+      display: flex;
+      max-height: 24vh;
+      /* 1/4を少し小さく */
+      width: auto;
+    }
+  </style>
+  <!--  -->
+  <style>
+    .container {
+      height: 100vh;
+      width: 100%;
+      display: grid;
+      margin: auto auto;
+      /* 子要素間の余白を指定する */
+      gap: 5px;
+      /* 横に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-columns: 3fr 1fr;
+      /* 縦に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      /* grid-template-rows: 7fr 1fr; */
+    }
+
+    .image-main-container {
+      /* 横幅を1アイテム分に指定する */
+      grid-column: 1;
+      /* 縦幅の範囲を 開始位置/終了位置で指定する */
+      grid-row: 1;
+      /* background: #fc2;
+      border-color: #fa0; */
+      /*上下左右を中央にしたい*/
+      display: flex;
+      /*左右中央揃え*/
+      justify-content: center;
+      /*上下中央揃え*/
+      align-items: center;
+      /* これを入れて内部に収める */
+      overflow: hidden;
+
+      background: lime;
+    }
+
+    .image-sub-container {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      margin: 0 auto;
+      /* 子要素間の余白を指定する */
+      gap: 5px;
+      /* 縦に並ぶアイテムの数だけ　アイテム幅の比率を設定する */
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+
+      background: lime;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="image-main-container">
+        <div class="image-main">
+          <img id="image-area-000" src="images/001.png">
+        </div>
+      </div>
+      <div class="image-sub-container">
+        <div class="image-sub">
+          <img id="image-area-001" class="img-responsive" src="images/002.png">
+        </div>
+        <div class="image-sub">
+          <img id="image-area-002" class="img-responsive" src="images/003.png">
+        </div>
+        <div class="image-sub">
+          <img id="image-area-003" class="img-responsive" src="images/004.png">
+        </div>
+        <div class="image-sub">
+          <img id="image-area-004" class="img-responsive" src="images/005.png">
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>9
+
+    // ここでローテーションの画像変更を行う
+    const IMAGE_AREA_MAX = 5;
+    let images = [
+      "images/001.png",
+      "images/002.png",
+      "images/003.png",
+      "images/004.png",
+      "images/005.png",
+    ];
+    let image_location = 0;
+    const el_images = [];
+    window.onload = () => {
+      // 回転表示させるimgタグを代入する。
+      el_images.push(document.getElementById("image-area-000"));
+      el_images.push(document.getElementById("image-area-001"));
+      el_images.push(document.getElementById("image-area-002"));
+      el_images.push(document.getElementById("image-area-003"));
+      el_images.push(document.getElementById("image-area-004"));
+    };
+
+    const imageChange = () => {
+      console.log("*---------------------*");
+      for (let i = 0; i < IMAGE_AREA_MAX; i++) {
+        let loc = image_location + i;
+        loc = loc % images.length;
+        console.log(images[loc]);
+        el_images[i].src = images[loc];
+      }
+      image_location++;
+      if (images.length <= image_location) {
+        image_location = 0;
+      }
+      console.log("*---------------------*");
+    };
+    setInterval(imageChange, 2000);
+  </script>
+</body>
+
+</html>
